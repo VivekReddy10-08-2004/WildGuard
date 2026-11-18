@@ -8,6 +8,9 @@ storage/audit/*
 data/datasets/*
 !data/datasets/README.md
 
+# Local Python environments
+.venv/
+
 # Keep the documented storage layout in version control
 !storage/events/.gitkeep
 !storage/evidence/.gitkeep

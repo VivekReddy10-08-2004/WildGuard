@@ -1,0 +1,56 @@
+[project]
+name = "wildguard"
+version = "0.1.0"
+description = "Local-first multimodal wildlife awareness backend and AI services"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "alembic>=1.17.2",
+    "datasets>=5.2.0",
+    "fastapi>=0.121.0",
+    "pydantic-settings>=2.12.0",
+    "python-multipart>=0.0.20",
+    "sqlalchemy>=2.0.44",
+    "torch==2.5.1",
+    "torchvision==0.20.1",
+    "ultralytics>=8.3.220",
+    "uvicorn[standard]>=0.38.0",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "mypy>=1.18.2",
+    "pytest>=8.4.2",
+    "pytest-asyncio>=1.2.0",
+    "ruff>=0.14.3",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu121" }
+torchvision = { index = "pytorch-cu121" }
+
+[[tool.uv.index]]
+name = "pytorch-cu121"
+url = "https://download.pytorch.org/whl/cu121"
+explicit = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unused_configs = true
+

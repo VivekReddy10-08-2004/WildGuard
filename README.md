@@ -187,3 +187,25 @@ This repository currently contains the system architecture and its directory
 scaffold. `design.svg` remains the source of truth for the intended components
 and relationships. Application code, service implementations, schemas, tests,
 and deployment configuration have not yet been implemented.
+
+## Development environment
+
+The backend and AI environment uses Python 3.12 and
+[`uv`](https://docs.astral.sh/uv/) for dependency management.
+
+```bash
+# Create/update .venv and install runtime + development dependencies
+uv sync
+
+# Activate the environment (optional; `uv run` works without activation)
+source .venv/bin/activate
+
+# Verify the core tools
+python -c "import ultralytics; print(ultralytics.__version__)"
+pytest
+ruff check .
+```
+
+Dependency versions are resolved in `uv.lock`; commit both `pyproject.toml` and
+`uv.lock` when dependencies change. Model weights and datasets remain local and
+are not committed.
