@@ -142,6 +142,7 @@ WildGuard/
 ├── data/
 │   ├── migrations/               # Relational schema changes
 │   ├── documents/                # Locally indexed reference material
+│   ├── datasets/                 # Local model training/evaluation datasets
 │   └── seeds/                    # Development-only reference data
 ├── storage/
 │   ├── events/                   # Local database files in development
@@ -163,7 +164,9 @@ WildGuard/
 
 Runtime data under `storage/` should not be committed. Reference documents in
 `data/documents/` must have clear licensing and provenance, while generated
-indexes can be rebuilt locally from those sources.
+indexes can be rebuilt locally from those sources. Large files under
+`data/datasets/` are also kept out of version control and require documented
+source, licensing, and attribution before use or redistribution.
 
 ## Architectural boundaries
 

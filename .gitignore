@@ -4,9 +4,14 @@ storage/evidence/*
 storage/vectors/*
 storage/audit/*
 
+# Large local training and evaluation datasets
+data/datasets/*
+!data/datasets/README.md
+
 # Keep the documented storage layout in version control
 !storage/events/.gitkeep
 !storage/evidence/.gitkeep
 !storage/vectors/.gitkeep
 !storage/audit/.gitkeep
+
 
