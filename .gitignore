@@ -1,0 +1,12 @@
+# Local runtime data
+storage/events/*
+storage/evidence/*
+storage/vectors/*
+storage/audit/*
+
+# Keep the documented storage layout in version control
+!storage/events/.gitkeep
+!storage/evidence/.gitkeep
+!storage/vectors/.gitkeep
+!storage/audit/.gitkeep
+
