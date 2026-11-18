@@ -209,3 +209,24 @@ ruff check .
 Dependency versions are resolved in `uv.lock`; commit both `pyproject.toml` and
 `uv.lock` when dependencies change. Model weights and datasets remain local and
 are not committed.
+
+### North American wildlife detector
+
+The image service integrates the 26-class
+`UWyo/wildlife-north-american-wildlife` YOLO26s model. Weights are downloaded
+from Hugging Face into ignored local storage on first use, or explicitly with:
+
+```bash
+uv run python -m scripts.download_wildlife_model
+```
+
+Run a prediction against a local image:
+
+```bash
+uv run python -m scripts.predict_wildlife path/to/image.jpg --save
+```
+
+Normalized JSON detections are printed to standard output. Annotated output is
+written under `storage/evidence/predictions/` only when `--save` is supplied.
+The model is distributed under CC BY 4.0; retain the model author's attribution
+when publishing results or derivative work.

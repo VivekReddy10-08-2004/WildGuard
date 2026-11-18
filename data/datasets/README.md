@@ -21,7 +21,7 @@ locally under `wildlife_very_dark/`. Reproduce the download from the project
 root with:
 
 ```bash
-.venv/bin/python scripts/download_wildlife_very_dark.py
+uv run python -m scripts.download_wildlife_very_dark
 ```
 
 Datasets:

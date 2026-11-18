@@ -8,6 +8,7 @@ dependencies = [
     "alembic>=1.17.2",
     "datasets>=5.2.0",
     "fastapi>=0.121.0",
+    "huggingface-hub>=2.4.0",
     "pydantic-settings>=2.12.0",
     "python-multipart>=0.0.20",
     "sqlalchemy>=2.0.44",
@@ -41,6 +42,8 @@ explicit = true
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra"
+pythonpath = ["."]
+asyncio_default_fixture_loop_scope = "function"
 
 [tool.ruff]
 target-version = "py312"
@@ -48,6 +51,9 @@ line-length = 88
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["model_services", "shared"]
 
 [tool.mypy]
 python_version = "3.12"

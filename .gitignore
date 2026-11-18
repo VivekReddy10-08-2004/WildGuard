@@ -3,6 +3,7 @@ storage/events/*
 storage/evidence/*
 storage/vectors/*
 storage/audit/*
+storage/models/*
 
 # Large local training and evaluation datasets
 data/datasets/*
@@ -10,11 +11,28 @@ data/datasets/*
 
 # Local Python environments
 .venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Model weights and generated training outputs
+*.pt
+*.pth
+*.onnx
+runs/
 
 # Keep the documented storage layout in version control
 !storage/events/.gitkeep
 !storage/evidence/.gitkeep
 !storage/vectors/.gitkeep
 !storage/audit/.gitkeep
+!storage/models/.gitkeep
 
 
