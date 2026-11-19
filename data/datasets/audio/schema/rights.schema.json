@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wildguard.invalid/audio/v1/rights.schema.json",
+  "title": "WildGuard rights v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "review_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_recording_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "asset_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "status": {
+      "enum": [
+        "pending",
+        "approved",
+        "rejected"
+      ]
+    },
+    "license_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "license_url": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "commercial_use": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "training": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "redistribution": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "derivatives": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "attribution": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "reviewed_by": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "reviewed_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "url",
+          "sha256",
+          "retrieved_at"
+        ],
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "retrieved_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "review_id",
+    "source_id",
+    "source_recording_id",
+    "asset_sha256",
+    "status",
+    "license_id",
+    "license_url",
+    "commercial_use",
+    "training",
+    "redistribution",
+    "derivatives",
+    "attribution",
+    "conditions",
+    "reviewed_by",
+    "reviewed_at",
+    "evidence"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "approved"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "license_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "license_url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "reviewed_by": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reviewed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "commercial_use": {
+            "const": true
+          },
+          "training": {
+            "const": true
+          },
+          "redistribution": {
+            "const": true
+          },
+          "derivatives": {
+            "const": true
+          },
+          "evidence": {
+            "type": "array",
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ]
+}

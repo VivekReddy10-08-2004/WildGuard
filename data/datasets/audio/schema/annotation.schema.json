@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wildguard.invalid/audio/v1/annotation.schema.json",
+  "title": "WildGuard annotation v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "annotation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recording_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "asset_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "annotation_type": {
+      "enum": [
+        "clip",
+        "event",
+        "window",
+        "unlabeled"
+      ]
+    },
+    "label": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "taxon_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "start_seconds": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "end_seconds": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "annotation_method": {
+      "enum": [
+        "human",
+        "machine",
+        "unknown"
+      ]
+    },
+    "verification": {
+      "enum": [
+        "verified",
+        "unverified",
+        "rejected"
+      ]
+    },
+    "annotator_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "confidence": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "original_annotation": {
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "provenance_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "annotation_id",
+    "recording_id",
+    "asset_id",
+    "annotation_type",
+    "label",
+    "taxon_id",
+    "start_seconds",
+    "end_seconds",
+    "annotation_method",
+    "verification",
+    "annotator_id",
+    "confidence",
+    "original_annotation",
+    "provenance_id"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "annotation_type": {
+            "enum": [
+              "event",
+              "window"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "start_seconds": {
+            "type": "number",
+            "minimum": 0
+          },
+          "end_seconds": {
+            "type": "number",
+            "minimum": 0
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "annotation_type": {
+            "enum": [
+              "clip",
+              "unlabeled"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "start_seconds": {
+            "type": "null"
+          },
+          "end_seconds": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "annotation_type": {
+            "enum": [
+              "clip"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "annotation_type": {
+            "const": "unlabeled"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "label": {
+            "type": "null"
+          },
+          "taxon_id": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ]
+}

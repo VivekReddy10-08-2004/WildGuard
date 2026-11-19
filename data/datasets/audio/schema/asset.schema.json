@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wildguard.invalid/audio/v1/asset.schema.json",
+  "title": "WildGuard asset v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "asset_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recording_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_asset_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "enum": [
+        "original",
+        "processed",
+        "archive",
+        "annotation_source"
+      ]
+    },
+    "size_bytes": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 30000000000
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "duration_seconds": {
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "sample_rate_hz": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "channels": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "codec": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "transformation": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "source_checksum": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "asset_id",
+    "recording_id",
+    "parent_asset_id",
+    "path",
+    "kind",
+    "size_bytes",
+    "sha256",
+    "duration_seconds",
+    "sample_rate_hz",
+    "channels",
+    "codec",
+    "transformation",
+    "source_checksum"
+  ]
+}

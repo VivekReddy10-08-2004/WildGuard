@@ -1,0 +1,33 @@
+name: Audio dataset foundation
+
+on:
+  push:
+    branches: [ram_audio]
+  pull_request:
+    paths:
+      - 'scripts/wildlife_audio/**'
+      - 'scripts/validate_wildlife_audio_manifest.py'
+      - 'data/datasets/audio/**'
+      - 'tests/**/test_audio_foundation*.py'
+      - 'tests/unit/test_wildlife_audio_manifest.py'
+      - 'requirements-audio-foundation.txt'
+      - '.github/workflows/audio-dataset-checks.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  foundation:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-audio-foundation.txt pytest==9.2.0 ruff==0.17.6
+      - run: python -m pytest tests/unit tests/integration -q
+      - run: python -m ruff check scripts/wildlife_audio scripts/validate_wildlife_audio_manifest.py tests/unit/test_audio_foundation.py tests/integration/test_audio_foundation_cli.py
+      - run: python -m ruff format --check scripts/wildlife_audio scripts/validate_wildlife_audio_manifest.py tests/unit/test_audio_foundation.py tests/integration/test_audio_foundation_cli.py

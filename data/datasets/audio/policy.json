@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0.0",
+  "audio_storage_cap_bytes": 30000000000,
+  "accounting": "All payload bytes: originals, derivatives, archives, partials, quarantine, source annotations and provenance evidence. SQLite control files contain no media.",
+  "priority_taxa": [
+    "terrestrial_mammal",
+    "bat",
+    "amphibian",
+    "reptile",
+    "insect"
+  ],
+  "commercial_redistribution_requires": "Recording-level approved review bound to exact asset SHA-256, explicit commercial/training/redistribution/derivative permission and retained evidence.",
+  "acquisition_enabled": false
+}

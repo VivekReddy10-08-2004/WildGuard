@@ -5,10 +5,24 @@ import json
 import math
 from pathlib import Path
 
+if __package__:
+    from scripts.wildlife_audio.paths import safe_path
+else:
+    from wildlife_audio.paths import safe_path
+
 REQUIRED = {
-    "recording_id", "source", "source_url", "audio_path", "license_id",
-    "license_verified", "taxon", "scientific_name", "region",
-    "annotation_type", "annotation_method", "split",
+    "recording_id",
+    "source",
+    "source_url",
+    "audio_path",
+    "license_id",
+    "license_verified",
+    "taxon",
+    "scientific_name",
+    "region",
+    "annotation_type",
+    "annotation_method",
+    "split",
 }
 ALLOWED_SPLITS = {"train", "val", "test", "unassigned"}
 ALLOWED_ANNOTATIONS = {"clip", "event", "unlabeled"}
@@ -23,15 +37,23 @@ def validate_record(record: object, audio_root: Path | None = None) -> list[str]
     missing = REQUIRED - record.keys()
     if missing:
         errors.append("missing fields: " + ", ".join(sorted(missing)))
-    if record.get("split") not in ALLOWED_SPLITS:
+    if (
+        not isinstance(record.get("split"), str)
+        or record["split"] not in ALLOWED_SPLITS
+    ):
         errors.append("invalid split")
-    if record.get("annotation_type") not in ALLOWED_ANNOTATIONS:
+    if (
+        not isinstance(record.get("annotation_type"), str)
+        or record["annotation_type"] not in ALLOWED_ANNOTATIONS
+    ):
         errors.append("invalid annotation_type")
     if not isinstance(record.get("license_verified"), bool):
         errors.append("license_verified must be boolean")
     if record.get("license_verified") is True and not record.get("license_id"):
         errors.append("verified license requires license_id")
-    if not isinstance(record.get("recording_id"), str) or not record.get("recording_id"):
+    if not isinstance(record.get("recording_id"), str) or not record.get(
+        "recording_id"
+    ):
         errors.append("recording_id must be nonempty")
     url = record.get("source_url")
     if not isinstance(url, str) or not url.startswith("https://"):
@@ -40,28 +62,46 @@ def validate_record(record: object, audio_root: Path | None = None) -> list[str]
     if not isinstance(rel, str) or not rel:
         errors.append("audio_path must be nonempty")
     else:
-        path = Path(rel)
-        if path.is_absolute() or ".." in path.parts:
-            errors.append("audio_path must be relative and must not escape root")
-        elif path.suffix.lower() not in ALLOWED_SUFFIXES:
-            errors.append("unsupported audio extension")
-        elif audio_root is not None and not (audio_root / path).is_file():
-            errors.append("audio file missing")
+        try:
+            path = safe_path(audio_root or Path.cwd(), rel)
+            if path.suffix.lower() not in ALLOWED_SUFFIXES:
+                errors.append("unsupported audio extension")
+            elif audio_root is not None and not path.is_file():
+                errors.append("audio file missing")
+        except ValueError as exc:
+            errors.append(str(exc))
+    duration = record.get("duration_seconds")
+    if duration is not None and (
+        isinstance(duration, bool)
+        or not isinstance(duration, (int, float))
+        or not math.isfinite(duration)
+        or duration <= 0
+    ):
+        errors.append("duration_seconds must be finite and positive")
+        duration = None
     events = record.get("events", [])
     if not isinstance(events, list):
         errors.append("events must be an array")
     else:
         if record.get("annotation_type") == "event" and not events:
             errors.append("event annotations require nonempty events")
-        duration = record.get("duration_seconds")
         for i, event in enumerate(events):
             if not isinstance(event, dict):
                 errors.append(f"event {i} must be object")
                 continue
             start, end = event.get("start_seconds"), event.get("end_seconds")
-            if any(isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) for v in (start, end)):
+            if any(
+                isinstance(v, bool)
+                or not isinstance(v, (int, float))
+                or not math.isfinite(v)
+                for v in (start, end)
+            ):
                 errors.append(f"event {i} invalid timestamps")
-            elif start < 0 or end <= start or (isinstance(duration, (int, float)) and end > duration):
+            elif (
+                start < 0
+                or end <= start
+                or (isinstance(duration, (int, float)) and end > duration)
+            ):
                 errors.append(f"event {i} invalid time bounds")
             if not isinstance(event.get("label"), str) or not event["label"]:
                 errors.append(f"event {i} missing label")
@@ -88,6 +128,8 @@ def main() -> int:
                 errors.append(f"line {number}: {error}")
             if isinstance(record, dict):
                 rid = record.get("recording_id")
+                if not isinstance(rid, str):
+                    continue
                 if rid in ids:
                     errors.append(f"line {number}: duplicate recording_id")
                 ids.add(rid)

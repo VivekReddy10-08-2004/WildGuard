@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wildguard.invalid/audio/v1/split.schema.json",
+  "title": "WildGuard split v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "recording_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "group_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "split": {
+      "enum": [
+        "train",
+        "val",
+        "test",
+        "unassigned",
+        "excluded"
+      ]
+    },
+    "reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "algorithm_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "config_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "recording_id",
+    "group_id",
+    "split",
+    "reason",
+    "seed",
+    "algorithm_version",
+    "config_sha256"
+  ]
+}

@@ -11,6 +11,18 @@ data/datasets/*
 data/datasets/audio/*
 !data/datasets/audio/README.md
 !data/datasets/audio/sources.json
+!data/datasets/audio/DOWNLOAD_LINKS.md
+!data/datasets/audio/policy.json
+!data/datasets/audio/source_reviews.json
+!data/datasets/audio/pilot_proposal.json
+!data/datasets/audio/schema/
+!data/datasets/audio/schema/*.schema.json
+
+# Local-only test tooling and Python caches
+.tooling/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
 
 # Local Python environments
 .venv/

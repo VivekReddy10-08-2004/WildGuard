@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wildguard.invalid/audio/v1/recording.schema.json",
+  "title": "WildGuard recording v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "recording_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_recording_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rights_review_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "original_labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "original_annotations": {
+      "type": [
+        "object",
+        "array",
+        "null"
+      ]
+    },
+    "taxon": {
+      "enum": [
+        "terrestrial_mammal",
+        "bat",
+        "amphibian",
+        "reptile",
+        "insect",
+        "bird",
+        "other",
+        "unknown"
+      ]
+    },
+    "scientific_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "taxon_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "taxonomy_version": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "geography": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "country_code",
+        "region",
+        "north_america_verified",
+        "evidence_url"
+      ],
+      "properties": {
+        "country_code": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "region": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "north_america_verified": {
+          "type": "boolean"
+        },
+        "evidence_url": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https://"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "context": {
+      "enum": [
+        "wild",
+        "captive",
+        "staged",
+        "unknown"
+      ]
+    },
+    "site_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "session_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "recordist_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "recorded_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "recording_id",
+    "source_id",
+    "source_recording_id",
+    "provenance_id",
+    "rights_review_id",
+    "original_labels",
+    "original_annotations",
+    "taxon",
+    "scientific_name",
+    "taxon_id",
+    "taxonomy_version",
+    "geography",
+    "context",
+    "site_id",
+    "session_id",
+    "recordist_id",
+    "recorded_at"
+  ]
+}

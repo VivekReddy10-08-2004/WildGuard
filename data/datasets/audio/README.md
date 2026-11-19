@@ -3,7 +3,7 @@
 This directory contains **metadata and reproducible tooling**, not redistributed recordings.
 
 ## Scope
-North American mammals (especially predators and ungulates), reptiles, amphibians, bats, and birds. Do not treat a species occurring in North America as proof that a recording was made there. Keep geographic origin and taxonomy separate.
+North American mammals (especially predators and ungulates), reptiles, amphibians, bats, insects, and birds. Do not treat a species occurring in North America as proof that a recording was made there. Keep geographic origin and taxonomy separate.
 
 ## Data policy
 - Never bulk-redistribute third-party audio without explicit recording-level rights.
@@ -26,3 +26,16 @@ Run `python scripts/validate_wildlife_audio_manifest.py /path/to/manifest.jsonl 
 
 ## Acquisition status
 No third-party audio has been imported or licensed by this commit. See `sources.json` for a source-review queue. A source listed there is **not** automatically approved for download or training.
+
+## Engineering foundation (stages 1–2)
+
+Versioned contracts are in `schema/`; `source_reviews.json` contains no approved
+recordings. Existing source research remains separate from recording-level rights.
+Commercial redistribution requires explicit recording/asset-specific review;
+source-level license flags alone never satisfy this gate.
+
+See [pipeline contracts](../../../docs/audio_dataset_pipeline.md) and
+[local/offline storage](../../../docs/audio_dataset_storage.md) for setup and commands.
+The SQLite inventory enforces a hard 30,000,000,000-byte ceiling on all managed
+payload, including originals, processed copies, archives, partials and quarantine.
+No downloader is enabled. Existing manifest validation remains supported.
