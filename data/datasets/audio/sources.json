@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "scope": "North American wilderness animal sounds",
+  "sources": [
+    {
+      "id": "usgs_nabat",
+      "name": "USGS North American Bat Monitoring Program acoustic data",
+      "url": "https://www.usgs.gov/data/north-american-bat-monitoring-program-nabat-acoustic-data-release",
+      "taxa": [
+        "bats"
+      ],
+      "status": "review_required",
+      "notes": "Verify exact release license, individual download links, annotation provenance and machine-vs-manual labels."
+    },
+    {
+      "id": "western_soundscape",
+      "name": "Western Soundscape Archive",
+      "url": "https://westernsoundscape.org/",
+      "taxa": [
+        "mammals",
+        "reptiles",
+        "amphibians",
+        "birds"
+      ],
+      "status": "permission_required",
+      "notes": "Do not copy or redistribute recordings without recordist or archive authorization."
+    },
+    {
+      "id": "macaulay",
+      "name": "Macaulay Library",
+      "url": "https://www.macaulaylibrary.org/",
+      "taxa": [
+        "mammals",
+        "reptiles",
+        "amphibians",
+        "birds"
+      ],
+      "status": "permission_required",
+      "notes": "Obtain media access and verify recording-specific training and redistribution terms."
+    },
+    {
+      "id": "xeno_mammals",
+      "name": "Xeno-canto land mammals",
+      "url": "https://www.gbif.org/dataset/80f94317-a61f-477f-af06-037632ad6e3b",
+      "taxa": [
+        "mammals"
+      ],
+      "status": "license_review_required",
+      "notes": "Check noncommercial restrictions and individual file licenses before use."
+    },
+    {
+      "id": "birdvox",
+      "name": "BirdVox",
+      "url": "https://wp.nyu.edu/birdvox/codedata/",
+      "taxa": [
+        "birds"
+      ],
+      "status": "release_review_required",
+      "notes": "Select a specific release; flight-call event labels are not necessarily species labels."
+    },
+    {
+      "id": "eastern_forest",
+      "name": "Eastern North American Forest Soundscapes",
+      "url": "https://zenodo.org/records/20038954",
+      "taxa": [
+        "birds"
+      ],
+      "status": "license_review_required",
+      "notes": "Verify exact release, licenses, event labels and archive size."
+    },
+    {
+      "id": "cry_wolf",
+      "name": "Cry Wolf Project",
+      "url": "https://www.thecrywolfproject.com/",
+      "taxa": [
+        "wolves"
+      ],
+      "status": "access_review_required",
+      "notes": "Research material does not imply public bulk download rights."
+    }
+  ]
+}
