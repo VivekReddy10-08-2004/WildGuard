@@ -39,3 +39,28 @@ The final collected audio must not exceed **30,000,000,000 bytes** (30 decimal G
 6. Verify source checksums where provided. Decode and audit sampled audio.
 7. Include natural background and non-target sounds for false-positive assessment.
 8. Note that an animal may be present without vocalizing; audio alone is never a wildlife safety guarantee.
+
+
+## Priority review: Yellowstone and NPS terrestrial mammal recordings
+
+- NPS natural sounds gallery: https://www.nps.gov/subjects/sound/gallery.htm
+- Yellowstone wildlife sound library: https://www.nps.gov/yell/learn/photosmultimedia/soundlibrary.htm
+
+**Acquisition instructions:** enumerate the library's individual audio entries, record their original file URLs, credited recordists, species, call/behavior descriptions, licensing notes, and source pages. Verify actual audio content before assigning a species label. Preserve natural context (e.g. recordings made during capture/feeding rather than an undisturbed encounter). Never convert a page title into event-level time boundaries. Deduplicate recordings that appear in both galleries.
+
+**Target genera/groups for review:** Ursus (bears), Canis (wolves/coyotes), Puma (mountain lion), Cervus (elk), Bison, Alces (moose), Odocoileus (deer), Vulpes (foxes), squirrels, frogs, and ambient hard-negative recordings. An animal appearing on the site does not prove that every target has a downloadable usable audio clip.
+
+## Pacific Northwest annotation caveat
+
+USFS annotated soundscapes: https://zenodo.org/records/10895837
+
+The label inventory includes **domestic dog** and **Douglas squirrel** as its two mammal classes. Other class names, including American pika and bullfrog, appear in the vocabulary with zero annotated occurrences in the inspected table. Count **nonzero annotated occurrences**, not possible class names. This source has two-second window tags, not onset/offset event boundaries. Archive extraction size and license remain subject to verification.
+
+## Recommended download queue
+
+1. Inventory small public-domain NPS/Yellowstone mammal references; treat these as clip-weak labels until reviewed.
+2. Acquire verified, geographically relevant bat examples from the USGS NABat release; label automatic predictions separately from human-verified identifications.
+3. Review amphibian and rodent datasets that publish annotated downloadable audio with permissions.
+4. Add only a compact, diverse subset of strongly annotated bird soundscapes after mammal gaps are addressed.
+
+This catalogue does not contain downloaded audio, and no entry should be reported as imported until checksums, source rights, and the stored file manifest are verified.
