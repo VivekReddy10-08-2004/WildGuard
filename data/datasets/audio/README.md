@@ -51,10 +51,13 @@ exact-asset commercial redistribution reviews remain separate.
 audit. Test Set 2 was not downloaded, its original-audio rights remain unresolved,
 and its evaluation role is protected by the pipeline.
 
-## Acquired NPS pilot: blocked
+## Acquired NPS pilot: technical integrity resolved
 
-The six approved originals were retained locally, totaling 2,193,880 bytes.
-Elk bugle and Alligator trigger native MP3 decoder errors and are quarantined.
-No further acquisition is running. See the metadata-only
-[pilot incident and QC report](releases/nps-pilot-2026-11-19/README.md).
-No audio binaries or derived audio copies were added to Git.
+All six original files and their provenance remain intact, totaling 2,193,880 bytes.
+Strict FFmpeg and standalone mpg123 decode every frame without errors; frame/CRC
+checks pass. The old SoundFile MP3 backend and estimated-length loop caused the
+earlier block. See the [updated diagnosis and QC](releases/nps-pilot-diagnosis-2026-11-19/README.md)
+and the retained [historical incident](releases/nps-pilot-2026-11-19/README.md).
+Technical classifications are six clean, zero quarantined, zero rejected. Labels
+remain unverified source clip labels and all splits remain unassigned. No new
+audio, replacement, persistent derived audio or larger acquisition was performed.

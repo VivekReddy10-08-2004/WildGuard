@@ -50,7 +50,47 @@ def main():
         default=Path("data/datasets/audio/taxonomy_snapshot.json"),
     )
     cmd.add_argument("--save-relative", default=None)
+    cmd = sub.add_parser(
+        "diagnose", help="offline strict multi-decoder review of retained MP3 originals"
+    )
+    cmd.add_argument("root", type=Path)
+    cmd.add_argument("bundle", type=Path)
+    cmd.add_argument("--mpg123", type=Path, required=True)
+    cmd.add_argument("--report-relative", required=True)
+    cmd.add_argument(
+        "--apply",
+        action="store_true",
+        help="explicitly apply retained, consensus-checked states",
+    )
     args = parser.parse_args()
+    if args.command == "diagnose":
+        from scripts.wildlife_audio.diagnostics import (
+            apply_retained_diagnosis,
+            diagnose,
+            retain_diagnosis,
+        )
+
+        inventory = Inventory(args.root)
+        bundle = json.loads(args.bundle.read_text("utf-8"))
+        report = diagnose(
+            inventory,
+            [a["path"] for a in bundle["asset"] if a["kind"] == "original"],
+            args.mpg123,
+        )
+        saved = retain_diagnosis(inventory, report, args.report_relative)
+        if args.apply:
+            apply_retained_diagnosis(inventory, saved["path"])
+        print(
+            json.dumps(
+                {
+                    "report": saved,
+                    "counts": report["counts"],
+                    "states_applied": args.apply,
+                },
+                indent=2,
+            )
+        )
+        return int(report["counts"]["quarantined"] + report["counts"]["rejected"] > 0)
     if args.command == "acquire":
         from scripts.wildlife_audio.download import DownloadSpec, acquire
 

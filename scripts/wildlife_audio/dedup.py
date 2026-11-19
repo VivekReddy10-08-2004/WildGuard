@@ -3,10 +3,22 @@
 import math
 
 import numpy as np
-import soundfile as sf
 from scipy.signal import resample_poly
 
-from scripts.wildlife_audio.integrity import decode_audio
+from scripts.wildlife_audio.integrity import decode_audio, pcm_blocks
+
+
+def quarter_blocks(blocks, rate):
+    """Reblock only samples actually decoded; retain no audio outside memory."""
+    pending = None
+    wanted = max(1, rate // 4)
+    for block in blocks:
+        pending = block if pending is None else np.concatenate([pending, block])
+        while len(pending) >= wanted:
+            yield pending[:wanted]
+            pending = pending[wanted:]
+    if pending is not None and len(pending):
+        yield pending
 
 
 def fingerprint(path, max_seconds=3600):
@@ -20,33 +32,30 @@ def fingerprint(path, max_seconds=3600):
     target = rate if rate >= 96_000 else 16_000
     profile = f"ultrasound-native-{rate}" if rate >= 96_000 else "audible-16000"
     vectors = []
-    with sf.SoundFile(path) as audio:
-        for block in audio.blocks(
-            blocksize=max(1, rate // 4), dtype="float32", always_2d=True
-        ):
-            mono = block.mean(axis=1)
-            if rate != target:
-                divisor = math.gcd(rate, target)
-                mono = resample_poly(mono, target // divisor, rate // divisor)
-            if len(mono) < target // 8 or float(np.max(np.abs(mono), initial=0)) < 1e-6:
-                vectors.append(None)
-                continue
-            power = np.abs(np.fft.rfft(mono * np.hanning(len(mono)))) ** 2
-            frequencies = np.fft.rfftfreq(len(mono), 1 / target)
-            edges = np.geomspace(30, target * 0.49, 33)
-            bands = np.array(
-                [
-                    np.sum(power[(frequencies >= lo) & (frequencies < hi)])
-                    for lo, hi in zip(edges[:-1], edges[1:], strict=True)
-                ]
-            )
-            vector = np.log1p(bands / max(float(bands.sum()), 1e-20) * 10000)
-            vector -= vector.mean()
-            norm = np.linalg.norm(vector)
-            vectors.append((vector / norm).round(5).tolist() if norm > 1e-8 else None)
+    for block in quarter_blocks(pcm_blocks(path, max_seconds), rate):
+        mono = block.mean(axis=1)
+        if rate != target:
+            divisor = math.gcd(rate, target)
+            mono = resample_poly(mono, target // divisor, rate // divisor)
+        if len(mono) < target // 8 or float(np.max(np.abs(mono), initial=0)) < 1e-6:
+            vectors.append(None)
+            continue
+        power = np.abs(np.fft.rfft(mono * np.hanning(len(mono)))) ** 2
+        frequencies = np.fft.rfftfreq(len(mono), 1 / target)
+        edges = np.geomspace(30, target * 0.49, 33)
+        bands = np.array(
+            [
+                np.sum(power[(frequencies >= lo) & (frequencies < hi)])
+                for lo, hi in zip(edges[:-1], edges[1:], strict=True)
+            ]
+        )
+        vector = np.log1p(bands / max(float(bands.sum()), 1e-20) * 10000)
+        vector -= vector.mean()
+        norm = np.linalg.norm(vector)
+        vectors.append((vector / norm).round(5).tolist() if norm > 1e-8 else None)
     return {
         **info,
-        "fingerprint_version": "spectral-quarter-v1",
+        "fingerprint_version": "spectral-quarter-eof-v2",
         "profile": profile,
         "window_seconds": 0.25,
         "vectors": vectors,

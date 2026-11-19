@@ -26,6 +26,11 @@ data/datasets/audio/releases/nps-pilot-2026-11-19/*
 !data/datasets/audio/releases/nps-pilot-2026-11-19/*.json
 !data/datasets/audio/releases/nps-pilot-2026-11-19/*.jsonl
 !data/datasets/audio/releases/nps-pilot-2026-11-19/README.md
+!data/datasets/audio/releases/nps-pilot-diagnosis-2026-11-19/
+data/datasets/audio/releases/nps-pilot-diagnosis-2026-11-19/*
+!data/datasets/audio/releases/nps-pilot-diagnosis-2026-11-19/*.json
+!data/datasets/audio/releases/nps-pilot-diagnosis-2026-11-19/*.jsonl
+!data/datasets/audio/releases/nps-pilot-diagnosis-2026-11-19/README.md
 !data/datasets/audio/schema/
 !data/datasets/audio/schema/*.schema.json
 

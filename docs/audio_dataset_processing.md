@@ -68,7 +68,11 @@ member names are rejected. There is no general bulk-audio extraction command.
 
 ## Decoding and duplicate evidence
 
-Pinned SoundFile/libsndfile reads every frame of WAV, FLAC, OGG and MP3. AAC/M4A
+Pinned SoundFile/libsndfile handles WAV, FLAC and OGG in isolated workers, using
+actual reads to EOF. MP3 uses strict FFmpeg plus contiguous frame/side-info/CRC
+validation. Native stderr and logged decode errors fail acceptance even on exit
+zero. See [decoder diagnostics](audio_decoder_diagnostics.md) for the resolved
+NPS incident, independent review policy and exact decoder differences. AAC/M4A
 and other unsupported codecs fail explicitly. Dimension, duration, finite-sample,
 RIFF truncation and checksum checks run; silence and clipping are QC flags.
 Default limits are one hour, eight channels and 768 kHz. Original audio is never

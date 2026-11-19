@@ -1,5 +1,10 @@
 # NPS pilot — blocked on native MP3 decoder errors
 
+**Historical incident snapshot.** The subsequent
+[multi-decoder investigation](../nps-pilot-diagnosis-2026-11-19/README.md) resolves
+the technical block without replacing or altering any original. The JSON records
+in this directory preserve the earlier decision; they are not the latest verdict.
+
 Status: **not released; further acquisition stopped**. This directory contains
 permitted metadata only. Audio binaries remain in the approved local scratch
 inventory; no persistent resampled or derived audio was created.

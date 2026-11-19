@@ -1,0 +1,30 @@
+{
+  "additional_payload_since_original_acquisition_bytes": 2602865,
+  "classification_counts": {
+    "clean": 6,
+    "quarantined": 0,
+    "rejected": 0
+  },
+  "expert_verified_species_labels": 0,
+  "new_acquisition_authorized": false,
+  "new_audio_acquired_this_stage_bytes": 0,
+  "original_audio_bytes": 2193880,
+  "original_authorization_metadata_maximum_bytes": 1000000,
+  "persistent_derived_audio_bytes": 0,
+  "recorded_at": "2026-11-19T23:16:07.406182Z",
+  "recording_count": 6,
+  "retained_metadata_bytes": 408985,
+  "schema_version": "1.0.0",
+  "source_bytes_and_provenance_unchanged": true,
+  "source_damage_confirmed": false,
+  "split_counts": {
+    "unassigned": 6
+  },
+  "status": "technical_integrity_resolved",
+  "supersedes": "releases/nps-pilot-2026-11-19/authoritative/summary.json",
+  "tests": {
+    "local_passed": 178,
+    "local_skipped": 1
+  },
+  "total_managed_payload_bytes": 85290135
+}

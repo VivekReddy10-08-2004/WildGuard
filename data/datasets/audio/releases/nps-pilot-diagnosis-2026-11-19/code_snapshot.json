@@ -1,0 +1,17 @@
+{
+  "base_commit": "1a6bfa72e043c0c4a58723aecb8bd5afe8efc955",
+  "sha256": {
+    "decode_worker.py": "19e98e5131ab5b3b32e57136113c544b611c9b56e705b15bac0095e8c4302ef5",
+    "dedup.py": "a7bec0eafc4e9890be92ab5175930dad9ca07f162f1e9400791ec6b47ac7c696",
+    "diagnostics.py": "5d3c7e4d717748ef675ceb096c933e627de8d1382a00588887a2e35830c12f6b",
+    "ffmpeg.py": "b5d2ffdab3c9fd9130c112edfc59fdd8489b79944f1b7293c5146aa940ab8a06",
+    "integrity.py": "e0c92414cc6d15d5eb3b3b6fac86ee2cb8905dba61a7f13d4a909dfe2b7adb6c",
+    "mp3.py": "31cb3cbb2179e2f63a555e6e85f570ff8ee9c4bdb3dbdae3d1196b9bda3cb7a5",
+    "probe_worker.py": "b92db4043e0a3df25b9e20883185c68af9cfb3b4ee8f56d0ec6a9b1d371a5064",
+    "process.py": "31943fd89f9b62b3006edc935c77338387e1e189785e5a647b3e5e4aa81667ec"
+  },
+  "tool_download": {
+    "archive_sha256": "da58591eb08f7b893136cd8950a187a01355dfdfbb545a3ba99342225ce49a72",
+    "url": "https://www.mpg123.de/download/win64/1.33.7/mpg123-1.33.7-static-x86-64.zip"
+  }
+}

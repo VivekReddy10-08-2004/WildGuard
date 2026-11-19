@@ -1,0 +1,1235 @@
+{
+  "assets": [
+    {
+      "classification": "clean",
+      "consensus_passed": true,
+      "dr_mp3": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "dr_mp3/minimp3",
+          "channels": 1,
+          "duration_seconds": 9.900408163265306,
+          "frames": 436608,
+          "pcm_format": "signed16-native-endian",
+          "pcm_sha256": "a4212e49d19a88611bfa759f4fbcc6e8c31b92cd40746c30e41c98eaf6137412",
+          "sample_rate_hz": 44100,
+          "version": "1.61"
+        },
+        "exact_frame_coverage": false,
+        "exit_code": 0,
+        "native_error_lines": [],
+        "overflow": [],
+        "stderr": "",
+        "timed_out": false
+      },
+      "input_bytes": 161398,
+      "input_sha256": "69bfee365fa27be7e945ad667dbb91dfa85e3730e304d6412e07c9fd87b9038b",
+      "mpg123": {
+        "binary_sha256": "6c5d77cda39c033b94c51a374ad553b4d4e6f774d418e24e7780e4bfd49305de",
+        "channels": 1,
+        "command": [
+          "mpg123.exe",
+          "--no-resync",
+          "--no-frankenstein",
+          "--no-control",
+          "--no-visual",
+          "--encoding",
+          "s16",
+          "--stdout",
+          "nri-CoyotesMOJA.mp3"
+        ],
+        "duration_seconds": 9.926530612244898,
+        "error_lines": [],
+        "exact_frame_coverage": true,
+        "exit_code": 0,
+        "frames": 437760,
+        "overflow": false,
+        "pcm_bytes": 875520,
+        "pcm_format": "signed16-little-endian",
+        "pcm_sha256": "37e6265313c9b09b7f7faf203eed1a3aec504c1ac8b19224631e74eebe851764",
+        "sample_rate_hz": 44100,
+        "stderr": "High Performance MPEG 1.0/2.0/2.5 Audio Player for Layers 1, 2 and 3\r\n\tversion 1.33.7; written and copyright by Michael Hipp and others\r\n\tfree software (LGPL) without any warranty but with best wishes\r\nNote: forcing output encoding s16\r\n\r\nPlaying MPEG stream 1 of 1: nri-CoyotesMOJA.mp3 ...\r\n\r\nMPEG 1.0 L III cbr128 44100 mono\r\n\r\nTitle:                                                       Artist:                                                   \r\nComment:                                                     Album:                                                    \r\nYear:                                                        Genre:  Other                                             \r\n\r\n\r\n[0:09] Decoding of nri-CoyotesMOJA.mp3 finished.\r\n",
+        "timed_out": false
+      },
+      "path": "originals/nps/nri-CoyotesMOJA.mp3",
+      "prior_inventory_state": "ready",
+      "reason": "Complete frames/CRCs and two strict independent decoders agree; no corruption detected. Legacy bundled decoder diagnostics retained.",
+      "soundfile-blocks": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "soundfile-blocks",
+          "channels": 1,
+          "duration_seconds": 10.078390022675737,
+          "frames": 444457,
+          "header_estimated_frames": 444457,
+          "pcm_format": "float32-little-endian",
+          "pcm_sha256": "6bb8b1aec7648f4f3d8c2b87f16e538ba787bf42ce69513e597bf7aa80a48f4d",
+          "sample_rate_hz": 44100,
+          "version": "soundfile=0.13.1;libsndfile=1.2.2"
+        },
+        "exit_code": 0,
+        "native_error_lines": [],
+        "overflow": [],
+        "stderr": "",
+        "timed_out": false
+      },
+      "soundfile-eof": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "soundfile-eof",
+          "channels": 1,
+          "duration_seconds": 9.926530612244898,
+          "frames": 437760,
+          "header_estimated_frames": 444457,
+          "pcm_format": "float32-little-endian",
+          "pcm_sha256": "8e4e5c4c91fc418823844c0d620e2f511b7bbd6a2847fe592ffc20d050f54aa4",
+          "sample_rate_hz": 44100,
+          "version": "soundfile=0.13.1;libsndfile=1.2.2"
+        },
+        "exit_code": 0,
+        "native_error_lines": [],
+        "overflow": [],
+        "stderr": "",
+        "timed_out": false
+      },
+      "strict_ffmpeg": {
+        "channels": 1,
+        "clipped_fraction": 0.0,
+        "decoder": "FFmpeg=7.1-essentials_build-www.gyan.dev;mp3float",
+        "decoder_diagnostics": {
+          "command": [
+            "ffmpeg-win-x86_64-v7.1.exe",
+            "-hide_banner",
+            "-nostdin",
+            "-nostats",
+            "-v",
+            "info",
+            "-xerror",
+            "-max_error_rate",
+            "0",
+            "-err_detect",
+            "crccheck+bitstream+explode",
+            "-protocol_whitelist",
+            "file,pipe",
+            "-f",
+            "mp3",
+            "-c:a",
+            "mp3float",
+            "-i",
+            "nri-CoyotesMOJA.mp3",
+            "-map",
+            "0:a:0",
+            "-vn",
+            "-sn",
+            "-dn",
+            "-c:a",
+            "pcm_f32le",
+            "-f",
+            "f32le",
+            "pipe:1"
+          ],
+          "error_lines": [],
+          "exit_code": 0,
+          "pcm_bytes": 1751040,
+          "pcm_format": "float32-little-endian",
+          "stderr": "[mp3 @ 00000232276366c0] Estimating duration from bitrate, this may be inaccurate\r\nInput #0, mp3, from 'nri-CoyotesMOJA.mp3':\r\n  Metadata:\r\n    genre           : Other\r\n    id3v2_priv.XMP  : <?xpacket begin=\"\\xef\\xbb\\xbf\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?>\\x0a<x:xmpmeta xmlns:x=\"adobe:ns:meta/\" x:xmptk=\"3.1.2-113\">\\x0a <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\\x0a  <rdf:Description rdf:about=\"\"\\x0a    xmlns:xmpDM=\"http://\r\n  Duration: 00:00:09.93, start: 0.000000, bitrate: 129 kb/s\r\n  Stream #0:0: Audio: mp3 (mp3float), 44100 Hz, mono, fltp, 128 kb/s\r\nStream mapping:\r\n  Stream #0:0 -> #0:0 (mp3 (mp3float) -> pcm_f32le (native))\r\nOutput #0, f32le, to 'pipe:1':\r\n  Metadata:\r\n    genre           : Other\r\n    id3v2_priv.XMP  : <?xpacket begin=\"\\xef\\xbb\\xbf\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?>\\x0a<x:xmpmeta xmlns:x=\"adobe:ns:meta/\" x:xmptk=\"3.1.2-113\">\\x0a <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\\x0a  <rdf:Description rdf:about=\"\"\\x0a    xmlns:xmpDM=\"http://\r\n    encoder         : Lavf61.7.100\r\n  Stream #0:0: Audio: pcm_f32le, 44100 Hz, mono, flt, 1411 kb/s\r\n      Metadata:\r\n        encoder         : Lavc61.19.100 pcm_f32le\r\n[out#0/f32le @ 0000023227635d80] video:0KiB audio:1710KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000000%\r\nsize=    1710KiB time=00:00:09.92 bitrate=1411.2kbits/s speed= 623x    \r\n",
+          "stderr_overflow": false,
+          "timed_out": false
+        },
+        "duration_seconds": 9.926530612244898,
+        "flags": [],
+        "format": "MP3",
+        "frames": 437760,
+        "mp3_structure": {
+          "audio_end_byte": 161270,
+          "audio_start_byte": 2446,
+          "channels": 1,
+          "crc_failures": 0,
+          "encoded_samples": 437760,
+          "frame_count": 380,
+          "frame_duration_seconds": 9.926530612244898,
+          "has_timing_header": false,
+          "protected_frames": 380,
+          "sample_rate_hz": 44100,
+          "scanner_version": "layer3-contiguous-crc-v1",
+          "tags": [
+            {
+              "bytes": 2446,
+              "kind": "ID3v2",
+              "offset": 0
+            },
+            {
+              "bytes": 128,
+              "kind": "ID3v1",
+              "offset": 161270
+            }
+          ],
+          "unaccounted_bytes": 0
+        },
+        "pcm_hash_version": "dimensioned-float32-le-v2",
+        "pcm_sha256": "8d325a25266a08b273aeb5fda511f518b357114cfd3b65703ece5b31eeae9837",
+        "peak": 0.02995750680565834,
+        "raw_pcm_sha256": "3ad981dfc04d9955e36f0c4476caa43f9676d313d46520614898d3ce72362eb5",
+        "sample_rate_hz": 44100,
+        "sha256": "69bfee365fa27be7e945ad667dbb91dfa85e3730e304d6412e07c9fd87b9038b",
+        "silent_fraction": 0.0032963267543859648,
+        "size_bytes": 161398,
+        "subtype": "MPEG_LAYER_III"
+      },
+      "structure": {
+        "audio_end_byte": 161270,
+        "audio_start_byte": 2446,
+        "channels": 1,
+        "crc_failures": 0,
+        "encoded_samples": 437760,
+        "frame_count": 380,
+        "frame_duration_seconds": 9.926530612244898,
+        "has_timing_header": false,
+        "protected_frames": 380,
+        "sample_rate_hz": 44100,
+        "scanner_version": "layer3-contiguous-crc-v1",
+        "tags": [
+          {
+            "bytes": 2446,
+            "kind": "ID3v2",
+            "offset": 0
+          },
+          {
+            "bytes": 128,
+            "kind": "ID3v1",
+            "offset": 161270
+          }
+        ],
+        "unaccounted_bytes": 0
+      }
+    },
+    {
+      "classification": "clean",
+      "consensus_passed": true,
+      "dr_mp3": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "dr_mp3/minimp3",
+          "channels": 1,
+          "duration_seconds": 20.558367346938777,
+          "frames": 906624,
+          "pcm_format": "signed16-native-endian",
+          "pcm_sha256": "9a9d5e13865feadbbea0683a2cda1cbe23b174379fbca5af4f732f514bbc78d4",
+          "sample_rate_hz": 44100,
+          "version": "1.61"
+        },
+        "exact_frame_coverage": false,
+        "exit_code": 0,
+        "native_error_lines": [],
+        "overflow": [],
+        "stderr": "",
+        "timed_out": false
+      },
+      "input_bytes": 331926,
+      "input_sha256": "dc5c367965161eb9c9e25eb08a762ef2ec27a5f6fd3ca8d6e0f2e0ea32959675",
+      "mpg123": {
+        "binary_sha256": "6c5d77cda39c033b94c51a374ad553b4d4e6f774d418e24e7780e4bfd49305de",
+        "channels": 1,
+        "command": [
+          "mpg123.exe",
+          "--no-resync",
+          "--no-frankenstein",
+          "--no-control",
+          "--no-visual",
+          "--encoding",
+          "s16",
+          "--stdout",
+          "nri-ElkBuglingGRSA.mp3"
+        ],
+        "duration_seconds": 20.58448979591837,
+        "error_lines": [],
+        "exact_frame_coverage": true,
+        "exit_code": 0,
+        "frames": 907776,
+        "overflow": false,
+        "pcm_bytes": 1815552,
+        "pcm_format": "signed16-little-endian",
+        "pcm_sha256": "16be7ada6f689d47f559a7dc54f358e861437327b7d97ab94b4bb99a9772cca2",
+        "sample_rate_hz": 44100,
+        "stderr": "High Performance MPEG 1.0/2.0/2.5 Audio Player for Layers 1, 2 and 3\r\n\tversion 1.33.7; written and copyright by Michael Hipp and others\r\n\tfree software (LGPL) without any warranty but with best wishes\r\nNote: forcing output encoding s16\r\n\r\nPlaying MPEG stream 1 of 1: nri-ElkBuglingGRSA.mp3 ...\r\n\r\nMPEG 1.0 L III cbr128 44100 mono\r\n\r\nTitle:                                                       Artist:                                                   \r\nComment:                                                     Album:                                                    \r\nYear:                                                        Genre:  Other                                             \r\n\r\n\r\n[0:20] Decoding of nri-ElkBuglingGRSA.mp3 finished.\r\n",
+        "timed_out": false
+      },
+      "path": "originals/nps/nri-ElkBuglingGRSA.mp3",
+      "prior_inventory_state": "quarantined",
+      "reason": "Complete frames/CRCs and two strict independent decoders agree; no corruption detected. Legacy bundled decoder diagnostics retained.",
+      "soundfile-blocks": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "soundfile-blocks",
+          "channels": 1,
+          "duration_seconds": 20.73532879818594,
+          "frames": 914428,
+          "header_estimated_frames": 914428,
+          "pcm_format": "float32-little-endian",
+          "pcm_sha256": "b866f6531c80df7e22b2f3169ece258bb90aa97e602d4e84158da8e65a112449",
+          "sample_rate_hz": 44100,
+          "version": "soundfile=0.13.1;libsndfile=1.2.2"
+        },
+        "exit_code": 0,
+        "native_error_lines": [
+          "[C:\\vcpkg\\buildtrees\\mpg123\\src\\-66150af195.clean\\src\\libmpg123\\layer3.c:INT123_do_layer3():1908] error: dequantization failed!"
+        ],
+        "overflow": [],
+        "stderr": "[C:\\vcpkg\\buildtrees\\mpg123\\src\\-66150af195.clean\\src\\libmpg123\\layer3.c:INT123_do_layer3():1908] error: dequantization failed!\n",
+        "timed_out": false
+      },
+      "soundfile-eof": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "soundfile-eof",
+          "channels": 1,
+          "duration_seconds": 20.58448979591837,
+          "frames": 907776,
+          "header_estimated_frames": 914428,
+          "pcm_format": "float32-little-endian",
+          "pcm_sha256": "4dc0719e561493a31ed487db689e33899540710b13b0d99d90449d5d9fb99c27",
+          "sample_rate_hz": 44100,
+          "version": "soundfile=0.13.1;libsndfile=1.2.2"
+        },
+        "exit_code": 0,
+        "native_error_lines": [
+          "[C:\\vcpkg\\buildtrees\\mpg123\\src\\-66150af195.clean\\src\\libmpg123\\layer3.c:INT123_do_layer3():1908] error: dequantization failed!"
+        ],
+        "overflow": [],
+        "stderr": "[C:\\vcpkg\\buildtrees\\mpg123\\src\\-66150af195.clean\\src\\libmpg123\\layer3.c:INT123_do_layer3():1908] error: dequantization failed!\n",
+        "timed_out": false
+      },
+      "strict_ffmpeg": {
+        "channels": 1,
+        "clipped_fraction": 5.1774887196841515e-05,
+        "decoder": "FFmpeg=7.1-essentials_build-www.gyan.dev;mp3float",
+        "decoder_diagnostics": {
+          "command": [
+            "ffmpeg-win-x86_64-v7.1.exe",
+            "-hide_banner",
+            "-nostdin",
+            "-nostats",
+            "-v",
+            "info",
+            "-xerror",
+            "-max_error_rate",
+            "0",
+            "-err_detect",
+            "crccheck+bitstream+explode",
+            "-protocol_whitelist",
+            "file,pipe",
+            "-f",
+            "mp3",
+            "-c:a",
+            "mp3float",
+            "-i",
+            "nri-ElkBuglingGRSA.mp3",
+            "-map",
+            "0:a:0",
+            "-vn",
+            "-sn",
+            "-dn",
+            "-c:a",
+            "pcm_f32le",
+            "-f",
+            "f32le",
+            "pipe:1"
+          ],
+          "error_lines": [],
+          "exit_code": 0,
+          "pcm_bytes": 3631104,
+          "pcm_format": "float32-little-endian",
+          "stderr": "[mp3 @ 000001e349f367c0] Estimating duration from bitrate, this may be inaccurate\r\nInput #0, mp3, from 'nri-ElkBuglingGRSA.mp3':\r\n  Metadata:\r\n    genre           : Other\r\n    id3v2_priv.XMP  : <?xpacket begin=\"\\xef\\xbb\\xbf\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?>\\x0a<x:xmpmeta xmlns:x=\"adobe:ns:meta/\" x:xmptk=\"3.1.2-113\">\\x0a <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\\x0a  <rdf:Description rdf:about=\"\"\\x0a    xmlns:xmpDM=\"http://\r\n  Duration: 00:00:20.59, start: 0.000000, bitrate: 128 kb/s\r\n  Stream #0:0: Audio: mp3 (mp3float), 44100 Hz, mono, fltp, 128 kb/s\r\nStream mapping:\r\n  Stream #0:0 -> #0:0 (mp3 (mp3float) -> pcm_f32le (native))\r\nOutput #0, f32le, to 'pipe:1':\r\n  Metadata:\r\n    genre           : Other\r\n    id3v2_priv.XMP  : <?xpacket begin=\"\\xef\\xbb\\xbf\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?>\\x0a<x:xmpmeta xmlns:x=\"adobe:ns:meta/\" x:xmptk=\"3.1.2-113\">\\x0a <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\\x0a  <rdf:Description rdf:about=\"\"\\x0a    xmlns:xmpDM=\"http://\r\n    encoder         : Lavf61.7.100\r\n  Stream #0:0: Audio: pcm_f32le, 44100 Hz, mono, flt, 1411 kb/s\r\n      Metadata:\r\n        encoder         : Lavc61.19.100 pcm_f32le\r\n[out#0/f32le @ 000001e349f35e00] video:0KiB audio:3546KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000000%\r\nsize=    3546KiB time=00:00:20.58 bitrate=1411.2kbits/s speed= 620x    \r\n",
+          "stderr_overflow": false,
+          "timed_out": false
+        },
+        "duration_seconds": 20.58448979591837,
+        "flags": [],
+        "format": "MP3",
+        "frames": 907776,
+        "mp3_structure": {
+          "audio_end_byte": 331798,
+          "audio_start_byte": 2446,
+          "channels": 1,
+          "crc_failures": 0,
+          "encoded_samples": 907776,
+          "frame_count": 788,
+          "frame_duration_seconds": 20.58448979591837,
+          "has_timing_header": false,
+          "protected_frames": 788,
+          "sample_rate_hz": 44100,
+          "scanner_version": "layer3-contiguous-crc-v1",
+          "tags": [
+            {
+              "bytes": 2446,
+              "kind": "ID3v2",
+              "offset": 0
+            },
+            {
+              "bytes": 128,
+              "kind": "ID3v1",
+              "offset": 331798
+            }
+          ],
+          "unaccounted_bytes": 0
+        },
+        "pcm_hash_version": "dimensioned-float32-le-v2",
+        "pcm_sha256": "a39f9fbe1fe660168abc55306035573214e7606cf1155f40b2ba8d86073de4c1",
+        "peak": 1.0103113651275635,
+        "raw_pcm_sha256": "b16b5a274cd35678a72014222cc48c215c548359f106c006efaf0cc08bd589bd",
+        "sample_rate_hz": 44100,
+        "sha256": "dc5c367965161eb9c9e25eb08a762ef2ec27a5f6fd3ca8d6e0f2e0ea32959675",
+        "silent_fraction": 0.0035967022701635645,
+        "size_bytes": 331926,
+        "subtype": "MPEG_LAYER_III"
+      },
+      "structure": {
+        "audio_end_byte": 331798,
+        "audio_start_byte": 2446,
+        "channels": 1,
+        "crc_failures": 0,
+        "encoded_samples": 907776,
+        "frame_count": 788,
+        "frame_duration_seconds": 20.58448979591837,
+        "has_timing_header": false,
+        "protected_frames": 788,
+        "sample_rate_hz": 44100,
+        "scanner_version": "layer3-contiguous-crc-v1",
+        "tags": [
+          {
+            "bytes": 2446,
+            "kind": "ID3v2",
+            "offset": 0
+          },
+          {
+            "bytes": 128,
+            "kind": "ID3v1",
+            "offset": 331798
+          }
+        ],
+        "unaccounted_bytes": 0
+      }
+    },
+    {
+      "classification": "clean",
+      "consensus_passed": true,
+      "dr_mp3": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "dr_mp3/minimp3",
+          "channels": 1,
+          "duration_seconds": 6.896326530612245,
+          "frames": 304128,
+          "pcm_format": "signed16-native-endian",
+          "pcm_sha256": "ab7116a307362cbed07f60c160f129640bd87d6fdf67586073bd46436b20168d",
+          "sample_rate_hz": 44100,
+          "version": "1.61"
+        },
+        "exact_frame_coverage": false,
+        "exit_code": 0,
+        "native_error_lines": [],
+        "overflow": [],
+        "stderr": "",
+        "timed_out": false
+      },
+      "input_bytes": 113333,
+      "input_sha256": "36ae530a87f010e2687e6c259da2660ca679ce1b3f68e46e357b1ab1fac9fbee",
+      "mpg123": {
+        "binary_sha256": "6c5d77cda39c033b94c51a374ad553b4d4e6f774d418e24e7780e4bfd49305de",
+        "channels": 1,
+        "command": [
+          "mpg123.exe",
+          "--no-resync",
+          "--no-frankenstein",
+          "--no-control",
+          "--no-visual",
+          "--encoding",
+          "s16",
+          "--stdout",
+          "nri-SpottedBatYOSE.mp3"
+        ],
+        "duration_seconds": 6.922448979591837,
+        "error_lines": [],
+        "exact_frame_coverage": true,
+        "exit_code": 0,
+        "frames": 305280,
+        "overflow": false,
+        "pcm_bytes": 610560,
+        "pcm_format": "signed16-little-endian",
+        "pcm_sha256": "152aa3e51e6ae6c638d93228b87c6b314161c589db646ed4e8f55e0edbead90e",
+        "sample_rate_hz": 44100,
+        "stderr": "High Performance MPEG 1.0/2.0/2.5 Audio Player for Layers 1, 2 and 3\r\n\tversion 1.33.7; written and copyright by Michael Hipp and others\r\n\tfree software (LGPL) without any warranty but with best wishes\r\nNote: forcing output encoding s16\r\n\r\nPlaying MPEG stream 1 of 1: nri-SpottedBatYOSE.mp3 ...\r\n\r\nMPEG 1.0 L III cbr128 44100 mono\r\n\r\nTitle:                                                       Artist:                                                   \r\nComment:                                                     Album:                                                    \r\nYear:                                                        Genre:  Other                                             \r\n\r\n\r\n[0:06] Decoding of nri-SpottedBatYOSE.mp3 finished.\r\n",
+        "timed_out": false
+      },
+      "path": "originals/nps/nri-SpottedBatYOSE.mp3",
+      "prior_inventory_state": "ready",
+      "reason": "Complete frames/CRCs and two strict independent decoders agree; no corruption detected. Legacy bundled decoder diagnostics retained.",
+      "soundfile-blocks": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "soundfile-blocks",
+          "channels": 1,
+          "duration_seconds": 7.074603174603174,
+          "frames": 311990,
+          "header_estimated_frames": 311990,
+          "pcm_format": "float32-little-endian",
+          "pcm_sha256": "a0c562f6431298f0c31361da412b9a3159c9934f06566d26ac616d04ff7fbe9c",
+          "sample_rate_hz": 44100,
+          "version": "soundfile=0.13.1;libsndfile=1.2.2"
+        },
+        "exit_code": 0,
+        "native_error_lines": [],
+        "overflow": [],
+        "stderr": "",
+        "timed_out": false
+      },
+      "soundfile-eof": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "soundfile-eof",
+          "channels": 1,
+          "duration_seconds": 6.922448979591837,
+          "frames": 305280,
+          "header_estimated_frames": 311990,
+          "pcm_format": "float32-little-endian",
+          "pcm_sha256": "cdf0396b2a048dc333cb709feb52f8cc2b1a83e58b4037d0e89fba8644700645",
+          "sample_rate_hz": 44100,
+          "version": "soundfile=0.13.1;libsndfile=1.2.2"
+        },
+        "exit_code": 0,
+        "native_error_lines": [],
+        "overflow": [],
+        "stderr": "",
+        "timed_out": false
+      },
+      "strict_ffmpeg": {
+        "channels": 1,
+        "clipped_fraction": 0.0,
+        "decoder": "FFmpeg=7.1-essentials_build-www.gyan.dev;mp3float",
+        "decoder_diagnostics": {
+          "command": [
+            "ffmpeg-win-x86_64-v7.1.exe",
+            "-hide_banner",
+            "-nostdin",
+            "-nostats",
+            "-v",
+            "info",
+            "-xerror",
+            "-max_error_rate",
+            "0",
+            "-err_detect",
+            "crccheck+bitstream+explode",
+            "-protocol_whitelist",
+            "file,pipe",
+            "-f",
+            "mp3",
+            "-c:a",
+            "mp3float",
+            "-i",
+            "nri-SpottedBatYOSE.mp3",
+            "-map",
+            "0:a:0",
+            "-vn",
+            "-sn",
+            "-dn",
+            "-c:a",
+            "pcm_f32le",
+            "-f",
+            "f32le",
+            "pipe:1"
+          ],
+          "error_lines": [],
+          "exit_code": 0,
+          "pcm_bytes": 1221120,
+          "pcm_format": "float32-little-endian",
+          "stderr": "[mp3 @ 00000236710b67c0] Estimating duration from bitrate, this may be inaccurate\r\nInput #0, mp3, from 'nri-SpottedBatYOSE.mp3':\r\n  Metadata:\r\n    genre           : Other\r\n    id3v2_priv.XMP  : <?xpacket begin=\"\\xef\\xbb\\xbf\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?>\\x0a<x:xmpmeta xmlns:x=\"adobe:ns:meta/\" x:xmptk=\"3.1.2-113\">\\x0a <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\\x0a  <rdf:Description rdf:about=\"\"\\x0a    xmlns:xmpDM=\"http://\r\n  Duration: 00:00:06.93, start: 0.000000, bitrate: 130 kb/s\r\n  Stream #0:0: Audio: mp3 (mp3float), 44100 Hz, mono, fltp, 128 kb/s\r\nStream mapping:\r\n  Stream #0:0 -> #0:0 (mp3 (mp3float) -> pcm_f32le (native))\r\nOutput #0, f32le, to 'pipe:1':\r\n  Metadata:\r\n    genre           : Other\r\n    id3v2_priv.XMP  : <?xpacket begin=\"\\xef\\xbb\\xbf\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?>\\x0a<x:xmpmeta xmlns:x=\"adobe:ns:meta/\" x:xmptk=\"3.1.2-113\">\\x0a <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\\x0a  <rdf:Description rdf:about=\"\"\\x0a    xmlns:xmpDM=\"http://\r\n    encoder         : Lavf61.7.100\r\n  Stream #0:0: Audio: pcm_f32le, 44100 Hz, mono, flt, 1411 kb/s\r\n      Metadata:\r\n        encoder         : Lavc61.19.100 pcm_f32le\r\n[out#0/f32le @ 00000236710b5e00] video:0KiB audio:1192KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000000%\r\nsize=    1192KiB time=00:00:06.92 bitrate=1411.2kbits/s speed= 558x    \r\n",
+          "stderr_overflow": false,
+          "timed_out": false
+        },
+        "duration_seconds": 6.922448979591837,
+        "flags": [],
+        "format": "MP3",
+        "frames": 305280,
+        "mp3_structure": {
+          "audio_end_byte": 113205,
+          "audio_start_byte": 2446,
+          "channels": 1,
+          "crc_failures": 0,
+          "encoded_samples": 305280,
+          "frame_count": 265,
+          "frame_duration_seconds": 6.922448979591837,
+          "has_timing_header": false,
+          "protected_frames": 265,
+          "sample_rate_hz": 44100,
+          "scanner_version": "layer3-contiguous-crc-v1",
+          "tags": [
+            {
+              "bytes": 2446,
+              "kind": "ID3v2",
+              "offset": 0
+            },
+            {
+              "bytes": 128,
+              "kind": "ID3v1",
+              "offset": 113205
+            }
+          ],
+          "unaccounted_bytes": 0
+        },
+        "pcm_hash_version": "dimensioned-float32-le-v2",
+        "pcm_sha256": "dcf59a6de9dbb07b3da11643f498de473d211b1c425e5dcc93a5cab3247cabfc",
+        "peak": 0.9697113633155823,
+        "raw_pcm_sha256": "67acdd45122a18d822905c15f45e90d4b28b1fcd295e22f7e9044fc403965e3f",
+        "sample_rate_hz": 44100,
+        "sha256": "36ae530a87f010e2687e6c259da2660ca679ce1b3f68e46e357b1ab1fac9fbee",
+        "silent_fraction": 0.001814727463312369,
+        "size_bytes": 113333,
+        "subtype": "MPEG_LAYER_III"
+      },
+      "structure": {
+        "audio_end_byte": 113205,
+        "audio_start_byte": 2446,
+        "channels": 1,
+        "crc_failures": 0,
+        "encoded_samples": 305280,
+        "frame_count": 265,
+        "frame_duration_seconds": 6.922448979591837,
+        "has_timing_header": false,
+        "protected_frames": 265,
+        "sample_rate_hz": 44100,
+        "scanner_version": "layer3-contiguous-crc-v1",
+        "tags": [
+          {
+            "bytes": 2446,
+            "kind": "ID3v2",
+            "offset": 0
+          },
+          {
+            "bytes": 128,
+            "kind": "ID3v1",
+            "offset": 113205
+          }
+        ],
+        "unaccounted_bytes": 0
+      }
+    },
+    {
+      "classification": "clean",
+      "consensus_passed": true,
+      "dr_mp3": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "dr_mp3/minimp3",
+          "channels": 1,
+          "duration_seconds": 36.4669387755102,
+          "frames": 1608192,
+          "pcm_format": "signed16-native-endian",
+          "pcm_sha256": "bae05a96aaae63696554523726ab00f6b7ea3fb115019c4b98dc3e59b19272d4",
+          "sample_rate_hz": 44100,
+          "version": "1.61"
+        },
+        "exact_frame_coverage": false,
+        "exit_code": 0,
+        "native_error_lines": [],
+        "overflow": [],
+        "stderr": "",
+        "timed_out": false
+      },
+      "input_bytes": 586960,
+      "input_sha256": "df691ff392470c3a9739205a4016da18a8edfbda84fb4b7d9c8d584ab1337837",
+      "mpg123": {
+        "binary_sha256": "6c5d77cda39c033b94c51a374ad553b4d4e6f774d418e24e7780e4bfd49305de",
+        "channels": 1,
+        "command": [
+          "mpg123.exe",
+          "--no-resync",
+          "--no-frankenstein",
+          "--no-control",
+          "--no-visual",
+          "--encoding",
+          "s16",
+          "--stdout",
+          "nri-CouchsSpadefootToadSaguaroNP.mp3"
+        ],
+        "duration_seconds": 36.49306122448979,
+        "error_lines": [],
+        "exact_frame_coverage": true,
+        "exit_code": 0,
+        "frames": 1609344,
+        "overflow": false,
+        "pcm_bytes": 3218688,
+        "pcm_format": "signed16-little-endian",
+        "pcm_sha256": "c44d0ab7e99b00544b507c1f3a0677d2aa42a556e5f5ebc2b908bfdcf2806079",
+        "sample_rate_hz": 44100,
+        "stderr": "High Performance MPEG 1.0/2.0/2.5 Audio Player for Layers 1, 2 and 3\r\n\tversion 1.33.7; written and copyright by Michael Hipp and others\r\n\tfree software (LGPL) without any warranty but with best wishes\r\nNote: forcing output encoding s16\r\n\r\nPlaying MPEG stream 1 of 1: nri-CouchsSpadefootToadSaguaroNP.mp3 ...\r\n\r\nMPEG 1.0 L III cbr128 44100 mono\r\n\r\nTitle:   8\u00daV                                                 Artist:                                                   \r\nComment:                                                     Album:                                                    \r\nYear:                                                        Genre:  Other                                             \r\n\r\n\r\n[0:36] Decoding of nri-CouchsSpadefootToadSaguaroNP.mp3 finished.\r\n",
+        "timed_out": false
+      },
+      "path": "originals/nps/nri-CouchsSpadefootToadSaguaroNP.mp3",
+      "prior_inventory_state": "ready",
+      "reason": "Complete frames/CRCs and two strict independent decoders agree; no corruption detected. Legacy bundled decoder diagnostics retained.",
+      "soundfile-blocks": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "soundfile-blocks",
+          "channels": 1,
+          "duration_seconds": 36.67340136054422,
+          "frames": 1617297,
+          "header_estimated_frames": 1617297,
+          "pcm_format": "float32-little-endian",
+          "pcm_sha256": "9f6d1277e63895abf737961de814409bd0eff963bd992c43a2ed01138dcf9625",
+          "sample_rate_hz": 44100,
+          "version": "soundfile=0.13.1;libsndfile=1.2.2"
+        },
+        "exit_code": 0,
+        "native_error_lines": [],
+        "overflow": [],
+        "stderr": "",
+        "timed_out": false
+      },
+      "soundfile-eof": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "soundfile-eof",
+          "channels": 1,
+          "duration_seconds": 36.49306122448979,
+          "frames": 1609344,
+          "header_estimated_frames": 1617297,
+          "pcm_format": "float32-little-endian",
+          "pcm_sha256": "4696f7f9c0ec9cfd2239a3b90c377fae0ea012aa7154b801f06d6845ddbd967f",
+          "sample_rate_hz": 44100,
+          "version": "soundfile=0.13.1;libsndfile=1.2.2"
+        },
+        "exit_code": 0,
+        "native_error_lines": [],
+        "overflow": [],
+        "stderr": "",
+        "timed_out": false
+      },
+      "strict_ffmpeg": {
+        "channels": 1,
+        "clipped_fraction": 0.0,
+        "decoder": "FFmpeg=7.1-essentials_build-www.gyan.dev;mp3float",
+        "decoder_diagnostics": {
+          "command": [
+            "ffmpeg-win-x86_64-v7.1.exe",
+            "-hide_banner",
+            "-nostdin",
+            "-nostats",
+            "-v",
+            "info",
+            "-xerror",
+            "-max_error_rate",
+            "0",
+            "-err_detect",
+            "crccheck+bitstream+explode",
+            "-protocol_whitelist",
+            "file,pipe",
+            "-f",
+            "mp3",
+            "-c:a",
+            "mp3float",
+            "-i",
+            "nri-CouchsSpadefootToadSaguaroNP.mp3",
+            "-map",
+            "0:a:0",
+            "-vn",
+            "-sn",
+            "-dn",
+            "-c:a",
+            "pcm_f32le",
+            "-f",
+            "f32le",
+            "pipe:1"
+          ],
+          "error_lines": [],
+          "exit_code": 0,
+          "pcm_bytes": 6437376,
+          "pcm_format": "float32-little-endian",
+          "stderr": "[mp3 @ 0000029427376780] Estimating duration from bitrate, this may be inaccurate\r\nInput #0, mp3, from 'nri-CouchsSpadefootToadSaguaroNP.mp3':\r\n  Metadata:\r\n    title           : 8\u00daV\r\n    genre           : Other\r\n    id3v2_priv.XMP  : <?xpacket begin=\"\\xef\\xbb\\xbf\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?>\\x0a<x:xmpmeta xmlns:x=\"adobe:ns:meta/\" x:xmptk=\"3.1.2-113\">\\x0a <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\\x0a  <rdf:Description rdf:about=\"\"\\x0a    xmlns:xmpDM=\"http://\r\n  Duration: 00:00:36.50, start: 0.000000, bitrate: 128 kb/s\r\n  Stream #0:0: Audio: mp3 (mp3float), 44100 Hz, mono, fltp, 128 kb/s\r\nStream mapping:\r\n  Stream #0:0 -> #0:0 (mp3 (mp3float) -> pcm_f32le (native))\r\nOutput #0, f32le, to 'pipe:1':\r\n  Metadata:\r\n    title           : 8\u00daV\r\n    genre           : Other\r\n    id3v2_priv.XMP  : <?xpacket begin=\"\\xef\\xbb\\xbf\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?>\\x0a<x:xmpmeta xmlns:x=\"adobe:ns:meta/\" x:xmptk=\"3.1.2-113\">\\x0a <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\\x0a  <rdf:Description rdf:about=\"\"\\x0a    xmlns:xmpDM=\"http://\r\n    encoder         : Lavf61.7.100\r\n  Stream #0:0: Audio: pcm_f32le, 44100 Hz, mono, flt, 1411 kb/s\r\n      Metadata:\r\n        encoder         : Lavc61.19.100 pcm_f32le\r\n[out#0/f32le @ 0000029427375e40] video:0KiB audio:6286KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000000%\r\nsize=    6286KiB time=00:00:36.49 bitrate=1411.2kbits/s speed= 583x    \r\n",
+          "stderr_overflow": false,
+          "timed_out": false
+        },
+        "duration_seconds": 36.49306122448979,
+        "flags": [],
+        "format": "MP3",
+        "frames": 1609344,
+        "mp3_structure": {
+          "audio_end_byte": 586832,
+          "audio_start_byte": 2943,
+          "channels": 1,
+          "crc_failures": 0,
+          "encoded_samples": 1609344,
+          "frame_count": 1397,
+          "frame_duration_seconds": 36.49306122448979,
+          "has_timing_header": false,
+          "protected_frames": 1397,
+          "sample_rate_hz": 44100,
+          "scanner_version": "layer3-contiguous-crc-v1",
+          "tags": [
+            {
+              "bytes": 2943,
+              "kind": "ID3v2",
+              "offset": 0
+            },
+            {
+              "bytes": 128,
+              "kind": "ID3v1",
+              "offset": 586832
+            }
+          ],
+          "unaccounted_bytes": 0
+        },
+        "pcm_hash_version": "dimensioned-float32-le-v2",
+        "pcm_sha256": "b2409a568c1c3f3db5066ccc1750e706ff5cadc0c0b8d890d54b8dd7b45c68b2",
+        "peak": 0.547557532787323,
+        "raw_pcm_sha256": "5371d7927f50998942e4a881773b9c2af00b13a256c7a4789b7573081c650b39",
+        "sample_rate_hz": 44100,
+        "sha256": "df691ff392470c3a9739205a4016da18a8edfbda84fb4b7d9c8d584ab1337837",
+        "silent_fraction": 0.004245207985365465,
+        "size_bytes": 586960,
+        "subtype": "MPEG_LAYER_III"
+      },
+      "structure": {
+        "audio_end_byte": 586832,
+        "audio_start_byte": 2943,
+        "channels": 1,
+        "crc_failures": 0,
+        "encoded_samples": 1609344,
+        "frame_count": 1397,
+        "frame_duration_seconds": 36.49306122448979,
+        "has_timing_header": false,
+        "protected_frames": 1397,
+        "sample_rate_hz": 44100,
+        "scanner_version": "layer3-contiguous-crc-v1",
+        "tags": [
+          {
+            "bytes": 2943,
+            "kind": "ID3v2",
+            "offset": 0
+          },
+          {
+            "bytes": 128,
+            "kind": "ID3v1",
+            "offset": 586832
+          }
+        ],
+        "unaccounted_bytes": 0
+      }
+    },
+    {
+      "classification": "clean",
+      "consensus_passed": true,
+      "dr_mp3": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "dr_mp3/minimp3",
+          "channels": 1,
+          "duration_seconds": 25.6,
+          "frames": 1128960,
+          "pcm_format": "signed16-native-endian",
+          "pcm_sha256": "3dae457b6fec83ae0f84f927eeeb14d88d665c6c9cedfb11eaef7e69832b665e",
+          "sample_rate_hz": 44100,
+          "version": "1.61"
+        },
+        "exact_frame_coverage": false,
+        "exit_code": 0,
+        "native_error_lines": [],
+        "overflow": [],
+        "stderr": "",
+        "timed_out": false
+      },
+      "input_bytes": 412592,
+      "input_sha256": "42e3166bdc9f102299bcba5f3f35cff128dc0ec16a9b2d14780a9b8d2c7775bc",
+      "mpg123": {
+        "binary_sha256": "6c5d77cda39c033b94c51a374ad553b4d4e6f774d418e24e7780e4bfd49305de",
+        "channels": 1,
+        "command": [
+          "mpg123.exe",
+          "--no-resync",
+          "--no-frankenstein",
+          "--no-control",
+          "--no-visual",
+          "--encoding",
+          "s16",
+          "--stdout",
+          "nri-AlligatorEVER1.mp3"
+        ],
+        "duration_seconds": 25.626122448979594,
+        "error_lines": [],
+        "exact_frame_coverage": true,
+        "exit_code": 0,
+        "frames": 1130112,
+        "overflow": false,
+        "pcm_bytes": 2260224,
+        "pcm_format": "signed16-little-endian",
+        "pcm_sha256": "e6148085323ec0b9ac3d54d97db2617f9f8c62730a3a1fab7e1f9f5c62e8a21a",
+        "sample_rate_hz": 44100,
+        "stderr": "High Performance MPEG 1.0/2.0/2.5 Audio Player for Layers 1, 2 and 3\r\n\tversion 1.33.7; written and copyright by Michael Hipp and others\r\n\tfree software (LGPL) without any warranty but with best wishes\r\nNote: forcing output encoding s16\r\n\r\nPlaying MPEG stream 1 of 1: nri-AlligatorEVER1.mp3 ...\r\n\r\nMPEG 1.0 L III cbr128 44100 mono\r\n\r\nTitle:                                                       Artist:                                                   \r\nComment:                                                     Album:                                                    \r\nYear:                                                        Genre:  Other                                             \r\n\r\n\r\n[0:25] Decoding of nri-AlligatorEVER1.mp3 finished.\r\n",
+        "timed_out": false
+      },
+      "path": "originals/nps/nri-AlligatorEVER1.mp3",
+      "prior_inventory_state": "quarantined",
+      "reason": "Complete frames/CRCs and two strict independent decoders agree; no corruption detected. Legacy bundled decoder diagnostics retained.",
+      "soundfile-blocks": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "soundfile-blocks",
+          "channels": 1,
+          "duration_seconds": 25.776462585034015,
+          "frames": 1136742,
+          "header_estimated_frames": 1136742,
+          "pcm_format": "float32-little-endian",
+          "pcm_sha256": "4e704b1b8891ae453b1a8fd30abc0f9e1d6422b02d9d8971ff1474ccdaf7ca8d",
+          "sample_rate_hz": 44100,
+          "version": "soundfile=0.13.1;libsndfile=1.2.2"
+        },
+        "exit_code": 0,
+        "native_error_lines": [
+          "[C:\\vcpkg\\buildtrees\\mpg123\\src\\-66150af195.clean\\src\\libmpg123\\layer3.c:INT123_do_layer3():1908] error: dequantization failed!",
+          "[C:\\vcpkg\\buildtrees\\mpg123\\src\\-66150af195.clean\\src\\libmpg123\\layer3.c:INT123_do_layer3():1908] error: dequantization failed!",
+          "[C:\\vcpkg\\buildtrees\\mpg123\\src\\-66150af195.clean\\src\\libmpg123\\layer3.c:INT123_do_layer3():1908] error: dequantization failed!"
+        ],
+        "overflow": [],
+        "stderr": "[C:\\vcpkg\\buildtrees\\mpg123\\src\\-66150af195.clean\\src\\libmpg123\\layer3.c:INT123_do_layer3():1908] error: dequantization failed!\n[C:\\vcpkg\\buildtrees\\mpg123\\src\\-66150af195.clean\\src\\libmpg123\\layer3.c:INT123_do_layer3():1908] error: dequantization failed!\n[C:\\vcpkg\\buildtrees\\mpg123\\src\\-66150af195.clean\\src\\libmpg123\\layer3.c:INT123_do_layer3():1908] error: dequantization failed!\n",
+        "timed_out": false
+      },
+      "soundfile-eof": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "soundfile-eof",
+          "channels": 1,
+          "duration_seconds": 25.626122448979594,
+          "frames": 1130112,
+          "header_estimated_frames": 1136742,
+          "pcm_format": "float32-little-endian",
+          "pcm_sha256": "431947cd2667adb97d7740909efd4f46ce2c9fa502208be3229456a71ade81dd",
+          "sample_rate_hz": 44100,
+          "version": "soundfile=0.13.1;libsndfile=1.2.2"
+        },
+        "exit_code": 0,
+        "native_error_lines": [
+          "[C:\\vcpkg\\buildtrees\\mpg123\\src\\-66150af195.clean\\src\\libmpg123\\layer3.c:INT123_do_layer3():1908] error: dequantization failed!",
+          "[C:\\vcpkg\\buildtrees\\mpg123\\src\\-66150af195.clean\\src\\libmpg123\\layer3.c:INT123_do_layer3():1908] error: dequantization failed!",
+          "[C:\\vcpkg\\buildtrees\\mpg123\\src\\-66150af195.clean\\src\\libmpg123\\layer3.c:INT123_do_layer3():1908] error: dequantization failed!"
+        ],
+        "overflow": [],
+        "stderr": "[C:\\vcpkg\\buildtrees\\mpg123\\src\\-66150af195.clean\\src\\libmpg123\\layer3.c:INT123_do_layer3():1908] error: dequantization failed!\n[C:\\vcpkg\\buildtrees\\mpg123\\src\\-66150af195.clean\\src\\libmpg123\\layer3.c:INT123_do_layer3():1908] error: dequantization failed!\n[C:\\vcpkg\\buildtrees\\mpg123\\src\\-66150af195.clean\\src\\libmpg123\\layer3.c:INT123_do_layer3():1908] error: dequantization failed!\n",
+        "timed_out": false
+      },
+      "strict_ffmpeg": {
+        "channels": 1,
+        "clipped_fraction": 0.0,
+        "decoder": "FFmpeg=7.1-essentials_build-www.gyan.dev;mp3float",
+        "decoder_diagnostics": {
+          "command": [
+            "ffmpeg-win-x86_64-v7.1.exe",
+            "-hide_banner",
+            "-nostdin",
+            "-nostats",
+            "-v",
+            "info",
+            "-xerror",
+            "-max_error_rate",
+            "0",
+            "-err_detect",
+            "crccheck+bitstream+explode",
+            "-protocol_whitelist",
+            "file,pipe",
+            "-f",
+            "mp3",
+            "-c:a",
+            "mp3float",
+            "-i",
+            "nri-AlligatorEVER1.mp3",
+            "-map",
+            "0:a:0",
+            "-vn",
+            "-sn",
+            "-dn",
+            "-c:a",
+            "pcm_f32le",
+            "-f",
+            "f32le",
+            "pipe:1"
+          ],
+          "error_lines": [],
+          "exit_code": 0,
+          "pcm_bytes": 4520448,
+          "pcm_format": "float32-little-endian",
+          "stderr": "[mp3 @ 000002942bc767c0] Estimating duration from bitrate, this may be inaccurate\r\nInput #0, mp3, from 'nri-AlligatorEVER1.mp3':\r\n  Metadata:\r\n    genre           : Other\r\n    id3v2_priv.XMP  : <?xpacket begin=\"\\xef\\xbb\\xbf\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?>\\x0a<x:xmpmeta xmlns:x=\"adobe:ns:meta/\" x:xmptk=\"3.1.2-113\">\\x0a <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\\x0a  <rdf:Description rdf:about=\"\"\\x0a    xmlns:xmpDM=\"http://\r\n  Duration: 00:00:25.63, start: 0.000000, bitrate: 128 kb/s\r\n  Stream #0:0: Audio: mp3 (mp3float), 44100 Hz, mono, fltp, 128 kb/s\r\nStream mapping:\r\n  Stream #0:0 -> #0:0 (mp3 (mp3float) -> pcm_f32le (native))\r\nOutput #0, f32le, to 'pipe:1':\r\n  Metadata:\r\n    genre           : Other\r\n    id3v2_priv.XMP  : <?xpacket begin=\"\\xef\\xbb\\xbf\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?>\\x0a<x:xmpmeta xmlns:x=\"adobe:ns:meta/\" x:xmptk=\"3.1.2-113\">\\x0a <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\\x0a  <rdf:Description rdf:about=\"\"\\x0a    xmlns:xmpDM=\"http://\r\n    encoder         : Lavf61.7.100\r\n  Stream #0:0: Audio: pcm_f32le, 44100 Hz, mono, flt, 1411 kb/s\r\n      Metadata:\r\n        encoder         : Lavc61.19.100 pcm_f32le\r\n[out#0/f32le @ 000002942bc75e00] video:0KiB audio:4414KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000000%\r\nsize=    4414KiB time=00:00:25.62 bitrate=1411.2kbits/s speed= 591x    \r\n",
+          "stderr_overflow": false,
+          "timed_out": false
+        },
+        "duration_seconds": 25.626122448979594,
+        "flags": [],
+        "format": "MP3",
+        "frames": 1130112,
+        "mp3_structure": {
+          "audio_end_byte": 412464,
+          "audio_start_byte": 2446,
+          "channels": 1,
+          "crc_failures": 0,
+          "encoded_samples": 1130112,
+          "frame_count": 981,
+          "frame_duration_seconds": 25.626122448979594,
+          "has_timing_header": false,
+          "protected_frames": 981,
+          "sample_rate_hz": 44100,
+          "scanner_version": "layer3-contiguous-crc-v1",
+          "tags": [
+            {
+              "bytes": 2446,
+              "kind": "ID3v2",
+              "offset": 0
+            },
+            {
+              "bytes": 128,
+              "kind": "ID3v1",
+              "offset": 412464
+            }
+          ],
+          "unaccounted_bytes": 0
+        },
+        "pcm_hash_version": "dimensioned-float32-le-v2",
+        "pcm_sha256": "91db6d674ba6f356d33d26a2940497e6fa4a02e26f8a763c3169b58da5f7b68d",
+        "peak": 0.5896247625350952,
+        "raw_pcm_sha256": "2174bc63df91e7ebdf83b1920efa8fe68d4ba02d12b0c641e25cbd0648bef9c7",
+        "sample_rate_hz": 44100,
+        "sha256": "42e3166bdc9f102299bcba5f3f35cff128dc0ec16a9b2d14780a9b8d2c7775bc",
+        "silent_fraction": 0.0004203123230263903,
+        "size_bytes": 412592,
+        "subtype": "MPEG_LAYER_III"
+      },
+      "structure": {
+        "audio_end_byte": 412464,
+        "audio_start_byte": 2446,
+        "channels": 1,
+        "crc_failures": 0,
+        "encoded_samples": 1130112,
+        "frame_count": 981,
+        "frame_duration_seconds": 25.626122448979594,
+        "has_timing_header": false,
+        "protected_frames": 981,
+        "sample_rate_hz": 44100,
+        "scanner_version": "layer3-contiguous-crc-v1",
+        "tags": [
+          {
+            "bytes": 2446,
+            "kind": "ID3v2",
+            "offset": 0
+          },
+          {
+            "bytes": 128,
+            "kind": "ID3v1",
+            "offset": 412464
+          }
+        ],
+        "unaccounted_bytes": 0
+      }
+    },
+    {
+      "classification": "clean",
+      "consensus_passed": true,
+      "dr_mp3": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "dr_mp3/minimp3",
+          "channels": 2,
+          "duration_seconds": 29.178775510204083,
+          "frames": 1286784,
+          "pcm_format": "signed16-native-endian",
+          "pcm_sha256": "20bddc50b6099fc0041c92723a37593b46766f10b66c3419b14615fde1a3ef76",
+          "sample_rate_hz": 44100,
+          "version": "1.61"
+        },
+        "exact_frame_coverage": true,
+        "exit_code": 0,
+        "native_error_lines": [],
+        "overflow": [],
+        "stderr": "",
+        "timed_out": false
+      },
+      "input_bytes": 587671,
+      "input_sha256": "e15a0818d8476a0d8dfb7293cf8d3072a897adc21901d0985108b181fa856081",
+      "mpg123": {
+        "binary_sha256": "6c5d77cda39c033b94c51a374ad553b4d4e6f774d418e24e7780e4bfd49305de",
+        "channels": 2,
+        "command": [
+          "mpg123.exe",
+          "--no-resync",
+          "--no-frankenstein",
+          "--no-control",
+          "--no-visual",
+          "--encoding",
+          "s16",
+          "--stdout",
+          "nri-Cricket.mp3"
+        ],
+        "duration_seconds": 29.178775510204083,
+        "error_lines": [],
+        "exact_frame_coverage": true,
+        "exit_code": 0,
+        "frames": 1286784,
+        "overflow": false,
+        "pcm_bytes": 5147136,
+        "pcm_format": "signed16-little-endian",
+        "pcm_sha256": "67e44a26018819061df41303ba726dfcd1c3d28961583d7bfd114c89f8cb712e",
+        "sample_rate_hz": 44100,
+        "stderr": "High Performance MPEG 1.0/2.0/2.5 Audio Player for Layers 1, 2 and 3\r\n\tversion 1.33.7; written and copyright by Michael Hipp and others\r\n\tfree software (LGPL) without any warranty but with best wishes\r\nNote: forcing output encoding s16\r\n\r\nPlaying MPEG stream 1 of 1: nri-Cricket.mp3 ...\r\n\r\nMPEG 1.0 L III cbr160 44100 j-s\r\n\r\nTitle:   Cricket Sound\r\nComment:  00000000 00000210 000009F9 0000000000139677 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000\r\n\r\n\r\n[0:29] Decoding of nri-Cricket.mp3 finished.\r\n",
+        "timed_out": false
+      },
+      "path": "originals/nps/nri-Cricket.mp3",
+      "prior_inventory_state": "ready",
+      "reason": "Complete frames/CRCs and two strict independent decoders agree; no corruption detected. Legacy bundled decoder diagnostics retained.",
+      "soundfile-blocks": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "soundfile-blocks",
+          "channels": 2,
+          "duration_seconds": 29.408820861678006,
+          "frames": 1296929,
+          "header_estimated_frames": 1296929,
+          "pcm_format": "float32-little-endian",
+          "pcm_sha256": "dc2171dab21bd64a5468d89ccac7b8e373faed5f323363d16f5130fd8115f177",
+          "sample_rate_hz": 44100,
+          "version": "soundfile=0.13.1;libsndfile=1.2.2"
+        },
+        "exit_code": 0,
+        "native_error_lines": [],
+        "overflow": [],
+        "stderr": "",
+        "timed_out": false
+      },
+      "soundfile-eof": {
+        "acceptance_vote": false,
+        "decoded": {
+          "backend": "soundfile-eof",
+          "channels": 2,
+          "duration_seconds": 29.178775510204083,
+          "frames": 1286784,
+          "header_estimated_frames": 1296929,
+          "pcm_format": "float32-little-endian",
+          "pcm_sha256": "e11a821bbaa3c883252b53ff5ae249f044d33634fc2142c4390dfa3ad6353a6e",
+          "sample_rate_hz": 44100,
+          "version": "soundfile=0.13.1;libsndfile=1.2.2"
+        },
+        "exit_code": 0,
+        "native_error_lines": [],
+        "overflow": [],
+        "stderr": "",
+        "timed_out": false
+      },
+      "strict_ffmpeg": {
+        "channels": 2,
+        "clipped_fraction": 0.0,
+        "decoder": "FFmpeg=7.1-essentials_build-www.gyan.dev;mp3float",
+        "decoder_diagnostics": {
+          "command": [
+            "ffmpeg-win-x86_64-v7.1.exe",
+            "-hide_banner",
+            "-nostdin",
+            "-nostats",
+            "-v",
+            "info",
+            "-xerror",
+            "-max_error_rate",
+            "0",
+            "-err_detect",
+            "crccheck+bitstream+explode",
+            "-protocol_whitelist",
+            "file,pipe",
+            "-f",
+            "mp3",
+            "-c:a",
+            "mp3float",
+            "-i",
+            "nri-Cricket.mp3",
+            "-map",
+            "0:a:0",
+            "-vn",
+            "-sn",
+            "-dn",
+            "-c:a",
+            "pcm_f32le",
+            "-f",
+            "f32le",
+            "pipe:1"
+          ],
+          "error_lines": [],
+          "exit_code": 0,
+          "pcm_bytes": 10294272,
+          "pcm_format": "float32-little-endian",
+          "stderr": "[mp3 @ 0000024beb5766c0] Estimating duration from bitrate, this may be inaccurate\r\nInput #0, mp3, from 'nri-Cricket.mp3':\r\n  Metadata:\r\n    TSS             : Logic Pro 7.2.3\r\n    iTunNORM        :  00000001 00000001 0000000C 00000021 00001D14 00004FE5 000002AE 00000312 00005582 00002AF5\r\n    iTunSMPB        :  00000000 00000210 000009F9 0000000000139677 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000\r\n    title           : Cricket Sound\r\n  Duration: 00:00:29.18, start: 0.000000, bitrate: 161 kb/s\r\n  Stream #0:0: Audio: mp3 (mp3float), 44100 Hz, stereo, fltp, 160 kb/s\r\nStream mapping:\r\n  Stream #0:0 -> #0:0 (mp3 (mp3float) -> pcm_f32le (native))\r\nOutput #0, f32le, to 'pipe:1':\r\n  Metadata:\r\n    TSS             : Logic Pro 7.2.3\r\n    iTunNORM        :  00000001 00000001 0000000C 00000021 00001D14 00004FE5 000002AE 00000312 00005582 00002AF5\r\n    iTunSMPB        :  00000000 00000210 000009F9 0000000000139677 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000\r\n    title           : Cricket Sound\r\n    encoder         : Lavf61.7.100\r\n  Stream #0:0: Audio: pcm_f32le, 44100 Hz, stereo, flt, 2822 kb/s\r\n      Metadata:\r\n        encoder         : Lavc61.19.100 pcm_f32le\r\n[out#0/f32le @ 0000024beb576b40] video:0KiB audio:10053KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000000%\r\nsize=   10053KiB time=00:00:29.17 bitrate=2822.4kbits/s speed= 428x    \r\n",
+          "stderr_overflow": false,
+          "timed_out": false
+        },
+        "duration_seconds": 29.178775510204083,
+        "flags": [],
+        "format": "MP3",
+        "frames": 1286784,
+        "mp3_structure": {
+          "audio_end_byte": 587671,
+          "audio_start_byte": 4096,
+          "channels": 2,
+          "crc_failures": 0,
+          "encoded_samples": 1286784,
+          "frame_count": 1117,
+          "frame_duration_seconds": 29.178775510204083,
+          "has_timing_header": false,
+          "protected_frames": 0,
+          "sample_rate_hz": 44100,
+          "scanner_version": "layer3-contiguous-crc-v1",
+          "tags": [
+            {
+              "bytes": 4096,
+              "kind": "ID3v2",
+              "offset": 0
+            }
+          ],
+          "unaccounted_bytes": 0
+        },
+        "pcm_hash_version": "dimensioned-float32-le-v2",
+        "pcm_sha256": "e06eebb33ca9c31ed64697c0a70c4a06da6114e08164975d47765e74e3bfbb61",
+        "peak": 0.023434802889823914,
+        "raw_pcm_sha256": "28483784d0a19a52689caed613240642d765dcb347d4cb218945b06096a99122",
+        "sample_rate_hz": 44100,
+        "sha256": "e15a0818d8476a0d8dfb7293cf8d3072a897adc21901d0985108b181fa856081",
+        "silent_fraction": 0.04653150800755993,
+        "size_bytes": 587671,
+        "subtype": "MPEG_LAYER_III"
+      },
+      "structure": {
+        "audio_end_byte": 587671,
+        "audio_start_byte": 4096,
+        "channels": 2,
+        "crc_failures": 0,
+        "encoded_samples": 1286784,
+        "frame_count": 1117,
+        "frame_duration_seconds": 29.178775510204083,
+        "has_timing_header": false,
+        "protected_frames": 0,
+        "sample_rate_hz": 44100,
+        "scanner_version": "layer3-contiguous-crc-v1",
+        "tags": [
+          {
+            "bytes": 4096,
+            "kind": "ID3v2",
+            "offset": 0
+          }
+        ],
+        "unaccounted_bytes": 0
+      }
+    }
+  ],
+  "counts": {
+    "clean": 6,
+    "quarantined": 0,
+    "rejected": 0
+  },
+  "ffmpeg_binary_sha256": "2ce797a0f88d7f067180338fb227f7b1928ea727bd9a4d7a1d022f7c52af71a3",
+  "ffmpeg_version": "7.1-essentials_build-www.gyan.dev",
+  "mpg123_version": "mpg123 1.33.7\r\n",
+  "operation": "offline-diagnosis-no-audio-writes",
+  "policy": "strict-ffmpeg-plus-standalone-mpg123-full-frame-consensus-v1",
+  "schema_version": "1.0.0"
+}

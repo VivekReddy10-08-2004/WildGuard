@@ -1,0 +1,156 @@
+{
+  "ffmpeg_version": "ffmpeg version 7.1-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers\nbuilt with gcc 14.2.0 (Rev1, Built by MSYS2 project)\nconfiguration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband\nlibavutil      59. 39.100 / 59. 39.100\nlibavcodec     61. 19.100 / 61. 19.100\nlibavformat    61.  7.100 / 61.  7.100\nlibavdevice    61.  3.100 / 61.  3.100\nlibavfilter    10.  4.100 / 10.  4.100\nlibswscale      8.  3.100 /  8.  3.100\nlibswresample   5.  3.100 /  5.  3.100\nlibpostproc    58.  3.100 / 58.  3.100\n",
+  "ffmpeg_binary_sha256": "2ce797a0f88d7f067180338fb227f7b1928ea727bd9a4d7a1d022f7c52af71a3",
+  "results": [
+    {
+      "path": "originals/nps/nri-CoyotesMOJA.mp3",
+      "input_sha256": "69bfee365fa27be7e945ad667dbb91dfa85e3730e304d6412e07c9fd87b9038b",
+      "ffmpeg": {
+        "exit_code": 0,
+        "stderr": "",
+        "pcm_bytes": 875520,
+        "pcm_sha256": "f6227dc581cb578c529b7d19ecc956fdd794ffd5efac001d80a06688d407e2e1",
+        "duration_seconds": 9.926530612244898
+      },
+      "dr_mp3": {
+        "exit_code": 0,
+        "stderr": "",
+        "output": {
+          "decoder": "miniaudio-dr_mp3/minimp3",
+          "version": "1.61",
+          "sample_rate": 44100,
+          "channels": 1,
+          "frames": 436608,
+          "duration_seconds": 9.900408163265306,
+          "pcm_bytes": 873216,
+          "pcm_sha256": "a4212e49d19a88611bfa759f4fbcc6e8c31b92cd40746c30e41c98eaf6137412"
+        }
+      }
+    },
+    {
+      "path": "originals/nps/nri-ElkBuglingGRSA.mp3",
+      "input_sha256": "dc5c367965161eb9c9e25eb08a762ef2ec27a5f6fd3ca8d6e0f2e0ea32959675",
+      "ffmpeg": {
+        "exit_code": 0,
+        "stderr": "",
+        "pcm_bytes": 1815552,
+        "pcm_sha256": "cf28ed3d60d62c74b5c0743db38ba67bda24e8a0036fec49c01ab52dadc4636e",
+        "duration_seconds": 20.58448979591837
+      },
+      "dr_mp3": {
+        "exit_code": 0,
+        "stderr": "",
+        "output": {
+          "decoder": "miniaudio-dr_mp3/minimp3",
+          "version": "1.61",
+          "sample_rate": 44100,
+          "channels": 1,
+          "frames": 906624,
+          "duration_seconds": 20.558367346938777,
+          "pcm_bytes": 1813248,
+          "pcm_sha256": "9a9d5e13865feadbbea0683a2cda1cbe23b174379fbca5af4f732f514bbc78d4"
+        }
+      }
+    },
+    {
+      "path": "originals/nps/nri-SpottedBatYOSE.mp3",
+      "input_sha256": "36ae530a87f010e2687e6c259da2660ca679ce1b3f68e46e357b1ab1fac9fbee",
+      "ffmpeg": {
+        "exit_code": 0,
+        "stderr": "",
+        "pcm_bytes": 610560,
+        "pcm_sha256": "7ef0b6322327eae9c99a79fb1937b502c67aea66737336b498a5caf1784bbdbd",
+        "duration_seconds": 6.922448979591837
+      },
+      "dr_mp3": {
+        "exit_code": 0,
+        "stderr": "",
+        "output": {
+          "decoder": "miniaudio-dr_mp3/minimp3",
+          "version": "1.61",
+          "sample_rate": 44100,
+          "channels": 1,
+          "frames": 304128,
+          "duration_seconds": 6.896326530612245,
+          "pcm_bytes": 608256,
+          "pcm_sha256": "ab7116a307362cbed07f60c160f129640bd87d6fdf67586073bd46436b20168d"
+        }
+      }
+    },
+    {
+      "path": "originals/nps/nri-CouchsSpadefootToadSaguaroNP.mp3",
+      "input_sha256": "df691ff392470c3a9739205a4016da18a8edfbda84fb4b7d9c8d584ab1337837",
+      "ffmpeg": {
+        "exit_code": 0,
+        "stderr": "",
+        "pcm_bytes": 3218688,
+        "pcm_sha256": "65c856b7fa214c5e76dcf7de3cb261fea7bdf3e1676501d081e19fb60df67693",
+        "duration_seconds": 36.49306122448979
+      },
+      "dr_mp3": {
+        "exit_code": 0,
+        "stderr": "",
+        "output": {
+          "decoder": "miniaudio-dr_mp3/minimp3",
+          "version": "1.61",
+          "sample_rate": 44100,
+          "channels": 1,
+          "frames": 1608192,
+          "duration_seconds": 36.4669387755102,
+          "pcm_bytes": 3216384,
+          "pcm_sha256": "bae05a96aaae63696554523726ab00f6b7ea3fb115019c4b98dc3e59b19272d4"
+        }
+      }
+    },
+    {
+      "path": "originals/nps/nri-AlligatorEVER1.mp3",
+      "input_sha256": "42e3166bdc9f102299bcba5f3f35cff128dc0ec16a9b2d14780a9b8d2c7775bc",
+      "ffmpeg": {
+        "exit_code": 0,
+        "stderr": "",
+        "pcm_bytes": 2260224,
+        "pcm_sha256": "335670e0268dc97ab36f843ece3be27ac96d6cdbdc1ae8515ed9f648822886b2",
+        "duration_seconds": 25.626122448979594
+      },
+      "dr_mp3": {
+        "exit_code": 0,
+        "stderr": "",
+        "output": {
+          "decoder": "miniaudio-dr_mp3/minimp3",
+          "version": "1.61",
+          "sample_rate": 44100,
+          "channels": 1,
+          "frames": 1128960,
+          "duration_seconds": 25.6,
+          "pcm_bytes": 2257920,
+          "pcm_sha256": "3dae457b6fec83ae0f84f927eeeb14d88d665c6c9cedfb11eaef7e69832b665e"
+        }
+      }
+    },
+    {
+      "path": "originals/nps/nri-Cricket.mp3",
+      "input_sha256": "e15a0818d8476a0d8dfb7293cf8d3072a897adc21901d0985108b181fa856081",
+      "ffmpeg": {
+        "exit_code": 0,
+        "stderr": "",
+        "pcm_bytes": 5147136,
+        "pcm_sha256": "99af95a8002c77fed4a8e0dbcb60182957160e3bec641976fff0bd406e582154",
+        "duration_seconds": 29.178775510204083
+      },
+      "dr_mp3": {
+        "exit_code": 0,
+        "stderr": "",
+        "output": {
+          "decoder": "miniaudio-dr_mp3/minimp3",
+          "version": "1.61",
+          "sample_rate": 44100,
+          "channels": 2,
+          "frames": 1286784,
+          "duration_seconds": 29.178775510204083,
+          "pcm_bytes": 5147136,
+          "pcm_sha256": "20bddc50b6099fc0041c92723a37593b46766f10b66c3419b14615fde1a3ef76"
+        }
+      }
+    }
+  ]
+}

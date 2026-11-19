@@ -11,9 +11,11 @@ on:
       - 'tests/**/test_audio_foundation*.py'
       - 'tests/**/test_audio_processing*.py'
       - 'tests/unit/test_nps_pilot_release.py'
+      - 'tests/unit/test_audio_decoder_diagnostics.py'
       - 'tests/unit/test_wildlife_audio_manifest.py'
       - 'requirements-audio-foundation.txt'
       - 'requirements-audio-processing.txt'
+      - 'requirements-audio-diagnostics.txt'
       - '.github/workflows/audio-dataset-checks.yml'
 
 permissions:
@@ -30,7 +32,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install -r requirements-audio-processing.txt pytest==9.2.0 ruff==0.17.6
+      - run: python -m pip install -r requirements-audio-diagnostics.txt pytest==9.2.0 ruff==0.17.6
       - run: python -m pytest tests/unit tests/integration -q
-      - run: python -m ruff check scripts/wildlife_audio scripts/validate_wildlife_audio_manifest.py tests/unit/test_audio_foundation.py tests/unit/test_audio_processing.py tests/unit/test_nps_pilot_release.py tests/integration/test_audio_foundation_cli.py tests/integration/test_audio_processing_cli.py
-      - run: python -m ruff format --check scripts/wildlife_audio scripts/validate_wildlife_audio_manifest.py tests/unit/test_audio_foundation.py tests/unit/test_audio_processing.py tests/unit/test_nps_pilot_release.py tests/integration/test_audio_foundation_cli.py tests/integration/test_audio_processing_cli.py
+      - run: python -m ruff check scripts/wildlife_audio scripts/validate_wildlife_audio_manifest.py tests/unit/test_audio_foundation.py tests/unit/test_audio_processing.py tests/unit/test_nps_pilot_release.py tests/unit/test_audio_decoder_diagnostics.py tests/integration/test_audio_foundation_cli.py tests/integration/test_audio_processing_cli.py
+      - run: python -m ruff format --check scripts/wildlife_audio scripts/validate_wildlife_audio_manifest.py tests/unit/test_audio_foundation.py tests/unit/test_audio_processing.py tests/unit/test_nps_pilot_release.py tests/unit/test_audio_decoder_diagnostics.py tests/integration/test_audio_foundation_cli.py tests/integration/test_audio_processing_cli.py
