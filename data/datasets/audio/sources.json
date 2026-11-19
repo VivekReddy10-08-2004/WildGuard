@@ -77,6 +77,90 @@
       ],
       "status": "access_review_required",
       "notes": "Research material does not imply public bulk download rights."
+    },
+    {
+      "id": "powdermill",
+      "name": "Chronister et al. Eastern North American bird annotations (Powdermill)",
+      "url": "https://zenodo.org/records/4656848",
+      "taxa": [
+        "birds"
+      ],
+      "status": "candidate",
+      "download_size_gb": 0.183,
+      "notes": "Prefer MP3 archive plus annotations over duplicate WAV archive; 385 min, 48 species, strong labels; exact license review required."
+    },
+    {
+      "id": "western_us_soundscapes",
+      "name": "Annotated Western United States soundscapes (Sierra Nevada)",
+      "url": "https://zenodo.org/records/7050014",
+      "taxa": [
+        "birds"
+      ],
+      "status": "candidate",
+      "download_size_gb": 3.2,
+      "notes": "33h, 56 bird species, strong labels. Optional subset; do not crowd out mammals."
+    },
+    {
+      "id": "umich_frog_calls",
+      "name": "University of Michigan Animal Diversity Web frog calls",
+      "url": "https://animaldiversity.org/collections/frog_calls/",
+      "taxa": [
+        "amphibians"
+      ],
+      "status": "permission_required",
+      "notes": "Download buttons for North American species; audio reuse/training permissions are not established."
+    },
+    {
+      "id": "xeno_anura",
+      "name": "Xeno-canto Anura recordings",
+      "url": "https://www.gbif.org/dataset/bcf8d1fc-6bf0-4f57-9076-7d9ae2828ec2",
+      "taxa": [
+        "amphibians"
+      ],
+      "status": "license_review_required",
+      "notes": "Filter by North American recording location, verify per-recording media rights; GBIF may be metadata only."
+    },
+    {
+      "id": "amphibian_pilot",
+      "name": "Amphibian Monitoring Pilot Project",
+      "url": "https://bp-sensr.github.io/gf-amphibians/",
+      "taxa": [
+        "amphibians"
+      ],
+      "status": "access_review_required",
+      "notes": "175.58h collected, 11.92h manually scanned; files and reuse terms need confirmation."
+    },
+    {
+      "id": "alp_data",
+      "name": "Earth Species alp-data dataset discovery/loader",
+      "url": "https://github.com/earthspecies/alp-data",
+      "taxa": [
+        "multi-taxon"
+      ],
+      "status": "tool_reference",
+      "notes": "Framework, not a single dataset; per-source licenses and regional filtration required."
+    },
+    {
+      "id": "beans",
+      "name": "BEANS benchmark",
+      "url": "https://github.com/earthspecies/beans",
+      "taxa": [
+        "multi-taxon"
+      ],
+      "status": "tool_reference",
+      "notes": "Entire benchmark requires ~300 GB to unpack: do not download wholesale under a 30 GB cap."
+    },
+    {
+      "id": "usgs_nabat_ml",
+      "name": "NABat Acoustic ML v2",
+      "url": "https://www.usgs.gov/data/north-american-bat-monitoring-program-nabat-acoustic-ml-version-200",
+      "taxa": [
+        "bats"
+      ],
+      "status": "tool_reference",
+      "notes": "Classifier/code and evaluation workflow; not a substitute for verifying the 2026 acoustic audio records."
     }
-  ]
+  ],
+  "audio_storage_cap_bytes": 30000000000,
+  "storage_cap_note": "Hard maximum 30 GB final audio corpus; include metadata, staging overhead, extracted size, and checksum audit when allocating; do not download the full 27.7 GB bird dataset by default."
 }
