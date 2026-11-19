@@ -7,6 +7,10 @@ storage/audit/*
 # Large local training and evaluation datasets
 data/datasets/*
 !data/datasets/README.md
+!data/datasets/audio/
+data/datasets/audio/*
+!data/datasets/audio/README.md
+!data/datasets/audio/sources.json
 
 # Local Python environments
 .venv/
