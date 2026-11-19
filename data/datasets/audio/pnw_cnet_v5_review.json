@@ -1,0 +1,521 @@
+{
+  "schema_version": "1.0.0",
+  "record_id": "17955691",
+  "doi": "10.5281/zenodo.17955691",
+  "release_version": "2025.12.29",
+  "files": [
+    {
+      "id": "2ff11887-bd3d-4129-8b6e-95bc6c562617",
+      "key": "Test_Set_1.zip",
+      "size": 6570263187,
+      "checksum": "md5:aae7c0550f20c9438d1e9734f65a0dc1",
+      "links": {
+        "self": "https://zenodo.org/api/records/17955691/files/Test_Set_1.zip/content"
+      }
+    },
+    {
+      "id": "20242a0e-f909-483f-bf40-58d000467a32",
+      "key": "v5_Repo_Files.zip",
+      "size": 70644301,
+      "checksum": "md5:88ac331574821bd7c79094b10f246f1d",
+      "links": {
+        "self": "https://zenodo.org/api/records/17955691/files/v5_Repo_Files.zip/content"
+      }
+    },
+    {
+      "id": "5fcca1f0-17a5-4483-8062-99cc31000b79",
+      "key": "Test_Set_2.zip",
+      "size": 7515853849,
+      "checksum": "md5:763a0dd3bb667923d880652d8dec6537",
+      "links": {
+        "self": "https://zenodo.org/api/records/17955691/files/Test_Set_2.zip/content"
+      }
+    }
+  ],
+  "repository_archive_sha256": "8b251c3a621c6de82e020ea01e4ada87211f66abdda4d529e30b9f2ed71156e0",
+  "members": [
+    {
+      "name": "v5_Repo_Upload/",
+      "size_bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "name": "v5_Repo_Upload/data/",
+      "size_bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "name": "v5_Repo_Upload/data/PNW-Cnet_v5_Target_Classes.xlsx",
+      "size_bytes": 21557,
+      "compressed_bytes": 19023,
+      "crc32": 3065468513
+    },
+    {
+      "name": "v5_Repo_Upload/data/Test_Set_2_labeled.csv",
+      "size_bytes": 665671,
+      "compressed_bytes": 114569,
+      "crc32": 2781689789
+    },
+    {
+      "name": "v5_Repo_Upload/data/Training_Data.csv",
+      "size_bytes": 287678907,
+      "compressed_bytes": 8239621,
+      "crc32": 2204369545
+    },
+    {
+      "name": "v5_Repo_Upload/data/Test_Set_1/",
+      "size_bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "name": "v5_Repo_Upload/data/Test_Set_2/",
+      "size_bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "name": "v5_Repo_Upload/output/",
+      "size_bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "name": "v5_Repo_Upload/output/Test_Set_1_Class_Scores.csv",
+      "size_bytes": 28294573,
+      "compressed_bytes": 3452590,
+      "crc32": 3798360227
+    },
+    {
+      "name": "v5_Repo_Upload/output/Test_Set_2_Class_Scores.csv",
+      "size_bytes": 5791004,
+      "compressed_bytes": 727369,
+      "crc32": 826176416
+    },
+    {
+      "name": "v5_Repo_Upload/output/Table_1_Info_Raw.csv",
+      "size_bytes": 14620,
+      "compressed_bytes": 5893,
+      "crc32": 1572902511
+    },
+    {
+      "name": "v5_Repo_Upload/output/Test_Set_1_Performance_Metrics_All.csv",
+      "size_bytes": 745792,
+      "compressed_bytes": 169443,
+      "crc32": 1176361716
+    },
+    {
+      "name": "v5_Repo_Upload/output/Test_Set_2_Performance_Metrics_All.csv",
+      "size_bytes": 78417,
+      "compressed_bytes": 16055,
+      "crc32": 2470424525
+    },
+    {
+      "name": "v5_Repo_Upload/output/PR_Curve_Values_by_Class.csv",
+      "size_bytes": 2302508,
+      "compressed_bytes": 455508,
+      "crc32": 1889392570
+    },
+    {
+      "name": "v5_Repo_Upload/output/AUPRC_Values_by_Class.csv",
+      "size_bytes": 1940,
+      "compressed_bytes": 1098,
+      "crc32": 3015849513
+    },
+    {
+      "name": "v5_Repo_Upload/output/ROC_Curve_Values_by_Class.csv",
+      "size_bytes": 1919549,
+      "compressed_bytes": 358890,
+      "crc32": 1419289236
+    },
+    {
+      "name": "v5_Repo_Upload/output/AUROC_Values_by_Class.csv",
+      "size_bytes": 1936,
+      "compressed_bytes": 1061,
+      "crc32": 3839534560
+    },
+    {
+      "name": "v5_Repo_Upload/plots/",
+      "size_bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "name": "v5_Repo_Upload/plots/Fig_2_raw.png",
+      "size_bytes": 3039876,
+      "compressed_bytes": 2895686,
+      "crc32": 3564515221
+    },
+    {
+      "name": "v5_Repo_Upload/plots/Fig_S1_raw.png",
+      "size_bytes": 1911592,
+      "compressed_bytes": 1756258,
+      "crc32": 546983093
+    },
+    {
+      "name": "v5_Repo_Upload/plots/Fig_3_raw.png",
+      "size_bytes": 3201180,
+      "compressed_bytes": 2962337,
+      "crc32": 3495002332
+    },
+    {
+      "name": "v5_Repo_Upload/tables/",
+      "size_bytes": 0,
+      "compressed_bytes": 0,
+      "crc32": 0
+    },
+    {
+      "name": "v5_Repo_Upload/tables/Table_1_Target_Class_Info.csv",
+      "size_bytes": 9203,
+      "compressed_bytes": 4385,
+      "crc32": 1357060769
+    },
+    {
+      "name": "v5_Repo_Upload/tables/Table_2_Performance_Metrics_by_Class.csv",
+      "size_bytes": 10852,
+      "compressed_bytes": 4632,
+      "crc32": 3664838371
+    },
+    {
+      "name": "v5_Repo_Upload/03_Calculate_Performance.r",
+      "size_bytes": 9426,
+      "compressed_bytes": 3099,
+      "crc32": 1428201166
+    },
+    {
+      "name": "v5_Repo_Upload/PNW-Cnet_v5_TF.h5",
+      "size_bytes": 57647004,
+      "compressed_bytes": 49437849,
+      "crc32": 2616170161
+    },
+    {
+      "name": "v5_Repo_Upload/README.md",
+      "size_bytes": 8211,
+      "compressed_bytes": 2819,
+      "crc32": 787120492
+    },
+    {
+      "name": "v5_Repo_Upload/00_Train_Model.py",
+      "size_bytes": 10485,
+      "compressed_bytes": 3964,
+      "crc32": 2420096108
+    },
+    {
+      "name": "v5_Repo_Upload/01_Test_Model.py",
+      "size_bytes": 8521,
+      "compressed_bytes": 2810,
+      "crc32": 2156329334
+    },
+    {
+      "name": "v5_Repo_Upload/04_Build_Plots.r",
+      "size_bytes": 9912,
+      "compressed_bytes": 2684,
+      "crc32": 843856195
+    }
+  ],
+  "repository_uncompressed_bytes": 393382736,
+  "license_evidence": {
+    "api_license": {
+      "id": "cc-by-4.0"
+    },
+    "landing_copyright": "Copyright (C) 2025 The authors",
+    "landing_snapshot": {
+      "path": "evidence/pnw-landing.html",
+      "size_bytes": 96113,
+      "sha256": "417f9eb8d2d624e980105188bc6e9e86094fc380881ea6bc50bcec426d600a93"
+    },
+    "archive_has_license_file": false,
+    "archive_license_mentions": [],
+    "decision": "conflicting_evidence_original_audio_use_not_approved",
+    "needed": "Release-author confirmation that the specific Test_Set_2 original audio is licensed under CC BY 4.0, clarifying the landing/API discrepancy."
+  },
+  "annotation_audit": {
+    "rows": 8500,
+    "classes": 85,
+    "focal_positives": 7538,
+    "focal_rejections": 962,
+    "classes_of_interest": [
+      {
+        "class_code": "CALA1",
+        "source_label": "Coyote",
+        "source_scientific_name": "Canis latrans",
+        "test1_positive_spectrograms": 70,
+        "test2_candidates": 100,
+        "test2_reviewed_focal_positive": 81
+      },
+      {
+        "class_code": "CALU1",
+        "source_label": "Wolf howl",
+        "source_scientific_name": "Canis lupus",
+        "test1_positive_spectrograms": 92,
+        "test2_candidates": 0,
+        "test2_reviewed_focal_positive": 0
+      },
+      {
+        "class_code": "CECA1",
+        "source_label": "Elk",
+        "source_scientific_name": "Cervus canadensis",
+        "test1_positive_spectrograms": 28,
+        "test2_candidates": 0,
+        "test2_reviewed_focal_positive": 0
+      },
+      {
+        "class_code": "TAMI1",
+        "source_label": "Chipmunk spp. chirp",
+        "source_scientific_name": "Neotamias spp.",
+        "test1_positive_spectrograms": 1075,
+        "test2_candidates": 100,
+        "test2_reviewed_focal_positive": 95
+      },
+      {
+        "class_code": "OCPR1",
+        "source_label": "American pika",
+        "source_scientific_name": "Ochotona princeps",
+        "test1_positive_spectrograms": 275,
+        "test2_candidates": 100,
+        "test2_reviewed_focal_positive": 100
+      },
+      {
+        "class_code": "ODOC1",
+        "source_label": "Deer snort",
+        "source_scientific_name": "Odocoileus spp.",
+        "test1_positive_spectrograms": 20,
+        "test2_candidates": 100,
+        "test2_reviewed_focal_positive": 99
+      },
+      {
+        "class_code": "TADO1",
+        "source_label": "Douglas squirrel rattle",
+        "source_scientific_name": "Tamiasciurus douglasii",
+        "test1_positive_spectrograms": 767,
+        "test2_candidates": 100,
+        "test2_reviewed_focal_positive": 94
+      },
+      {
+        "class_code": "TADO2",
+        "source_label": "Douglas squirrel chirp",
+        "source_scientific_name": "Tamiasciurus douglasii",
+        "test1_positive_spectrograms": 726,
+        "test2_candidates": 0,
+        "test2_reviewed_focal_positive": 0
+      },
+      {
+        "class_code": "URAM1",
+        "source_label": "Black bear juvenile",
+        "source_scientific_name": "Ursus americanus",
+        "test1_positive_spectrograms": 37,
+        "test2_candidates": 0,
+        "test2_reviewed_focal_positive": 0
+      },
+      {
+        "class_code": "Wildcat",
+        "source_label": "Wildcat scream",
+        "source_scientific_name": "NA",
+        "test1_positive_spectrograms": 25,
+        "test2_candidates": 0,
+        "test2_reviewed_focal_positive": 0
+      },
+      {
+        "class_code": "Human",
+        "source_label": "Human speech",
+        "source_scientific_name": "Homo sapiens",
+        "test1_positive_spectrograms": 490,
+        "test2_candidates": 100,
+        "test2_reviewed_focal_positive": 98
+      },
+      {
+        "class_code": "Bullfrog",
+        "source_label": "Bullfrog",
+        "source_scientific_name": "Rana catesbeiana",
+        "test1_positive_spectrograms": 82,
+        "test2_candidates": 100,
+        "test2_reviewed_focal_positive": 99
+      },
+      {
+        "class_code": "Frog",
+        "source_label": "Frog chorus",
+        "source_scientific_name": "NA",
+        "test1_positive_spectrograms": 746,
+        "test2_candidates": 100,
+        "test2_reviewed_focal_positive": 98
+      },
+      {
+        "class_code": "Fly",
+        "source_label": "Buzzing insect",
+        "source_scientific_name": "NA",
+        "test1_positive_spectrograms": 1968,
+        "test2_candidates": 100,
+        "test2_reviewed_focal_positive": 100
+      },
+      {
+        "class_code": "Dog",
+        "source_label": "Dog",
+        "source_scientific_name": "Canis familiaris",
+        "test1_positive_spectrograms": 1078,
+        "test2_candidates": 100,
+        "test2_reviewed_focal_positive": 95
+      },
+      {
+        "class_code": "Cricket",
+        "source_label": "Cricket",
+        "source_scientific_name": "NA",
+        "test1_positive_spectrograms": 2488,
+        "test2_candidates": 100,
+        "test2_reviewed_focal_positive": 98
+      }
+    ],
+    "semantics": "Focal candidate windows, not exhaustive onset/offset species annotations; No rejects only focal class; Human audio omitted per release description.",
+    "training_manifest_columns": [
+      "Set",
+      "Folder",
+      "Filename",
+      "Tags",
+      "ACCO1",
+      "ACGE1",
+      "ACGE2",
+      "ACST1",
+      "AEAC1",
+      "AEAC2",
+      "Airplane",
+      "ANCA1",
+      "ASOT1",
+      "BOUM1",
+      "BRCA1",
+      "BRMA1",
+      "BRMA2",
+      "BUJA1",
+      "BUJA2",
+      "Bullfrog",
+      "BUVI1",
+      "BUVI2",
+      "CACA1",
+      "CAGU1",
+      "CAGU2",
+      "CAGU3",
+      "CALA1",
+      "CALU1",
+      "CAPU1",
+      "CAUS1",
+      "CAUS2",
+      "CCOO1",
+      "CCOO2",
+      "CECA1",
+      "Chainsaw",
+      "CHFA1",
+      "Chicken",
+      "CHMI1",
+      "CHMI2",
+      "COAU1",
+      "COAU2",
+      "COBR1",
+      "COCO1",
+      "COSO1",
+      "Cow",
+      "Creek",
+      "Cricket",
+      "CYST1",
+      "CYST2",
+      "DEFU1",
+      "DEFU2",
+      "Dog",
+      "DRPU1",
+      "Drum",
+      "EMDI1",
+      "EMOB1",
+      "FACO1",
+      "FASP1",
+      "Fly",
+      "Frog",
+      "GADE1",
+      "GLGN1",
+      "Growler",
+      "Gunshot",
+      "HALE1",
+      "HAPU1",
+      "HEVE1",
+      "Highway",
+      "Horn",
+      "Human",
+      "HYPI1",
+      "IXNA1",
+      "IXNA2",
+      "JUHY1",
+      "LEAL1",
+      "LECE1",
+      "LEVI1",
+      "LEVI2",
+      "LOCU1",
+      "MEFO1",
+      "MEGA1",
+      "MEKE1",
+      "MEKE2",
+      "MEKE3",
+      "MYTO1",
+      "NUCO1",
+      "OCPR1",
+      "ODOC1",
+      "ORPI1",
+      "ORPI2",
+      "PAFA1",
+      "PAFA2",
+      "PAHA1",
+      "PECA1",
+      "PHME1",
+      "PHNU1",
+      "PILU1",
+      "PILU2",
+      "PIMA1",
+      "PIMA2",
+      "POEC1",
+      "POEC2",
+      "PSFL1",
+      "Rain",
+      "Raptor",
+      "SICU1",
+      "SITT1",
+      "SITT2",
+      "SPHY1",
+      "SPHY2",
+      "SPPA1",
+      "SPPI1",
+      "SPTH1",
+      "STDE1",
+      "STNE1",
+      "STNE2",
+      "STOC_4Note",
+      "STOC_Series",
+      "Strix_Bark",
+      "Strix_Whistle",
+      "STVA_8Note",
+      "STVA_Insp",
+      "STVA_Series",
+      "Survey_Tone",
+      "TADO1",
+      "TADO2",
+      "TAMI1",
+      "Thunder",
+      "TRAE1",
+      "Train",
+      "Tree",
+      "TUMI1",
+      "TUMI2",
+      "URAM1",
+      "VIHU1",
+      "Wildcat",
+      "Yarder",
+      "ZEMA1",
+      "ZOLE1"
+    ],
+    "training_manifest_sample_identity": {
+      "Set": "Training",
+      "Folder": "Train_Val_01/images",
+      "Filename": "Site_0001-1_20220515_062402_offs_2573.png"
+    }
+  },
+  "source_split": "test",
+  "test_set_2_downloaded": false,
+  "audio_reuse_approved": false,
+  "test_set_2_expanded_bytes": null
+}

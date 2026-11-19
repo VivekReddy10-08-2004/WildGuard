@@ -1,12 +1,15 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://wildguard.invalid/audio/v1/annotation.schema.json",
-  "title": "WildGuard annotation v1",
+  "title": "WildGuard annotation v1.0 + additive v1.1 focal review",
   "type": "object",
   "additionalProperties": false,
   "properties": {
     "schema_version": {
-      "const": "1.0.0"
+      "enum": [
+        "1.0.0",
+        "1.1.0"
+      ]
     },
     "annotation_id": {
       "type": "string",
@@ -109,6 +112,64 @@
     },
     "provenance_id": {
       "type": "string",
+      "minLength": 1
+    },
+    "focal_present": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "prediction_score": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_split": {
+      "enum": [
+        "train",
+        "val",
+        "test",
+        null
+      ]
+    },
+    "channel": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "source_manifest_sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_row": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 2
+    },
+    "source_path": {
+      "type": [
+        "string",
+        "null"
+      ],
       "minLength": 1
     }
   },

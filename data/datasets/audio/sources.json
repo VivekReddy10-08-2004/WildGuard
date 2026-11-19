@@ -205,9 +205,23 @@
       "status": "license_review_required",
       "download_size_gb": 1.8,
       "notes": "Fully annotated archive 1.8 GB ZIP, 141 five-minute files; annotation dictionary lists 2 mammal species including domestic dog and Douglas squirrel. American pika and bullfrog have 0 annotations; do not imply confirmed training examples. 2-second sound-tag windows, not precise vocalization onsets. Verify license field."
+    },
+    {
+      "id": "pnw_cnet_v5",
+      "name": "PNW-Cnet v5 / release 2025.12.29",
+      "url": "https://zenodo.org/records/17955691",
+      "taxa": [
+        "mammals",
+        "amphibians",
+        "insects",
+        "birds",
+        "background"
+      ],
+      "status": "license_conflict_review_required",
+      "notes": "Legacy API reports cc-by-4.0, landing shows author copyright; repository archive has no license file or license grant. No Test_Set_2 audio acquired or approved. Preserve official evaluation split. See pnw_cnet_v5_review.json for manifest-audited counts; class inventory does not establish field-audio availability."
     }
   ],
   "audio_storage_cap_bytes": 30000000000,
   "storage_cap_note": "Hard maximum 30 GB final audio corpus; include metadata, staging overhead, extracted size, and checksum audit when allocating; do not download the full 27.7 GB bird dataset by default.",
-  "curated_source_count": 18
+  "curated_source_count": 19
 }

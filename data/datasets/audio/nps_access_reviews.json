@@ -1,0 +1,214 @@
+{
+  "schema_version": "1.0.0",
+  "checked_date": "2026-11-19",
+  "note": "Acquisition permission review only. All six user approval flags remain false. Exact-asset commercial redistribution approvals remain separate.",
+  "evidence": [
+    {
+      "url": "https://www.nps.gov/subjects/sound/gallery.htm",
+      "path": "evidence/nps-page-0.html",
+      "size_bytes": 68183,
+      "sha256": "7ac974d99c15784037cf95c0a0a781f9fe4e66e4fa157707709bd16929d4b8d6"
+    },
+    {
+      "url": "https://www.nps.gov/subjects/sound/sounds-coyotes.htm",
+      "path": "evidence/nps-page-1.html",
+      "size_bytes": 44912,
+      "sha256": "49aa59054255bc76661e5c32653a363139683bdf829178be9a4799041c9ad591"
+    },
+    {
+      "url": "https://www.nps.gov/subjects/sound/sounds-elk.htm",
+      "path": "evidence/nps-page-2.html",
+      "size_bytes": 45074,
+      "sha256": "144b86362f8b8a1f34e2007b8073839179bacc3390482c166e5f3f3691071e39"
+    },
+    {
+      "url": "https://www.nps.gov/subjects/sound/sounds-spotted-bat.htm",
+      "path": "evidence/nps-page-3.html",
+      "size_bytes": 44295,
+      "sha256": "245cd1a41dc1107ad431d9e9fabeef0806177da45ea25120c23fb7f26dd0b0a1"
+    },
+    {
+      "url": "https://www.nps.gov/subjects/sound/cspadefoottoad.htm",
+      "path": "evidence/nps-page-4.html",
+      "size_bytes": 45624,
+      "sha256": "9857ce649921f0665779289c5a9742084c206120a7a6fee258bb4a51f70c2371"
+    },
+    {
+      "url": "https://www.nps.gov/subjects/sound/sounds-alligator.htm",
+      "path": "evidence/nps-page-5.html",
+      "size_bytes": 44950,
+      "sha256": "7339716e30417cbbf1634e1ed384e346fee10a510879fcdd8130588409f0ade1"
+    },
+    {
+      "url": "https://www.nps.gov/subjects/sound/sounds-crickets.htm",
+      "path": "evidence/nps-page-6.html",
+      "size_bytes": 45144,
+      "sha256": "ab1d0086a70ec8d05c21e13feadd9482ca6847fc57770e71e7b669dbb90e2081"
+    }
+  ],
+  "reviews": [
+    {
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-CoyotesMOJA.mp3",
+      "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-CoyotesMOJA.mp3",
+      "expected_bytes": 161398,
+      "etag": "\"a3b343310c84ee15446d5dd6237355b5\"",
+      "download_permitted": true,
+      "reviewed_by": "WildGuard engineering; public-domain gallery statement plus individual NPS audio credit",
+      "purpose": "Bounded original recording inspection; no automatic commercial redistribution approval",
+      "evidence": [
+        {
+          "path": "evidence/nps-page-0.html",
+          "sha256": "7ac974d99c15784037cf95c0a0a781f9fe4e66e4fa157707709bd16929d4b8d6"
+        },
+        {
+          "path": "evidence/nps-page-1.html",
+          "sha256": "49aa59054255bc76661e5c32653a363139683bdf829178be9a4799041c9ad591"
+        }
+      ],
+      "source_label": "Coyotes",
+      "content_verification": "pending acquisition and decoding",
+      "approval": {
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-CoyotesMOJA.mp3",
+        "expected_bytes": 161398,
+        "approved": false
+      }
+    },
+    {
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-ElkBuglingGRSA.mp3",
+      "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-ElkBuglingGRSA.mp3",
+      "expected_bytes": 331926,
+      "etag": "\"31754470ca4569e6770f259ca8d15c5d\"",
+      "download_permitted": true,
+      "reviewed_by": "WildGuard engineering; public-domain gallery statement plus individual NPS audio credit",
+      "purpose": "Bounded original recording inspection; no automatic commercial redistribution approval",
+      "evidence": [
+        {
+          "path": "evidence/nps-page-0.html",
+          "sha256": "7ac974d99c15784037cf95c0a0a781f9fe4e66e4fa157707709bd16929d4b8d6"
+        },
+        {
+          "path": "evidence/nps-page-2.html",
+          "sha256": "144b86362f8b8a1f34e2007b8073839179bacc3390482c166e5f3f3691071e39"
+        }
+      ],
+      "source_label": "Elk bugle",
+      "content_verification": "pending acquisition and decoding",
+      "approval": {
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-ElkBuglingGRSA.mp3",
+        "expected_bytes": 331926,
+        "approved": false
+      }
+    },
+    {
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-SpottedBatYOSE.mp3",
+      "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-SpottedBatYOSE.mp3",
+      "expected_bytes": 113333,
+      "etag": "\"9add328c167d696dd6cabbbc8ae47284\"",
+      "download_permitted": true,
+      "reviewed_by": "WildGuard engineering; public-domain gallery statement plus individual NPS audio credit",
+      "purpose": "Bounded original recording inspection; no automatic commercial redistribution approval",
+      "evidence": [
+        {
+          "path": "evidence/nps-page-0.html",
+          "sha256": "7ac974d99c15784037cf95c0a0a781f9fe4e66e4fa157707709bd16929d4b8d6"
+        },
+        {
+          "path": "evidence/nps-page-3.html",
+          "sha256": "245cd1a41dc1107ad431d9e9fabeef0806177da45ea25120c23fb7f26dd0b0a1"
+        }
+      ],
+      "source_label": "Spotted Bat",
+      "content_verification": "pending acquisition and decoding",
+      "approval": {
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-SpottedBatYOSE.mp3",
+        "expected_bytes": 113333,
+        "approved": false
+      }
+    },
+    {
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-CouchsSpadefootToadSaguaroNP.mp3",
+      "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-CouchsSpadefootToadSaguaroNP.mp3",
+      "expected_bytes": 586960,
+      "etag": "\"a3ff98042e25007dddc4e77f181f6fe0\"",
+      "download_permitted": true,
+      "reviewed_by": "WildGuard engineering; public-domain gallery statement plus individual NPS audio credit",
+      "purpose": "Bounded original recording inspection; no automatic commercial redistribution approval",
+      "evidence": [
+        {
+          "path": "evidence/nps-page-0.html",
+          "sha256": "7ac974d99c15784037cf95c0a0a781f9fe4e66e4fa157707709bd16929d4b8d6"
+        },
+        {
+          "path": "evidence/nps-page-4.html",
+          "sha256": "9857ce649921f0665779289c5a9742084c206120a7a6fee258bb4a51f70c2371"
+        }
+      ],
+      "source_label": "Couch's Spadefoot Toad",
+      "content_verification": "pending acquisition and decoding",
+      "approval": {
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-CouchsSpadefootToadSaguaroNP.mp3",
+        "expected_bytes": 586960,
+        "approved": false
+      }
+    },
+    {
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-AlligatorEVER1.mp3",
+      "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-AlligatorEVER1.mp3",
+      "expected_bytes": 412592,
+      "etag": "\"b1fec618c5d7b25c8ab0c2b184db9dea\"",
+      "download_permitted": true,
+      "reviewed_by": "WildGuard engineering; public-domain gallery statement plus individual NPS audio credit",
+      "purpose": "Bounded original recording inspection; no automatic commercial redistribution approval",
+      "evidence": [
+        {
+          "path": "evidence/nps-page-0.html",
+          "sha256": "7ac974d99c15784037cf95c0a0a781f9fe4e66e4fa157707709bd16929d4b8d6"
+        },
+        {
+          "path": "evidence/nps-page-5.html",
+          "sha256": "7339716e30417cbbf1634e1ed384e346fee10a510879fcdd8130588409f0ade1"
+        }
+      ],
+      "source_label": "Alligator",
+      "content_verification": "pending acquisition and decoding",
+      "approval": {
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-AlligatorEVER1.mp3",
+        "expected_bytes": 412592,
+        "approved": false
+      }
+    },
+    {
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-Cricket.mp3",
+      "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-Cricket.mp3",
+      "expected_bytes": 587671,
+      "etag": "\"99c8accce200b7c2e538b4565caa8ae4\"",
+      "download_permitted": true,
+      "reviewed_by": "WildGuard engineering; public-domain gallery statement plus individual NPS audio credit",
+      "purpose": "Bounded original recording inspection; no automatic commercial redistribution approval",
+      "evidence": [
+        {
+          "path": "evidence/nps-page-0.html",
+          "sha256": "7ac974d99c15784037cf95c0a0a781f9fe4e66e4fa157707709bd16929d4b8d6"
+        },
+        {
+          "path": "evidence/nps-page-6.html",
+          "sha256": "ab1d0086a70ec8d05c21e13feadd9482ca6847fc57770e71e7b669dbb90e2081"
+        }
+      ],
+      "source_label": "Crickets",
+      "content_verification": "pending acquisition and decoding",
+      "approval": {
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-Cricket.mp3",
+        "expected_bytes": 587671,
+        "approved": false
+      }
+    }
+  ],
+  "inventory_actual_bytes": 82577814
+}

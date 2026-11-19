@@ -10,5 +10,7 @@
     "insect"
   ],
   "commercial_redistribution_requires": "Recording-level approved review bound to exact asset SHA-256, explicit commercial/training/redistribution/derivative permission and retained evidence.",
-  "acquisition_enabled": false
+  "acquisition_enabled": false,
+  "explicit_file_approval_required": true,
+  "acquisition_status": "Unattended acquisition disabled. The acquire command permits only explicit exact-file approval plus retained source-rights evidence."
 }

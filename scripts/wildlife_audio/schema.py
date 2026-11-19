@@ -75,6 +75,12 @@ def validate(kind, record):
     if kind == "annotation" and record["annotation_type"] in {"event", "window"}:
         if record["end_seconds"] <= record["start_seconds"]:
             errors.append("annotation end must follow start")
+    if (
+        kind == "annotation"
+        and record.get("focal_present") is False
+        and record["taxon_id"] is not None
+    ):
+        errors.append("focal rejection must not assign a positive taxon ID")
     return errors
 
 

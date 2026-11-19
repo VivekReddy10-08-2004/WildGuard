@@ -38,4 +38,15 @@ See [pipeline contracts](../../../docs/audio_dataset_pipeline.md) and
 [local/offline storage](../../../docs/audio_dataset_storage.md) for setup and commands.
 The SQLite inventory enforces a hard 30,000,000,000-byte ceiling on all managed
 payload, including originals, processed copies, archives, partials and quarantine.
-No downloader is enabled. Existing manifest validation remains supported.
+Unattended downloads remain disabled. Existing manifest validation remains supported.
+
+## Acquisition and processing stage
+
+See [processing commands](../../../docs/audio_dataset_processing.md) and
+`pilot_acquisition_report.json` for the exact six-file NPS proposal. Every audio
+approval flag remains false. `nps_access_reviews.json` records rights-page evidence;
+exact-asset commercial redistribution reviews remain separate.
+
+`pnw_cnet_v5_review.json` records the inspected repository archive and annotation
+audit. Test Set 2 was not downloaded, its original-audio rights remain unresolved,
+and its evaluation role is protected by the pipeline.

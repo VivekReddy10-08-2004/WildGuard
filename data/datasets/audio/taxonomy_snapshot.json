@@ -1,0 +1,161 @@
+{
+  "version": "source-reviewed-names-2026-11-19-v1",
+  "note": "Small source-evidenced local concept mapping; IDs are NOT ITIS/GBIF identifiers. Name resolution is not species-label verification. Higher-rank and unknown labels remain coarse.",
+  "taxa": [
+    {
+      "taxon_id": "wildguard-local:001",
+      "scientific_name": "Canis latrans",
+      "rank": "species",
+      "aliases": [
+        "Coyote",
+        "Coyotes",
+        "CALA1"
+      ],
+      "evidence_url": "https://www.nps.gov/subjects/sound/sounds-coyotes.htm"
+    },
+    {
+      "taxon_id": "wildguard-local:002",
+      "scientific_name": "Canis lupus",
+      "rank": "species",
+      "aliases": [
+        "Wolf",
+        "Wolf howl",
+        "CALU1"
+      ],
+      "evidence_url": "https://zenodo.org/records/17955691"
+    },
+    {
+      "taxon_id": "wildguard-local:003",
+      "scientific_name": "Cervus canadensis",
+      "rank": "species",
+      "aliases": [
+        "Elk",
+        "Elk bugle",
+        "CECA1"
+      ],
+      "evidence_url": "https://zenodo.org/records/17955691"
+    },
+    {
+      "taxon_id": "wildguard-local:004",
+      "scientific_name": "Euderma maculatum",
+      "rank": "species",
+      "aliases": [
+        "Spotted Bat"
+      ],
+      "evidence_url": "https://irma.nps.gov/NPSpecies/Species/Profile/225503"
+    },
+    {
+      "taxon_id": "wildguard-local:005",
+      "scientific_name": "Scaphiopus couchii",
+      "rank": "species",
+      "aliases": [
+        "Couch's Spadefoot Toad"
+      ],
+      "evidence_url": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=189271"
+    },
+    {
+      "taxon_id": "wildguard-local:006",
+      "scientific_name": "Alligator mississippiensis",
+      "rank": "species",
+      "aliases": [
+        "Alligator",
+        "American alligator"
+      ],
+      "evidence_url": "https://www.nps.gov/subjects/sound/sounds-alligator.htm"
+    },
+    {
+      "taxon_id": "wildguard-local:007",
+      "scientific_name": "Neotamias",
+      "rank": "genus",
+      "aliases": [
+        "Neotamias spp.",
+        "Chipmunk spp. chirp",
+        "TAMI1"
+      ],
+      "evidence_url": "https://zenodo.org/records/17955691"
+    },
+    {
+      "taxon_id": "wildguard-local:008",
+      "scientific_name": "Ochotona princeps",
+      "rank": "species",
+      "aliases": [
+        "American pika",
+        "OCPR1"
+      ],
+      "evidence_url": "https://zenodo.org/records/17955691"
+    },
+    {
+      "taxon_id": "wildguard-local:009",
+      "scientific_name": "Odocoileus",
+      "rank": "genus",
+      "aliases": [
+        "Odocoileus spp.",
+        "Deer snort",
+        "ODOC1"
+      ],
+      "evidence_url": "https://zenodo.org/records/17955691"
+    },
+    {
+      "taxon_id": "wildguard-local:010",
+      "scientific_name": "Tamiasciurus douglasii",
+      "rank": "species",
+      "aliases": [
+        "Douglas squirrel rattle",
+        "Douglas squirrel chirp",
+        "TADO1",
+        "TADO2"
+      ],
+      "evidence_url": "https://zenodo.org/records/17955691"
+    },
+    {
+      "taxon_id": "wildguard-local:011",
+      "scientific_name": "Ursus americanus",
+      "rank": "species",
+      "aliases": [
+        "Black bear juvenile",
+        "URAM1"
+      ],
+      "evidence_url": "https://zenodo.org/records/17955691"
+    },
+    {
+      "taxon_id": "wildguard-local:012",
+      "scientific_name": "Lithobates catesbeianus",
+      "rank": "species",
+      "aliases": [
+        "Rana catesbeiana",
+        "Bullfrog"
+      ],
+      "evidence_url": "https://amphibiansoftheworld.amnh.org/Amphibia/Anura/Ranidae/Lithobates/Lithobates-catesbeianus"
+    },
+    {
+      "taxon_id": "wildguard-local:013",
+      "scientific_name": null,
+      "rank": "group",
+      "aliases": [
+        "Crickets",
+        "Cricket"
+      ],
+      "evidence_url": "https://www.nps.gov/subjects/sound/sounds-crickets.htm"
+    },
+    {
+      "taxon_id": "wildguard-local:014",
+      "scientific_name": null,
+      "rank": "group",
+      "aliases": [
+        "Fly",
+        "Buzzing insect"
+      ],
+      "evidence_url": "https://zenodo.org/records/17955691"
+    },
+    {
+      "taxon_id": "wildguard-local:015",
+      "scientific_name": null,
+      "rank": "group",
+      "aliases": [
+        "Frog",
+        "Frog chorus"
+      ],
+      "evidence_url": "https://zenodo.org/records/17955691"
+    }
+  ]
+}

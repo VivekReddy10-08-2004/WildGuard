@@ -1,0 +1,214 @@
+{
+  "schema_version": "1.0.0",
+  "checked_date": "2026-11-19",
+  "status": "awaiting_exact_audio_file_approval",
+  "audio_downloaded": false,
+  "scope": "Six original NPS MP3 files only; no Test_Set_2.zip and no processed audio copies",
+  "original_maximum_bytes": 2193880,
+  "report_metadata_allowance_bytes": 1000000,
+  "additional_payload_maximum_bytes": 3193880,
+  "current_research_payload_bytes": 82687270,
+  "projected_payload_ceiling_bytes": 85881150,
+  "cap_bytes": 30000000000,
+  "sqlite_control_overhead_in_cap": false,
+  "rights_evidence": [
+    {
+      "url": "https://www.nps.gov/subjects/sound/gallery.htm",
+      "path": "evidence/nps-page-0.html",
+      "size_bytes": 68183,
+      "sha256": "7ac974d99c15784037cf95c0a0a781f9fe4e66e4fa157707709bd16929d4b8d6"
+    },
+    {
+      "url": "https://www.nps.gov/subjects/sound/sounds-coyotes.htm",
+      "path": "evidence/nps-page-1.html",
+      "size_bytes": 44912,
+      "sha256": "49aa59054255bc76661e5c32653a363139683bdf829178be9a4799041c9ad591"
+    },
+    {
+      "url": "https://www.nps.gov/subjects/sound/sounds-elk.htm",
+      "path": "evidence/nps-page-2.html",
+      "size_bytes": 45074,
+      "sha256": "144b86362f8b8a1f34e2007b8073839179bacc3390482c166e5f3f3691071e39"
+    },
+    {
+      "url": "https://www.nps.gov/subjects/sound/sounds-spotted-bat.htm",
+      "path": "evidence/nps-page-3.html",
+      "size_bytes": 44295,
+      "sha256": "245cd1a41dc1107ad431d9e9fabeef0806177da45ea25120c23fb7f26dd0b0a1"
+    },
+    {
+      "url": "https://www.nps.gov/subjects/sound/cspadefoottoad.htm",
+      "path": "evidence/nps-page-4.html",
+      "size_bytes": 45624,
+      "sha256": "9857ce649921f0665779289c5a9742084c206120a7a6fee258bb4a51f70c2371"
+    },
+    {
+      "url": "https://www.nps.gov/subjects/sound/sounds-alligator.htm",
+      "path": "evidence/nps-page-5.html",
+      "size_bytes": 44950,
+      "sha256": "7339716e30417cbbf1634e1ed384e346fee10a510879fcdd8130588409f0ade1"
+    },
+    {
+      "url": "https://www.nps.gov/subjects/sound/sounds-crickets.htm",
+      "path": "evidence/nps-page-6.html",
+      "size_bytes": 45144,
+      "sha256": "ab1d0086a70ec8d05c21e13feadd9482ca6847fc57770e71e7b669dbb90e2081"
+    }
+  ],
+  "downloads": [
+    {
+      "source_label": "Coyotes",
+      "taxon": "terrestrial_mammal",
+      "recording_location_as_stated": "Mojave National Preserve, California",
+      "page_url": "https://www.nps.gov/subjects/sound/sounds-coyotes.htm",
+      "content_verified": false,
+      "annotation_status": "unverified_source_clip_label; no event timestamps",
+      "spec": {
+        "source_id": "nps_sound_gallery",
+        "source_recording_id": "nri-CoyotesMOJA.mp3",
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-CoyotesMOJA.mp3",
+        "path": "originals/nps/nri-CoyotesMOJA.mp3",
+        "expected_bytes": 161398,
+        "sha256": null,
+        "md5": null,
+        "etag": "\"a3b343310c84ee15446d5dd6237355b5\""
+      },
+      "approval": {
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-CoyotesMOJA.mp3",
+        "expected_bytes": 161398,
+        "approved": false
+      },
+      "access_review_reference": "nps_access_reviews.json#/reviews/0"
+    },
+    {
+      "source_label": "Elk bugle",
+      "taxon": "terrestrial_mammal",
+      "recording_location_as_stated": "Great Sand Dunes National Park and Preserve, Colorado",
+      "page_url": "https://www.nps.gov/subjects/sound/sounds-elk.htm",
+      "content_verified": false,
+      "annotation_status": "unverified_source_clip_label; no event timestamps",
+      "spec": {
+        "source_id": "nps_sound_gallery",
+        "source_recording_id": "nri-ElkBuglingGRSA.mp3",
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-ElkBuglingGRSA.mp3",
+        "path": "originals/nps/nri-ElkBuglingGRSA.mp3",
+        "expected_bytes": 331926,
+        "sha256": null,
+        "md5": null,
+        "etag": "\"31754470ca4569e6770f259ca8d15c5d\""
+      },
+      "approval": {
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-ElkBuglingGRSA.mp3",
+        "expected_bytes": 331926,
+        "approved": false
+      },
+      "access_review_reference": "nps_access_reviews.json#/reviews/1"
+    },
+    {
+      "source_label": "Spotted Bat",
+      "taxon": "bat",
+      "recording_location_as_stated": "Yosemite National Park, California",
+      "page_url": "https://www.nps.gov/subjects/sound/sounds-spotted-bat.htm",
+      "content_verified": false,
+      "annotation_status": "unverified_source_clip_label; no event timestamps",
+      "spec": {
+        "source_id": "nps_sound_gallery",
+        "source_recording_id": "nri-SpottedBatYOSE.mp3",
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-SpottedBatYOSE.mp3",
+        "path": "originals/nps/nri-SpottedBatYOSE.mp3",
+        "expected_bytes": 113333,
+        "sha256": null,
+        "md5": null,
+        "etag": "\"9add328c167d696dd6cabbbc8ae47284\""
+      },
+      "approval": {
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-SpottedBatYOSE.mp3",
+        "expected_bytes": 113333,
+        "approved": false
+      },
+      "access_review_reference": "nps_access_reviews.json#/reviews/2"
+    },
+    {
+      "source_label": "Couch's Spadefoot Toad",
+      "taxon": "amphibian",
+      "recording_location_as_stated": "Saguaro National Park, Arizona",
+      "page_url": "https://www.nps.gov/subjects/sound/cspadefoottoad.htm",
+      "content_verified": false,
+      "annotation_status": "unverified_source_clip_label; no event timestamps",
+      "spec": {
+        "source_id": "nps_sound_gallery",
+        "source_recording_id": "nri-CouchsSpadefootToadSaguaroNP.mp3",
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-CouchsSpadefootToadSaguaroNP.mp3",
+        "path": "originals/nps/nri-CouchsSpadefootToadSaguaroNP.mp3",
+        "expected_bytes": 586960,
+        "sha256": null,
+        "md5": null,
+        "etag": "\"a3ff98042e25007dddc4e77f181f6fe0\""
+      },
+      "approval": {
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-CouchsSpadefootToadSaguaroNP.mp3",
+        "expected_bytes": 586960,
+        "approved": false
+      },
+      "access_review_reference": "nps_access_reviews.json#/reviews/3"
+    },
+    {
+      "source_label": "Alligator",
+      "taxon": "reptile",
+      "recording_location_as_stated": "Everglades National Park, Florida",
+      "page_url": "https://www.nps.gov/subjects/sound/sounds-alligator.htm",
+      "content_verified": false,
+      "annotation_status": "unverified_source_clip_label; no event timestamps",
+      "spec": {
+        "source_id": "nps_sound_gallery",
+        "source_recording_id": "nri-AlligatorEVER1.mp3",
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-AlligatorEVER1.mp3",
+        "path": "originals/nps/nri-AlligatorEVER1.mp3",
+        "expected_bytes": 412592,
+        "sha256": null,
+        "md5": null,
+        "etag": "\"b1fec618c5d7b25c8ab0c2b184db9dea\""
+      },
+      "approval": {
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-AlligatorEVER1.mp3",
+        "expected_bytes": 412592,
+        "approved": false
+      },
+      "access_review_reference": "nps_access_reviews.json#/reviews/4"
+    },
+    {
+      "source_label": "Crickets",
+      "taxon": "insect",
+      "recording_location_as_stated": "Mojave National Preserve, California",
+      "page_url": "https://www.nps.gov/subjects/sound/sounds-crickets.htm",
+      "content_verified": false,
+      "annotation_status": "unverified_source_clip_label; no event timestamps",
+      "spec": {
+        "source_id": "nps_sound_gallery",
+        "source_recording_id": "nri-Cricket.mp3",
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-Cricket.mp3",
+        "path": "originals/nps/nri-Cricket.mp3",
+        "expected_bytes": 587671,
+        "sha256": null,
+        "md5": null,
+        "etag": "\"99c8accce200b7c2e538b4565caa8ae4\""
+      },
+      "approval": {
+        "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-Cricket.mp3",
+        "expected_bytes": 587671,
+        "approved": false
+      },
+      "access_review_reference": "nps_access_reviews.json#/reviews/5"
+    }
+  ],
+  "pnw": {
+    "record": "https://zenodo.org/records/17955691",
+    "repository_archive_inspected_bytes": 70644301,
+    "test_set_2_archive_bytes": 7515853849,
+    "test_set_2_downloaded": false,
+    "expanded_bytes": null,
+    "audio_reuse_approved": false,
+    "source_split": "test",
+    "review_reference": "pnw_cnet_v5_review.json"
+  }
+}

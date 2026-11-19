@@ -1,6 +1,8 @@
 # Local/offline wildlife audio storage foundation
 
-Implemented on `ram_audio`; no acquisition or model execution is included.
+Core storage foundation on `ram_audio`; no model execution is included. For
+explicit acquisition and offline audio analysis, see
+[audio_dataset_processing.md](audio_dataset_processing.md).
 Python 3.12 is required. From the repository root:
 
 ```powershell
@@ -33,8 +35,8 @@ the entire physical filesystem, SQLite overhead included, is under 30 GB.
 
 All writers must use `Inventory.put(relative_path, chunks, max_bytes, provenance,
 expected_sha256=None)`. `chunks` yields bytes; callers must provide a conservative
-upper bound even when a server omits its content length. No network code is
-included. Example using synthetic data, not a wildlife recording:
+upper bound even when a server omits its content length. Network handling is in the
+separate bounded download adapter. Example using synthetic data:
 
 ```python
 from pathlib import Path
@@ -78,7 +80,8 @@ Only **one authoritative dataset root** is supported in this stage. Do not creat
 additional audio caches, copies, backups or cloud replicas outside its ledger.
 An external backup or remote backend is not exempt from the overall retained-audio
 budget; such replication must remain disabled until a shared accounting mechanism
-is implemented. There is no remote backend, extraction utility or deletion API yet.
+is implemented. There is no remote backend, bulk-audio extraction utility or
+deletion API yet.
 Future extraction must use the same bounded writer and reject unsafe member paths.
 
 ## Git and offline operation

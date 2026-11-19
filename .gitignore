@@ -15,6 +15,10 @@ data/datasets/audio/*
 !data/datasets/audio/policy.json
 !data/datasets/audio/source_reviews.json
 !data/datasets/audio/pilot_proposal.json
+!data/datasets/audio/taxonomy_snapshot.json
+!data/datasets/audio/pilot_acquisition_report.json
+!data/datasets/audio/pnw_cnet_v5_review.json
+!data/datasets/audio/nps_access_reviews.json
 !data/datasets/audio/schema/
 !data/datasets/audio/schema/*.schema.json
 

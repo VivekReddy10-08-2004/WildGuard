@@ -40,7 +40,7 @@ def legacy_records(tables, source_ids):
                 "label": a["label"],
             }
             for a in annotations
-            if a["annotation_type"] == "event"
+            if a["annotation_type"] == "event" and a.get("focal_present") is not False
         ]
         review = reviews.get(recording["rights_review_id"], {})
         split = splits.get(rid, "unassigned")

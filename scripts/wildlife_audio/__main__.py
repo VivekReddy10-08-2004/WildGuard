@@ -1,4 +1,4 @@
-"""Local/offline foundation commands; deliberately has no network acquisition."""
+"""Wildlife audio engineering: offline analysis and explicitly approved acquisition."""
 
 import argparse
 import json
@@ -32,7 +32,49 @@ def main():
             type=Path,
             help="reconcile assets against an existing managed inventory",
         )
+    cmd = sub.add_parser(
+        "acquire", help="requires exact-file approval and retained rights evidence"
+    )
+    cmd.add_argument("root", type=Path)
+    cmd.add_argument("spec", type=Path)
+    cmd.add_argument("--approval", type=Path, required=True)
+    cmd.add_argument("--rights", type=Path, required=True)
+    cmd = sub.add_parser(
+        "analyze", help="offline decoding, duplicates, taxonomy and split QC"
+    )
+    cmd.add_argument("root", type=Path)
+    cmd.add_argument("catalog", type=Path)
+    cmd.add_argument(
+        "--taxonomy",
+        type=Path,
+        default=Path("data/datasets/audio/taxonomy_snapshot.json"),
+    )
+    cmd.add_argument("--save-relative", default=None)
     args = parser.parse_args()
+    if args.command == "acquire":
+        from scripts.wildlife_audio.download import DownloadSpec, acquire
+
+        result = acquire(
+            DownloadSpec(**json.loads(args.spec.read_text("utf-8"))),
+            Inventory(args.root),
+            json.loads(args.approval.read_text("utf-8")),
+            json.loads(args.rights.read_text("utf-8")),
+        )
+        print(json.dumps(result, indent=2))
+        return 0
+    if args.command == "analyze":
+        from scripts.wildlife_audio.pipeline import analyze, retain_report
+
+        inventory = Inventory(args.root)
+        report = analyze(
+            json.loads(args.catalog.read_text("utf-8")),
+            inventory,
+            json.loads(args.taxonomy.read_text("utf-8")),
+        )
+        if args.save_relative:
+            retain_report(report, inventory, args.save_relative)
+        print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+        return int(bool(report["failures"]))
     if args.command in {"validate", "export-legacy"}:
         tables = json.loads(args.bundle.read_text("utf-8"))
         registry = json.loads(args.sources.read_text("utf-8"))

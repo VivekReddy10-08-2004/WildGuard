@@ -1,7 +1,9 @@
 # Wildlife audio contracts and integration
 
-This foundation implements stages 1 and 2. It does not download recordings,
-decode audio, normalize taxonomy, generate acoustic fingerprints or assign splits.
+The original foundation implements stages 1 and 2. The subsequent bounded
+acquisition/processing stage is documented in [audio_dataset_processing.md](audio_dataset_processing.md).
+That stage adds decoding, source annotation import, conservative taxonomy mapping,
+duplicate candidates and protected grouping, without automatically acquiring audio.
 
 ## Version 1.0.0 contracts
 
@@ -78,4 +80,5 @@ and annotation audit, pinned taxonomy mapping, exact/acoustic deduplication,
 site/session/source-aware splitting, then release manifests and coverage reports.
 Before pilot acquisition, refresh source research, approve recording-level rights,
 recheck exact byte counts, and budget evidence plus all processing outputs.
-`policy.json` leaves acquisition disabled; no downloader exists in this commit.
+`policy.json` leaves unattended acquisition disabled. The subsequent stage requires
+exact-file approval and retained rights evidence before its downloader runs.

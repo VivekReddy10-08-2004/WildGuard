@@ -1,1 +1,1 @@
-"""Offline wildlife dataset contracts and managed storage (no downloaders)."""
+"""Wildlife dataset contracts, bounded acquisition and offline processing."""
