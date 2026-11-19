@@ -1,0 +1,35 @@
+{
+  "algorithm": "SHA-256",
+  "originals": [
+    {
+      "path": "originals/nps/nri-CoyotesMOJA.mp3",
+      "sha256": "69bfee365fa27be7e945ad667dbb91dfa85e3730e304d6412e07c9fd87b9038b",
+      "size_bytes": 161398
+    },
+    {
+      "path": "originals/nps/nri-ElkBuglingGRSA.mp3",
+      "sha256": "dc5c367965161eb9c9e25eb08a762ef2ec27a5f6fd3ca8d6e0f2e0ea32959675",
+      "size_bytes": 331926
+    },
+    {
+      "path": "originals/nps/nri-SpottedBatYOSE.mp3",
+      "sha256": "36ae530a87f010e2687e6c259da2660ca679ce1b3f68e46e357b1ab1fac9fbee",
+      "size_bytes": 113333
+    },
+    {
+      "path": "originals/nps/nri-CouchsSpadefootToadSaguaroNP.mp3",
+      "sha256": "df691ff392470c3a9739205a4016da18a8edfbda84fb4b7d9c8d584ab1337837",
+      "size_bytes": 586960
+    },
+    {
+      "path": "originals/nps/nri-AlligatorEVER1.mp3",
+      "sha256": "42e3166bdc9f102299bcba5f3f35cff128dc0ec16a9b2d14780a9b8d2c7775bc",
+      "size_bytes": 412592
+    },
+    {
+      "path": "originals/nps/nri-Cricket.mp3",
+      "sha256": "e15a0818d8476a0d8dfb7293cf8d3072a897adc21901d0985108b181fa856081",
+      "size_bytes": 587671
+    }
+  ]
+}

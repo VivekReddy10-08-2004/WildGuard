@@ -1,0 +1,872 @@
+{
+  "annotation": [
+    {
+      "annotation_id": "ce7a6bd5ff861e3699460226ddb38a663d7b0828dd055d16317193c86fea405d",
+      "annotation_method": "unknown",
+      "annotation_type": "clip",
+      "annotator_id": null,
+      "asset_id": "nps:nri-CoyotesMOJA.mp3:original",
+      "channel": null,
+      "confidence": null,
+      "end_seconds": null,
+      "focal_present": null,
+      "label": "Coyotes",
+      "original_annotation": {
+        "source_label": "Coyotes",
+        "source_page": "https://www.nps.gov/subjects/sound/sounds-coyotes.htm",
+        "transcript": "The yipping howling of coyotes."
+      },
+      "prediction_score": null,
+      "provenance_id": "nps:nri-CoyotesMOJA.mp3:provenance",
+      "recording_id": "nps:nri-CoyotesMOJA.mp3",
+      "schema_version": "1.1.0",
+      "source_manifest_sha256": null,
+      "source_path": null,
+      "source_row": null,
+      "source_split": null,
+      "start_seconds": null,
+      "taxon_id": "wildguard-local:001",
+      "verification": "unverified"
+    },
+    {
+      "annotation_id": "33a8ca0223088be867bd3840dc7b9cc2d79f9799809b4552d24ccc55b92b567f",
+      "annotation_method": "unknown",
+      "annotation_type": "clip",
+      "annotator_id": null,
+      "asset_id": "nps:nri-ElkBuglingGRSA.mp3:original",
+      "channel": null,
+      "confidence": null,
+      "end_seconds": null,
+      "focal_present": null,
+      "label": "Elk bugle",
+      "original_annotation": {
+        "source_label": "Elk bugle",
+        "source_page": "https://www.nps.gov/subjects/sound/sounds-elk.htm",
+        "transcript": "The loud screeching, groaning sounds of elks bugling."
+      },
+      "prediction_score": null,
+      "provenance_id": "nps:nri-ElkBuglingGRSA.mp3:provenance",
+      "recording_id": "nps:nri-ElkBuglingGRSA.mp3",
+      "schema_version": "1.1.0",
+      "source_manifest_sha256": null,
+      "source_path": null,
+      "source_row": null,
+      "source_split": null,
+      "start_seconds": null,
+      "taxon_id": "wildguard-local:003",
+      "verification": "unverified"
+    },
+    {
+      "annotation_id": "6ac59fdf57bb08f193c024a77ac8cca56211f1dc0e185d79067b7f6177718d88",
+      "annotation_method": "unknown",
+      "annotation_type": "clip",
+      "annotator_id": null,
+      "asset_id": "nps:nri-SpottedBatYOSE.mp3:original",
+      "channel": null,
+      "confidence": null,
+      "end_seconds": null,
+      "focal_present": null,
+      "label": "Spotted Bat",
+      "original_annotation": {
+        "source_label": "Spotted Bat",
+        "source_page": "https://www.nps.gov/subjects/sound/sounds-spotted-bat.htm",
+        "transcript": "High pitched rhymic chirping sounds of a spotted bat."
+      },
+      "prediction_score": null,
+      "provenance_id": "nps:nri-SpottedBatYOSE.mp3:provenance",
+      "recording_id": "nps:nri-SpottedBatYOSE.mp3",
+      "schema_version": "1.1.0",
+      "source_manifest_sha256": null,
+      "source_path": null,
+      "source_row": null,
+      "source_split": null,
+      "start_seconds": null,
+      "taxon_id": "wildguard-local:004",
+      "verification": "unverified"
+    },
+    {
+      "annotation_id": "0eb5881b5ca4c190e473c615403d654345ea27db8eb71017bd1fce75e591bc93",
+      "annotation_method": "unknown",
+      "annotation_type": "clip",
+      "annotator_id": null,
+      "asset_id": "nps:nri-CouchsSpadefootToadSaguaroNP.mp3:original",
+      "channel": null,
+      "confidence": null,
+      "end_seconds": null,
+      "focal_present": null,
+      "label": "Couch's Spadefoot Toad",
+      "original_annotation": {
+        "source_label": "Couch's Spadefoot Toad",
+        "source_page": "https://www.nps.gov/subjects/sound/cspadefoottoad.htm",
+        "transcript": "The squelching ribbiting sound of Couch's Spadefoot Toads with background sounds of crickets chirping at night."
+      },
+      "prediction_score": null,
+      "provenance_id": "nps:nri-CouchsSpadefootToadSaguaroNP.mp3:provenance",
+      "recording_id": "nps:nri-CouchsSpadefootToadSaguaroNP.mp3",
+      "schema_version": "1.1.0",
+      "source_manifest_sha256": null,
+      "source_path": null,
+      "source_row": null,
+      "source_split": null,
+      "start_seconds": null,
+      "taxon_id": "wildguard-local:005",
+      "verification": "unverified"
+    },
+    {
+      "annotation_id": "2f16275501db55abcfc03150132ac5fbdaa18c1fefa830cc457bb944fafc40ad",
+      "annotation_method": "unknown",
+      "annotation_type": "clip",
+      "annotator_id": null,
+      "asset_id": "nps:nri-AlligatorEVER1.mp3:original",
+      "channel": null,
+      "confidence": null,
+      "end_seconds": null,
+      "focal_present": null,
+      "label": "Alligator",
+      "original_annotation": {
+        "source_label": "Alligator",
+        "source_page": "https://www.nps.gov/subjects/sound/sounds-alligator.htm",
+        "transcript": "The low growling, groaning sound of an alligator."
+      },
+      "prediction_score": null,
+      "provenance_id": "nps:nri-AlligatorEVER1.mp3:provenance",
+      "recording_id": "nps:nri-AlligatorEVER1.mp3",
+      "schema_version": "1.1.0",
+      "source_manifest_sha256": null,
+      "source_path": null,
+      "source_row": null,
+      "source_split": null,
+      "start_seconds": null,
+      "taxon_id": "wildguard-local:006",
+      "verification": "unverified"
+    },
+    {
+      "annotation_id": "3faae05c82462072c0571178da37d243d69a288a198654baa8472c8ff4f0f660",
+      "annotation_method": "unknown",
+      "annotation_type": "clip",
+      "annotator_id": null,
+      "asset_id": "nps:nri-Cricket.mp3:original",
+      "channel": null,
+      "confidence": null,
+      "end_seconds": null,
+      "focal_present": null,
+      "label": "Crickets",
+      "original_annotation": {
+        "source_label": "Crickets",
+        "source_page": "https://www.nps.gov/subjects/sound/sounds-crickets.htm",
+        "transcript": "The soft sounds of crickets chirping."
+      },
+      "prediction_score": null,
+      "provenance_id": "nps:nri-Cricket.mp3:provenance",
+      "recording_id": "nps:nri-Cricket.mp3",
+      "schema_version": "1.1.0",
+      "source_manifest_sha256": null,
+      "source_path": null,
+      "source_row": null,
+      "source_split": null,
+      "start_seconds": null,
+      "taxon_id": "wildguard-local:013",
+      "verification": "unverified"
+    }
+  ],
+  "asset": [
+    {
+      "asset_id": "nps:nri-CoyotesMOJA.mp3:original",
+      "channels": 1,
+      "codec": "MP3/MPEG_LAYER_III",
+      "duration_seconds": 10.078390022675737,
+      "kind": "original",
+      "parent_asset_id": null,
+      "path": "originals/nps/nri-CoyotesMOJA.mp3",
+      "recording_id": "nps:nri-CoyotesMOJA.mp3",
+      "sample_rate_hz": 44100,
+      "schema_version": "1.0.0",
+      "sha256": "69bfee365fa27be7e945ad667dbb91dfa85e3730e304d6412e07c9fd87b9038b",
+      "size_bytes": 161398,
+      "source_checksum": null,
+      "transformation": null
+    },
+    {
+      "asset_id": "nps:nri-ElkBuglingGRSA.mp3:original",
+      "channels": null,
+      "codec": null,
+      "duration_seconds": null,
+      "kind": "original",
+      "parent_asset_id": null,
+      "path": "originals/nps/nri-ElkBuglingGRSA.mp3",
+      "recording_id": "nps:nri-ElkBuglingGRSA.mp3",
+      "sample_rate_hz": null,
+      "schema_version": "1.0.0",
+      "sha256": "dc5c367965161eb9c9e25eb08a762ef2ec27a5f6fd3ca8d6e0f2e0ea32959675",
+      "size_bytes": 331926,
+      "source_checksum": null,
+      "transformation": null
+    },
+    {
+      "asset_id": "nps:nri-SpottedBatYOSE.mp3:original",
+      "channels": 1,
+      "codec": "MP3/MPEG_LAYER_III",
+      "duration_seconds": 7.074603174603174,
+      "kind": "original",
+      "parent_asset_id": null,
+      "path": "originals/nps/nri-SpottedBatYOSE.mp3",
+      "recording_id": "nps:nri-SpottedBatYOSE.mp3",
+      "sample_rate_hz": 44100,
+      "schema_version": "1.0.0",
+      "sha256": "36ae530a87f010e2687e6c259da2660ca679ce1b3f68e46e357b1ab1fac9fbee",
+      "size_bytes": 113333,
+      "source_checksum": null,
+      "transformation": null
+    },
+    {
+      "asset_id": "nps:nri-CouchsSpadefootToadSaguaroNP.mp3:original",
+      "channels": 1,
+      "codec": "MP3/MPEG_LAYER_III",
+      "duration_seconds": 36.67340136054422,
+      "kind": "original",
+      "parent_asset_id": null,
+      "path": "originals/nps/nri-CouchsSpadefootToadSaguaroNP.mp3",
+      "recording_id": "nps:nri-CouchsSpadefootToadSaguaroNP.mp3",
+      "sample_rate_hz": 44100,
+      "schema_version": "1.0.0",
+      "sha256": "df691ff392470c3a9739205a4016da18a8edfbda84fb4b7d9c8d584ab1337837",
+      "size_bytes": 586960,
+      "source_checksum": null,
+      "transformation": null
+    },
+    {
+      "asset_id": "nps:nri-AlligatorEVER1.mp3:original",
+      "channels": null,
+      "codec": null,
+      "duration_seconds": null,
+      "kind": "original",
+      "parent_asset_id": null,
+      "path": "originals/nps/nri-AlligatorEVER1.mp3",
+      "recording_id": "nps:nri-AlligatorEVER1.mp3",
+      "sample_rate_hz": null,
+      "schema_version": "1.0.0",
+      "sha256": "42e3166bdc9f102299bcba5f3f35cff128dc0ec16a9b2d14780a9b8d2c7775bc",
+      "size_bytes": 412592,
+      "source_checksum": null,
+      "transformation": null
+    },
+    {
+      "asset_id": "nps:nri-Cricket.mp3:original",
+      "channels": 2,
+      "codec": "MP3/MPEG_LAYER_III",
+      "duration_seconds": 29.408820861678006,
+      "kind": "original",
+      "parent_asset_id": null,
+      "path": "originals/nps/nri-Cricket.mp3",
+      "recording_id": "nps:nri-Cricket.mp3",
+      "sample_rate_hz": 44100,
+      "schema_version": "1.0.0",
+      "sha256": "e15a0818d8476a0d8dfb7293cf8d3072a897adc21901d0985108b181fa856081",
+      "size_bytes": 587671,
+      "source_checksum": null,
+      "transformation": null
+    }
+  ],
+  "provenance": [
+    {
+      "code_commit": "27292921ef98177c63c1241f327b64f0c7aa287a",
+      "metadata_sha256": "49aa59054255bc76661e5c32653a363139683bdf829178be9a4799041c9ad591",
+      "original_metadata": {
+        "audio_url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-CoyotesMOJA.mp3",
+        "credit": "NPS",
+        "raw_page_path": "evidence/nps-page-1.html",
+        "raw_page_sha256": "49aa59054255bc76661e5c32653a363139683bdf829178be9a4799041c9ad591",
+        "recording_location_as_stated": "Mojave National Preserve, California",
+        "source_label": "Coyotes",
+        "source_page": "https://www.nps.gov/subjects/sound/sounds-coyotes.htm",
+        "source_transcript": "The yipping howling of coyotes."
+      },
+      "provenance_id": "nps:nri-CoyotesMOJA.mp3:provenance",
+      "retrieved_at": "2026-11-19T22:21:52.349822Z",
+      "schema_version": "1.0.0",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-CoyotesMOJA.mp3",
+      "source_release": null,
+      "source_url": "https://www.nps.gov/subjects/sound/sounds-coyotes.htm"
+    },
+    {
+      "code_commit": "27292921ef98177c63c1241f327b64f0c7aa287a",
+      "metadata_sha256": "144b86362f8b8a1f34e2007b8073839179bacc3390482c166e5f3f3691071e39",
+      "original_metadata": {
+        "audio_url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-ElkBuglingGRSA.mp3",
+        "credit": "NPS",
+        "raw_page_path": "evidence/nps-page-2.html",
+        "raw_page_sha256": "144b86362f8b8a1f34e2007b8073839179bacc3390482c166e5f3f3691071e39",
+        "recording_location_as_stated": "Great Sand Dunes National Park and Preserve, Colorado",
+        "source_label": "Elk bugle",
+        "source_page": "https://www.nps.gov/subjects/sound/sounds-elk.htm",
+        "source_transcript": "The loud screeching, groaning sounds of elks bugling."
+      },
+      "provenance_id": "nps:nri-ElkBuglingGRSA.mp3:provenance",
+      "retrieved_at": "2026-11-19T22:21:53.491074Z",
+      "schema_version": "1.0.0",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-ElkBuglingGRSA.mp3",
+      "source_release": null,
+      "source_url": "https://www.nps.gov/subjects/sound/sounds-elk.htm"
+    },
+    {
+      "code_commit": "27292921ef98177c63c1241f327b64f0c7aa287a",
+      "metadata_sha256": "245cd1a41dc1107ad431d9e9fabeef0806177da45ea25120c23fb7f26dd0b0a1",
+      "original_metadata": {
+        "audio_url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-SpottedBatYOSE.mp3",
+        "credit": "NPS",
+        "raw_page_path": "evidence/nps-page-3.html",
+        "raw_page_sha256": "245cd1a41dc1107ad431d9e9fabeef0806177da45ea25120c23fb7f26dd0b0a1",
+        "recording_location_as_stated": "Yosemite National Park, California",
+        "source_label": "Spotted Bat",
+        "source_page": "https://www.nps.gov/subjects/sound/sounds-spotted-bat.htm",
+        "source_transcript": "High pitched rhymic chirping sounds of a spotted bat."
+      },
+      "provenance_id": "nps:nri-SpottedBatYOSE.mp3:provenance",
+      "retrieved_at": "2026-11-19T22:21:54.734563Z",
+      "schema_version": "1.0.0",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-SpottedBatYOSE.mp3",
+      "source_release": null,
+      "source_url": "https://www.nps.gov/subjects/sound/sounds-spotted-bat.htm"
+    },
+    {
+      "code_commit": "27292921ef98177c63c1241f327b64f0c7aa287a",
+      "metadata_sha256": "9857ce649921f0665779289c5a9742084c206120a7a6fee258bb4a51f70c2371",
+      "original_metadata": {
+        "audio_url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-CouchsSpadefootToadSaguaroNP.mp3",
+        "credit": "NPS",
+        "raw_page_path": "evidence/nps-page-4.html",
+        "raw_page_sha256": "9857ce649921f0665779289c5a9742084c206120a7a6fee258bb4a51f70c2371",
+        "recording_location_as_stated": "Saguaro National Park, Arizona",
+        "source_label": "Couch's Spadefoot Toad",
+        "source_page": "https://www.nps.gov/subjects/sound/cspadefoottoad.htm",
+        "source_transcript": "The squelching ribbiting sound of Couch's Spadefoot Toads with background sounds of crickets chirping at night."
+      },
+      "provenance_id": "nps:nri-CouchsSpadefootToadSaguaroNP.mp3:provenance",
+      "retrieved_at": "2026-11-19T22:21:55.951625Z",
+      "schema_version": "1.0.0",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-CouchsSpadefootToadSaguaroNP.mp3",
+      "source_release": null,
+      "source_url": "https://www.nps.gov/subjects/sound/cspadefoottoad.htm"
+    },
+    {
+      "code_commit": "27292921ef98177c63c1241f327b64f0c7aa287a",
+      "metadata_sha256": "7339716e30417cbbf1634e1ed384e346fee10a510879fcdd8130588409f0ade1",
+      "original_metadata": {
+        "audio_url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-AlligatorEVER1.mp3",
+        "credit": "NPS",
+        "raw_page_path": "evidence/nps-page-5.html",
+        "raw_page_sha256": "7339716e30417cbbf1634e1ed384e346fee10a510879fcdd8130588409f0ade1",
+        "recording_location_as_stated": "Everglades National Park, Florida",
+        "source_label": "Alligator",
+        "source_page": "https://www.nps.gov/subjects/sound/sounds-alligator.htm",
+        "source_transcript": "The low growling, groaning sound of an alligator."
+      },
+      "provenance_id": "nps:nri-AlligatorEVER1.mp3:provenance",
+      "retrieved_at": "2026-11-19T22:21:57.337307Z",
+      "schema_version": "1.0.0",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-AlligatorEVER1.mp3",
+      "source_release": null,
+      "source_url": "https://www.nps.gov/subjects/sound/sounds-alligator.htm"
+    },
+    {
+      "code_commit": "27292921ef98177c63c1241f327b64f0c7aa287a",
+      "metadata_sha256": "ab1d0086a70ec8d05c21e13feadd9482ca6847fc57770e71e7b669dbb90e2081",
+      "original_metadata": {
+        "audio_url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-Cricket.mp3",
+        "credit": "NPS",
+        "raw_page_path": "evidence/nps-page-6.html",
+        "raw_page_sha256": "ab1d0086a70ec8d05c21e13feadd9482ca6847fc57770e71e7b669dbb90e2081",
+        "recording_location_as_stated": "Mojave National Preserve, California",
+        "source_label": "Crickets",
+        "source_page": "https://www.nps.gov/subjects/sound/sounds-crickets.htm",
+        "source_transcript": "The soft sounds of crickets chirping."
+      },
+      "provenance_id": "nps:nri-Cricket.mp3:provenance",
+      "retrieved_at": "2026-11-19T22:21:58.713037Z",
+      "schema_version": "1.0.0",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-Cricket.mp3",
+      "source_release": null,
+      "source_url": "https://www.nps.gov/subjects/sound/sounds-crickets.htm"
+    }
+  ],
+  "recording": [
+    {
+      "context": "unknown",
+      "geography": {
+        "country_code": "US",
+        "evidence_url": "https://www.nps.gov/subjects/sound/sounds-coyotes.htm",
+        "north_america_verified": true,
+        "region": "North America"
+      },
+      "original_annotations": {
+        "audio_url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-CoyotesMOJA.mp3",
+        "credit": "NPS",
+        "raw_page_path": "evidence/nps-page-1.html",
+        "raw_page_sha256": "49aa59054255bc76661e5c32653a363139683bdf829178be9a4799041c9ad591",
+        "recording_location_as_stated": "Mojave National Preserve, California",
+        "source_label": "Coyotes",
+        "source_page": "https://www.nps.gov/subjects/sound/sounds-coyotes.htm",
+        "source_transcript": "The yipping howling of coyotes."
+      },
+      "original_labels": [
+        "Coyotes"
+      ],
+      "provenance_id": "nps:nri-CoyotesMOJA.mp3:provenance",
+      "recorded_at": null,
+      "recording_id": "nps:nri-CoyotesMOJA.mp3",
+      "recordist_id": null,
+      "rights_review_id": "nps:nri-CoyotesMOJA.mp3:rights",
+      "schema_version": "1.0.0",
+      "scientific_name": "Canis latrans",
+      "session_id": null,
+      "site_id": "nps:MOJA",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-CoyotesMOJA.mp3",
+      "taxon": "terrestrial_mammal",
+      "taxon_id": "wildguard-local:001",
+      "taxonomy_version": "source-reviewed-names-2026-11-19-v1"
+    },
+    {
+      "context": "unknown",
+      "geography": {
+        "country_code": "US",
+        "evidence_url": "https://www.nps.gov/subjects/sound/sounds-elk.htm",
+        "north_america_verified": true,
+        "region": "North America"
+      },
+      "original_annotations": {
+        "audio_url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-ElkBuglingGRSA.mp3",
+        "credit": "NPS",
+        "raw_page_path": "evidence/nps-page-2.html",
+        "raw_page_sha256": "144b86362f8b8a1f34e2007b8073839179bacc3390482c166e5f3f3691071e39",
+        "recording_location_as_stated": "Great Sand Dunes National Park and Preserve, Colorado",
+        "source_label": "Elk bugle",
+        "source_page": "https://www.nps.gov/subjects/sound/sounds-elk.htm",
+        "source_transcript": "The loud screeching, groaning sounds of elks bugling."
+      },
+      "original_labels": [
+        "Elk bugle"
+      ],
+      "provenance_id": "nps:nri-ElkBuglingGRSA.mp3:provenance",
+      "recorded_at": null,
+      "recording_id": "nps:nri-ElkBuglingGRSA.mp3",
+      "recordist_id": null,
+      "rights_review_id": "nps:nri-ElkBuglingGRSA.mp3:rights",
+      "schema_version": "1.0.0",
+      "scientific_name": "Cervus canadensis",
+      "session_id": null,
+      "site_id": "nps:GRSA",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-ElkBuglingGRSA.mp3",
+      "taxon": "terrestrial_mammal",
+      "taxon_id": "wildguard-local:003",
+      "taxonomy_version": "source-reviewed-names-2026-11-19-v1"
+    },
+    {
+      "context": "unknown",
+      "geography": {
+        "country_code": "US",
+        "evidence_url": "https://www.nps.gov/subjects/sound/sounds-spotted-bat.htm",
+        "north_america_verified": true,
+        "region": "North America"
+      },
+      "original_annotations": {
+        "audio_url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-SpottedBatYOSE.mp3",
+        "credit": "NPS",
+        "raw_page_path": "evidence/nps-page-3.html",
+        "raw_page_sha256": "245cd1a41dc1107ad431d9e9fabeef0806177da45ea25120c23fb7f26dd0b0a1",
+        "recording_location_as_stated": "Yosemite National Park, California",
+        "source_label": "Spotted Bat",
+        "source_page": "https://www.nps.gov/subjects/sound/sounds-spotted-bat.htm",
+        "source_transcript": "High pitched rhymic chirping sounds of a spotted bat."
+      },
+      "original_labels": [
+        "Spotted Bat"
+      ],
+      "provenance_id": "nps:nri-SpottedBatYOSE.mp3:provenance",
+      "recorded_at": null,
+      "recording_id": "nps:nri-SpottedBatYOSE.mp3",
+      "recordist_id": null,
+      "rights_review_id": "nps:nri-SpottedBatYOSE.mp3:rights",
+      "schema_version": "1.0.0",
+      "scientific_name": "Euderma maculatum",
+      "session_id": null,
+      "site_id": "nps:YOSE",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-SpottedBatYOSE.mp3",
+      "taxon": "bat",
+      "taxon_id": "wildguard-local:004",
+      "taxonomy_version": "source-reviewed-names-2026-11-19-v1"
+    },
+    {
+      "context": "unknown",
+      "geography": {
+        "country_code": "US",
+        "evidence_url": "https://www.nps.gov/subjects/sound/cspadefoottoad.htm",
+        "north_america_verified": true,
+        "region": "North America"
+      },
+      "original_annotations": {
+        "audio_url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-CouchsSpadefootToadSaguaroNP.mp3",
+        "credit": "NPS",
+        "raw_page_path": "evidence/nps-page-4.html",
+        "raw_page_sha256": "9857ce649921f0665779289c5a9742084c206120a7a6fee258bb4a51f70c2371",
+        "recording_location_as_stated": "Saguaro National Park, Arizona",
+        "source_label": "Couch's Spadefoot Toad",
+        "source_page": "https://www.nps.gov/subjects/sound/cspadefoottoad.htm",
+        "source_transcript": "The squelching ribbiting sound of Couch's Spadefoot Toads with background sounds of crickets chirping at night."
+      },
+      "original_labels": [
+        "Couch's Spadefoot Toad"
+      ],
+      "provenance_id": "nps:nri-CouchsSpadefootToadSaguaroNP.mp3:provenance",
+      "recorded_at": null,
+      "recording_id": "nps:nri-CouchsSpadefootToadSaguaroNP.mp3",
+      "recordist_id": null,
+      "rights_review_id": "nps:nri-CouchsSpadefootToadSaguaroNP.mp3:rights",
+      "schema_version": "1.0.0",
+      "scientific_name": "Scaphiopus couchii",
+      "session_id": null,
+      "site_id": "nps:SAGU",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-CouchsSpadefootToadSaguaroNP.mp3",
+      "taxon": "amphibian",
+      "taxon_id": "wildguard-local:005",
+      "taxonomy_version": "source-reviewed-names-2026-11-19-v1"
+    },
+    {
+      "context": "unknown",
+      "geography": {
+        "country_code": "US",
+        "evidence_url": "https://www.nps.gov/subjects/sound/sounds-alligator.htm",
+        "north_america_verified": true,
+        "region": "North America"
+      },
+      "original_annotations": {
+        "audio_url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-AlligatorEVER1.mp3",
+        "credit": "NPS",
+        "raw_page_path": "evidence/nps-page-5.html",
+        "raw_page_sha256": "7339716e30417cbbf1634e1ed384e346fee10a510879fcdd8130588409f0ade1",
+        "recording_location_as_stated": "Everglades National Park, Florida",
+        "source_label": "Alligator",
+        "source_page": "https://www.nps.gov/subjects/sound/sounds-alligator.htm",
+        "source_transcript": "The low growling, groaning sound of an alligator."
+      },
+      "original_labels": [
+        "Alligator"
+      ],
+      "provenance_id": "nps:nri-AlligatorEVER1.mp3:provenance",
+      "recorded_at": null,
+      "recording_id": "nps:nri-AlligatorEVER1.mp3",
+      "recordist_id": null,
+      "rights_review_id": "nps:nri-AlligatorEVER1.mp3:rights",
+      "schema_version": "1.0.0",
+      "scientific_name": "Alligator mississippiensis",
+      "session_id": null,
+      "site_id": "nps:EVER",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-AlligatorEVER1.mp3",
+      "taxon": "reptile",
+      "taxon_id": "wildguard-local:006",
+      "taxonomy_version": "source-reviewed-names-2026-11-19-v1"
+    },
+    {
+      "context": "unknown",
+      "geography": {
+        "country_code": "US",
+        "evidence_url": "https://www.nps.gov/subjects/sound/sounds-crickets.htm",
+        "north_america_verified": true,
+        "region": "North America"
+      },
+      "original_annotations": {
+        "audio_url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-Cricket.mp3",
+        "credit": "NPS",
+        "raw_page_path": "evidence/nps-page-6.html",
+        "raw_page_sha256": "ab1d0086a70ec8d05c21e13feadd9482ca6847fc57770e71e7b669dbb90e2081",
+        "recording_location_as_stated": "Mojave National Preserve, California",
+        "source_label": "Crickets",
+        "source_page": "https://www.nps.gov/subjects/sound/sounds-crickets.htm",
+        "source_transcript": "The soft sounds of crickets chirping."
+      },
+      "original_labels": [
+        "Crickets"
+      ],
+      "provenance_id": "nps:nri-Cricket.mp3:provenance",
+      "recorded_at": null,
+      "recording_id": "nps:nri-Cricket.mp3",
+      "recordist_id": null,
+      "rights_review_id": "nps:nri-Cricket.mp3:rights",
+      "schema_version": "1.0.0",
+      "scientific_name": null,
+      "session_id": null,
+      "site_id": "nps:MOJA",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-Cricket.mp3",
+      "taxon": "insect",
+      "taxon_id": "wildguard-local:013",
+      "taxonomy_version": "source-reviewed-names-2026-11-19-v1"
+    }
+  ],
+  "rights": [
+    {
+      "asset_sha256": "69bfee365fa27be7e945ad667dbb91dfa85e3730e304d6412e07c9fd87b9038b",
+      "attribution": "National Park Service (NPS); https://www.nps.gov/subjects/sound/sounds-coyotes.htm",
+      "commercial_use": true,
+      "conditions": [
+        "Retain source attribution and public-domain evidence."
+      ],
+      "derivatives": true,
+      "evidence": [
+        {
+          "retrieved_at": "2026-11-19T21:59:53.262933Z",
+          "sha256": "7ac974d99c15784037cf95c0a0a781f9fe4e66e4fa157707709bd16929d4b8d6",
+          "url": "https://www.nps.gov/subjects/sound/gallery.htm"
+        },
+        {
+          "retrieved_at": "2026-11-19T21:59:53.679729Z",
+          "sha256": "49aa59054255bc76661e5c32653a363139683bdf829178be9a4799041c9ad591",
+          "url": "https://www.nps.gov/subjects/sound/sounds-coyotes.htm"
+        }
+      ],
+      "license_id": "LicenseRef-NPS-public-domain-statement",
+      "license_url": "https://www.nps.gov/subjects/sound/gallery.htm",
+      "redistribution": true,
+      "review_id": "nps:nri-CoyotesMOJA.mp3:rights",
+      "reviewed_at": "2026-11-19T22:21:52.349822Z",
+      "reviewed_by": "WildGuard engineering: exact NPS source URL, individual NPS audio credit and scoped public-domain statement",
+      "schema_version": "1.0.0",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-CoyotesMOJA.mp3",
+      "status": "approved",
+      "training": true
+    },
+    {
+      "asset_sha256": "dc5c367965161eb9c9e25eb08a762ef2ec27a5f6fd3ca8d6e0f2e0ea32959675",
+      "attribution": "National Park Service (NPS); https://www.nps.gov/subjects/sound/sounds-elk.htm",
+      "commercial_use": true,
+      "conditions": [
+        "Retain source attribution and public-domain evidence."
+      ],
+      "derivatives": true,
+      "evidence": [
+        {
+          "retrieved_at": "2026-11-19T21:59:53.262933Z",
+          "sha256": "7ac974d99c15784037cf95c0a0a781f9fe4e66e4fa157707709bd16929d4b8d6",
+          "url": "https://www.nps.gov/subjects/sound/gallery.htm"
+        },
+        {
+          "retrieved_at": "2026-11-19T21:59:54.114039Z",
+          "sha256": "144b86362f8b8a1f34e2007b8073839179bacc3390482c166e5f3f3691071e39",
+          "url": "https://www.nps.gov/subjects/sound/sounds-elk.htm"
+        }
+      ],
+      "license_id": "LicenseRef-NPS-public-domain-statement",
+      "license_url": "https://www.nps.gov/subjects/sound/gallery.htm",
+      "redistribution": true,
+      "review_id": "nps:nri-ElkBuglingGRSA.mp3:rights",
+      "reviewed_at": "2026-11-19T22:21:53.491074Z",
+      "reviewed_by": "WildGuard engineering: exact NPS source URL, individual NPS audio credit and scoped public-domain statement",
+      "schema_version": "1.0.0",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-ElkBuglingGRSA.mp3",
+      "status": "approved",
+      "training": true
+    },
+    {
+      "asset_sha256": "36ae530a87f010e2687e6c259da2660ca679ce1b3f68e46e357b1ab1fac9fbee",
+      "attribution": "National Park Service (NPS); https://www.nps.gov/subjects/sound/sounds-spotted-bat.htm",
+      "commercial_use": true,
+      "conditions": [
+        "Retain source attribution and public-domain evidence."
+      ],
+      "derivatives": true,
+      "evidence": [
+        {
+          "retrieved_at": "2026-11-19T21:59:53.262933Z",
+          "sha256": "7ac974d99c15784037cf95c0a0a781f9fe4e66e4fa157707709bd16929d4b8d6",
+          "url": "https://www.nps.gov/subjects/sound/gallery.htm"
+        },
+        {
+          "retrieved_at": "2026-11-19T21:59:56.422234Z",
+          "sha256": "245cd1a41dc1107ad431d9e9fabeef0806177da45ea25120c23fb7f26dd0b0a1",
+          "url": "https://www.nps.gov/subjects/sound/sounds-spotted-bat.htm"
+        }
+      ],
+      "license_id": "LicenseRef-NPS-public-domain-statement",
+      "license_url": "https://www.nps.gov/subjects/sound/gallery.htm",
+      "redistribution": true,
+      "review_id": "nps:nri-SpottedBatYOSE.mp3:rights",
+      "reviewed_at": "2026-11-19T22:21:54.742341Z",
+      "reviewed_by": "WildGuard engineering: exact NPS source URL, individual NPS audio credit and scoped public-domain statement",
+      "schema_version": "1.0.0",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-SpottedBatYOSE.mp3",
+      "status": "approved",
+      "training": true
+    },
+    {
+      "asset_sha256": "df691ff392470c3a9739205a4016da18a8edfbda84fb4b7d9c8d584ab1337837",
+      "attribution": "National Park Service (NPS); https://www.nps.gov/subjects/sound/cspadefoottoad.htm",
+      "commercial_use": true,
+      "conditions": [
+        "Retain source attribution and public-domain evidence."
+      ],
+      "derivatives": true,
+      "evidence": [
+        {
+          "retrieved_at": "2026-11-19T21:59:53.262933Z",
+          "sha256": "7ac974d99c15784037cf95c0a0a781f9fe4e66e4fa157707709bd16929d4b8d6",
+          "url": "https://www.nps.gov/subjects/sound/gallery.htm"
+        },
+        {
+          "retrieved_at": "2026-11-19T21:59:56.918211Z",
+          "sha256": "9857ce649921f0665779289c5a9742084c206120a7a6fee258bb4a51f70c2371",
+          "url": "https://www.nps.gov/subjects/sound/cspadefoottoad.htm"
+        }
+      ],
+      "license_id": "LicenseRef-NPS-public-domain-statement",
+      "license_url": "https://www.nps.gov/subjects/sound/gallery.htm",
+      "redistribution": true,
+      "review_id": "nps:nri-CouchsSpadefootToadSaguaroNP.mp3:rights",
+      "reviewed_at": "2026-11-19T22:21:55.951625Z",
+      "reviewed_by": "WildGuard engineering: exact NPS source URL, individual NPS audio credit and scoped public-domain statement",
+      "schema_version": "1.0.0",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-CouchsSpadefootToadSaguaroNP.mp3",
+      "status": "approved",
+      "training": true
+    },
+    {
+      "asset_sha256": "42e3166bdc9f102299bcba5f3f35cff128dc0ec16a9b2d14780a9b8d2c7775bc",
+      "attribution": "National Park Service (NPS); https://www.nps.gov/subjects/sound/sounds-alligator.htm",
+      "commercial_use": true,
+      "conditions": [
+        "Retain source attribution and public-domain evidence."
+      ],
+      "derivatives": true,
+      "evidence": [
+        {
+          "retrieved_at": "2026-11-19T21:59:53.262933Z",
+          "sha256": "7ac974d99c15784037cf95c0a0a781f9fe4e66e4fa157707709bd16929d4b8d6",
+          "url": "https://www.nps.gov/subjects/sound/gallery.htm"
+        },
+        {
+          "retrieved_at": "2026-11-19T21:59:57.363198Z",
+          "sha256": "7339716e30417cbbf1634e1ed384e346fee10a510879fcdd8130588409f0ade1",
+          "url": "https://www.nps.gov/subjects/sound/sounds-alligator.htm"
+        }
+      ],
+      "license_id": "LicenseRef-NPS-public-domain-statement",
+      "license_url": "https://www.nps.gov/subjects/sound/gallery.htm",
+      "redistribution": true,
+      "review_id": "nps:nri-AlligatorEVER1.mp3:rights",
+      "reviewed_at": "2026-11-19T22:21:57.337307Z",
+      "reviewed_by": "WildGuard engineering: exact NPS source URL, individual NPS audio credit and scoped public-domain statement",
+      "schema_version": "1.0.0",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-AlligatorEVER1.mp3",
+      "status": "approved",
+      "training": true
+    },
+    {
+      "asset_sha256": "e15a0818d8476a0d8dfb7293cf8d3072a897adc21901d0985108b181fa856081",
+      "attribution": "National Park Service (NPS); https://www.nps.gov/subjects/sound/sounds-crickets.htm",
+      "commercial_use": true,
+      "conditions": [
+        "Retain source attribution and public-domain evidence."
+      ],
+      "derivatives": true,
+      "evidence": [
+        {
+          "retrieved_at": "2026-11-19T21:59:53.262933Z",
+          "sha256": "7ac974d99c15784037cf95c0a0a781f9fe4e66e4fa157707709bd16929d4b8d6",
+          "url": "https://www.nps.gov/subjects/sound/gallery.htm"
+        },
+        {
+          "retrieved_at": "2026-11-19T21:59:57.829931Z",
+          "sha256": "ab1d0086a70ec8d05c21e13feadd9482ca6847fc57770e71e7b669dbb90e2081",
+          "url": "https://www.nps.gov/subjects/sound/sounds-crickets.htm"
+        }
+      ],
+      "license_id": "LicenseRef-NPS-public-domain-statement",
+      "license_url": "https://www.nps.gov/subjects/sound/gallery.htm",
+      "redistribution": true,
+      "review_id": "nps:nri-Cricket.mp3:rights",
+      "reviewed_at": "2026-11-19T22:21:58.713037Z",
+      "reviewed_by": "WildGuard engineering: exact NPS source URL, individual NPS audio credit and scoped public-domain statement",
+      "schema_version": "1.0.0",
+      "source_id": "nps_sound_gallery",
+      "source_recording_id": "nri-Cricket.mp3",
+      "status": "approved",
+      "training": true
+    }
+  ],
+  "split": [
+    {
+      "algorithm_version": "connected-holdout-v1",
+      "config_sha256": "b05af236b1395439cdbcdcaa747f399b4418be3d7765c947361b91341673b01a",
+      "group_id": "0a19d70c055f6b400311c8882590351ac12255ab31dffbc3f00662a039d62ed2",
+      "reason": "native_mp3_dequantization_error; integrity investigation required",
+      "recording_id": "nps:nri-AlligatorEVER1.mp3",
+      "schema_version": "1.0.0",
+      "seed": 42,
+      "split": "excluded"
+    },
+    {
+      "algorithm_version": "connected-holdout-v1",
+      "config_sha256": "b05af236b1395439cdbcdcaa747f399b4418be3d7765c947361b91341673b01a",
+      "group_id": "f1a18fc8cfedf519dad8b604d6519a73ab462197d2a04a1e0deab9bbdb866af0",
+      "reason": "unknown_leakage_identity",
+      "recording_id": "nps:nri-CouchsSpadefootToadSaguaroNP.mp3",
+      "schema_version": "1.0.0",
+      "seed": 42,
+      "split": "unassigned"
+    },
+    {
+      "algorithm_version": "connected-holdout-v1",
+      "config_sha256": "b05af236b1395439cdbcdcaa747f399b4418be3d7765c947361b91341673b01a",
+      "group_id": "01a7bd59a7cbe8ba85f75d7361699fd63b6ccc4edfc87754d51225c243427c7a",
+      "reason": "unknown_leakage_identity",
+      "recording_id": "nps:nri-CoyotesMOJA.mp3",
+      "schema_version": "1.0.0",
+      "seed": 42,
+      "split": "unassigned"
+    },
+    {
+      "algorithm_version": "connected-holdout-v1",
+      "config_sha256": "b05af236b1395439cdbcdcaa747f399b4418be3d7765c947361b91341673b01a",
+      "group_id": "01a7bd59a7cbe8ba85f75d7361699fd63b6ccc4edfc87754d51225c243427c7a",
+      "reason": "unknown_leakage_identity",
+      "recording_id": "nps:nri-Cricket.mp3",
+      "schema_version": "1.0.0",
+      "seed": 42,
+      "split": "unassigned"
+    },
+    {
+      "algorithm_version": "connected-holdout-v1",
+      "config_sha256": "b05af236b1395439cdbcdcaa747f399b4418be3d7765c947361b91341673b01a",
+      "group_id": "657550b1e9b7280d1210316b200ee5c427996e5b8118172bc1182f28db2f5943",
+      "reason": "native_mp3_dequantization_error; integrity investigation required",
+      "recording_id": "nps:nri-ElkBuglingGRSA.mp3",
+      "schema_version": "1.0.0",
+      "seed": 42,
+      "split": "excluded"
+    },
+    {
+      "algorithm_version": "connected-holdout-v1",
+      "config_sha256": "b05af236b1395439cdbcdcaa747f399b4418be3d7765c947361b91341673b01a",
+      "group_id": "b7a221f541e6537a6fb1db76e0695451b897fdbf1389127b4b65bd7b2caf61b2",
+      "reason": "unknown_leakage_identity",
+      "recording_id": "nps:nri-SpottedBatYOSE.mp3",
+      "schema_version": "1.0.0",
+      "seed": 42,
+      "split": "unassigned"
+    }
+  ]
+}

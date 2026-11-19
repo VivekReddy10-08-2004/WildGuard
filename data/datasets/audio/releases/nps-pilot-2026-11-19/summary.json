@@ -1,0 +1,26 @@
+{
+  "additional_retained_payload_bytes": 2418593,
+  "audio_authorization_bytes": 2193880,
+  "baseline_payload_bytes": 82687270,
+  "expert_verified_species_labels": 0,
+  "metadata_authorization_bytes": 1000000,
+  "metadata_includes_superseded_incident_artifacts": true,
+  "no_pnw_test_audio_acquired": true,
+  "original_audio_bytes": 2193880,
+  "persistent_derived_audio_bytes": 0,
+  "quarantined_count": 2,
+  "recorded_at": "2026-11-19T22:25:27.596002Z",
+  "recording_count": 6,
+  "release_ready": false,
+  "retained_metadata_bytes": 224713,
+  "schema_version": "1.0.0",
+  "split_counts": {
+    "excluded": 2,
+    "unassigned": 4
+  },
+  "status": "blocked_native_decoder_errors",
+  "strict_decode_passed_count": 4,
+  "supersedes": "releases/nps-pilot-2026-11-19/summary.json",
+  "total_additional_authorization_bytes": 3193880,
+  "total_managed_payload_bytes": 85105863
+}

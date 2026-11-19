@@ -1,0 +1,38 @@
+{
+  "additional_payload_maximum_bytes": 3193880,
+  "approved_urls": [
+    {
+      "expected_bytes": 161398,
+      "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-CoyotesMOJA.mp3"
+    },
+    {
+      "expected_bytes": 331926,
+      "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-ElkBuglingGRSA.mp3"
+    },
+    {
+      "expected_bytes": 113333,
+      "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-SpottedBatYOSE.mp3"
+    },
+    {
+      "expected_bytes": 586960,
+      "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-CouchsSpadefootToadSaguaroNP.mp3"
+    },
+    {
+      "expected_bytes": 412592,
+      "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-AlligatorEVER1.mp3"
+    },
+    {
+      "expected_bytes": 587671,
+      "url": "https://www.nps.gov/nps-audiovideo/legacy/mp3/nri/avElement/nri-Cricket.mp3"
+    }
+  ],
+  "audio_maximum_bytes": 2193880,
+  "authorized_at": "2026-11-19T22:21:51.218068Z",
+  "authorized_by": "user explicit six-file approval in this chat",
+  "baseline_payload_bytes": 82687270,
+  "code_commit": "27292921ef98177c63c1241f327b64f0c7aa287a",
+  "metadata_maximum_bytes": 1000000,
+  "no_persistent_derived_audio": true,
+  "no_pnw_test_downloads": true,
+  "schema_version": "1.0.0"
+}

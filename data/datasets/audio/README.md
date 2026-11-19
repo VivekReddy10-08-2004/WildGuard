@@ -50,3 +50,11 @@ exact-asset commercial redistribution reviews remain separate.
 `pnw_cnet_v5_review.json` records the inspected repository archive and annotation
 audit. Test Set 2 was not downloaded, its original-audio rights remain unresolved,
 and its evaluation role is protected by the pipeline.
+
+## Acquired NPS pilot: blocked
+
+The six approved originals were retained locally, totaling 2,193,880 bytes.
+Elk bugle and Alligator trigger native MP3 decoder errors and are quarantined.
+No further acquisition is running. See the metadata-only
+[pilot incident and QC report](releases/nps-pilot-2026-11-19/README.md).
+No audio binaries or derived audio copies were added to Git.
