@@ -159,8 +159,55 @@
       ],
       "status": "tool_reference",
       "notes": "Classifier/code and evaluation workflow; not a substitute for verifying the 2026 acoustic audio records."
+    },
+    {
+      "id": "nps_sound_gallery",
+      "name": "NPS Natural Sounds gallery",
+      "url": "https://www.nps.gov/subjects/sound/gallery.htm",
+      "taxa": [
+        "mammals",
+        "amphibians",
+        "reptiles",
+        "insects",
+        "birds",
+        "negative"
+      ],
+      "status": "candidate_clip_label_only",
+      "license_id": "public-domain-as-stated-by-NPS",
+      "license_verified": true,
+      "notes": "NPS says gallery files are public domain and downloadable; clip pages give context. Verify individual asset rights/credits and source labels before storing."
+    },
+    {
+      "id": "yellowstone_sound_library",
+      "name": "Yellowstone National Park sound library",
+      "url": "https://www.nps.gov/yell/learn/photosmultimedia/soundlibrary.htm",
+      "taxa": [
+        "mammals",
+        "amphibians",
+        "birds",
+        "negative"
+      ],
+      "status": "candidate_clip_label_only",
+      "license_id": "public-domain-as-stated-by-NPS",
+      "license_verified": true,
+      "notes": "Yellowstone states its park-recorded audio is public domain. Preserve per-recording credits and recording context; some grizzly clips were made during a temporary capture, and several bear audio pages include third-party collaborations."
+    },
+    {
+      "id": "usfs_pnw_2024",
+      "name": "USFS Pacific Northwest annotated soundscapes (Weldy et al. 2024)",
+      "url": "https://zenodo.org/records/10895837",
+      "taxa": [
+        "birds",
+        "mammals",
+        "amphibians",
+        "background"
+      ],
+      "status": "license_review_required",
+      "download_size_gb": 1.8,
+      "notes": "Fully annotated archive 1.8 GB ZIP, 141 five-minute files; annotation dictionary lists 2 mammal species including domestic dog and Douglas squirrel. American pika and bullfrog have 0 annotations; do not imply confirmed training examples. 2-second sound-tag windows, not precise vocalization onsets. Verify license field."
     }
   ],
   "audio_storage_cap_bytes": 30000000000,
-  "storage_cap_note": "Hard maximum 30 GB final audio corpus; include metadata, staging overhead, extracted size, and checksum audit when allocating; do not download the full 27.7 GB bird dataset by default."
+  "storage_cap_note": "Hard maximum 30 GB final audio corpus; include metadata, staging overhead, extracted size, and checksum audit when allocating; do not download the full 27.7 GB bird dataset by default.",
+  "curated_source_count": 18
 }
