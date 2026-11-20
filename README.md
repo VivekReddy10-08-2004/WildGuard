@@ -86,7 +86,7 @@ replaced, or tuned without changing the clients or core policy logic.
 
 | Service | Intended capabilities | Candidate models from the design |
 | --- | --- | --- |
-| Audio intelligence | Separate wildlife vocalization pipeline and later speech features | AudioSet/YAMNet-style event gating, a validated bioacoustic encoder, BirdNET, Whisper |
+| Audio intelligence | Separate wildlife vocalization pipeline and later speech features | AnimalCLAP for animal-sound awareness; Whisper for speech; optional lightweight event gating |
 | Image intelligence | Generic animal proposals plus application-specific species/hazard classification | Road-animal detector, MegaDetector, existing 26-class YOLO, Qwen3-VL |
 | Video intelligence | Frame inference, animal tracking, persistence filtering, and motion/risk signals | YOLO tracking/ByteTrack, optional Qwen3-VL |
 | Text/document intelligence | Offline safety-document retrieval, grounded Q&A, explicit “answer not found” behavior | Embeddings, vector search, local LLM |
