@@ -9,6 +9,7 @@ dependencies = [
     "datasets>=5.2.0",
     "fastapi>=0.121.0",
     "huggingface-hub>=2.4.0",
+    "httpx>=0.28.1",
     "pydantic-settings>=2.12.0",
     "python-multipart>=0.0.20",
     "sqlalchemy>=2.0.44",
@@ -20,7 +21,6 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "httpx>=0.28.1",
     "imageio-ffmpeg>=0.8.1",
     "ipykernel>=7.1.0",
     "jupyterlab>=4.5.0",
@@ -63,4 +63,8 @@ known-first-party = ["model_services", "shared"]
 python_version = "3.12"
 strict = true
 warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+module = ["transformers"]
+ignore_missing_imports = true
 

@@ -88,7 +88,7 @@ replaced, or tuned without changing the clients or core policy logic.
 | --- | --- | --- |
 | Audio intelligence | Separate wildlife vocalization pipeline and later speech features | AnimalCLAP for animal-sound awareness; Whisper for speech; optional lightweight event gating |
 | Image intelligence | Generic animal proposals plus application-specific species/hazard classification | Road-animal detector, MegaDetector, existing 26-class YOLO, Qwen3-VL |
-| Video intelligence | Frame inference, animal tracking, persistence filtering, and motion/risk signals | YOLO tracking/ByteTrack, optional Qwen3-VL |
+| Video intelligence | Frame inference, tracking, deterministic alerting, and asynchronous scene descriptions | YOLO tracking/ByteTrack and SmolVLM2-2.2B-Instruct |
 | Text/document intelligence | Offline safety-document retrieval, grounded Q&A, explicit “answer not found” behavior | Embeddings, vector search, local LLM |
 | Code generation | Python analytics, reports, and admin-side API templates | Qwen2.5-Coder |
 
@@ -98,6 +98,37 @@ authorization, consent, and alerting rules.
 Model-service boundaries allow the driver, hiking, monitoring, and audio
 pipelines to evolve independently. They should produce the same normalized
 detection/event contracts rather than share one mandatory set of weights.
+
+### Local event-description runtime
+
+SmolVLM2 runs in an isolated local service so its dependencies cannot disturb
+the YOLO runtime. Start both processes in separate terminals:
+
+```bash
+./scripts/run_smolvlm_service.sh
+./scripts/run_wildguard_api.sh
+```
+
+`POST /events` returns the rule-based decision immediately. Its stable event
+contract includes `event_id`, `source`, `timestamp`, `detections`, `decision`,
+and `description_status`; description state is one of `pending`, `completed`,
+`failed`, or `skipped`. `GET /events/{event_id}` returns any later validated
+scene description.
+
+The decision engine is the pure function
+`evaluate_risk(event_context, policy_config)`. It consumes only structured
+detection evidence and returns an alert level, `should_alert`, and stable reason
+codes. SmolVLM output cannot create, suppress, or change that decision.
+
+Description work uses a bounded background queue with one consumer, so only
+one SmolVLM request reaches the GPU at a time. Evidence selection is
+reproducible: the first valid detection frame, highest-confidence frame, and a
+later representative frame are deduplicated by timestamp and returned in
+chronological order. A timeout, invalid model JSON, missing frame, full queue,
+or unavailable audio model changes only description/audio status; detection
+and alert processing continue. The current hackathon slice uses an in-memory
+event store; durable persistence and WebSocket delivery remain UI integration
+work.
 
 ### 4. Data layer
 
@@ -218,11 +249,13 @@ source, licensing, and attribution before use or redistribution.
 ## Implementation status
 
 The repository contains the architecture scaffold, local Python environment,
-normalized detection contracts, a working image-model adapter, dataset download
-and evaluation scripts, executed evaluation notebooks, the locally cached
-26-class North American wildlife model, and a derived one-class driver-animal
-dataset (currently deer positives) and fine-tuned checkpoint. The driver client, runtime video-risk
-pipeline, and API endpoints are not yet implemented.
+normalized detection and event contracts, working image and audio adapters,
+dataset evaluation notebooks, the locally cached wildlife models, and a
+derived one-class driver-animal dataset with fine-tuned checkpoints. The local
+event API now applies deterministic alert policy, selects evidence frames, and
+enriches events asynchronously through SmolVLM2. The driver client, persistent
+event store, WebSocket delivery, and full runtime tracking loop remain to be
+implemented.
 
 The current driver checkpoint is generated at
 `storage/models/driver_animal_v2/best.pt` (runtime artifacts under `storage/`

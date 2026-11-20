@@ -16,6 +16,7 @@ data/derived/*
 .venv/
 model_services/audio/animalclap/.venv/
 model_services/audio/animalclap/upstream/
+model_services/video/smolvlm/.venv/
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -41,6 +42,11 @@ notebooks/results/animalclap_*.json
 !storage/models/animalclap/
 storage/models/animalclap/*
 !storage/models/animalclap/.gitkeep
+
+# SmolVLM2 model cache
+!storage/models/smolvlm2/
+storage/models/smolvlm2/*
+!storage/models/smolvlm2/.gitkeep
 
 # Keep the documented storage layout in version control
 !storage/events/.gitkeep
