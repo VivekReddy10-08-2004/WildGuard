@@ -2,7 +2,7 @@
 
 Owns short driving-video upload, synchronized original/annotated playback,
 backend-evaluated alert display, and source-grounded encounter guidance. It
-uploads through `POST /videos/analyze`; the returned annotated WebM is served
+uploads through `POST /videos/analyze`; the returned annotated H.264 MP4 is served
 from the local evidence route.
 
 The hero includes a lightweight CSS/SVG explainer that loops through road
@@ -16,9 +16,10 @@ the 720p annotated preview finishes rendering; the browser polls the local
 evidence route and attaches the preview when it is complete. Source video
 resolution and detection coordinates remain unchanged.
 
-The API keeps the eight most recent video responses in a process-local LRU
-cache keyed by video bytes and detector configuration. Re-uploading identical
-content reuses its event and evidence URLs even when the filename changes.
+The API keeps the eight most recent video responses in a process-local LRU and
+uses SQLite as a persistent second-level cache. Both levels are keyed by video
+bytes and detector configuration. Re-uploading identical content reuses its
+event and evidence URLs even when the filename changes or FastAPI restarts.
 
 When the event contains an `animal` detection, the client automatically sends
 its road-overlap context to `POST /guidance`. Generic detector labels receive
@@ -26,3 +27,8 @@ only reviewed species-neutral roadway passages. A future confirmed-species
 flow can select species-specific guidance.
 
 The client displays decisions; it does not calculate or override alert levels.
+
+The page-level Driver event flow documents the complete runtime path from
+upload hashing and two-level cache lookup through YOLO26n, ByteTrack, the pure
+decision engine, advisory enrichment, FFmpeg preview rendering, and SQLite
+session persistence.

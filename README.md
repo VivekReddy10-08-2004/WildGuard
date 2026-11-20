@@ -144,9 +144,12 @@ local `storage/models/driver_animal_nano/best.pt` YOLO26n checkpoint with
 ByteTrack, aggregates tracks into structured evidence, and passes that evidence
 to the same decision and description pipeline. The response contains processing
 metadata, source and annotated-video URLs, evidence-image URLs, and the event
-decision. The driver client plays the local original and annotated WebM in sync.
+decision. The driver client plays the local original and annotated H.264 MP4 in
+sync.
 Detection samples every second frame and returns the event before the annotated
-preview finishes rendering in a background task. Local frontend origins on
+preview finishes rendering in a background task. The preview renderer uses the
+project-locked FFmpeg binary rather than the much slower OpenCV VP8 writer.
+Local frontend origins on
 ports 3000, 5173, 8000, and 8001 are allowed by CORS.
 
 For repeatable presentations, the API uses a two-level video cache: an

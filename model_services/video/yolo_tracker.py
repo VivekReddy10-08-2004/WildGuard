@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 import hashlib
+import os
+import subprocess
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, cast
 
 import cv2
+import imageio_ffmpeg
 import numpy as np
 import torch
 from ultralytics import YOLO  # type: ignore[attr-defined]
@@ -19,7 +22,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_WEIGHTS = PROJECT_ROOT / "storage/models/driver_animal_nano/best.pt"
 PREVIEW_LANDSCAPE = (1280, 720)
 PREVIEW_PORTRAIT = (720, 1280)
-PIPELINE_CACHE_VERSION = "driver-video-v1"
+PIPELINE_CACHE_VERSION = "driver-video-v2-h264-preview"
 
 
 def file_sha256(path: Path) -> str:
@@ -55,9 +58,7 @@ class VideoTrackingResult:
     annotations: list[FrameAnnotation] = field(default_factory=list)
 
 
-def overlaps_road(
-    box: BoundingBox, *, frame_width: int, frame_height: int
-) -> bool:
+def overlaps_road(box: BoundingBox, *, frame_width: int, frame_height: int) -> bool:
     """Approximate whether a box's bottom center lies in a dashcam road corridor."""
 
     bottom = min(box.y_max / frame_height, 1.0)
@@ -103,13 +104,59 @@ def aggregate_tracks(
 
 
 def preview_size(width: int, height: int) -> tuple[int, int]:
-    max_width, max_height = (
-        PREVIEW_LANDSCAPE if width >= height else PREVIEW_PORTRAIT
-    )
+    max_width, max_height = PREVIEW_LANDSCAPE if width >= height else PREVIEW_PORTRAIT
     scale = min(max_width / width, max_height / height, 1.0)
     preview_width = max(2, int(width * scale) // 2 * 2)
     preview_height = max(2, int(height * scale) // 2 * 2)
     return preview_width, preview_height
+
+
+def annotation_filter_chain(
+    annotations: list[FrameAnnotation],
+    *,
+    input_size: tuple[int, int],
+    output_size: tuple[int, int],
+) -> str:
+    """Build deterministic FFmpeg filters for sampled detection boxes."""
+
+    input_width, input_height = input_size
+    output_width, output_height = output_size
+    x_scale = output_width / input_width
+    y_scale = output_height / input_height
+    filters = [f"scale={output_width}:{output_height}"]
+    default_span = (
+        max(1, annotations[1].frame_index - annotations[0].frame_index)
+        if len(annotations) > 1
+        else 1
+    )
+    for index, annotation in enumerate(annotations):
+        next_frame = (
+            annotations[index + 1].frame_index
+            if index + 1 < len(annotations)
+            else annotation.frame_index + default_span
+        )
+        end_frame = max(annotation.frame_index, next_frame - 1)
+        enabled = f"between(n\\,{annotation.frame_index}\\,{end_frame})"
+        for box, _confidence in annotation.boxes:
+            x = max(0, min(output_width - 1, round(box.x_min * x_scale)))
+            y = max(0, min(output_height - 1, round(box.y_min * y_scale)))
+            width = max(
+                1,
+                min(output_width - x, round((box.x_max - box.x_min) * x_scale)),
+            )
+            height = max(
+                1,
+                min(
+                    output_height - y,
+                    round((box.y_max - box.y_min) * y_scale),
+                ),
+            )
+            filters.append(
+                "drawbox="
+                f"x={x}:y={y}:w={width}:h={height}:"
+                f"color=0x50dc78@0.95:t=3:enable={enabled}"
+            )
+    return ",".join(filters)
 
 
 class YoloVideoProcessor:
@@ -140,8 +187,10 @@ class YoloVideoProcessor:
         if frame_stride < 1:
             raise ValueError("Frame stride must be at least 1")
         self.frame_stride = frame_stride
-        self.device = device if device is not None else (
-            0 if torch.cuda.is_available() else "cpu"
+        self.device = (
+            device
+            if device is not None
+            else (0 if torch.cuda.is_available() else "cpu")
         )
         self.quantization = 16 if self.device != "cpu" else None
         model_identity = (
@@ -188,7 +237,7 @@ class YoloVideoProcessor:
         candidates: dict[str, tuple[int, float, Any]] = {}
         processed_frames = 0
         evidence_dir.mkdir(parents=True, exist_ok=True)
-        annotated_path = evidence_dir / "annotated.webm"
+        annotated_path = evidence_dir / "annotated.mp4"
         results = cast(
             Iterable[Any],
             self.model.track(
@@ -238,10 +287,7 @@ class YoloVideoProcessor:
             if frame_confidence:
                 candidate = (source_frame_index, frame_confidence, image.copy())
                 candidates.setdefault("first", candidate)
-                if (
-                    "best" not in candidates
-                    or frame_confidence > candidates["best"][1]
-                ):
+                if "best" not in candidates or frame_confidence > candidates["best"][1]:
                     candidates["best"] = candidate
                 candidates["latest"] = candidate
             processed_frames += 1
@@ -288,59 +334,60 @@ class YoloVideoProcessor:
         if result.annotated_video_path is None:
             return
         output_path = Path(result.annotated_video_path)
-        temporary_path = output_path.with_name("annotated.rendering.webm")
+        temporary_path = output_path.with_name("annotated.rendering.mp4")
         capture = cv2.VideoCapture(str(video_path))
         if not capture.isOpened():
             raise ValueError("Uploaded file is not a readable video")
         width = int(capture.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
         output_size = preview_size(width, height)
-        writer = cv2.VideoWriter(
-            str(temporary_path),
-            cv2.VideoWriter_fourcc(*"VP80"),  # type: ignore[attr-defined]
-            result.fps,
-            output_size,
+        capture.release()
+        ffmpeg = os.getenv("WILDGUARD_FFMPEG") or imageio_ffmpeg.get_ffmpeg_exe()
+        filters = annotation_filter_chain(
+            result.annotations,
+            input_size=(width, height),
+            output_size=output_size,
         )
-        if not writer.isOpened():
-            capture.release()
-            raise RuntimeError("Could not create annotated video")
-
-        annotations = {item.frame_index: item.boxes for item in result.annotations}
-        current_boxes: list[tuple[BoundingBox, float]] = []
-        frame_index = 0
+        command = [
+            ffmpeg,
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-y",
+            "-i",
+            str(video_path),
+            "-an",
+            "-vf",
+            filters,
+            "-c:v",
+            "libx264",
+            "-preset",
+            "ultrafast",
+            "-tune",
+            "zerolatency",
+            "-crf",
+            "25",
+            "-pix_fmt",
+            "yuv420p",
+            "-movflags",
+            "+faststart",
+            str(temporary_path),
+        ]
         try:
-            while True:
-                readable, image = capture.read()
-                if not readable:
-                    break
-                if frame_index in annotations:
-                    current_boxes = annotations[frame_index]
-                for box, confidence in current_boxes:
-                    top_left = (int(box.x_min), int(box.y_min))
-                    bottom_right = (int(box.x_max), int(box.y_max))
-                    cv2.rectangle(image, top_left, bottom_right, (80, 220, 120), 3)
-                    cv2.putText(
-                        image,
-                        f"animal {confidence:.2f}",
-                        (top_left[0], max(24, top_left[1] - 8)),
-                        cv2.FONT_HERSHEY_SIMPLEX,
-                        0.75,
-                        (80, 220, 120),
-                        2,
-                        cv2.LINE_AA,
-                    )
-                if (image.shape[1], image.shape[0]) != output_size:
-                    image = cv2.resize(
-                        image,
-                        output_size,
-                        interpolation=cv2.INTER_AREA,
-                    )
-                writer.write(image)
-                frame_index += 1
-        except Exception:
+            encoder = subprocess.run(  # noqa: S603 - fixed local encoder command
+                command,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.PIPE,
+                check=False,
+                timeout=max(60, int(result.duration_seconds * 4)),
+            )
+        except subprocess.TimeoutExpired as error:
             temporary_path.unlink(missing_ok=True)
-            raise
-        finally:
-            capture.release()
-            writer.release()
+            raise RuntimeError("Annotated-video encoder timed out") from error
+        error_output = encoder.stderr.decode(errors="replace").strip()
+        if encoder.returncode != 0:
+            temporary_path.unlink(missing_ok=True)
+            raise RuntimeError(
+                f"Annotated-video encoder failed: {error_output or encoder.returncode}"
+            )
         temporary_path.replace(output_path)

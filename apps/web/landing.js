@@ -206,7 +206,7 @@
   }
 
   // The texture is static; pointer and click effects reveal portions of it.
-  const panelSurfaces = ".hero-copy,.hiker-demo,.feature-card,.app-frame,.audience-grid article,.principles-layout > div,.section-heading,.workspace-heading,.editorial-heading";
+  const panelSurfaces = ".hero-copy,.hiker-demo,.feature-card,.audience-grid article,.principles-layout > div,.section-heading,.editorial-heading,.mode-flow";
   const ringSections = [...document.querySelectorAll("main > section")];
   let waves = [];
   function clearWaves() {

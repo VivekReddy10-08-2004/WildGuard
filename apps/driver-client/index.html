@@ -6,6 +6,7 @@
   <title>WildGuard Driver</title>
   <link rel="icon" href="../shared/assets/wildguard-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../shared/client.css">
+  <link rel="stylesheet" href="../shared/event-flow.css">
   <script src="./app.js" defer></script>
 </head>
 <body><div class="shell">
@@ -85,6 +86,19 @@
       <div id="guidance-result" class="guidance-result" aria-live="polite">
         Guidance will appear after video analysis detects an animal.
       </div>
+    </section>
+    <section class="mode-flow" aria-labelledby="driver-event-flow-title">
+      <div class="mode-flow-heading"><div><p class="eyebrow">Driver event flow</p><h2 id="driver-event-flow-title">Detection returns first. Evidence follows.</h2></div><p>The alert path operates only on structured detector evidence. Preview rendering, language description, and source-backed guidance remain isolated enrichment work.</p></div>
+      <div class="mode-flow-track" aria-label="Detailed driver video event processing flow">
+        <article class="mode-flow-step"><small>01 · INGEST</small><span class="mode-flow-icon" aria-hidden="true">▶</span><strong>Video is validated</strong><p>FastAPI streams the upload to local evidence storage while calculating its SHA-256.</p><div class="mode-flow-tags"><span>FastAPI</span><span>SHA-256</span></div></article>
+        <article class="mode-flow-step"><small>02 · CACHE</small><span class="mode-flow-icon" aria-hidden="true">↻</span><strong>Prior work is checked</strong><p>The API checks the eight-entry memory LRU, then the versioned SQLite cache index.</p><div class="mode-flow-tags"><span>LRU</span><span>SQLite</span></div></article>
+        <article class="mode-flow-step"><small>03 · DETECT</small><span class="mode-flow-icon" aria-hidden="true">◎</span><strong>YOLO26n finds animals</strong><p>Sampled frames run locally on CUDA in FP16 against the transferred one-class animal model.</p><div class="mode-flow-tags"><span>YOLO26n</span><span>RTX 4090</span></div></article>
+        <article class="mode-flow-step"><small>04 · TRACK</small><span class="mode-flow-icon" aria-hidden="true">⌁</span><strong>ByteTrack adds persistence</strong><p>Tracks aggregate confidence, frame persistence, bounding boxes, and approximate road overlap.</p><div class="mode-flow-tags"><span>ByteTrack</span><span>TrackEvidence</span></div></article>
+        <article class="mode-flow-step"><small>05 · DECIDE</small><span class="mode-flow-icon" aria-hidden="true">!</span><strong>Pure policy evaluates</strong><p>Structured evidence deterministically produces NONE, CAUTION, or WARNING with reason codes.</p><div class="mode-flow-tags"><span>Decision engine</span><span>Reason codes</span></div></article>
+        <article class="mode-flow-step"><small>06 · DELIVER</small><span class="mode-flow-icon" aria-hidden="true">▣</span><strong>Alert + evidence arrive</strong><p>The UI receives the alert, verified guidance, synchronized source, and H.264 annotated preview.</p><div class="mode-flow-tags"><span>FFmpeg</span><span>Guidance corpus</span></div></article>
+      </div>
+      <div class="mode-flow-branches"><article><strong>Immediate safety lane</strong><span>YOLO → ByteTrack → event contract → deterministic decision → alert.</span></article><article><strong>Parallel advisory lane</strong><span>Selected frames → SmolVLM2 description; roadway context → verified guidance retrieval.</span></article><article class="mode-flow-caution"><strong>Failure isolation</strong><span>Preview, VLM, guidance, or audio failure cannot suppress the structured alert decision.</span></article></div>
+      <p class="mode-flow-caption">Running components: FastAPI 8010 · YOLO26n FP16 · ByteTrack · deterministic risk policy · SmolVLM2 queue · JSONL guidance corpus · FFmpeg H.264 · local evidence · SQLite.</p>
     </section>
     <footer class="client-footer">WildGuard · Driver experience boundary</footer>
   </main>

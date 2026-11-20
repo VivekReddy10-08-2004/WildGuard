@@ -9,15 +9,15 @@
   <link rel="icon" href="../shared/assets/wildguard-mark.svg?v=left" type="image/svg+xml" />
   <link rel="stylesheet" href="./styles.css" />
   <link rel="stylesheet" href="./landing.css" />
-  <script src="./app.js" defer></script>
+  <link rel="stylesheet" href="../shared/event-flow.css" />
   <script src="./landing.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <nav class="hoof-trail" aria-label="Landing page trail">
     <a class="hoof-stop" href="#home" aria-current="location" aria-label="Wildlife in context"><span class="hoof-print" aria-hidden="true"></span></a>
+    <a class="hoof-stop" href="#hiker-flow" aria-label="Hiker event flow"><span class="hoof-print" aria-hidden="true"></span></a>
     <a class="hoof-stop" href="#how-it-works" aria-label="From signal to sighting"><span class="hoof-print" aria-hidden="true"></span></a>
-    <a class="hoof-stop" href="#workspace" aria-label="Observations and insights"><span class="hoof-print" aria-hidden="true"></span></a>
     <a class="hoof-stop" href="#capabilities" aria-label="Built for the field"><span class="hoof-print" aria-hidden="true"></span></a>
     <a class="hoof-stop" href="#impact" aria-label="Why WildGuard matters"><span class="hoof-print" aria-hidden="true"></span></a>
     <a class="hoof-stop" href="#faq" aria-label="Observe with care"><span class="hoof-print" aria-hidden="true"></span></a>
@@ -25,11 +25,11 @@
   <header class="site-header" id="site-header">
     <a class="brand" href="#home" aria-label="WildGuard home"><img class="wordmark" src="../shared/assets/wildguard-wordmark.svg" alt="" width="174" height="29"></a>
     <nav class="site-nav" aria-label="Main navigation">
-      <a href="#how-it-works">How it works</a><a href="#workspace">Demonstration</a><a href="#capabilities">Capabilities</a><a href="#impact">Impact</a><a href="../architecture/">Architecture</a><a href="#faq">Privacy</a>
+      <a href="#how-it-works">How it works</a><a href="#demonstration">Demonstration</a><a href="#capabilities">Capabilities</a><a href="#impact">Impact</a><a href="../architecture/">Architecture</a><a href="#faq">Privacy</a>
     </nav>
-    <div class="header-actions"><a class="header-cta" href="#workspace">Get started</a><button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation"><span></span><span></span><span></span></button></div>
+    <div class="header-actions"><a class="header-cta" href="#demonstration">Get started</a><button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation"><span></span><span></span><span></span></button></div>
   </header>
-  <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation" hidden><a href="#how-it-works">How it works</a><a href="#workspace">Demonstration</a><a href="#capabilities">Capabilities</a><a href="#impact">Impact</a><a href="../architecture/">Architecture</a><a href="#faq">Privacy</a><a class="mobile-cta" href="#workspace">Get started</a></nav>
+  <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation" hidden><a href="#how-it-works">How it works</a><a href="#demonstration">Demonstration</a><a href="#capabilities">Capabilities</a><a href="#impact">Impact</a><a href="../architecture/">Architecture</a><a href="#faq">Privacy</a><a class="mobile-cta" href="#demonstration">Get started</a></nav>
   <main id="main">
     <section class="hero" id="home" tabindex="-1" aria-labelledby="hero-title">
       <div class="hero-copy">
@@ -82,6 +82,21 @@
         </figcaption>
       </figure>
     </section>
+    <section class="mode-flow-section" id="hiker-flow" aria-labelledby="hiker-event-flow-title">
+      <div class="container mode-flow">
+        <div class="mode-flow-heading"><div><p class="eyebrow">Hiker event flow</p><h2 id="hiker-event-flow-title">From nearby sound to a local caution.</h2></div><p>The audio path stays advisory: AnimalCLAP ranks candidate species, the interface communicates uncertainty, and the session record remains on this machine.</p></div>
+        <div class="mode-flow-track" aria-label="Detailed hiker audio event processing flow">
+          <article class="mode-flow-step"><small>01 · CAPTURE</small><span class="mode-flow-icon" aria-hidden="true">♫</span><strong>Field audio enters</strong><p>The built-in coyote clip or a user-selected recording is played and packaged for analysis.</p><div class="mode-flow-tags"><span>Browser Audio</span><span>OGG / WAV / MP3</span></div></article>
+          <article class="mode-flow-step"><small>02 · LOCAL API</small><span class="mode-flow-icon" aria-hidden="true">↗</span><strong>FastAPI validates</strong><p><code>POST /audio/analyze</code> checks the format, limits size, and writes local evidence.</p><div class="mode-flow-tags"><span>FastAPI</span><span>UploadFile</span></div></article>
+          <article class="mode-flow-step"><small>03 · AUDIO MODEL</small><span class="mode-flow-icon" aria-hidden="true">≈</span><strong>AnimalCLAP ranks</strong><p>Local audio embeddings are compared across five wildlife candidates with similarity and margin.</p><div class="mode-flow-tags"><span>AnimalCLAP</span><span>Open weights</span></div></article>
+          <article class="mode-flow-step"><small>04 · INTERPRET</small><span class="mode-flow-icon" aria-hidden="true">?</span><strong>Uncertainty stays visible</strong><p>The result says “possible species”; it does not claim identity, distance, or physical danger.</p><div class="mode-flow-tags"><span>Similarity ≠ probability</span></div></article>
+          <article class="mode-flow-step"><small>05 · PRESENT</small><span class="mode-flow-icon" aria-hidden="true">!</span><strong>Phone + watch caution</strong><p>The nearby-sound caution, species candidate, waveform, and pause controls update together.</p><div class="mode-flow-tags"><span>Mobile UI</span><span>Watch mirror</span></div></article>
+          <article class="mode-flow-step"><small>06 · REMEMBER</small><span class="mode-flow-icon" aria-hidden="true">▤</span><strong>Session event persists</strong><p>SQLite records the result and flow for local admin review without embedding the audio binary.</p><div class="mode-flow-tags"><span>SQLite</span><span>Local evidence</span></div></article>
+        </div>
+        <div class="mode-flow-branches"><article><strong>Immediate user path</strong><span>Audio result → cautious wording → phone and watch presentation.</span></article><article><strong>Local operations path</strong><span>Session summary → SQLite → admin event review.</span></article><article class="mode-flow-caution"><strong>Safety boundary</strong><span>No distance estimate, continuous microphone claim, or authoritative risk decision.</span></article></div>
+        <p class="mode-flow-caption">Running components: browser media controls · FastAPI 8010 · AnimalCLAP service 8012 · local evidence storage · SQLite session log.</p>
+      </div>
+    </section>
     <section class="intro section-pad" id="how-it-works" tabindex="-1" aria-labelledby="signal-title">
       <div class="container">
         <h2 class="editorial-heading" id="signal-title">From signal <em>to sighting.</em></h2>
@@ -127,11 +142,6 @@
         </div>
       </div>
     </section>
-    <section class="workspace-section" id="workspace" tabindex="-1"><div class="container"><div class="workspace-heading"><h2>Observations <em>&amp; insights.</em></h2><div class="workspace-heading-side"><p>Explore observations, review trends, and see what you can keep private.</p></div></div>
-    <div class="app-frame" id="app-frame">
-      <aside class="app-sidebar" aria-label="Workspace navigation"><div class="sidebar-header"><img class="wordmark" src="../shared/assets/wildguard-wordmark.svg" alt="WildGuard" width="122" height="20"></div><div class="side-category">EXPLORE</div><div class="sidebar-links" role="group" aria-label="Workspace views"><button type="button" class="side-link active" aria-current="true" data-view="overview"><span class="nav-icon">◫</span> Overview</button><button type="button" class="side-link" data-view="detections"><span class="nav-icon">◎</span> Detections <span class="side-count">06</span></button><button type="button" class="side-link" data-view="insights"><span class="nav-icon">▥</span> Insights</button><button type="button" class="side-link" data-view="assistant"><span class="nav-icon">✳</span> Field guide</button></div><div class="side-category second-category">YOUR EXPERIENCE</div><div class="sidebar-links"><button type="button" class="side-link" data-view="privacy"><span class="nav-icon">♧</span> Privacy & consent</button></div></aside>
-      <section class="app-main" aria-label="Interactive preview application"><div class="app-topbar"><div class="app-breadcrumb">FIELD WORKSPACE <span>/</span> <b id="current-view-label">Overview</b></div><div class="app-top-actions"><span class="simulation-chip"><span class="demo-dots" aria-hidden="true"><i></i><i></i><i></i></span> Demo window</span><button class="icon-button" id="demo-reset" type="button" title="Reset demo" aria-label="Reset demo">↻</button></div></div><div id="workspace-content" class="workspace-content"></div><div class="no-results-status visually-hidden" role="status"></div><footer id="demo-disclosure" class="workspace-disclaimer">Fictional observations, locations and scores. Field guide replies are scripted, preferences stay in this session, and sensors and alerts are disconnected.</footer></section>
-    </div></div></section>
     <section class="audiences section-pad" id="capabilities" tabindex="-1">
       <div class="container">
         <div class="section-heading light"><h2>Built for <em>the field.</em></h2><p>Different settings call for different ways to notice, record, and understand wildlife.</p></div>
@@ -183,12 +193,12 @@
           <details><summary>What should I look for in a wildlife observation?</summary><p>Review the sound or image behind an identification and keep uncertain sightings marked as uncertain.</p></details>
           <details><summary>Does WildGuard work offline?</summary><p>Yes. The audio demonstration runs through the local WildGuard API and AnimalCLAP service without a cloud inference dependency.</p></details>
           <details><summary>Can WildGuard detect animals or issue alerts today?</summary><p>The audio demonstration ranks five candidate wildlife species from an uploaded clip and mirrors an advisory caution to the phone and watch. Continuous microphone monitoring and wearable notifications are not connected.</p></details>
-          <details><summary>Does the demo collect or upload anything?</summary><p>Selected audio is sent only to the API running on this machine and stored as local evidence. It is not sent to an internet service. The workspace observations below remain fictional.</p></details>
+          <details><summary>Does the demo collect or upload anything?</summary><p>Selected audio is sent only to the API running on this machine and stored as local evidence. It is not sent to an internet service.</p></details>
           <details><summary>Who would be able to access my observations?</summary><p>For live research access, the planned design requires explicit consent and authorization. The demo does not connect to personal accounts or research systems.</p></details>
         </div>
       </div>
     </section>
   </main>
-  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="#home"><img class="wordmark" src="../shared/assets/wildguard-wordmark.svg" alt="WildGuard" width="174" height="29"></a><p>Local-first wildlife awareness.</p></div><div><small>EXPLORE</small><a href="#how-it-works">How it works</a><a href="#workspace">Demonstration</a><a href="#capabilities">Capabilities</a><a href="#impact">Impact</a><a href="#faq">Privacy</a></div><div><small>PROJECT</small><a href="../architecture/">Architecture ↗</a><a href="https://github.com/VivekReddy10-08-2004/WildGuard" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div><div class="container footer-bottom"><span>© 2026 WILDGUARD</span></div></footer>
+  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="#home"><img class="wordmark" src="../shared/assets/wildguard-wordmark.svg" alt="WildGuard" width="174" height="29"></a><p>Local-first wildlife awareness.</p></div><div><small>EXPLORE</small><a href="#how-it-works">How it works</a><a href="#demonstration">Demonstration</a><a href="#capabilities">Capabilities</a><a href="#impact">Impact</a><a href="#faq">Privacy</a></div><div><small>PROJECT</small><a href="../architecture/">Architecture ↗</a><a href="https://github.com/VivekReddy10-08-2004/WildGuard" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div><div class="container footer-bottom"><span>© 2026 WILDGUARD</span></div></footer>
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 </body></html>

@@ -10,3 +10,7 @@ FastAPI health endpoint, shows both cache levels and description-queue state,
 documents the model inventory, and renders each event's processing flow.
 Browser storage remains an offline fallback. SQLite is single-machine demo
 persistence, not a consent-authorized research database or formal audit log.
+
+The Admin event flow documents how normalized audio/video session summaries
+move through SQLite, health and event APIs, the read-only dashboard renderer,
+and log maintenance without deleting cached inference or media evidence.
