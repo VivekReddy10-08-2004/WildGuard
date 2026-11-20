@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#102b23" />
+  <meta name="description" content="WildGuard — local-first wildlife awareness for the trail, road, and field." />
+  <title>WildGuard — Stay wild. Stay aware.</title>
+  <link rel="icon" href="./assets/wildguard-mark.svg?v=left" type="image/svg+xml" />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./landing.css" />
+  <script src="./app.js" defer></script>
+  <script src="./landing.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="hoof-trail" aria-label="Landing page trail">
+    <a class="hoof-stop" href="#home" aria-current="location" aria-label="Wildlife in context"><span class="hoof-print" aria-hidden="true"></span></a>
+    <a class="hoof-stop" href="#how-it-works" aria-label="From signal to sighting"><span class="hoof-print" aria-hidden="true"></span></a>
+    <a class="hoof-stop" href="#workspace" aria-label="Observations and insights"><span class="hoof-print" aria-hidden="true"></span></a>
+    <a class="hoof-stop" href="#capabilities" aria-label="Built for the field"><span class="hoof-print" aria-hidden="true"></span></a>
+    <a class="hoof-stop" href="#faq" aria-label="Observe with care"><span class="hoof-print" aria-hidden="true"></span></a>
+  </nav>
+  <header class="site-header" id="site-header">
+    <a class="brand" href="#home" aria-label="WildGuard home"><img class="wordmark" src="./assets/wildguard-wordmark.svg" alt="" width="174" height="29"></a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="#how-it-works">How it works</a><a href="#workspace">Demonstration</a><a href="#capabilities">Capabilities</a><a href="#faq">Privacy</a>
+    </nav>
+    <div class="header-actions"><a class="header-cta" href="#workspace">Get started</a><button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation"><span></span><span></span><span></span></button></div>
+  </header>
+  <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation" hidden><a href="#how-it-works">How it works</a><a href="#workspace">Demonstration</a><a href="#capabilities">Capabilities</a><a href="#faq">Privacy</a><a class="mobile-cta" href="#workspace">Get started</a></nav>
+  <main id="main">
+    <section class="hero" id="home" tabindex="-1" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Wildlife <em>in context.</em></h1>
+        <p>WildGuard brings wildlife sounds, images, and sightings together in a field log you can return to.</p>
+        <div class="hero-actions" id="demonstration" tabindex="-1">
+          <button class="encounter-play" type="button" hidden><span class="play-symbol" aria-hidden="true"></span><span class="play-label">Play case with sound</span></button>
+          <a class="text-link" href="#workspace">Explore the workspace <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <figure class="encounter" data-frame="ready" aria-label="Illustrated field encounter">
+        <div class="encounter-image">
+          <img src="./assets/barred-owl-field-encounter.webp" srcset="./assets/barred-owl-field-encounter-small.webp 768w, ./assets/barred-owl-field-encounter.webp 1536w" sizes="(max-width: 760px) calc(100vw - 38px), (max-width: 1370px) 56vw, 790px" width="1536" height="1024" fetchpriority="high" alt="A barred owl perched in a forest at dawn">
+          <video class="encounter-video" preload="none" playsinline aria-label="Animated barred owl encounter" data-src="./assets/barred-owl-encounter.mp4" hidden></video>
+          <div class="encounter-signal" aria-hidden="true">
+            <span style="--height:35%"></span><span style="--height:63%"></span><span style="--height:41%"></span><span style="--height:86%"></span><span style="--height:100%"></span><span style="--height:56%"></span><span style="--height:73%"></span><span style="--height:30%"></span><span style="--height:54%"></span>
+          </div>
+          <div class="encounter-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <button type="button" class="encounter-mute" hidden>Mute</button>
+        </div>
+        <figcaption class="encounter-caption">
+          <div class="encounter-caption-copy" aria-live="polite">
+            <p class="encounter-label">Simulated encounter</p>
+            <h2 class="encounter-title">Barred owl at dawn</h2>
+            <p class="encounter-note">A fly-in, a call, and a field record. Animated scene with synthesized audio.</p>
+          </div>
+          <button type="button" class="encounter-record" hidden>Open record <span aria-hidden="true">↗</span></button>
+        </figcaption>
+        <div class="encounter-progress" aria-hidden="true"><span></span><span></span><span></span></div>
+      </figure>
+    </section>
+    <section class="intro section-pad" id="how-it-works" tabindex="-1" aria-labelledby="signal-title">
+      <div class="container">
+        <h2 class="editorial-heading" id="signal-title">From signal <em>to sighting.</em></h2>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <p class="feature-num">01 / Listen</p>
+            <div class="feature-art" aria-hidden="true">
+              <svg viewBox="0 0 112 112" class="feature-glyph feature-listen" fill="none">
+                <circle class="glyph-disc" cx="56" cy="56" r="48"/><circle class="glyph-ring" cx="56" cy="56" r="42"/>
+                <path class="glyph-line" d="M20 48v16 M32 39v34 M44 35v42 M56 20v72 M68 32v48 M80 41v30 M92 48v16"/>
+              </svg>
+            </div>
+            <h3>Hear a call.</h3>
+            <p>Pick out wildlife sounds in the field.</p>
+            <button class="feature-replay" type="button" aria-label="Replay Listen illustration"></button>
+          </article>
+          <article class="feature-card">
+            <p class="feature-num">02 / See</p>
+            <div class="feature-art" aria-hidden="true">
+              <svg viewBox="0 0 112 112" class="feature-glyph feature-see" fill="none">
+                <circle class="glyph-disc" cx="56" cy="56" r="48"/><circle class="glyph-ring" cx="56" cy="56" r="42"/>
+                <path class="glyph-corners" d="M19 37V20h17 M76 20h17v17 M93 75v17H76 M36 92H19V75"/>
+                <path class="glyph-line" d="M32 56c7-10 16-15 24-15s17 5 24 15c-7 10-16 15-24 15s-17-5-24-15Z"/><circle class="glyph-dot" cx="56" cy="56" r="5"/>
+              </svg>
+            </div>
+            <h3>Review a frame.</h3>
+            <p>Look at the visual evidence behind a sighting.</p>
+            <button class="feature-replay" type="button" aria-label="Replay See illustration"></button>
+          </article>
+          <article class="feature-card">
+            <p class="feature-num">03 / Understand</p>
+            <div class="feature-art" aria-hidden="true">
+              <svg viewBox="0 0 112 112" class="feature-glyph feature-understand" fill="none">
+                <circle class="glyph-disc" cx="56" cy="56" r="48"/><circle class="glyph-ring" cx="56" cy="56" r="42"/>
+                <path class="glyph-line" pathLength="100" d="m23 77 21-27 21 10 24-27"/>
+                <circle class="glyph-dot" cx="23" cy="77" r="3.5"/><circle class="glyph-dot" cx="44" cy="50" r="3.5"/><circle class="glyph-dot" cx="65" cy="60" r="3.5"/><circle class="glyph-dot" cx="89" cy="33" r="5"/>
+              </svg>
+            </div>
+            <h3>Keep the context.</h3>
+            <p>Review encounters and see patterns over time.</p>
+            <button class="feature-replay" type="button" aria-label="Replay Understand illustration"></button>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="workspace-section" id="workspace" tabindex="-1"><div class="container"><div class="workspace-heading"><h2>Observations <em>&amp; insights.</em></h2><div class="workspace-heading-side"><p>Explore observations, review trends, and see what you can keep private.</p></div></div>
+    <div class="app-frame" id="app-frame">
+      <aside class="app-sidebar" aria-label="Workspace navigation"><div class="sidebar-header"><img class="wordmark" src="./assets/wildguard-wordmark.svg" alt="WildGuard" width="122" height="20"></div><div class="side-category">EXPLORE</div><div class="sidebar-links" role="group" aria-label="Workspace views"><button type="button" class="side-link active" aria-current="true" data-view="overview"><span class="nav-icon">◫</span> Overview</button><button type="button" class="side-link" data-view="detections"><span class="nav-icon">◎</span> Detections <span class="side-count">06</span></button><button type="button" class="side-link" data-view="insights"><span class="nav-icon">▥</span> Insights</button><button type="button" class="side-link" data-view="assistant"><span class="nav-icon">✳</span> Field guide</button></div><div class="side-category second-category">YOUR EXPERIENCE</div><div class="sidebar-links"><button type="button" class="side-link" data-view="privacy"><span class="nav-icon">♧</span> Privacy & consent</button></div></aside>
+      <section class="app-main" aria-label="Interactive preview application"><div class="app-topbar"><div class="app-breadcrumb">FIELD WORKSPACE <span>/</span> <b id="current-view-label">Overview</b></div><div class="app-top-actions"><span class="simulation-chip"><span class="demo-dots" aria-hidden="true"><i></i><i></i><i></i></span> Demo window</span><button class="icon-button" id="demo-reset" type="button" title="Reset demo" aria-label="Reset demo">↻</button></div></div><div id="workspace-content" class="workspace-content"></div><div class="no-results-status visually-hidden" role="status"></div><footer id="demo-disclosure" class="workspace-disclaimer">Fictional observations, locations and scores. Field guide replies are scripted, preferences stay in this session, and sensors and alerts are disconnected.</footer></section>
+    </div></div></section>
+    <section class="audiences section-pad" id="capabilities" tabindex="-1">
+      <div class="container">
+        <div class="section-heading light"><h2>Built for <em>the field.</em></h2><p>Different settings call for different ways to notice, record, and understand wildlife.</p></div>
+        <div class="audience-grid">
+          <article><h3>On foot</h3><p>Review what you heard or saw and keep a record of encounters along the trail.</p><button type="button" class="audience-action" data-open-view="detections">Browse observations ↗</button></article>
+          <article><h3>On the road</h3><p>WildGuard is designed for hands-free roadside awareness. The workspace shows how encounters could be reviewed after a drive.</p><button type="button" class="audience-action" data-open-view="overview">Open the field overview ↗</button></article>
+          <article><h3>In research</h3><p>Explore patterns in observations without exposing personal records. Live research access will require consent and authorization.</p><button type="button" class="audience-action" data-open-view="insights">Explore activity ↗</button></article>
+        </div>
+      </div>
+    </section>
+    <section class="principles section-pad" id="faq" tabindex="-1" aria-labelledby="faq-title">
+      <div class="container principles-layout">
+        <div><h2 id="faq-title">Observe with <em>care.</em></h2><p>How WildGuard handles evidence, works offline, and keeps sharing in your hands.</p></div>
+        <div class="faq-list">
+          <details><summary>What should I look for in a wildlife observation?</summary><p>Review the sound or image behind an identification and keep uncertain sightings marked as uncertain.</p></details>
+          <details><summary>Does WildGuard work offline?</summary><p>Yes. The demo works offline when opened from local files.</p></details>
+          <details><summary>Can WildGuard detect animals or issue alerts today?</summary><p>Live sensors and alerts aren’t connected in this demo. The observations are fictional.</p></details>
+          <details><summary>Does the demo collect or upload anything?</summary><p>The demo loads its assets locally and uses fictional observations. It does not request sensor access or upload your activity. Changes to preferences stay in this session.</p></details>
+          <details><summary>Who would be able to access my observations?</summary><p>For live research access, the planned design requires explicit consent and authorization. The demo does not connect to personal accounts or research systems.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="#home"><img class="wordmark" src="./assets/wildguard-wordmark.svg" alt="WildGuard" width="174" height="29"></a><p>Local-first wildlife awareness.</p></div><div><small>EXPLORE</small><a href="#how-it-works">How it works</a><a href="#workspace">Demonstration</a><a href="#capabilities">Capabilities</a><a href="#faq">Privacy</a></div><div><small>PROJECT</small><a href="https://github.com/VivekReddy10-08-2004/WildGuard" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div><div class="container footer-bottom"><span>© 2026 WILDGUARD</span></div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body></html>
