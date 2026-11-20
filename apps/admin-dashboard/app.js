@@ -55,6 +55,52 @@ function renderEvents() {
   });
 }
 
+function downloadName(response, format) {
+  const disposition = response.headers.get("content-disposition") || "";
+  const match = disposition.match(/filename="?([^";]+)"?/i);
+  return match?.[1] || `wildguard-session.${format === "ai" ? "md" : format}`;
+}
+
+async function exportSession(format, button) {
+  const status = document.querySelector("#export-status");
+  const original = button.querySelector("strong").textContent;
+  button.disabled = true;
+  button.querySelector("strong").textContent = format === "ai" ? "Generating locally…" : "Preparing…";
+  status.textContent = format === "ai"
+    ? "Qwen2.5-Coder 7B is reviewing a read-only copy of the session records…"
+    : `Preparing the deterministic ${format.toUpperCase()} export…`;
+  try {
+    const response = await fetch(`${API_ORIGIN}/session/events/export?format=${format}`, {cache: "no-store"});
+    if (!response.ok) {
+      let message = `Export failed (${response.status})`;
+      try {
+        const payload = await response.json();
+        if (payload.detail) message = payload.detail;
+      } catch {
+        // The API may return a non-JSON proxy error.
+      }
+      throw new Error(message);
+    }
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = downloadName(response, format);
+    document.body.append(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+    status.textContent = format === "ai"
+      ? `AI report downloaded · ${response.headers.get("x-wildguard-model") || "local model"} · source logs unchanged.`
+      : `${format.toUpperCase()} session log downloaded.`;
+  } catch (error) {
+    status.textContent = error instanceof Error ? error.message : "Export failed.";
+  } finally {
+    button.disabled = false;
+    button.querySelector("strong").textContent = original;
+  }
+}
+
 async function refreshHealth() {
   const runtime = document.querySelector("#runtime-status");
   try {
@@ -84,6 +130,9 @@ async function refreshHealth() {
 }
 
 document.querySelector("#refresh-admin").addEventListener("click", refreshHealth);
+document.querySelectorAll("[data-export-format]").forEach((button) => {
+  button.addEventListener("click", () => exportSession(button.dataset.exportFormat, button));
+});
 document.querySelector("#clear-events").addEventListener("click", async () => {
   localStorage.removeItem(SESSION_KEY);
   try {

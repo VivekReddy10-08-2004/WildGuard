@@ -3,6 +3,9 @@
 from __future__ import annotations
 
 import hashlib
+import csv
+import io
+import json
 import logging
 import os
 import shutil
@@ -12,12 +15,13 @@ from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Annotated, Protocol
+from typing import Annotated, Literal, Protocol
 from uuid import uuid4
 
 import httpx
 from fastapi import BackgroundTasks, FastAPI, File, HTTPException, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import Response
 from fastapi.staticfiles import StaticFiles
 
 from backend.api.animalclap_client import AnimalCLAPClient
@@ -26,6 +30,10 @@ from backend.api.schemas import (
     CreateEventRequest,
     SessionEventRecord,
     VideoAnalysisResponse,
+)
+from backend.api.session_report import (
+    OllamaSessionReportGenerator,
+    SessionReportGenerator,
 )
 from backend.api.smolvlm_client import SmolVLMClient
 from backend.knowledge import GuidanceService
@@ -197,6 +205,7 @@ def create_app(
     evidence_root: Path = DEFAULT_EVIDENCE_ROOT,
     knowledge_root: Path = DEFAULT_KNOWLEDGE_ROOT,
     database_path: Path | None = None,
+    session_report_generator: SessionReportGenerator | None = None,
 ) -> FastAPI:
     event_service = service or EventService(
         SmolVLMClient(os.getenv("SMOLVLM_URL", "http://127.0.0.1:8011"))
@@ -204,6 +213,10 @@ def create_app(
     description_worker = worker or DescriptionWorker(event_service)
     wildlife_audio = audio_analyzer or AnimalCLAPClient(
         os.getenv("ANIMALCLAP_URL", "http://127.0.0.1:8012")
+    )
+    report_generator = session_report_generator or OllamaSessionReportGenerator(
+        base_url=os.getenv("OLLAMA_URL", "http://127.0.0.1:11434"),
+        model_name=os.getenv("WILDGUARD_EXPORT_MODEL", "qwen2.5-coder:7b"),
     )
     if guidance_provider is None:
         try:
@@ -505,6 +518,64 @@ def create_app(
             limit=max(1, min(limit, 100)),
         )
         return [SessionEventRecord.model_validate(record) for record in records]
+
+    @app.get("/session/events/export")
+    async def export_session_events(
+        format: Literal["json", "csv", "ai"] = "json",
+    ) -> Response:
+        records = await to_thread(session_store.list_session_events, limit=100)
+        timestamp = datetime.now(UTC).strftime("%Y%m%d-%H%M%S")
+        if format == "json":
+            content = json.dumps(records, indent=2, ensure_ascii=True)
+            media_type = "application/json"
+            suffix = "json"
+        elif format == "csv":
+            output = io.StringIO()
+            fields = [
+                "id",
+                "created_at",
+                "modality",
+                "source",
+                "result",
+                "model",
+                "score",
+                "decision",
+                "cached",
+                "flow",
+            ]
+            writer = csv.DictWriter(output, fieldnames=fields)
+            writer.writeheader()
+            for record in records:
+                row = {field: record.get(field, "") for field in fields}
+                row["flow"] = " -> ".join(record.get("flow", []))
+                writer.writerow(row)
+            content = output.getvalue()
+            media_type = "text/csv"
+            suffix = "csv"
+        else:
+            if not records:
+                raise HTTPException(
+                    status_code=422,
+                    detail="Run an audio or video analysis before generating a report",
+                )
+            try:
+                content = await report_generator.generate(records)
+            except (httpx.HTTPError, TimeoutError, ValueError) as error:
+                raise HTTPException(
+                    status_code=503,
+                    detail="The local AI report model is unavailable",
+                ) from error
+            media_type = "text/markdown"
+            suffix = "md"
+
+        headers = {
+            "Content-Disposition": (
+                f'attachment; filename="wildguard-session-{timestamp}.{suffix}"'
+            )
+        }
+        if format == "ai":
+            headers["X-WildGuard-Model"] = report_generator.model_name
+        return Response(content=content, media_type=media_type, headers=headers)
 
     @app.delete("/session/events")
     async def clear_session_events() -> dict[str, int]:

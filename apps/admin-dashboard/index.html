@@ -35,7 +35,20 @@
         <article><span class="model-modality">AUDIO</span><h3>AnimalCLAP</h3><p>Ranks coyote, elk, grizzly bear, mountain lion, and wolf from local audio clips.</p><small>Advisory similarity—not probability</small></article>
         <article><span class="model-modality">CONTEXT</span><h3>SmolVLM2</h3><p>Describes selected evidence frames asynchronously and cannot alter an alert decision.</p><small>Bounded one-job worker</small></article>
         <article><span class="model-modality">GUIDANCE</span><h3>Verified source retrieval</h3><p>Selects exact Maine roadway passages by species and context with explicit abstention.</p><small>Deterministic · source cited</small></article>
+        <article><span class="model-modality">REPORT</span><h3>Qwen2.5-Coder 7B</h3><p>Turns a copy of structured session records into an advisory Markdown presentation report.</p><small>Local Ollama · temperature 0</small></article>
       </div>
+    </section>
+
+    <section class="admin-section export-section" aria-labelledby="export-title">
+      <div class="admin-section-heading"><div><p class="eyebrow">REST API export</p><h2 id="export-title">Export session intelligence</h2></div><span class="local-model-chip">LOCAL AI · QWEN2.5-CODER 7B</span></div>
+      <p class="admin-disclosure">Download the unmodified session records as JSON or CSV, or ask the local open-weight model to create an advisory Markdown report. AI generation never changes the SQLite records.</p>
+      <div class="export-actions">
+        <button class="export-button" type="button" data-export-format="json"><strong>Download JSON</strong><span>Exact structured records</span></button>
+        <button class="export-button" type="button" data-export-format="csv"><strong>Download CSV</strong><span>Spreadsheet-ready log</span></button>
+        <button class="export-button export-ai" id="export-ai" type="button" data-export-format="ai"><strong>Generate AI report</strong><span>Local Markdown summary</span></button>
+      </div>
+      <p class="export-status" id="export-status" aria-live="polite">Ready. The AI report runs locally through Ollama and may take a moment.</p>
+      <code class="export-endpoint">GET /session/events/export?format=json|csv|ai</code>
     </section>
 
     <section class="admin-section" aria-labelledby="events-title">
@@ -52,13 +65,14 @@
         <article class="mode-flow-step"><small>03 · OBSERVE</small><span class="mode-flow-icon" aria-hidden="true">◉</span><strong>Health exposes runtime</strong><p>The dashboard reads API, description queue, memory cache, persistent cache, and event counts.</p><div class="mode-flow-tags"><span>GET /health</span></div></article>
         <article class="mode-flow-step"><small>04 · RETRIEVE</small><span class="mode-flow-icon" aria-hidden="true">↓</span><strong>Recent events load</strong><p><code>GET /session/events</code> returns the newest local records; browser storage is an offline fallback.</p><div class="mode-flow-tags"><span>REST JSON</span><span>localStorage fallback</span></div></article>
         <article class="mode-flow-step"><small>05 · EXPLAIN</small><span class="mode-flow-icon" aria-hidden="true">→</span><strong>Flow is reconstructed</strong><p>Each card shows which detector, policy, storage, enrichment, and output stages participated.</p><div class="mode-flow-tags"><span>Read-only UI</span></div></article>
-        <article class="mode-flow-step"><small>06 · MAINTAIN</small><span class="mode-flow-icon" aria-hidden="true">×</span><strong>Session log can clear</strong><p><code>DELETE /session/events</code> removes summaries without deleting inference cache or evidence files.</p><div class="mode-flow-tags"><span>Cache preserved</span></div></article>
+        <article class="mode-flow-step"><small>06 · EXPORT</small><span class="mode-flow-icon" aria-hidden="true">⇩</span><strong>Logs or AI report download</strong><p>JSON and CSV preserve records; Qwen2.5-Coder turns a read-only copy into an advisory Markdown report.</p><div class="mode-flow-tags"><span>REST download</span><span>Local Ollama</span></div></article>
+        <article class="mode-flow-step"><small>07 · MAINTAIN</small><span class="mode-flow-icon" aria-hidden="true">×</span><strong>Session log can clear</strong><p><code>DELETE /session/events</code> removes summaries without deleting inference cache or evidence files.</p><div class="mode-flow-tags"><span>Cache preserved</span></div></article>
       </div>
       <div class="mode-flow-branches"><article><strong>Operational review</strong><span>Health + cache counts + event records + model inventory.</span></article><article><strong>Architecture review</strong><span>Per-event stages link back to the master system responsibility map.</span></article><article class="mode-flow-caution"><strong>Administrative boundary</strong><span>Local demo persistence is not authentication, consent enforcement, or a formal audit log.</span></article></div>
       <p class="mode-flow-caption">Running components: FastAPI health and session routes · SQLite WAL database · evidence-path references · browser admin renderer · localStorage offline fallback.</p>
     </section>
 
-    <aside class="admin-boundary"><strong>Current boundary</strong> SQLite provides local demo persistence only. Authentication, consent enforcement, multi-user authorization, research exports, and formal audit logging remain production backend work.</aside>
+    <aside class="admin-boundary"><strong>Current boundary</strong> This exports a single-user local presentation session. The generated report is advisory AI text, not a safety decision or formal audit report. Authentication, consent enforcement, and multi-user authorization remain production backend work.</aside>
     <footer class="client-footer">WildGuard · Admin and research boundary</footer>
   </main>
 </div></body>

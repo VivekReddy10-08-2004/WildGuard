@@ -162,7 +162,9 @@ invalidate the entry. Media remains under `storage/evidence/`; SQLite stores
 only response JSON, versioned cache metadata, and evidence paths.
 
 The same database keeps a bare-bones local presentation-session log for audio
-and video requests. `GET /session/events` returns recent records and
+and video requests. `GET /session/events` returns recent records,
+`GET /session/events/export?format=json|csv|ai` downloads deterministic logs or
+an advisory Markdown report generated locally by `qwen2.5-coder:7b`, and
 `DELETE /session/events` clears the log without removing cached inference or
 media. The admin client reads this log, while browser local storage remains a
 fallback when the API is offline. This is single-user demo persistence, not an
