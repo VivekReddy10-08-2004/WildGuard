@@ -65,7 +65,7 @@
 main>section{position:relative;isolation:isolate}
 main>section::before,main>section::after,.grain-wave{
   content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;
-  background-image:url("./assets/wood-growth-rings.svg");
+  background-image:url("../shared/assets/wood-growth-rings.svg");
   background-size:clamp(560px,70vw,920px) auto;
   background-position:var(--grain-origin,left -170px center);
   background-repeat:repeat;
@@ -166,6 +166,86 @@ main>section.has-grain-focus::after{opacity:.8;transition-duration:.075s}
 @media(prefers-reduced-motion:reduce){
   .encounter-image img,.encounter-frame,.encounter-signal{transition:none}
 }
+
+/* Hiker audio awareness hero: real local inference, presented as phone + watch. */
+.audio-upload{
+  display:inline-flex;align-items:center;min-height:48px;color:#e5eddf;
+  font-size:14px;font-weight:650;cursor:pointer;border-bottom:1px solid #8aa795;
+}
+.audio-upload:hover{color:var(--leaf)}
+.audio-upload:has(+ input:focus-visible){outline:3px solid #a9d473;outline-offset:4px}
+.audio-pause{min-height:48px;padding:0 13px;border:1px solid #789285;border-radius:7px;background:#163528;color:#dce7dc;font-size:13px;font-weight:650}
+.audio-pause:hover:not(:disabled){background:#27483a}.audio-pause:disabled{opacity:.45}
+.hiker-demo{
+  min-width:0;margin:0;border:1px solid #b5cbb36e;border-radius:16px;
+  background:#172f25;overflow:hidden;box-shadow:0 30px 80px #04150d5c;
+}
+.device-stage{
+  position:relative;isolation:isolate;min-height:535px;overflow:hidden;
+  background:
+    radial-gradient(circle at 28% 38%,#71956f47 0 7%,transparent 32%),
+    radial-gradient(circle at 73% 46%,#b3ce8d20 0 10%,transparent 37%),
+    linear-gradient(145deg,#1f4535,#0c251b 74%);
+}
+.device-stage::before{
+  content:"";position:absolute;inset:auto -6% 0;height:37%;z-index:-1;opacity:.72;
+  background:linear-gradient(140deg,transparent 0 10%,#102d21 10% 18%,transparent 18% 27%,#17392a 27% 41%,transparent 41% 49%,#102d21 49% 63%,transparent 63% 72%,#17392a 72% 88%,transparent 88%);
+  clip-path:polygon(0 48%,8% 18%,15% 65%,23% 4%,32% 69%,40% 25%,50% 76%,60% 7%,69% 62%,79% 21%,88% 68%,96% 12%,100% 48%,100% 100%,0 100%);
+}
+.device-stage::after{
+  content:"";position:absolute;inset:0;z-index:-2;opacity:.12;
+  background-image:url("../shared/assets/wood-growth-rings.svg");background-size:780px auto;background-position:center;
+}
+.phone-shell{
+  position:absolute;z-index:2;left:11%;top:6%;width:258px;height:494px;padding:9px;
+  border:1px solid #a3b4a690;border-radius:41px;background:linear-gradient(145deg,#263d34,#091a14 55%,#3b4e46);
+  box-shadow:0 27px 48px #020c08aa,inset 0 0 0 2px #ffffff10;
+}
+.phone-speaker{position:absolute;z-index:2;top:17px;left:50%;width:76px;height:20px;transform:translateX(-50%);border-radius:18px;background:#07140f}
+.phone-screen{position:relative;height:100%;overflow:hidden;border-radius:32px;padding:35px 20px 17px;color:#f3f4e9;background:linear-gradient(180deg,#173e2e,#102b23 62%,#0b2119)}
+.phone-screen::before{content:"";position:absolute;width:230px;height:230px;left:50%;top:65px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,#86a87821,transparent 67%)}
+.device-topline,.device-footer{position:relative;display:flex;justify-content:space-between;font:750 8px/1.2 ui-monospace,monospace;letter-spacing:.13em;color:#a9c5ae}
+.local-device{color:#d9eabf}.local-device i{display:inline-block;width:6px;height:6px;margin-right:5px;border-radius:50%;background:#b7e68b;box-shadow:0 0 0 4px #b7e68b18}
+.phone-listener{position:relative;display:grid;place-items:center;width:148px;height:148px;margin:27px auto 17px;border:1px solid #9eb99955;border-radius:50%;box-shadow:inset 0 0 0 13px #d8edbd08,0 0 35px #7fae7821}
+.phone-listener::before,.phone-listener::after{content:"";position:absolute;border:1px solid #a4c19535;border-radius:50%}
+.phone-listener::before{inset:-14px}.phone-listener::after{inset:18px}
+.listener-bars,.watch-wave{display:flex;align-items:center;justify-content:center;gap:5px;height:58px}
+.listener-bars i{display:block;width:4px;height:var(--bar,30%);border-radius:5px;background:#d9ebbd}
+.listener-bars i:nth-child(1),.listener-bars i:nth-child(7){--bar:28%}.listener-bars i:nth-child(2),.listener-bars i:nth-child(6){--bar:52%}.listener-bars i:nth-child(3),.listener-bars i:nth-child(5){--bar:76%}.listener-bars i:nth-child(4){--bar:100%}
+.phone-state{position:relative;margin:0;text-align:center;color:#aac1af;font:750 9px/1.3 ui-monospace,monospace;letter-spacing:.13em;text-transform:uppercase}
+.phone-species{position:relative;margin:6px 0 5px;text-align:center;font:600 25px/1.08 Georgia,serif;letter-spacing:-.03em}
+.phone-detail{position:relative;min-height:31px;margin:0 auto 13px;max-width:28ch;text-align:center;color:#afc2b5;font-size:10px;line-height:1.5}
+.phone-caution{position:relative;display:grid;grid-template-columns:31px 1fr;gap:10px;padding:11px;border:1px solid #d7aa5966;border-radius:10px;background:#a86d2130;opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s,background .25s}
+.caution-mark{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:#e1b662;color:#253628;font-weight:900}
+.phone-caution small,.phone-caution strong,.phone-caution p{display:block;margin:0}.phone-caution small{color:#edc878;font:800 8px/1.2 ui-monospace,monospace;letter-spacing:.14em}.phone-caution strong{margin:2px 0;color:#f1e6c9;font-size:10px}.phone-caution p{color:#c8cdbd;font-size:8px;line-height:1.4}
+.device-footer{position:absolute;left:20px;right:20px;bottom:13px;color:#6f8d79}
+.watch-column{position:absolute;z-index:3;right:8%;top:8%;display:grid;justify-items:center;width:205px}
+.watch-strap{width:104px;height:104px;background:linear-gradient(90deg,#1a2c25,#344940 50%,#14251f);border-inline:1px solid #81908840}
+.watch-strap-top{border-radius:40px 40px 18px 18px;transform:translateY(18px)}
+.watch-strap-bottom{border-radius:18px 18px 40px 40px;transform:translateY(-18px)}
+.watch-shell{position:relative;z-index:2;width:196px;height:220px;padding:10px;border:1px solid #98a99e;border-radius:48px;background:linear-gradient(145deg,#718077,#13231d 44%,#839188);box-shadow:0 23px 42px #020b07a6,inset 0 0 0 2px #ffffff18}
+.watch-shell::after{content:"";position:absolute;right:-10px;top:69px;width:9px;height:49px;border-radius:0 7px 7px 0;background:#54635b}
+.watch-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:18px;border-radius:38px;color:#f4f3e8;background:radial-gradient(circle at 50% 30%,#315c42,#0b2118 70%);text-align:center}
+.watch-wave{height:42px;gap:4px;margin-bottom:12px}.watch-wave i{width:4px;height:var(--watch-bar,40%);border-radius:5px;background:#d8ebba}.watch-wave i:nth-child(2),.watch-wave i:nth-child(4){--watch-bar:70%}.watch-wave i:nth-child(3){--watch-bar:100%}
+.watch-screen small{color:#a9c0ad;font:750 8px/1.2 ui-monospace,monospace;letter-spacing:.11em}.watch-screen strong{margin:7px 0 4px;font:600 20px/1.05 Georgia,serif}.watch-screen span{color:#9eb5a4;font-size:9px}
+.sound-rings{position:absolute;z-index:1;right:18%;top:31%;width:170px;height:170px;pointer-events:none}.sound-rings i{position:absolute;inset:0;border:1px solid #d7e9bb42;border-radius:50%;opacity:0}.sound-rings i:nth-child(2){inset:-26px}.sound-rings i:nth-child(3){inset:-54px}
+.hiker-demo-caption{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;min-height:100px;background:#1c372b}.hiker-demo-caption p{margin:0}.hiker-demo-caption strong{display:block;margin-top:4px;font-size:17px}.hiker-demo-caption>p{max-width:48%;color:#b9cbbb;font-size:10px;line-height:1.5;text-align:right}
+.hiker-demo[data-state=analyzing] .listener-bars i,.hiker-demo[data-state=detected] .listener-bars i,.hiker-demo[data-state=detected] .watch-wave i{animation:device-wave .56s ease-in-out infinite alternate;animation-delay:calc(var(--bar,40%) * -0.01)}
+.hiker-demo[data-state=analyzing] .phone-listener{animation:listener-breathe 1.3s ease-in-out infinite}
+.hiker-demo[data-state=detected] .phone-caution{opacity:1;transform:none;background:#a86d2148}
+.hiker-demo[data-state=detected] .watch-screen{background:radial-gradient(circle at 50% 30%,#79682e,#372f18 72%)}
+.hiker-demo[data-state=detected] .sound-rings i{animation:sound-ring 2s ease-out infinite}.hiker-demo[data-state=detected] .sound-rings i:nth-child(2){animation-delay:.35s}.hiker-demo[data-state=detected] .sound-rings i:nth-child(3){animation-delay:.7s}
+@keyframes device-wave{from{transform:scaleY(.38)}to{transform:scaleY(1)}}
+@keyframes listener-breathe{50%{box-shadow:inset 0 0 0 13px #d8edbd13,0 0 52px #9dc18d48}}
+@keyframes sound-ring{0%{transform:scale(.55);opacity:0}24%{opacity:.65}100%{transform:scale(1.45);opacity:0}}
+@media(max-width:1150px){.phone-shell{left:5%;transform:scale(.92);transform-origin:top left}.watch-column{right:2%;transform:scale(.88);transform-origin:top right}}
+@media(max-width:900px) and (min-width:761px){.device-stage{min-height:500px}.phone-shell{left:1%;transform:scale(.82)}.watch-column{right:-3%;transform:scale(.75)}}
+@media(max-width:760px){
+  .audio-upload{font-size:13px}.device-stage{min-height:520px}.phone-shell{left:3%;top:4%;transform:scale(.88)}
+  .watch-column{right:0;top:12%;transform:scale(.69)}.hiker-demo-caption{align-items:flex-start;flex-direction:column}.hiker-demo-caption>p{max-width:none;text-align:left}
+}
+@media(max-width:410px){.device-stage{min-height:475px}.phone-shell{left:-5%;transform:scale(.78)}.watch-column{right:-10%;transform:scale(.58)}}
+@media(prefers-reduced-motion:reduce){.hiker-demo *{animation:none!important}}
 
 .intro{background:#f2efe3}
 .intro.section-pad,.audiences.section-pad,.principles.section-pad,.workspace-section{padding:clamp(52px,7vw,94px) 0}
@@ -270,3 +350,11 @@ main>section.has-grain-focus::after{opacity:.8;transition-duration:.075s}
 @media(prefers-reduced-motion:reduce){
   .feature-card.is-replaying .feature-art{background:#d7e6ca;border-radius:8px}
 }
+.event-row,.event-card{flex-wrap:wrap}
+.event-flow{display:flex;align-items:stretch;gap:5px;width:100%;margin-top:10px;padding:9px;border:1px solid #dce5d9;border-radius:8px;background:#f3f6ef;overflow-x:auto;scrollbar-width:thin}
+.event-flow span{display:grid;align-content:center;min-width:92px;min-height:48px;padding:6px 8px;border-radius:6px;background:#e3ecdc;color:#244936;font-size:9px;font-weight:750;line-height:1.35}
+.event-flow span small{display:block;margin-bottom:2px;color:#6d8973;font:700 7px/1 ui-monospace,monospace;letter-spacing:.1em}
+.event-flow i{align-self:center;color:#78917e;font-style:normal;font-size:13px}
+.detail-modal-native .event-flow{margin-top:16px}
+.detail-modal-native{overflow:auto}
+@media(max-width:900px) and (min-width:761px){.site-header .site-nav,.site-header .header-cta{display:none}.site-header .menu-toggle{display:block}.mobile-menu{top:88px}}

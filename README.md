@@ -38,7 +38,8 @@ success criteria, model boundaries, and the phased roadmap.
 ## System architecture
 
 The source architecture is maintained in [`design.svg`](./design.svg). Open the
-SVG directly for a full-size, zoomable version.
+SVG directly for a full-size, zoomable version. The presentation-friendly
+interactive explanation is available at `http://localhost:8001/architecture/`.
 
 ![WildGuard AI system architecture](./design.svg)
 
@@ -142,8 +143,19 @@ curl -F "video=@/path/to/drive.mp4" http://127.0.0.1:8010/videos/analyze
 local `storage/models/driver_animal_nano/best.pt` YOLO26n checkpoint with
 ByteTrack, aggregates tracks into structured evidence, and passes that evidence
 to the same decision and description pipeline. The response contains processing
-metadata, evidence-image URLs, and the event decision. Local frontend origins
-on ports 3000, 5173, and 8000 are allowed by CORS.
+metadata, source and annotated-video URLs, evidence-image URLs, and the event
+decision. The driver client plays the local original and annotated WebM in sync.
+Detection samples every second frame and returns the event before the annotated
+preview finishes rendering in a background task. Local frontend origins on
+ports 3000, 5173, 8000, and 8001 are allowed by CORS.
+
+For repeatable presentations, the API keeps an eight-entry in-memory LRU cache
+of completed video-analysis responses. Keys combine the uploaded video's
+SHA-256 with the model checkpoint and inference configuration, so renamed but
+identical videos reuse detections while model, threshold, image-size, stride,
+or pipeline changes invalidate the entry. Cached responses reference existing
+evidence files and refresh the event's current asynchronous description state.
+The cache is cleared when the API restarts.
 
 Analyze a short wildlife-audio clip through the main API:
 
@@ -154,6 +166,31 @@ curl -F "audio=@/path/to/wildlife.ogg" http://127.0.0.1:8010/audio/analyze
 The response reports a possible species and similarity rankings. These values
 are not probabilities, so the interface uses wording such as “Possible wildlife
 sound detected” rather than claiming a confirmed species identification.
+
+Retrieve local, source-backed driver guidance after confirming the species:
+
+```bash
+curl -X POST http://127.0.0.1:8010/guidance \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "event_id": "demo-1",
+    "species": "moose",
+    "species_source": "user_confirmed",
+    "user_context": "driver",
+    "scene_context": "roadway",
+    "jurisdiction": "US-ME",
+    "question": "What should I do?"
+  }'
+```
+
+The initial Driver + Maine roadway guidance slice uses deterministic
+metadata filtering over the validated JSONL records in `data/artifacts/`. It
+returns exact stored passages with citations. One-class `animal` detections
+automatically receive only reviewed species-neutral roadway passages; a
+user-confirmed moose can receive the reviewed moose-specific slice. Unsupported
+questions and contexts return `insufficient_evidence`, while missing source
+files return `service_unavailable`. Guidance runs independently and cannot
+create, suppress, or modify the alert decision.
 
 ### 4. Data layer
 
@@ -213,9 +250,12 @@ WildGuard/
 ├── README.md
 ├── design.svg
 ├── apps/
-│   ├── hiker-mobile/             # Hiker experience and privacy controls
+│   ├── web/                      # Shared landing and product demonstration
+│   ├── shared/                   # Brand assets and shared client styles
+│   ├── hiker-mobile/             # Compatibility redirect to the main hiker experience
 │   ├── driver-client/            # Driver alerts, voice, and playback
-│   └── admin-dashboard/          # Consented research and admin workflows
+│   ├── admin-dashboard/          # Local runtime and demo-session event console
+│   └── architecture/             # Master system and model-flow explanation
 ├── backend/
 │   ├── api/                      # FastAPI routes, schemas, and WebSockets
 │   ├── auth/                     # Identity, roles, consent, and policy checks
@@ -279,7 +319,10 @@ dataset evaluation notebooks, the locally cached wildlife models, and a
 derived one-class driver-animal dataset with fine-tuned checkpoints. The local
 event API now accepts short video uploads, runs YOLO26n with ByteTrack, applies
 deterministic alert policy, selects evidence frames, and enriches events
-asynchronously through SmolVLM2. The driver client, persistent event store, and
+asynchronously through SmolVLM2. The driver client also has a source-grounded
+Maine roadway guidance demo. The shared web client now demonstrates the hiker
+audio flow through real local AnimalCLAP inference, with synchronized phone and
+watch caution states plus local audio upload. A persistent event store and
 WebSocket delivery remain to be implemented.
 
 The current driver checkpoint is generated at

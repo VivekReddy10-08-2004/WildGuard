@@ -1,135 +1,164 @@
 (() => {
   "use strict";
 
+  const API_ORIGIN = "http://127.0.0.1:8010";
   const hero = document.querySelector(".hero");
-  const encounter = hero.querySelector(".encounter");
-  const play = hero.querySelector(".encounter-play");
-  const openRecord = hero.querySelector(".encounter-record");
-  const label = encounter.querySelector(".encounter-label");
-  const title = encounter.querySelector(".encounter-title");
-  const note = encounter.querySelector(".encounter-note");
+  const demo = hero.querySelector(".hiker-demo");
+  const demoButton = hero.querySelector("#field-demo-button");
+  const upload = hero.querySelector("#field-audio-upload");
+  const uploadLabel = hero.querySelector(".audio-upload");
+  const audio = hero.querySelector("#field-audio");
+  const audioToggle = hero.querySelector("#field-audio-toggle");
+  const phoneState = hero.querySelector("#phone-state");
+  const phoneSpecies = hero.querySelector("#phone-species");
+  const phoneDetail = hero.querySelector("#phone-detail");
+  const watchState = hero.querySelector("#watch-state");
+  const watchSpecies = hero.querySelector("#watch-species");
+  const watchNote = hero.querySelector("#watch-note");
+  const resultTitle = hero.querySelector("#field-result-title");
+  const resultNote = hero.querySelector("#field-result-note");
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-  const video = encounter.querySelector(".encounter-video");
-  const mute = encounter.querySelector(".encounter-mute");
-  const frames = [
-    {key:"ready", label:"Simulated encounter", title:"Barred owl at dawn", note:"A fly-in, a call, and a field record. Animated scene with synthesized audio."},
-    {key:"audio", label:"1 of 3 · Audio", title:"A call in the canopy", note:"The owl settles on a branch and calls. The call is synthesized."},
-    {key:"camera", label:"2 of 3 · Image", title:"A view of the perch", note:"The wider view keeps the owl and the surrounding forest in frame."},
-    {key:"record", label:"3 of 3 · Observation", title:"Barred owl", note:"Example audio record · Birch Loop · 08:55"}
-  ];
-  let current = 0;
-  let filmUnavailable = false;
+  const demoAudioUrl = audio.src;
+  let uploadedAudioUrl = "";
 
-  function stepMode() {
-    return reducedMotion.matches || filmUnavailable;
-  }
-
-  function updatePlay() {
-    const playing = !video.paused && !video.ended;
-    const complete = current === frames.length - 1;
-    play.dataset.playing = String(playing);
-    let text = "Play case with sound";
-    if (stepMode()) text = complete ? "Restart encounter" : current ? "Next moment" : "Step through encounter";
-    else if (playing) text = "Pause case";
-    else if (video.ended) text = "Replay case";
-    else if (video.currentTime > 0) text = "Resume case";
-    else if (video.muted) text = "Play muted case";
-    play.querySelector(".play-label").textContent = text;
-  }
-
-  function showFrame(index) {
-    if (current === index) return;
-    current = index;
-    const frame = frames[index];
-    encounter.dataset.frame = frame.key;
-    label.textContent = frame.label;
-    title.textContent = frame.title;
-    note.textContent = frame.note;
-    openRecord.hidden = frame.key !== "record";
-    updatePlay();
-  }
-
-  function showStill() {
-    video.pause();
-    video.hidden = true;
-    mute.hidden = true;
-    encounter.classList.remove("has-film");
-  }
-
-  function filmFallback() {
-    if (!video.hasAttribute("src") || filmUnavailable) return;
-    filmUnavailable = true;
-    showStill();
-    showFrame(0);
-    note.textContent = "The film could not play. You can step through the illustrated encounter.";
-    updatePlay();
-  }
-
-  function syncFilm() {
-    if (stepMode() || video.hidden) return;
-    const time = video.currentTime;
-    showFrame(time >= 8.6 ? 3 : time >= 5.16 ? 2 : time >= 2.22 ? 1 : 0);
-  }
-
-  play.addEventListener("click", async () => {
-    if (stepMode()) {
-      showFrame(current === frames.length - 1 ? 1 : current + 1);
-      return;
-    }
-    if (!video.paused && !video.ended) {
-      video.pause();
-      updatePlay();
-      return;
-    }
-    if (!video.hasAttribute("src")) video.src = video.dataset.src;
-    if (video.ended) video.currentTime = 0;
+  function rememberSessionEvent(event) {
+    const key = "wildguard.session.events";
+    let events = [];
     try {
-      await video.play();
-    } catch {
-      if (!stepMode() && !document.hidden) filmFallback();
+      const stored = JSON.parse(localStorage.getItem(key) || "[]");
+      if (Array.isArray(stored)) events = stored;
+    } catch {}
+    events.unshift(event);
+    localStorage.setItem(key, JSON.stringify(events.slice(0, 20)));
+  }
+
+  function speciesLabel(value) {
+    return value.replaceAll("_", " ").replace(/\b\w/g, letter => letter.toUpperCase());
+  }
+
+  function setBusy(busy) {
+    demoButton.disabled = busy;
+    upload.disabled = busy;
+    uploadLabel.setAttribute("aria-disabled", String(busy));
+    demoButton.querySelector(".play-label").textContent = busy ? "Analyzing locally…" : "Run coyote field test";
+  }
+
+  function showAnalyzing(filename) {
+    demo.dataset.state = "analyzing";
+    phoneState.textContent = "Analyzing locally";
+    phoneSpecies.textContent = "Listening…";
+    phoneDetail.textContent = filename;
+    watchState.textContent = "ANALYZING";
+    watchSpecies.textContent = "Sound nearby";
+    watchNote.textContent = "Local model";
+    resultTitle.textContent = "AnimalCLAP is listening";
+    resultNote.textContent = "The audio is processed on this machine.";
+  }
+
+  function showResult(analysis) {
+    const species = speciesLabel(analysis.possible_species);
+    demo.dataset.state = "detected";
+    phoneState.textContent = "Possible wildlife sound";
+    phoneSpecies.textContent = species;
+    phoneDetail.textContent = `Similarity ${analysis.similarity.toFixed(3)} · margin ${analysis.score_margin.toFixed(3)}`;
+    watchState.textContent = "CAUTION";
+    watchSpecies.textContent = `${species} possible`;
+    watchNote.textContent = "Stay aware";
+    resultTitle.textContent = `Possible species: ${species}`;
+    resultNote.textContent = "Advisory similarity result—not a probability or confirmed identification.";
+  }
+
+  function showError(message) {
+    demo.dataset.state = "error";
+    phoneState.textContent = "Analysis unavailable";
+    phoneSpecies.textContent = "Try again";
+    phoneDetail.textContent = message;
+    watchState.textContent = "MODEL OFFLINE";
+    watchSpecies.textContent = "No result";
+    watchNote.textContent = "Check service";
+    resultTitle.textContent = "Local inference did not complete";
+    resultNote.textContent = message;
+  }
+
+  async function analyzeAudio(file) {
+    setBusy(true);
+    showAnalyzing(file.name);
+    const body = new FormData();
+    body.append("audio", file);
+    try {
+      const response = await fetch(`${API_ORIGIN}/audio/analyze`, {method:"POST", body});
+      if (!response.ok) {
+        const error = await response.json().catch(() => ({}));
+        throw new Error(error.detail || `Audio API returned ${response.status}`);
+      }
+      const payload = await response.json();
+      showResult(payload.analysis);
+      rememberSessionEvent({
+        id: payload.audio_id,
+        created_at: new Date().toISOString(),
+        modality: "Audio",
+        source: file.name,
+        result: `Possible ${speciesLabel(payload.analysis.possible_species)}`,
+        model: "AnimalCLAP",
+        score: payload.analysis.similarity,
+        decision: "CAUTION",
+        cached: false,
+        flow: ["Audio clip", "AnimalCLAP", "Species ranking", "Caution", "Phone + watch"],
+      });
+    } catch (error) {
+      showError(error.message);
+    } finally {
+      setBusy(false);
+      upload.value = "";
+    }
+  }
+
+  demoButton.addEventListener("click", async () => {
+    audio.src = demoAudioUrl;
+    audio.currentTime = 0;
+    audio.play().catch(() => {});
+    try {
+      const response = await fetch(audio.src);
+      if (!response.ok) throw new Error("Demo audio could not be loaded");
+      const blob = await response.blob();
+      await analyzeAudio(new File([blob], "coyote-field-demo.ogg", {type:blob.type || "audio/ogg"}));
+    } catch (error) {
+      showError(error.message);
+      setBusy(false);
     }
   });
 
-  video.addEventListener("playing", () => {
-    if (stepMode() || document.hidden) {
-      video.pause();
-      return;
-    }
-    video.hidden = false;
-    mute.hidden = false;
-    encounter.classList.add("has-film");
-    syncFilm();
-    updatePlay();
-  });
-  video.addEventListener("pause",updatePlay);
-  video.addEventListener("timeupdate",syncFilm);
-  video.addEventListener("ended",() => {
-    if (stepMode() || video.hidden) return;
-    showFrame(3);
-    updatePlay();
-  });
-  video.addEventListener("error",filmFallback);
-  mute.addEventListener("click", () => { video.muted = !video.muted; });
-  video.addEventListener("volumechange", () => {
-    mute.textContent = video.muted ? "Unmute" : "Mute";
-    updatePlay();
+  upload.addEventListener("change", () => {
+    const file = upload.files[0];
+    if (!file) return;
+    if (uploadedAudioUrl) URL.revokeObjectURL(uploadedAudioUrl);
+    uploadedAudioUrl = URL.createObjectURL(file);
+    audio.src = uploadedAudioUrl;
+    audio.play().catch(() => {});
+    analyzeAudio(file);
   });
 
-  reducedMotion.addEventListener("change", () => {
-    const refocus = document.activeElement === mute || document.activeElement === openRecord;
-    showStill();
-    if (video.readyState) video.currentTime = 0;
-    showFrame(0);
-    updatePlay();
-    if (refocus) play.focus();
+  audioToggle.addEventListener("click", () => {
+    if (audio.paused) {
+      if (audio.ended) audio.currentTime = 0;
+      audio.play().catch(() => {});
+    } else {
+      audio.pause();
+    }
   });
-  document.addEventListener("visibilitychange", () => { if (document.hidden) video.pause(); });
-  openRecord.addEventListener("click", () => {
-    video.pause();
-    document.dispatchEvent(new CustomEvent("wildguard:open-observation",{detail:"WG-DEMO-003"}));
+  audio.addEventListener("play", () => {
+    audioToggle.disabled = false;
+    audioToggle.textContent = "Pause audio";
   });
-  play.hidden = false;
-  updatePlay();
+  audio.addEventListener("pause", () => {
+    audioToggle.textContent = audio.ended ? "Replay audio" : "Resume audio";
+  });
+  audio.addEventListener("ended", () => {
+    audioToggle.disabled = false;
+    audioToggle.textContent = "Replay audio";
+  });
+
+  document.addEventListener("visibilitychange", () => { if (document.hidden) audio.pause(); });
 
   const trailStops = [...document.querySelectorAll(".hoof-stop")].map(link => ({
     link,
@@ -177,7 +206,7 @@
   }
 
   // The texture is static; pointer and click effects reveal portions of it.
-  const panelSurfaces = ".hero-copy,.encounter,.feature-card,.app-frame,.audience-grid article,.principles-layout > div,.section-heading,.workspace-heading,.editorial-heading";
+  const panelSurfaces = ".hero-copy,.hiker-demo,.feature-card,.app-frame,.audience-grid article,.principles-layout > div,.section-heading,.workspace-heading,.editorial-heading";
   const ringSections = [...document.querySelectorAll("main > section")];
   let waves = [];
   function clearWaves() {

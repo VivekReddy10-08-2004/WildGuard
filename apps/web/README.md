@@ -2,45 +2,74 @@
 
 An accessible, responsive, dependency-free frontend concept for the WildGuard presentation layer.
 
-> **Status:** Prototype, not production. The workspace uses deliberately fabricated observations, fictitious locations, invented confidence values, static charts, and a scripted field guide. No models, camera, microphone, GPS, alerting, accounts, network calls, or database are connected.
+> **Status:** Prototype, not production. The hiker hero uses the real local
+> AnimalCLAP API for uploaded audio. The workspace below it still uses
+> deliberately fabricated observations, locations, scores, charts, and a
+> scripted field guide.
 
 ## Run locally
 
-Open `apps/web/index.html` in a modern browser. No installation, build step, CDN, or internet connection is required. For a local HTTP server, run `python -m http.server 8000 --directory apps/web` at the repo root and open `http://localhost:8000`.
+Start the two local model/API processes and the static client in separate
+terminals. No CDN or internet inference service is required.
+
+```bash
+./scripts/run_animalclap_service.sh
+./scripts/run_wildguard_api.sh
+uv run python -m http.server 8001 --directory apps
+```
+
+Open `http://localhost:8001/web/`.
 
 ## Included
 
-- Original animated barred owl encounter. The owl flies into a wide forest shot, lands, and calls over synthesized woodland ambience. The local film loads on Play and leads to the corresponding example audio observation. Reduced-motion users can advance through still stages. The film is illustrative and does not run detection or contain field footage.
+- Responsive phone and smartwatch hiker-awareness demonstration backed by
+  `POST /audio/analyze`. The built-in coyote clip is a verified AnimalCLAP test
+  case, and users can upload a local audio file for the same inference path.
 - Antler-W brand mark and custom wordmark. The Listen, See, and Understand illustrations replay independently by mouse, touch, or keyboard.
 - Product narrative for hikers, drivers, and researchers
 - Interactive unified workspace preview with overview, fictional marker map, synthetic detections, filters/search, event details, synthetic CSV export, charts, scripted guide, and privacy preference switches
 - Mobile workspace navigation, keyboard focus states, reduced-motion support, semantic landmarks, and explicit demonstration labeling
-- No cookies, analytics trackers, external assets, fonts, model APIs, or external runtime dependencies
+- No cookies, analytics trackers, external assets, or cloud model APIs
 
 ## Architecture alignment
 
-This demo is a **shared web presentation prototype**, housed under `apps/web` to avoid implying it replaces the three planned clients:
+This demo is the **shared landing page and working hiker experience**. Product
+work is separated by audience while preserving one hiker entry point:
 
-- `apps/hiker-mobile`: wildlife audio alerts, camera queries, detection Q&A, event history, privacy choices
+- `apps/web`: landing page plus the wildlife audio alert, phone/watch caution,
+  and presentation workspace
+- `apps/hiker-mobile`: compatibility redirect to `apps/web/#demonstration`
 - `apps/driver-client`: dashcam/roadside detection, voice interaction, hazard notices, playback
-- `apps/admin-dashboard`: consent-filtered aggregate research analytics, event review, reviewed code generation and API tooling
+- `apps/admin-dashboard`: local API health, model inventory, and real events
+  created during the current browser demo session
+- `apps/architecture`: master explanation of inputs, models, deterministic
+  decisions, advisory descriptions, evidence, and client outputs
 
-The backend gateway exclusively handles REST, WebSocket, auth/consent, authorization, orchestration, evidence, and alerts; clients must not call model services or databases directly. See [integration notes](../../docs/frontend-integration.md) and the root `README.md` / `design.svg`.
+Shared media and brand assets live under `apps/shared`. The backend gateway
+handles the local REST routes, inference orchestration, evidence, and alerts;
+clients must not call model services directly. Authentication, durable storage,
+WebSocket streaming, and server-enforced consent remain production work.
+See [integration notes](../../docs/frontend-integration.md) and the root
+`README.md` / `design.svg`.
 
 ## Test checklist
 
 - View at 320px, 375px, 768px, 1024px and desktop widths
-- Play, pause, mute, and replay the encounter. Open its matching record and activate each feature illustration with Enter or Space.
+- Run the coyote field test, upload an audio file, and verify phone/watch result,
+  waveform, caution, error, and loading states.
 - Navigate with keyboard through menu, workspace views, filters, details dialog, switches and guide. Check that Escape closes the menu or dialog and returns focus.
 - Check browser with reduced motion enabled
 - Filter by audio/camera; search no-result case; reset; export CSV and verify the synthetic warning
 - Verify all buttons work with no network
-- Confirm no user data leaves the browser and demo switches are not represented as real consent
+- Confirm audio reaches only the local API and demo switches are not represented as real consent
 - Before production: add automated unit/E2E tests, complete an assistive technology audit, and validate visual regression, cross-browser behavior, performance on real devices, and backend integration
 
 ## Deliberately not implemented
 
-Real detection, predictions, hazard decisions, location tracking, offline model inference, real LLM Q&A, authentication, persistence, server authorization, research exports, code generation execution, WebSocket updates, and consent audit logging. These are backend or product integrations owned separately.
+Continuous microphone monitoring, operating-system wearable notifications,
+location tracking, real LLM Q&A, authentication, persistence, server
+authorization, research exports, code generation execution, WebSocket updates,
+and consent audit logging. These are later backend or product integrations.
 
 ## Scope
 

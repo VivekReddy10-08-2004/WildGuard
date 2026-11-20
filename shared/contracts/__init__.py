@@ -16,6 +16,14 @@ from shared.contracts.event import (
     TrackEvidence,
     WildlifeEvent,
 )
+from shared.contracts.guidance import (
+    GuidanceCitation,
+    GuidanceRequest,
+    GuidanceResponse,
+    GuidanceStatus,
+    SpeciesSource,
+    UserContext,
+)
 
 __all__ = [
     "AlertDecision",
@@ -27,12 +35,18 @@ __all__ = [
     "DescriptionStatus",
     "Detection",
     "EventContext",
+    "GuidanceCitation",
+    "GuidanceRequest",
+    "GuidanceResponse",
+    "GuidanceStatus",
     "ImagePrediction",
     "PolicyConfig",
     "SceneDescription",
     "SpeciesRanking",
+    "SpeciesSource",
     "TrackedFrame",
     "TrackEvidence",
+    "UserContext",
     "WildlifeAudioAnalysis",
     "WildlifeEvent",
 ]

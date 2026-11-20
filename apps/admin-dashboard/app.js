@@ -1,0 +1,82 @@
+const API_ORIGIN = "http://127.0.0.1:8010";
+const SESSION_KEY = "wildguard.session.events";
+const eventsRoot = document.querySelector("#admin-events");
+
+function readEvents() {
+  try {
+    const value = JSON.parse(localStorage.getItem(SESSION_KEY) || "[]");
+    return Array.isArray(value)
+      ? value.filter((event) => event && typeof event === "object")
+      : [];
+  } catch {
+    return [];
+  }
+}
+
+function addText(parent, tag, value, className) {
+  const node = document.createElement(tag);
+  node.textContent = value;
+  if (className) node.className = className;
+  parent.append(node);
+  return node;
+}
+
+function renderEvents() {
+  const events = readEvents();
+  document.querySelector("#session-count").textContent = String(events.length);
+  eventsRoot.replaceChildren();
+  if (!events.length) {
+    addText(eventsRoot, "div", "Run the hiker audio test or analyze a driver video to populate this local session log.", "admin-empty");
+    return;
+  }
+  events.forEach((event) => {
+    const article = document.createElement("article");
+    article.className = "admin-event";
+    const copy = document.createElement("div");
+    addText(copy, "h3", event.result || "Wildlife event");
+    addText(copy, "p", `${event.modality} · ${event.model} · ${event.source}`);
+    addText(copy, "p", `${new Date(event.created_at).toLocaleString()} · score ${Number(event.score || 0).toFixed(3)}${event.cached ? " · cached" : ""}`);
+    addText(article, "span", event.decision || "RECORDED", "event-badge");
+    article.prepend(copy);
+    const flow = document.createElement("div");
+    flow.className = "admin-event-flow";
+    const steps = Array.isArray(event.flow) ? event.flow : [];
+    steps.forEach((step, index) => {
+      addText(flow, "span", step);
+      if (index < steps.length - 1) addText(flow, "i", "→");
+    });
+    article.append(flow);
+    eventsRoot.append(article);
+  });
+}
+
+async function refreshHealth() {
+  const runtime = document.querySelector("#runtime-status");
+  try {
+    const response = await fetch(`${API_ORIGIN}/health`, {cache: "no-store"});
+    if (!response.ok) throw new Error(`API ${response.status}`);
+    const health = await response.json();
+    document.querySelector("#api-status").textContent = "Online";
+    document.querySelector("#video-cache").textContent = Number.isInteger(health.video_cache_size)
+      ? `${health.video_cache_size}/8`
+      : "Restart API";
+    document.querySelector("#description-queue").textContent = String(health.description_queue_size ?? "—");
+    runtime.className = "runtime-status online";
+    runtime.innerHTML = "<i></i> Local API online";
+  } catch {
+    document.querySelector("#api-status").textContent = "Offline";
+    document.querySelector("#video-cache").textContent = "—";
+    document.querySelector("#description-queue").textContent = "—";
+    runtime.className = "runtime-status offline";
+    runtime.innerHTML = "<i></i> Local API unavailable";
+  }
+  renderEvents();
+}
+
+document.querySelector("#refresh-admin").addEventListener("click", refreshHealth);
+document.querySelector("#clear-events").addEventListener("click", () => {
+  localStorage.removeItem(SESSION_KEY);
+  renderEvents();
+});
+window.addEventListener("storage", renderEvents);
+refreshHealth();

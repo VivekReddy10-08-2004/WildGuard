@@ -5,7 +5,7 @@
 - **Privacy by default:** consent off; no evidence displayed to research users without backend-authenticated, policy-filtered results.
 - **Honest status:** distinguish illustrative demo data from detections, confidence estimates from verified safety decisions, and disconnected sensors from monitoring.
 - **Readable outdoors:** high contrast, large touch targets, calm visual language, mobile-first fallback, reduced motion.
-- **Shared visual language:** pine #102b23, forest #173b2d, leaf #d5eda9, cream #f3f2e9. Branded antler-W icon at `apps/web/assets/wildguard-mark.svg`.
+- **Shared visual language:** pine #102b23, forest #173b2d, leaf #d5eda9, cream #f3f2e9. Branded antler-W icon at `apps/shared/assets/wildguard-mark.svg`.
 
 ## Proposed frontend boundaries
 ```text
@@ -17,7 +17,12 @@ Landing / shared brand system
 FastAPI gateway → Auth & consent manager → Event orchestrator → model services + storage
 ```
 
-The current `apps/web` demo unifies these surfaces for design review. Separate clients can reuse the color tokens, icon, language, and interaction patterns.
+The current `apps/web` demo remains the shared landing and design review surface.
+The working hiker experience lives in `apps/web` and is also reached through
+the compatibility route in `apps/hiker-mobile`. Driver and local demo
+administration pages live in `apps/driver-client` and `apps/admin-dashboard`;
+the master system explanation lives in `apps/architecture`. Common
+presentation assets live in `apps/shared`.
 
 ## Illustrative interface contracts (proposals, NOT existing endpoints)
 

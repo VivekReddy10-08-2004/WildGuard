@@ -25,8 +25,11 @@ class VideoAnalysisResponse(BaseModel):
     processed_frames: int
     fps: float
     duration_seconds: float
+    source_video_url: str
+    annotated_video_url: str | None
     evidence_urls: list[str]
     event: WildlifeEvent
+    cached: bool = False
 
 
 class AudioAnalysisResponse(BaseModel):

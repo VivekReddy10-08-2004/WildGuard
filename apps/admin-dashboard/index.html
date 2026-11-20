@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WildGuard Admin</title>
+  <link rel="icon" href="../shared/assets/wildguard-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../shared/client.css">
+  <link rel="stylesheet" href="./admin.css">
+  <script src="./app.js" defer></script>
+</head>
+<body><div class="shell">
+  <header class="client-header">
+    <a href="../web/" aria-label="WildGuard landing"><img src="../shared/assets/wildguard-wordmark.svg" alt="WildGuard"></a>
+    <nav aria-label="Client navigation"><a href="../web/#demonstration">Hiker</a><a href="../driver-client/">Driver</a><a href="../architecture/">Architecture</a></nav>
+  </header>
+  <main class="client-main admin-main">
+    <section class="admin-hero">
+      <div><p class="eyebrow">Local operations console</p><h1>See how every event was built.</h1><p class="lede">Inspect presentation-session events, local model roles, cache state, and processing paths without changing model output.</p></div>
+      <div class="admin-hero-actions"><span class="runtime-status" id="runtime-status"><i></i> Checking local API</span><button id="refresh-admin" type="button">Refresh status</button></div>
+    </section>
+
+    <section class="admin-stats" aria-label="Runtime status">
+      <article><small>FASTAPI</small><strong id="api-status">Checking</strong><span>Local gateway · 8010</span></article>
+      <article><small>VIDEO CACHE</small><strong id="video-cache">—</strong><span>Eight-entry in-memory LRU</span></article>
+      <article><small>DESCRIPTION QUEUE</small><strong id="description-queue">—</strong><span>Single SmolVLM worker</span></article>
+      <article><small>SESSION EVENTS</small><strong id="session-count">0</strong><span>This browser only</span></article>
+    </section>
+
+    <section class="admin-section" aria-labelledby="models-title">
+      <div class="admin-section-heading"><div><p class="eyebrow">Model inventory</p><h2 id="models-title">Local intelligence layers</h2></div><a href="../architecture/">Open master architecture ↗</a></div>
+      <div class="model-grid">
+        <article><span class="model-modality">VIDEO</span><h3>YOLO26n + ByteTrack</h3><p>Samples road video, detects the shared animal class, tracks persistence, and writes structured evidence.</p><small>FP16 CUDA · frame stride 2</small></article>
+        <article><span class="model-modality">AUDIO</span><h3>AnimalCLAP</h3><p>Ranks coyote, elk, grizzly bear, mountain lion, and wolf from local audio clips.</p><small>Advisory similarity—not probability</small></article>
+        <article><span class="model-modality">CONTEXT</span><h3>SmolVLM2</h3><p>Describes selected evidence frames asynchronously and cannot alter an alert decision.</p><small>Bounded one-job worker</small></article>
+        <article><span class="model-modality">GUIDANCE</span><h3>Verified source retrieval</h3><p>Selects exact Maine roadway passages by species and context with explicit abstention.</p><small>Deterministic · source cited</small></article>
+      </div>
+    </section>
+
+    <section class="admin-section" aria-labelledby="events-title">
+      <div class="admin-section-heading"><div><p class="eyebrow">Presentation session</p><h2 id="events-title">Recent real demo events</h2></div><button id="clear-events" type="button">Clear local log</button></div>
+      <p class="admin-disclosure">Only events produced by the hiker audio or driver video demos in this browser appear here. This is not the persistent event database.</p>
+      <div id="admin-events" class="admin-events" aria-live="polite"></div>
+    </section>
+
+    <section class="admin-section architecture-summary" aria-labelledby="pipeline-title">
+      <p class="eyebrow">Master event path</p><h2 id="pipeline-title">Evidence becomes an alert without waiting for language.</h2>
+      <div class="master-flow"><span><small>01</small>Phone / dashcam</span><i>→</i><span><small>02</small>FastAPI gateway</span><i>→</i><span><small>03</small>Local detector</span><i>→</i><span><small>04</small>Event contract</span><i>→</i><span><small>05</small>Decision engine</span><i>→</i><span><small>06</small>Alert + evidence</span></div>
+      <div class="parallel-note"><strong>Parallel advisory work</strong><span>SmolVLM2 description</span><span>Verified guidance retrieval</span><span>Annotated preview rendering</span></div>
+    </section>
+
+    <aside class="admin-boundary"><strong>Current boundary</strong> Authentication, consent enforcement, durable event storage, research exports, and audit logging remain backend work. This page does not claim those controls are active.</aside>
+    <footer class="client-footer">WildGuard · Admin and research boundary</footer>
+  </main>
+</div></body>
+</html>
