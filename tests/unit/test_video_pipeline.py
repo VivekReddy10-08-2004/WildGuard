@@ -176,9 +176,7 @@ class VideoProcessor:
             annotated_video_path=str(annotated_path),
         )
 
-    def render_annotated(
-        self, video_path: Path, result: VideoTrackingResult
-    ) -> None:
+    def render_annotated(self, video_path: Path, result: VideoTrackingResult) -> None:
         assert video_path.is_file()
         assert result.annotated_video_path is not None
 
@@ -249,6 +247,85 @@ def test_identical_video_upload_reuses_cached_inference(tmp_path: Path) -> None:
     assert second.json()["video_id"] == first.json()["video_id"]
     assert processor.calls == 1
     assert health.json()["video_cache_size"] == 1
+    assert health.json()["persistent_video_cache_size"] == 1
+    assert health.json()["session_event_count"] == 2
+
+
+def test_identical_video_reuses_sqlite_cache_after_api_restart(
+    tmp_path: Path,
+) -> None:
+    evidence_root = tmp_path / "evidence"
+    database_path = tmp_path / "wildguard.sqlite3"
+    first_service = EventService(Descriptor())
+    first_processor = VideoProcessor()
+    first_app = create_app(
+        service=first_service,
+        worker=DescriptionWorker(first_service),
+        video_processor=first_processor,
+        evidence_root=evidence_root,
+        database_path=database_path,
+    )
+
+    with TestClient(first_app) as client:
+        first = client.post(
+            "/videos/analyze",
+            files={"video": ("first.mp4", b"persistent-video", "video/mp4")},
+        )
+
+    second_service = EventService(Descriptor())
+    second_processor = VideoProcessor()
+    second_app = create_app(
+        service=second_service,
+        worker=DescriptionWorker(second_service),
+        video_processor=second_processor,
+        evidence_root=evidence_root,
+        database_path=database_path,
+    )
+
+    with TestClient(second_app) as client:
+        second = client.post(
+            "/videos/analyze",
+            files={"video": ("renamed.mp4", b"persistent-video", "video/mp4")},
+        )
+        events = client.get("/session/events")
+        health = client.get("/health")
+
+    assert first.status_code == 202
+    assert second.status_code == 202
+    assert second.json()["cached"] is True
+    assert second.json()["filename"] == "renamed.mp4"
+    assert second.json()["video_id"] == first.json()["video_id"]
+    assert first_processor.calls == 1
+    assert second_processor.calls == 0
+    assert len(events.json()) == 2
+    assert events.json()[0]["cached"] is True
+    assert health.json()["persistent_video_cache_size"] == 1
+
+
+def test_session_event_log_can_be_cleared_without_clearing_cache(
+    tmp_path: Path,
+) -> None:
+    service = EventService(Descriptor())
+    app = create_app(
+        service=service,
+        worker=DescriptionWorker(service),
+        video_processor=VideoProcessor(),
+        evidence_root=tmp_path / "evidence",
+    )
+
+    with TestClient(app) as client:
+        client.post(
+            "/videos/analyze",
+            files={"video": ("drive.mp4", b"logged-video", "video/mp4")},
+        )
+        cleared = client.delete("/session/events")
+        events = client.get("/session/events")
+        health = client.get("/health")
+
+    assert cleared.json() == {"cleared": 1}
+    assert events.json() == []
+    assert health.json()["session_event_count"] == 0
+    assert health.json()["persistent_video_cache_size"] == 1
 
 
 def test_audio_upload_flows_into_animalclap_service(tmp_path: Path) -> None:
@@ -266,6 +343,7 @@ def test_audio_upload_flows_into_animalclap_service(tmp_path: Path) -> None:
             "/audio/analyze",
             files={"audio": ("wildlife.ogg", b"fake-audio", "audio/ogg")},
         )
+        events = client.get("/session/events")
 
     assert response.status_code == 200
     analysis = response.json()["analysis"]
@@ -273,6 +351,8 @@ def test_audio_upload_flows_into_animalclap_service(tmp_path: Path) -> None:
     assert analysis["message"] == (
         "Possible wildlife sound detected — possible species: coyote"
     )
+    assert events.json()[0]["modality"] == "Audio"
+    assert events.json()[0]["result"] == "Possible Coyote"
 
 
 def test_frontend_port_8001_is_allowed_by_cors(tmp_path: Path) -> None:
@@ -294,6 +374,4 @@ def test_frontend_port_8001_is_allowed_by_cors(tmp_path: Path) -> None:
         )
 
     assert response.status_code == 200
-    assert response.headers["access-control-allow-origin"] == (
-        "http://localhost:8001"
-    )
+    assert response.headers["access-control-allow-origin"] == ("http://localhost:8001")

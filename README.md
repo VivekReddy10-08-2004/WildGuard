@@ -149,13 +149,21 @@ Detection samples every second frame and returns the event before the annotated
 preview finishes rendering in a background task. Local frontend origins on
 ports 3000, 5173, 8000, and 8001 are allowed by CORS.
 
-For repeatable presentations, the API keeps an eight-entry in-memory LRU cache
-of completed video-analysis responses. Keys combine the uploaded video's
-SHA-256 with the model checkpoint and inference configuration, so renamed but
-identical videos reuse detections while model, threshold, image-size, stride,
-or pipeline changes invalidate the entry. Cached responses reference existing
-evidence files and refresh the event's current asynchronous description state.
-The cache is cleared when the API restarts.
+For repeatable presentations, the API uses a two-level video cache: an
+eight-entry in-memory LRU for the fastest same-process lookup and a small
+SQLite index at `storage/wildguard.sqlite3` for reuse after API restarts. Keys
+combine the uploaded video's SHA-256 with the model checkpoint and complete
+inference configuration, so renamed but identical videos reuse detections
+while model, threshold, image-size, stride, quantization, or pipeline changes
+invalidate the entry. Media remains under `storage/evidence/`; SQLite stores
+only response JSON, versioned cache metadata, and evidence paths.
+
+The same database keeps a bare-bones local presentation-session log for audio
+and video requests. `GET /session/events` returns recent records and
+`DELETE /session/events` clears the log without removing cached inference or
+media. The admin client reads this log, while browser local storage remains a
+fallback when the API is offline. This is single-user demo persistence, not an
+authenticated audit or research database.
 
 Analyze a short wildlife-audio clip through the main API:
 
@@ -277,6 +285,7 @@ WildGuard/
 ├── storage/
 │   ├── events/                   # Local database files in development
 │   ├── evidence/                 # Private captured media
+│   ├── wildguard.sqlite3         # Ignored cache index and session log
 │   ├── vectors/                  # Local vector indexes
 │   └── audit/                    # Append-oriented audit records
 ├── shared/

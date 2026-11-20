@@ -27,7 +27,15 @@ Open `http://localhost:8001/web/`.
   case, and users can upload a local audio file for the same inference path.
 - Antler-W brand mark and custom wordmark. The Listen, See, and Understand illustrations replay independently by mouse, touch, or keyboard.
 - Product narrative for hikers, drivers, and researchers
-- Interactive unified workspace preview with overview, fictional marker map, synthetic detections, filters/search, event details, synthetic CSV export, charts, scripted guide, and privacy preference switches
+- Interactive unified workspace preview with overview, application event map,
+  synthetic detections, filters/search, event details, synthetic CSV export,
+  charts, scripted guide, and privacy preference switches.
+- Application event map showing the actual hiker audio and driver video
+  processing lanes, shared event contract, deterministic alert path, and
+  advisory enrichment boundary.
+- Evidence-led Maine impact infographic using only the `Economic_Loss` and
+  `Insurance` workbook tabs in `Why WildGuard`, with explicit assumptions for
+  the 1%, 5%, and 10% illustrative benefit scenarios.
 - Mobile workspace navigation, keyboard focus states, reduced-motion support, semantic landmarks, and explicit demonstration labeling
 - No cookies, analytics trackers, external assets, or cloud model APIs
 

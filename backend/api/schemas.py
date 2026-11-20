@@ -36,3 +36,16 @@ class AudioAnalysisResponse(BaseModel):
     audio_id: str
     filename: str
     analysis: WildlifeAudioAnalysis
+
+
+class SessionEventRecord(BaseModel):
+    id: str
+    created_at: datetime
+    modality: str
+    source: str
+    result: str
+    model: str
+    score: float
+    decision: str
+    cached: bool
+    flow: list[str]

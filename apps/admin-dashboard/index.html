@@ -22,9 +22,9 @@
 
     <section class="admin-stats" aria-label="Runtime status">
       <article><small>FASTAPI</small><strong id="api-status">Checking</strong><span>Local gateway · 8010</span></article>
-      <article><small>VIDEO CACHE</small><strong id="video-cache">—</strong><span>Eight-entry in-memory LRU</span></article>
+      <article><small>VIDEO CACHE</small><strong id="video-cache">—</strong><span>Memory / persistent SQLite</span></article>
       <article><small>DESCRIPTION QUEUE</small><strong id="description-queue">—</strong><span>Single SmolVLM worker</span></article>
-      <article><small>SESSION EVENTS</small><strong id="session-count">0</strong><span>This browser only</span></article>
+      <article><small>SESSION EVENTS</small><strong id="session-count">0</strong><span>Persistent local history</span></article>
     </section>
 
     <section class="admin-section" aria-labelledby="models-title">
@@ -39,7 +39,7 @@
 
     <section class="admin-section" aria-labelledby="events-title">
       <div class="admin-section-heading"><div><p class="eyebrow">Presentation session</p><h2 id="events-title">Recent real demo events</h2></div><button id="clear-events" type="button">Clear local log</button></div>
-      <p class="admin-disclosure">Only events produced by the hiker audio or driver video demos in this browser appear here. This is not the persistent event database.</p>
+      <p class="admin-disclosure">Events produced by the local hiker audio and driver video APIs are stored in a small SQLite session log. Media remains in local evidence storage and is never embedded in the database.</p>
       <div id="admin-events" class="admin-events" aria-live="polite"></div>
     </section>
 
@@ -49,7 +49,7 @@
       <div class="parallel-note"><strong>Parallel advisory work</strong><span>SmolVLM2 description</span><span>Verified guidance retrieval</span><span>Annotated preview rendering</span></div>
     </section>
 
-    <aside class="admin-boundary"><strong>Current boundary</strong> Authentication, consent enforcement, durable event storage, research exports, and audit logging remain backend work. This page does not claim those controls are active.</aside>
+    <aside class="admin-boundary"><strong>Current boundary</strong> SQLite provides local demo persistence only. Authentication, consent enforcement, multi-user authorization, research exports, and formal audit logging remain production backend work.</aside>
     <footer class="client-footer">WildGuard · Admin and research boundary</footer>
   </main>
 </div></body>

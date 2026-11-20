@@ -24,11 +24,13 @@ from backend.api.animalclap_client import AnimalCLAPClient
 from backend.api.schemas import (
     AudioAnalysisResponse,
     CreateEventRequest,
+    SessionEventRecord,
     VideoAnalysisResponse,
 )
 from backend.api.smolvlm_client import SmolVLMClient
 from backend.knowledge import GuidanceService
 from backend.orchestration import DescriptionWorker, EventService
+from backend.storage import LocalSessionStore
 from model_services.video.yolo_tracker import VideoTrackingResult, YoloVideoProcessor
 from shared.contracts import (
     DescriptionStatus,
@@ -42,6 +44,7 @@ from shared.contracts import (
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 LOGGER = logging.getLogger(__name__)
 DEFAULT_EVIDENCE_ROOT = PROJECT_ROOT / "storage/evidence"
+DEFAULT_DATABASE_PATH = PROJECT_ROOT / "storage/wildguard.sqlite3"
 DEFAULT_KNOWLEDGE_ROOT = PROJECT_ROOT / "data/artifacts"
 VIDEO_SUFFIXES = {".avi", ".mkv", ".mov", ".mp4", ".webm"}
 MAX_UPLOAD_BYTES = 500 * 1024 * 1024
@@ -50,10 +53,89 @@ MAX_AUDIO_UPLOAD_BYTES = 50 * 1024 * 1024
 VIDEO_CACHE_LIMIT = 8
 
 
+def persistent_video_cache_key(video_digest: str, processor_identity: str) -> str:
+    """Version one uploaded video and the complete inference configuration."""
+
+    value = f"video\0{video_digest}\0{processor_identity}".encode()
+    return hashlib.sha256(value).hexdigest()
+
+
+def cached_evidence_exists(
+    response: VideoAnalysisResponse,
+    evidence_root: Path,
+    *,
+    require_annotated: bool,
+) -> bool:
+    root = evidence_root.resolve()
+    run_dir = (root / response.video_id).resolve()
+    if not run_dir.is_relative_to(root) or not run_dir.is_dir():
+        return False
+    if not (run_dir / Path(response.source_video_url).name).is_file():
+        return False
+    if (
+        require_annotated
+        and response.annotated_video_url
+        and not (run_dir / Path(response.annotated_video_url).name).is_file()
+    ):
+        return False
+    return True
+
+
+def video_session_event(
+    response: VideoAnalysisResponse,
+    *,
+    filename: str,
+    cached: bool,
+) -> SessionEventRecord:
+    score = max(
+        (detection.max_confidence for detection in response.event.detections),
+        default=0.0,
+    )
+    count = len(response.event.detections)
+    return SessionEventRecord(
+        id=uuid4().hex,
+        created_at=datetime.now(UTC),
+        modality="Video",
+        source=filename,
+        result=f"{count} tracked animal{'s' if count != 1 else ''}",
+        model="YOLO26n + ByteTrack",
+        score=score,
+        decision=response.event.decision.alert_level.value,
+        cached=cached,
+        flow=[
+            "Road video",
+            "YOLO26n",
+            "ByteTrack",
+            "Decision engine",
+            "Alert + guidance",
+        ],
+    )
+
+
+def audio_session_event(response: AudioAnalysisResponse) -> SessionEventRecord:
+    species = response.analysis.possible_species.replace("_", " ").title()
+    return SessionEventRecord(
+        id=uuid4().hex,
+        created_at=datetime.now(UTC),
+        modality="Audio",
+        source=response.filename,
+        result=f"Possible {species}",
+        model="AnimalCLAP",
+        score=response.analysis.similarity,
+        decision="CAUTION",
+        cached=False,
+        flow=[
+            "Audio clip",
+            "AnimalCLAP",
+            "Species ranking",
+            "Caution",
+            "Phone + watch",
+        ],
+    )
+
+
 class VideoProcessor(Protocol):
-    def process(
-        self, video_path: Path, evidence_dir: Path
-    ) -> VideoTrackingResult: ...
+    def process(self, video_path: Path, evidence_dir: Path) -> VideoTrackingResult: ...
 
     def render_annotated(
         self, video_path: Path, result: VideoTrackingResult
@@ -114,6 +196,7 @@ def create_app(
     guidance_provider: GuidanceProvider | None = None,
     evidence_root: Path = DEFAULT_EVIDENCE_ROOT,
     knowledge_root: Path = DEFAULT_KNOWLEDGE_ROOT,
+    database_path: Path | None = None,
 ) -> FastAPI:
     event_service = service or EventService(
         SmolVLMClient(os.getenv("SMOLVLM_URL", "http://127.0.0.1:8011"))
@@ -132,6 +215,22 @@ def create_app(
     if video_processor is not None:
         processors["video"] = video_processor
     evidence_root.mkdir(parents=True, exist_ok=True)
+    session_store = LocalSessionStore(
+        database_path
+        or (
+            DEFAULT_DATABASE_PATH
+            if evidence_root == DEFAULT_EVIDENCE_ROOT
+            else evidence_root.parent / "wildguard.sqlite3"
+        )
+    )
+
+    def remember_video_response(
+        key: tuple[str, str], response: VideoAnalysisResponse
+    ) -> None:
+        video_cache[key] = response
+        video_cache.move_to_end(key)
+        if len(video_cache) > VIDEO_CACHE_LIMIT:
+            video_cache.popitem(last=False)
 
     @asynccontextmanager
     async def lifespan(_: FastAPI) -> AsyncIterator[None]:
@@ -165,6 +264,8 @@ def create_app(
             "status": "ok",
             "description_queue_size": description_worker.queue.qsize(),
             "video_cache_size": len(video_cache),
+            "persistent_video_cache_size": await to_thread(session_store.cache_count),
+            "session_event_count": await to_thread(session_store.event_count),
         }
 
     @app.post(
@@ -191,7 +292,7 @@ def create_app(
     )
     async def analyze_video(
         background_tasks: BackgroundTasks,
-        video: Annotated[UploadFile, File(description="A short driving video")]
+        video: Annotated[UploadFile, File(description="A short driving video")],
     ) -> VideoAnalysisResponse:
         filename = video.filename or "video.mp4"
         suffix = Path(filename).suffix.lower()
@@ -220,24 +321,83 @@ def create_app(
             )
         )
         cache_key = (video_digest, processor_identity)
+        database_cache_key = persistent_video_cache_key(
+            video_digest, processor_identity
+        )
         cached_response = video_cache.get(cache_key)
         if cached_response is not None:
-            cached_run_dir = evidence_root / cached_response.video_id
-            if cached_run_dir.is_dir():
+            if cached_evidence_exists(
+                cached_response,
+                evidence_root,
+                require_annotated=False,
+            ):
                 video_cache.move_to_end(cache_key)
                 shutil.rmtree(run_dir)
                 current_event = (
                     event_service.get_event(cached_response.event.event_id)
                     or cached_response.event
                 )
-                return cached_response.model_copy(
+                response = cached_response.model_copy(
                     update={
                         "cached": True,
                         "event": current_event,
                         "filename": filename,
                     }
                 )
+                await to_thread(session_store.record_cache_hit, database_cache_key)
+                await to_thread(
+                    session_store.record_session_event,
+                    video_session_event(
+                        response, filename=filename, cached=True
+                    ).model_dump(mode="json"),
+                )
+                return response
             del video_cache[cache_key]
+
+        stored_analysis = await to_thread(
+            session_store.get_analysis, database_cache_key
+        )
+        if stored_analysis is not None:
+            try:
+                persistent_response = VideoAnalysisResponse.model_validate_json(
+                    stored_analysis.response_json
+                )
+            except ValueError:
+                await to_thread(session_store.delete_analysis, database_cache_key)
+            else:
+                if cached_evidence_exists(
+                    persistent_response,
+                    evidence_root,
+                    require_annotated=True,
+                ):
+                    shutil.rmtree(run_dir)
+                    event = persistent_response.event
+                    if event.description_status is DescriptionStatus.PENDING:
+                        event = event.model_copy(
+                            update={
+                                "description_status": DescriptionStatus.SKIPPED,
+                                "description_error": (
+                                    "description_not_resumed_from_cache"
+                                ),
+                            }
+                        )
+                    response = persistent_response.model_copy(
+                        update={
+                            "cached": True,
+                            "event": event,
+                            "filename": filename,
+                        }
+                    )
+                    remember_video_response(cache_key, response)
+                    await to_thread(session_store.record_cache_hit, database_cache_key)
+                    await to_thread(
+                        session_store.record_session_event,
+                        video_session_event(
+                            response, filename=filename, cached=True
+                        ).model_dump(mode="json"),
+                    )
+                    return response
+                await to_thread(session_store.delete_analysis, database_cache_key)
         try:
             result = await to_thread(
                 processor.process,
@@ -282,14 +442,27 @@ def create_app(
             ],
             event=current_event,
         )
-        video_cache[cache_key] = response
-        if len(video_cache) > VIDEO_CACHE_LIMIT:
-            video_cache.popitem(last=False)
+        remember_video_response(cache_key, response)
+        await to_thread(
+            session_store.put_analysis,
+            cache_key=database_cache_key,
+            modality="video",
+            input_digest=video_digest,
+            model_identity=processor_identity,
+            response_json=response.model_dump_json(),
+            evidence_dir=video_id,
+        )
+        await to_thread(
+            session_store.record_session_event,
+            video_session_event(response, filename=filename, cached=False).model_dump(
+                mode="json"
+            ),
+        )
         return response
 
     @app.post("/audio/analyze", response_model=AudioAnalysisResponse)
     async def analyze_audio(
-        audio: Annotated[UploadFile, File(description="A short wildlife audio clip")]
+        audio: Annotated[UploadFile, File(description="A short wildlife audio clip")],
     ) -> AudioAnalysisResponse:
         filename = audio.filename or "audio.wav"
         suffix = Path(filename).suffix.lower()
@@ -314,11 +487,28 @@ def create_app(
                 status_code=503,
                 detail="AnimalCLAP service is unavailable",
             ) from error
-        return AudioAnalysisResponse(
+        response = AudioAnalysisResponse(
             audio_id=audio_id,
             filename=filename,
             analysis=analysis,
         )
+        await to_thread(
+            session_store.record_session_event,
+            audio_session_event(response).model_dump(mode="json"),
+        )
+        return response
+
+    @app.get("/session/events", response_model=list[SessionEventRecord])
+    async def list_session_events(limit: int = 50) -> list[SessionEventRecord]:
+        records = await to_thread(
+            session_store.list_session_events,
+            limit=max(1, min(limit, 100)),
+        )
+        return [SessionEventRecord.model_validate(record) for record in records]
+
+    @app.delete("/session/events")
+    async def clear_session_events() -> dict[str, int]:
+        return {"cleared": await to_thread(session_store.clear_session_events)}
 
     @app.post("/guidance", response_model=GuidanceResponse)
     async def get_guidance(request: GuidanceRequest) -> GuidanceResponse:

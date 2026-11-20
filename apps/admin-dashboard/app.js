@@ -1,8 +1,9 @@
 const API_ORIGIN = "http://127.0.0.1:8010";
 const SESSION_KEY = "wildguard.session.events";
 const eventsRoot = document.querySelector("#admin-events");
+let serverEvents = [];
 
-function readEvents() {
+function readBrowserEvents() {
   try {
     const value = JSON.parse(localStorage.getItem(SESSION_KEY) || "[]");
     return Array.isArray(value)
@@ -11,6 +12,10 @@ function readEvents() {
   } catch {
     return [];
   }
+}
+
+function readEvents() {
+  return serverEvents.length ? serverEvents : readBrowserEvents();
 }
 
 function addText(parent, tag, value, className) {
@@ -53,17 +58,22 @@ function renderEvents() {
 async function refreshHealth() {
   const runtime = document.querySelector("#runtime-status");
   try {
-    const response = await fetch(`${API_ORIGIN}/health`, {cache: "no-store"});
-    if (!response.ok) throw new Error(`API ${response.status}`);
-    const health = await response.json();
+    const [healthResponse, eventsResponse] = await Promise.all([
+      fetch(`${API_ORIGIN}/health`, {cache: "no-store"}),
+      fetch(`${API_ORIGIN}/session/events?limit=50`, {cache: "no-store"}),
+    ]);
+    if (!healthResponse.ok) throw new Error(`API ${healthResponse.status}`);
+    const health = await healthResponse.json();
+    serverEvents = eventsResponse.ok ? await eventsResponse.json() : [];
     document.querySelector("#api-status").textContent = "Online";
-    document.querySelector("#video-cache").textContent = Number.isInteger(health.video_cache_size)
-      ? `${health.video_cache_size}/8`
+    document.querySelector("#video-cache").textContent = Number.isInteger(health.persistent_video_cache_size)
+      ? `${health.video_cache_size} / ${health.persistent_video_cache_size}`
       : "Restart API";
     document.querySelector("#description-queue").textContent = String(health.description_queue_size ?? "—");
     runtime.className = "runtime-status online";
     runtime.innerHTML = "<i></i> Local API online";
   } catch {
+    serverEvents = [];
     document.querySelector("#api-status").textContent = "Offline";
     document.querySelector("#video-cache").textContent = "—";
     document.querySelector("#description-queue").textContent = "—";
@@ -74,8 +84,15 @@ async function refreshHealth() {
 }
 
 document.querySelector("#refresh-admin").addEventListener("click", refreshHealth);
-document.querySelector("#clear-events").addEventListener("click", () => {
+document.querySelector("#clear-events").addEventListener("click", async () => {
   localStorage.removeItem(SESSION_KEY);
+  try {
+    const response = await fetch(`${API_ORIGIN}/session/events`, {method: "DELETE"});
+    if (!response.ok) throw new Error(`API ${response.status}`);
+    serverEvents = [];
+  } catch {
+    // Keep the page usable when the local API is not running.
+  }
   renderEvents();
 });
 window.addEventListener("storage", renderEvents);

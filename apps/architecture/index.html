@@ -20,7 +20,7 @@
       <div class="architecture-heading"><p class="eyebrow">System flow</p><h2 id="system-flow-title">From field evidence to useful action</h2></div>
       <div class="architecture-row inputs"><article><small>HIKER</small><strong>Audio clip</strong><span>Phone + watch interface</span></article><article><small>DRIVER</small><strong>Road video</strong><span>Original + annotated playback</span></article><article><small>ADMIN</small><strong>Session review</strong><span>Health, events, architecture</span></article></div>
       <div class="architecture-arrow">↓</div>
-      <article class="architecture-gateway"><small>LOCAL GATEWAY</small><strong>FastAPI · shared contracts · evidence storage</strong><span>Validates uploads, hashes videos, serves evidence, and routes model work.</span></article>
+      <article class="architecture-gateway"><small>LOCAL GATEWAY</small><strong>FastAPI · shared contracts · SQLite cache index</strong><span>Validates uploads, hashes videos, serves evidence, records session events, and routes model work.</span></article>
       <div class="architecture-arrow">↓</div>
       <div class="model-lanes">
         <article><small>VIDEO</small><strong>YOLO26n</strong><span>FP16 CUDA detection</span><b>→ ByteTrack persistence</b></article>
@@ -36,9 +36,9 @@
 
     <section class="architecture-grid">
       <article><p class="eyebrow">Event contract</p><h2>Stable evidence, replaceable models.</h2><ul><li><code>event_id</code>, source, timestamp</li><li>Tracked detections and optional audio evidence</li><li>Deterministic decision and reason codes</li><li>Description state: pending, completed, failed, skipped</li></ul></article>
-      <article><p class="eyebrow">Runtime stack</p><h2>Everything used in the demo.</h2><ul><li>Python 3.12 · uv · FastAPI</li><li>RTX 4090 · PyTorch CUDA · FP16</li><li>YOLO26n · ByteTrack · AnimalCLAP · SmolVLM2</li><li>JSONL source corpus · local evidence · eight-entry LRU</li></ul></article>
+      <article><p class="eyebrow">Runtime stack</p><h2>Everything used in the demo.</h2><ul><li>Python 3.12 · uv · FastAPI · SQLite</li><li>RTX 4090 · PyTorch CUDA · FP16</li><li>YOLO26n · ByteTrack · AnimalCLAP · SmolVLM2</li><li>Local evidence · memory LRU · persistent cache index</li></ul></article>
       <article><p class="eyebrow">Failure isolation</p><h2>Useful even when enrichment fails.</h2><ul><li>Unavailable AnimalCLAP does not block video alerts</li><li>SmolVLM timeout cannot change decisions</li><li>Unsupported guidance returns insufficient evidence</li><li>Preview rendering runs after the detection response</li></ul></article>
-      <article><p class="eyebrow">Current limits</p><h2>What the demo does not claim.</h2><ul><li>No exact distance, speed, or collision probability</li><li>No confirmed species from one-class driver detection</li><li>No persistent database, authentication, or live wearables</li><li>Browser session log is not consent-authorized research data</li></ul></article>
+      <article><p class="eyebrow">Current limits</p><h2>What the demo does not claim.</h2><ul><li>No exact distance, speed, or collision probability</li><li>No confirmed species from one-class driver detection</li><li>No authentication, multi-user authorization, or live wearables</li><li>Local SQLite logs are not consent-authorized research data</li></ul></article>
     </section>
     <footer class="client-footer">WildGuard · Local multimodal architecture · <a href="../../design.svg">Open source diagram ↗</a></footer>
   </main>
