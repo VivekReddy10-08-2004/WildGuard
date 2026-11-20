@@ -130,6 +130,19 @@ and alert processing continue. The current hackathon slice uses an in-memory
 event store; durable persistence and WebSocket delivery remain UI integration
 work.
 
+For the single-user demo, the main API also accepts a raw short driving video:
+
+```bash
+curl -F "video=@/path/to/drive.mp4" http://127.0.0.1:8000/videos/analyze
+```
+
+`POST /videos/analyze` stores the upload under `storage/evidence/`, runs the
+local `storage/models/driver_animal_nano/best.pt` YOLO26n checkpoint with
+ByteTrack, aggregates tracks into structured evidence, and passes that evidence
+to the same decision and description pipeline. The response contains processing
+metadata, evidence-image URLs, and the event decision. Local frontend origins
+on ports 3000, 5173, and 8000 are allowed by CORS.
+
 ### 4. Data layer
 
 | Store | Contents |
@@ -252,10 +265,10 @@ The repository contains the architecture scaffold, local Python environment,
 normalized detection and event contracts, working image and audio adapters,
 dataset evaluation notebooks, the locally cached wildlife models, and a
 derived one-class driver-animal dataset with fine-tuned checkpoints. The local
-event API now applies deterministic alert policy, selects evidence frames, and
-enriches events asynchronously through SmolVLM2. The driver client, persistent
-event store, WebSocket delivery, and full runtime tracking loop remain to be
-implemented.
+event API now accepts short video uploads, runs YOLO26n with ByteTrack, applies
+deterministic alert policy, selects evidence frames, and enriches events
+asynchronously through SmolVLM2. The driver client, persistent event store, and
+WebSocket delivery remain to be implemented.
 
 The current driver checkpoint is generated at
 `storage/models/driver_animal_v2/best.pt` (runtime artifacts under `storage/`
