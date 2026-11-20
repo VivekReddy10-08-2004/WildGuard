@@ -10,7 +10,8 @@ Open `apps/web/index.html` in a modern browser. No installation, build step, CDN
 
 ## Included
 
-- Forest-inspired landing page with responsive CSS forest scene, subtle animations, illustrated example recognition card and moose-antler-inspired W SVG
+- Original animated barred owl encounter. The owl flies into a wide forest shot, lands, and calls over synthesized woodland ambience. The local film loads on Play and leads to the corresponding example audio observation. Reduced-motion users can advance through still stages. The film is illustrative and does not run detection or contain field footage.
+- Antler-W brand mark and custom wordmark. The Listen, See, and Understand illustrations replay independently by mouse, touch, or keyboard.
 - Product narrative for hikers, drivers, and researchers
 - Interactive unified workspace preview with overview, fictional marker map, synthetic detections, filters/search, event details, synthetic CSV export, charts, scripted guide, and privacy preference switches
 - Mobile workspace navigation, keyboard focus states, reduced-motion support, semantic landmarks, and explicit demonstration labeling
@@ -29,12 +30,13 @@ The backend gateway exclusively handles REST, WebSocket, auth/consent, authoriza
 ## Test checklist
 
 - View at 320px, 375px, 768px, 1024px and desktop widths
-- Navigate with keyboard through menu, tabs, demo filters, details dialog, switches and guide
+- Play, pause, mute, and replay the encounter. Open its matching record and activate each feature illustration with Enter or Space.
+- Navigate with keyboard through menu, workspace views, filters, details dialog, switches and guide. Check that Escape closes the menu or dialog and returns focus.
 - Check browser with reduced motion enabled
 - Filter by audio/camera; search no-result case; reset; export CSV and verify the synthetic warning
 - Verify all buttons work with no network
 - Confirm no user data leaves the browser and demo switches are not represented as real consent
-- Before production: add automated unit/E2E tests, focus trapping/return in dialog, full assistive technology audit, visual regression, cross-browser tests, performance profiling and real backend integration
+- Before production: add automated unit/E2E tests, complete an assistive technology audit, and validate visual regression, cross-browser behavior, performance on real devices, and backend integration
 
 ## Deliberately not implemented
 
