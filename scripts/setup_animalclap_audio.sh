@@ -14,7 +14,8 @@ uv pip install --python "$VENV_DIR/bin/python" \
     "torch==2.5.1" "torchaudio==2.5.1"
 uv pip install --python "$VENV_DIR/bin/python" \
     "transformers[sentencepiece]==4.44.2" \
-    "librosa==0.11.0" pandas tqdm
+    "librosa==0.11.0" "fastapi>=0.121.0" "uvicorn[standard]>=0.38.0" \
+    pandas tqdm
 
 if [ ! -d "$UPSTREAM_DIR/.git" ]; then
     git clone --quiet https://github.com/dahlian00/AnimalCLAP.git "$UPSTREAM_DIR"

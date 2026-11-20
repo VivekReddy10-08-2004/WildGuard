@@ -12,20 +12,28 @@ from pathlib import Path
 from typing import Annotated, Protocol
 from uuid import uuid4
 
+import httpx
 from fastapi import FastAPI, File, HTTPException, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from backend.api.schemas import CreateEventRequest, VideoAnalysisResponse
+from backend.api.animalclap_client import AnimalCLAPClient
+from backend.api.schemas import (
+    AudioAnalysisResponse,
+    CreateEventRequest,
+    VideoAnalysisResponse,
+)
 from backend.api.smolvlm_client import SmolVLMClient
 from backend.orchestration import DescriptionWorker, EventService
 from model_services.video.yolo_tracker import VideoTrackingResult, YoloVideoProcessor
-from shared.contracts import DescriptionStatus, WildlifeEvent
+from shared.contracts import DescriptionStatus, WildlifeAudioAnalysis, WildlifeEvent
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_EVIDENCE_ROOT = PROJECT_ROOT / "storage/evidence"
 VIDEO_SUFFIXES = {".avi", ".mkv", ".mov", ".mp4", ".webm"}
 MAX_UPLOAD_BYTES = 500 * 1024 * 1024
+AUDIO_SUFFIXES = {".flac", ".m4a", ".mp3", ".ogg", ".wav"}
+MAX_AUDIO_UPLOAD_BYTES = 50 * 1024 * 1024
 
 
 class VideoProcessor(Protocol):
@@ -34,14 +42,24 @@ class VideoProcessor(Protocol):
     ) -> VideoTrackingResult: ...
 
 
-async def save_video_upload(upload: UploadFile, destination: Path) -> None:
+class AudioAnalyzer(Protocol):
+    async def analyze(self, audio_path: Path) -> WildlifeAudioAnalysis: ...
+
+
+async def save_upload(
+    upload: UploadFile,
+    destination: Path,
+    *,
+    max_bytes: int,
+    size_label: str,
+) -> None:
     size = 0
     try:
         with destination.open("wb") as output:
             while chunk := await upload.read(1024 * 1024):
                 size += len(chunk)
-                if size > MAX_UPLOAD_BYTES:
-                    raise HTTPException(status_code=413, detail="Video exceeds 500 MB")
+                if size > max_bytes:
+                    raise HTTPException(status_code=413, detail=size_label)
                 output.write(chunk)
     except Exception:
         destination.unlink(missing_ok=True)
@@ -54,12 +72,16 @@ def create_app(
     service: EventService | None = None,
     worker: DescriptionWorker | None = None,
     video_processor: VideoProcessor | None = None,
+    audio_analyzer: AudioAnalyzer | None = None,
     evidence_root: Path = DEFAULT_EVIDENCE_ROOT,
 ) -> FastAPI:
     event_service = service or EventService(
         SmolVLMClient(os.getenv("SMOLVLM_URL", "http://127.0.0.1:8011"))
     )
     description_worker = worker or DescriptionWorker(event_service)
+    wildlife_audio = audio_analyzer or AnimalCLAPClient(
+        os.getenv("ANIMALCLAP_URL", "http://127.0.0.1:8012")
+    )
     processors: dict[str, VideoProcessor] = {}
     if video_processor is not None:
         processors["video"] = video_processor
@@ -131,7 +153,12 @@ def create_app(
         run_dir = evidence_root / video_id
         run_dir.mkdir(parents=True)
         upload_path = run_dir / f"source{suffix}"
-        await save_video_upload(video, upload_path)
+        await save_upload(
+            video,
+            upload_path,
+            max_bytes=MAX_UPLOAD_BYTES,
+            size_label="Video exceeds 500 MB",
+        )
         try:
             result = await to_thread(
                 processors["video"].process,
@@ -162,6 +189,39 @@ def create_app(
                 for frame in result.frames
             ],
             event=current_event,
+        )
+
+    @app.post("/audio/analyze", response_model=AudioAnalysisResponse)
+    async def analyze_audio(
+        audio: Annotated[UploadFile, File(description="A short wildlife audio clip")]
+    ) -> AudioAnalysisResponse:
+        filename = audio.filename or "audio.wav"
+        suffix = Path(filename).suffix.lower()
+        if suffix not in AUDIO_SUFFIXES:
+            await audio.close()
+            raise HTTPException(status_code=415, detail="Unsupported audio format")
+
+        audio_id = uuid4().hex
+        run_dir = evidence_root / "audio" / audio_id
+        run_dir.mkdir(parents=True)
+        upload_path = run_dir / f"source{suffix}"
+        await save_upload(
+            audio,
+            upload_path,
+            max_bytes=MAX_AUDIO_UPLOAD_BYTES,
+            size_label="Audio exceeds 50 MB",
+        )
+        try:
+            analysis = await wildlife_audio.analyze(upload_path)
+        except (httpx.HTTPError, TimeoutError) as error:
+            raise HTTPException(
+                status_code=503,
+                detail="AnimalCLAP service is unavailable",
+            ) from error
+        return AudioAnalysisResponse(
+            audio_id=audio_id,
+            filename=filename,
+            analysis=analysis,
         )
 
     @app.get("/events/{event_id}", response_model=WildlifeEvent)

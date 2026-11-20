@@ -56,3 +56,16 @@ HF_HUB_CACHE="$PWD/storage/models/animalclap/huggingface/hub" \
 
 The output contains per-file and per-window candidate rankings. Similarities
 are useful for ranking but are not calibrated probabilities.
+
+## Local API
+
+Start the isolated service after setup:
+
+```bash
+./scripts/run_animalclap_service.sh
+```
+
+It listens on `http://127.0.0.1:8012`. The main WildGuard API forwards audio
+uploaded to `POST /audio/analyze` and returns candidate rankings with cautious
+wording such as `Possible wildlife sound detected — possible species: coyote`.
+AnimalCLAP output does not alter the visual driver-safety decision.

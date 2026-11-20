@@ -1,5 +1,6 @@
 """Stable data contracts shared across services."""
 
+from shared.contracts.audio import SpeciesRanking, WildlifeAudioAnalysis
 from shared.contracts.detection import BoundingBox, Detection, ImagePrediction
 from shared.contracts.event import (
     AlertDecision,
@@ -29,8 +30,10 @@ __all__ = [
     "ImagePrediction",
     "PolicyConfig",
     "SceneDescription",
+    "SpeciesRanking",
     "TrackedFrame",
     "TrackEvidence",
+    "WildlifeAudioAnalysis",
     "WildlifeEvent",
 ]
 

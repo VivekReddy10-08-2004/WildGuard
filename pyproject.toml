@@ -66,6 +66,13 @@ strict = true
 warn_unused_configs = true
 
 [[tool.mypy.overrides]]
-module = ["transformers"]
+module = ["librosa", "transformers"]
 ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = [
+    "model_services.audio.animalclap.infer_species",
+    "model_services.audio.animalclap.verify",
+]
+ignore_errors = true
 

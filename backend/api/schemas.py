@@ -6,6 +6,7 @@ from shared.contracts import (
     AudioEvidence,
     TrackedFrame,
     TrackEvidence,
+    WildlifeAudioAnalysis,
     WildlifeEvent,
 )
 
@@ -26,3 +27,9 @@ class VideoAnalysisResponse(BaseModel):
     duration_seconds: float
     evidence_urls: list[str]
     event: WildlifeEvent
+
+
+class AudioAnalysisResponse(BaseModel):
+    audio_id: str
+    filename: str
+    analysis: WildlifeAudioAnalysis

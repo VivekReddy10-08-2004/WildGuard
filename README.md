@@ -102,10 +102,12 @@ detection/event contracts rather than share one mandatory set of weights.
 ### Local event-description runtime
 
 SmolVLM2 runs in an isolated local service so its dependencies cannot disturb
-the YOLO runtime. Start both processes in separate terminals:
+the YOLO runtime. AnimalCLAP uses another isolated service for audio. Start all
+three processes in separate terminals:
 
 ```bash
 ./scripts/run_smolvlm_service.sh
+./scripts/run_animalclap_service.sh
 ./scripts/run_wildguard_api.sh
 ```
 
@@ -133,7 +135,7 @@ work.
 For the single-user demo, the main API also accepts a raw short driving video:
 
 ```bash
-curl -F "video=@/path/to/drive.mp4" http://127.0.0.1:8000/videos/analyze
+curl -F "video=@/path/to/drive.mp4" http://127.0.0.1:8010/videos/analyze
 ```
 
 `POST /videos/analyze` stores the upload under `storage/evidence/`, runs the
@@ -142,6 +144,16 @@ ByteTrack, aggregates tracks into structured evidence, and passes that evidence
 to the same decision and description pipeline. The response contains processing
 metadata, evidence-image URLs, and the event decision. Local frontend origins
 on ports 3000, 5173, and 8000 are allowed by CORS.
+
+Analyze a short wildlife-audio clip through the main API:
+
+```bash
+curl -F "audio=@/path/to/wildlife.ogg" http://127.0.0.1:8010/audio/analyze
+```
+
+The response reports a possible species and similarity rankings. These values
+are not probabilities, so the interface uses wording such as “Possible wildlife
+sound detected” rather than claiming a confirmed species identification.
 
 ### 4. Data layer
 

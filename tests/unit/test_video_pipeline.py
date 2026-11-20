@@ -13,7 +13,9 @@ from shared.contracts import (
     AlertLevel,
     BoundingBox,
     SceneDescription,
+    SpeciesRanking,
     TrackEvidence,
+    WildlifeAudioAnalysis,
 )
 
 
@@ -79,6 +81,18 @@ class VideoProcessor:
         )
 
 
+class AudioAnalyzer:
+    async def analyze(self, audio_path: Path) -> WildlifeAudioAnalysis:
+        assert audio_path.is_file()
+        return WildlifeAudioAnalysis(
+            possible_species="coyote",
+            similarity=0.7,
+            score_margin=0.2,
+            message="Possible wildlife sound detected — possible species: coyote",
+            rankings=[SpeciesRanking(species="coyote", similarity=0.7)],
+        )
+
+
 def test_video_upload_flows_into_existing_decision_engine(tmp_path: Path) -> None:
     service = EventService(Descriptor())
     worker = DescriptionWorker(service)
@@ -101,3 +115,27 @@ def test_video_upload_flows_into_existing_decision_engine(tmp_path: Path) -> Non
     assert payload["processed_frames"] == 30
     assert payload["event"]["decision"]["alert_level"] == AlertLevel.WARNING
     assert payload["event"]["decision"]["should_alert"] is True
+
+
+def test_audio_upload_flows_into_animalclap_service(tmp_path: Path) -> None:
+    service = EventService(Descriptor())
+    app = create_app(
+        service=service,
+        worker=DescriptionWorker(service),
+        video_processor=VideoProcessor(),
+        audio_analyzer=AudioAnalyzer(),
+        evidence_root=tmp_path / "evidence",
+    )
+
+    with TestClient(app) as client:
+        response = client.post(
+            "/audio/analyze",
+            files={"audio": ("wildlife.ogg", b"fake-audio", "audio/ogg")},
+        )
+
+    assert response.status_code == 200
+    analysis = response.json()["analysis"]
+    assert analysis["possible_species"] == "coyote"
+    assert analysis["message"] == (
+        "Possible wildlife sound detected — possible species: coyote"
+    )
