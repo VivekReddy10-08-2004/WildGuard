@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WildGuard Driver</title>
+  <link rel="icon" href="../shared/assets/wildguard-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../shared/client.css">
+  <link rel="stylesheet" href="../shared/event-flow.css">
+  <script src="./app.js" defer></script>
+</head>
+<body><div class="shell">
+  <header class="client-header">
+    <a href="../web/" aria-label="WildGuard landing"><img src="../shared/assets/wildguard-wordmark.svg" alt="WildGuard"></a>
+    <nav aria-label="Client navigation"><a href="../web/#demonstration">Hiker</a><a href="../admin-dashboard/">Admin</a><a href="../architecture/">Architecture</a></nav>
+  </header>
+  <main class="client-main">
+    <section class="driver-hero" aria-labelledby="driver-title">
+      <div class="driver-hero-copy">
+        <p class="eyebrow">Driver safety client</p>
+        <h1 id="driver-title">Roadside animal awareness.</h1>
+        <p class="lede">Upload a short road video to compare the original with WildGuard’s annotated animal detections.</p>
+      </div>
+      <figure class="driver-flow" aria-label="WildGuard scans the road, detects an animal, and issues a warning">
+        <svg viewBox="0 0 760 300" role="img" aria-hidden="true">
+          <defs>
+            <linearGradient id="road-fill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#23483a"/><stop offset="1" stop-color="#0b2119"/></linearGradient>
+          </defs>
+          <path class="flow-road" d="M-40 306C160 211 334 161 800 190L800 306Z" fill="url(#road-fill)"/>
+          <path class="flow-road-edge" d="M-25 294C185 195 378 154 790 185"/>
+          <path class="flow-lane" d="M38 282C237 204 421 177 768 194"/>
+          <g class="flow-scan">
+            <path d="M185 232Q330 132 500 136"/>
+            <path d="M187 242Q350 166 507 151"/>
+            <path d="M192 252Q355 202 500 171"/>
+          </g>
+          <g class="flow-car">
+            <path d="M106 239l22-27h55l24 27 8 47H95Z"/>
+            <rect x="126" y="219" width="60" height="24" rx="5"/>
+            <circle cx="118" cy="282" r="9"/><circle cx="193" cy="282" r="9"/>
+            <circle class="flow-headlight" cx="202" cy="249" r="5"/>
+          </g>
+          <g class="flow-animal">
+            <ellipse cx="531" cy="150" rx="35" ry="18"/>
+            <path d="M558 145l8-25 14-4 9 8-8 15-20 20M511 163l-5 42M528 164l1 41M548 162l8 39"/>
+            <path class="flow-antlers" d="M579 119l-5-20m6 17 12-14m-14 8-12-10"/>
+          </g>
+          <g class="flow-detection-box">
+            <rect x="487" y="91" width="108" height="120" rx="8"/>
+            <path d="M487 113V91h22M573 91h22v22M595 189v22h-22M509 211h-22v-22"/>
+            <text x="493" y="84">ANIMAL · 0.89</text>
+          </g>
+          <g class="flow-warning">
+            <circle cx="665" cy="85" r="39"/>
+            <path d="M665 61v30M665 104v2"/>
+            <text x="665" y="143" text-anchor="middle">WARNING</text>
+          </g>
+        </svg>
+        <figcaption><span>01 · Scan road</span><span>02 · Detect animal</span><span>03 · Warn driver</span></figcaption>
+      </figure>
+    </section>
+    <section class="analysis-panel" aria-labelledby="analysis-title">
+      <div>
+        <p class="eyebrow">Local video analysis</p>
+        <h2 id="analysis-title">Analyze a drive</h2>
+        <p>The video stays on this machine and is processed by the local YOLO26n detector.</p>
+      </div>
+      <form id="video-form" class="upload-form">
+        <label for="video-file">Driving video</label>
+        <input id="video-file" name="video" type="file" accept="video/*" required>
+        <button type="submit">Detect animals</button>
+      </form>
+      <div id="analysis-status" class="analysis-status" aria-live="polite">Choose a video to begin.</div>
+    </section>
+    <section id="video-comparison" class="video-comparison" aria-label="Video comparison" hidden>
+      <article><h2>Original</h2><video id="original-video" controls playsinline preload="metadata"></video></article>
+      <article><h2>WildGuard detections</h2><video id="annotated-video" muted playsinline preload="metadata"></video></article>
+    </section>
+    <section id="decision-panel" class="decision-panel" aria-live="polite" hidden></section>
+    <section class="guidance-panel" aria-labelledby="guidance-title">
+      <div>
+        <p class="eyebrow">Detection to guidance</p>
+        <h2 id="guidance-title">What should the driver do?</h2>
+        <p>WildGuard automatically selects verified guidance from the detected roadway context. Guidance never creates or changes the alert.</p>
+      </div>
+      <div id="guidance-result" class="guidance-result" aria-live="polite">
+        Guidance will appear after video analysis detects an animal.
+      </div>
+    </section>
+    <section class="mode-flow" aria-labelledby="driver-event-flow-title">
+      <div class="mode-flow-heading"><div><p class="eyebrow">Driver event flow</p><h2 id="driver-event-flow-title">Detection returns first. Evidence follows.</h2></div><p>The alert path operates only on structured detector evidence. Preview rendering, language description, and source-backed guidance remain isolated enrichment work.</p></div>
+      <div class="mode-flow-track" aria-label="Detailed driver video event processing flow">
+        <article class="mode-flow-step"><small>01 · INGEST</small><span class="mode-flow-icon" aria-hidden="true">▶</span><strong>Video is validated</strong><p>FastAPI streams the upload to local evidence storage while calculating its SHA-256.</p><div class="mode-flow-tags"><span>FastAPI</span><span>SHA-256</span></div></article>
+        <article class="mode-flow-step"><small>02 · CACHE</small><span class="mode-flow-icon" aria-hidden="true">↻</span><strong>Prior work is checked</strong><p>The API checks the eight-entry memory LRU, then the versioned SQLite cache index.</p><div class="mode-flow-tags"><span>LRU</span><span>SQLite</span></div></article>
+        <article class="mode-flow-step"><small>03 · DETECT</small><span class="mode-flow-icon" aria-hidden="true">◎</span><strong>YOLO26n finds animals</strong><p>Sampled frames run locally on CUDA in FP16 against the transferred one-class animal model.</p><div class="mode-flow-tags"><span>YOLO26n</span><span>RTX 4090</span></div></article>
+        <article class="mode-flow-step"><small>04 · TRACK</small><span class="mode-flow-icon" aria-hidden="true">⌁</span><strong>ByteTrack adds persistence</strong><p>Tracks aggregate confidence, frame persistence, bounding boxes, and approximate road overlap.</p><div class="mode-flow-tags"><span>ByteTrack</span><span>TrackEvidence</span></div></article>
+        <article class="mode-flow-step"><small>05 · DECIDE</small><span class="mode-flow-icon" aria-hidden="true">!</span><strong>Pure policy evaluates</strong><p>Structured evidence deterministically produces NONE, CAUTION, or WARNING with reason codes.</p><div class="mode-flow-tags"><span>Decision engine</span><span>Reason codes</span></div></article>
+        <article class="mode-flow-step"><small>06 · DELIVER</small><span class="mode-flow-icon" aria-hidden="true">▣</span><strong>Alert + evidence arrive</strong><p>The UI receives the alert, verified guidance, synchronized source, and H.264 annotated preview.</p><div class="mode-flow-tags"><span>FFmpeg</span><span>Guidance corpus</span></div></article>
+      </div>
+      <div class="mode-flow-branches"><article><strong>Immediate safety lane</strong><span>YOLO → ByteTrack → event contract → deterministic decision → alert.</span></article><article><strong>Parallel advisory lane</strong><span>Selected frames → SmolVLM2 description; roadway context → verified guidance retrieval.</span></article><article class="mode-flow-caution"><strong>Failure isolation</strong><span>Preview, VLM, guidance, or audio failure cannot suppress the structured alert decision.</span></article></div>
+      <p class="mode-flow-caption">Running components: FastAPI 8010 · YOLO26n FP16 · ByteTrack · deterministic risk policy · SmolVLM2 queue · JSONL guidance corpus · FFmpeg H.264 · local evidence · SQLite.</p>
+    </section>
+    <footer class="client-footer">WildGuard · Driver experience boundary</footer>
+  </main>
+</div></body>
+</html>

@@ -3,18 +3,60 @@ storage/events/*
 storage/evidence/*
 storage/vectors/*
 storage/audit/*
+storage/models/*
+storage/label-studio/*
+storage/*.sqlite3
+storage/*.sqlite3-shm
+storage/*.sqlite3-wal
 
 # Large local training and evaluation datasets
 data/datasets/*
 !data/datasets/README.md
+data/derived/*
+!data/derived/.gitkeep
 
 # Local Python environments
 .venv/
+model_services/audio/animalclap/.venv/
+model_services/audio/animalclap/upstream/
+model_services/video/smolvlm/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Model weights and generated training outputs
+*.pt
+*.pth
+*.onnx
+runs/
+notebooks/results/*_predictions.jsonl
+notebooks/results/animalclap_*.csv
+notebooks/results/animalclap_*.png
+notebooks/results/animalclap_*.json
+
+# AnimalCLAP checkpoints and CLAP backbone cache
+!storage/models/animalclap/
+storage/models/animalclap/*
+!storage/models/animalclap/.gitkeep
+
+# SmolVLM2 model cache
+!storage/models/smolvlm2/
+storage/models/smolvlm2/*
+!storage/models/smolvlm2/.gitkeep
 
 # Keep the documented storage layout in version control
 !storage/events/.gitkeep
 !storage/evidence/.gitkeep
 !storage/vectors/.gitkeep
 !storage/audit/.gitkeep
+!storage/models/.gitkeep
 
-
+!data/datasets/Youtube_Deer
+skills/*

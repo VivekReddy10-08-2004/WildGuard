@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from datasets import load_dataset
+from datasets import load_dataset  # type: ignore[import-untyped]
 
 DATASET_ID = "yin30lei/wildlife_very_dark"
 PROJECT_ROOT = Path(__file__).resolve().parents[1]

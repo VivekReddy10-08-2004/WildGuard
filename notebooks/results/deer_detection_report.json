@@ -1,0 +1,25 @@
+{
+  "confidence": 0.25,
+  "model_classes_evaluated": 1,
+  "overall": {
+    "images": 756,
+    "any_detection": 625,
+    "target_detected": 351,
+    "top1_correct": 326,
+    "detection_rate": 0.8267195767195767,
+    "target_detection_rate": 0.4642857142857143,
+    "top1_accuracy": 0.4312169312169312
+  },
+  "per_class": {
+    "train": {
+      "images": 756,
+      "any_detection": 625,
+      "target_detected": 351,
+      "top1_correct": 326,
+      "detection_rate": 0.8267195767195767,
+      "target_detection_rate": 0.4642857142857143,
+      "top1_accuracy": 0.4312169312169312
+    }
+  },
+  "mapping_note": "dataset deer label mapped to mule_deer proxy"
+}

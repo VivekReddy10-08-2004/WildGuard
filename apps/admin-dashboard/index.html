@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WildGuard Admin</title>
+  <link rel="icon" href="../shared/assets/wildguard-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../shared/client.css">
+  <link rel="stylesheet" href="../shared/event-flow.css">
+  <link rel="stylesheet" href="./admin.css">
+  <script src="./app.js" defer></script>
+</head>
+<body><div class="shell">
+  <header class="client-header">
+    <a href="../web/" aria-label="WildGuard landing"><img src="../shared/assets/wildguard-wordmark.svg" alt="WildGuard"></a>
+    <nav aria-label="Client navigation"><a href="../web/#demonstration">Hiker</a><a href="../driver-client/">Driver</a><a href="../architecture/">Architecture</a></nav>
+  </header>
+  <main class="client-main admin-main">
+    <section class="admin-hero">
+      <div><p class="eyebrow">Local operations console</p><h1>See how every event was built.</h1><p class="lede">Inspect presentation-session events, local model roles, cache state, and processing paths without changing model output.</p></div>
+      <div class="admin-hero-actions"><span class="runtime-status" id="runtime-status"><i></i> Checking local API</span><button id="refresh-admin" type="button">Refresh status</button></div>
+    </section>
+
+    <section class="admin-stats" aria-label="Runtime status">
+      <article><small>FASTAPI</small><strong id="api-status">Checking</strong><span>Local gateway · 8010</span></article>
+      <article><small>VIDEO CACHE</small><strong id="video-cache">—</strong><span>Memory / persistent SQLite</span></article>
+      <article><small>DESCRIPTION QUEUE</small><strong id="description-queue">—</strong><span>Single SmolVLM worker</span></article>
+      <article><small>SESSION EVENTS</small><strong id="session-count">0</strong><span>Persistent local history</span></article>
+    </section>
+
+    <section class="admin-section" aria-labelledby="models-title">
+      <div class="admin-section-heading"><div><p class="eyebrow">Model inventory</p><h2 id="models-title">Local intelligence layers</h2></div><a href="../architecture/">Open master architecture ↗</a></div>
+      <div class="model-grid">
+        <article><span class="model-modality">VIDEO</span><h3>YOLO26n + ByteTrack</h3><p>Samples road video, detects the shared animal class, tracks persistence, and writes structured evidence.</p><small>FP16 CUDA · frame stride 2</small></article>
+        <article><span class="model-modality">AUDIO</span><h3>AnimalCLAP</h3><p>Ranks coyote, elk, grizzly bear, mountain lion, and wolf from local audio clips.</p><small>Advisory similarity—not probability</small></article>
+        <article><span class="model-modality">CONTEXT</span><h3>SmolVLM2</h3><p>Describes selected evidence frames asynchronously and cannot alter an alert decision.</p><small>Bounded one-job worker</small></article>
+        <article><span class="model-modality">GUIDANCE</span><h3>Verified source retrieval</h3><p>Selects exact Maine roadway passages by species and context with explicit abstention.</p><small>Deterministic · source cited</small></article>
+        <article><span class="model-modality">REPORT</span><h3>Qwen2.5-Coder 7B</h3><p>Turns a copy of structured session records into an advisory Markdown presentation report.</p><small>Local Ollama · temperature 0</small></article>
+      </div>
+    </section>
+
+    <section class="admin-section export-section" aria-labelledby="export-title">
+      <div class="admin-section-heading"><div><p class="eyebrow">REST API export</p><h2 id="export-title">Export session intelligence</h2></div><span class="local-model-chip">LOCAL AI · QWEN2.5-CODER 7B</span></div>
+      <p class="admin-disclosure">Download the unmodified session records as JSON or CSV, or ask the local open-weight model to create an advisory Markdown report. AI generation never changes the SQLite records.</p>
+      <div class="export-actions">
+        <button class="export-button" type="button" data-export-format="json"><strong>Download JSON</strong><span>Exact structured records</span></button>
+        <button class="export-button" type="button" data-export-format="csv"><strong>Download CSV</strong><span>Spreadsheet-ready log</span></button>
+        <button class="export-button export-ai" id="export-ai" type="button" data-export-format="ai"><strong>Generate AI report</strong><span>Local Markdown summary</span></button>
+      </div>
+      <p class="export-status" id="export-status" aria-live="polite">Ready. The AI report runs locally through Ollama and may take a moment.</p>
+      <code class="export-endpoint">GET /session/events/export?format=json|csv|ai</code>
+    </section>
+
+    <section class="admin-section" aria-labelledby="events-title">
+      <div class="admin-section-heading"><div><p class="eyebrow">Presentation session</p><h2 id="events-title">Recent real demo events</h2></div><button id="clear-events" type="button">Clear local log</button></div>
+      <p class="admin-disclosure">Events produced by the local hiker audio and driver video APIs are stored in a small SQLite session log. Media remains in local evidence storage and is never embedded in the database.</p>
+      <div id="admin-events" class="admin-events" aria-live="polite"></div>
+    </section>
+
+    <section class="mode-flow" aria-labelledby="admin-event-flow-title">
+      <div class="mode-flow-heading"><div><p class="eyebrow">Admin event flow</p><h2 id="admin-event-flow-title">Local runtime activity becomes a reviewable record.</h2></div><p>The admin view observes health, cache state, model roles, and session summaries. It does not recalculate detections or override decisions.</p></div>
+      <div class="mode-flow-track" aria-label="Detailed admin session event processing flow">
+        <article class="mode-flow-step"><small>01 · PRODUCE</small><span class="mode-flow-icon" aria-hidden="true">＋</span><strong>Hiker or driver event</strong><p>The audio and video API routes emit normalized presentation-session summaries.</p><div class="mode-flow-tags"><span>SessionEventRecord</span></div></article>
+        <article class="mode-flow-step"><small>02 · PERSIST</small><span class="mode-flow-icon" aria-hidden="true">▤</span><strong>SQLite stores metadata</strong><p>Modality, source, result, score, decision, cache state, timestamp, and flow are recorded.</p><div class="mode-flow-tags"><span>SQLite WAL</span><span>No media blobs</span></div></article>
+        <article class="mode-flow-step"><small>03 · OBSERVE</small><span class="mode-flow-icon" aria-hidden="true">◉</span><strong>Health exposes runtime</strong><p>The dashboard reads API, description queue, memory cache, persistent cache, and event counts.</p><div class="mode-flow-tags"><span>GET /health</span></div></article>
+        <article class="mode-flow-step"><small>04 · RETRIEVE</small><span class="mode-flow-icon" aria-hidden="true">↓</span><strong>Recent events load</strong><p><code>GET /session/events</code> returns the newest local records; browser storage is an offline fallback.</p><div class="mode-flow-tags"><span>REST JSON</span><span>localStorage fallback</span></div></article>
+        <article class="mode-flow-step"><small>05 · EXPLAIN</small><span class="mode-flow-icon" aria-hidden="true">→</span><strong>Flow is reconstructed</strong><p>Each card shows which detector, policy, storage, enrichment, and output stages participated.</p><div class="mode-flow-tags"><span>Read-only UI</span></div></article>
+        <article class="mode-flow-step"><small>06 · EXPORT</small><span class="mode-flow-icon" aria-hidden="true">⇩</span><strong>Logs or AI report download</strong><p>JSON and CSV preserve records; Qwen2.5-Coder turns a read-only copy into an advisory Markdown report.</p><div class="mode-flow-tags"><span>REST download</span><span>Local Ollama</span></div></article>
+        <article class="mode-flow-step"><small>07 · MAINTAIN</small><span class="mode-flow-icon" aria-hidden="true">×</span><strong>Session log can clear</strong><p><code>DELETE /session/events</code> removes summaries without deleting inference cache or evidence files.</p><div class="mode-flow-tags"><span>Cache preserved</span></div></article>
+      </div>
+      <div class="mode-flow-branches"><article><strong>Operational review</strong><span>Health + cache counts + event records + model inventory.</span></article><article><strong>Architecture review</strong><span>Per-event stages link back to the master system responsibility map.</span></article><article class="mode-flow-caution"><strong>Administrative boundary</strong><span>Local demo persistence is not authentication, consent enforcement, or a formal audit log.</span></article></div>
+      <p class="mode-flow-caption">Running components: FastAPI health and session routes · SQLite WAL database · evidence-path references · browser admin renderer · localStorage offline fallback.</p>
+    </section>
+
+    <aside class="admin-boundary"><strong>Current boundary</strong> This exports a single-user local presentation session. The generated report is advisory AI text, not a safety decision or formal audit report. Authentication, consent enforcement, and multi-user authorization remain production backend work.</aside>
+    <footer class="client-footer">WildGuard · Admin and research boundary</footer>
+  </main>
+</div></body>
+</html>

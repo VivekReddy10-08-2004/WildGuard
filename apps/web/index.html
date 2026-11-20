@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#102b23" />
+  <meta name="description" content="WildGuard — local-first wildlife awareness for the trail, road, and field." />
+  <title>WildGuard — Stay wild. Stay aware.</title>
+  <link rel="icon" href="../shared/assets/wildguard-mark.svg?v=left" type="image/svg+xml" />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./landing.css" />
+  <link rel="stylesheet" href="../shared/event-flow.css" />
+  <script src="./landing.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="hoof-trail" aria-label="Landing page trail">
+    <a class="hoof-stop" href="#home" aria-current="location" aria-label="Wildlife in context"><span class="hoof-print" aria-hidden="true"></span></a>
+    <a class="hoof-stop" href="#hiker-flow" aria-label="Hiker event flow"><span class="hoof-print" aria-hidden="true"></span></a>
+    <a class="hoof-stop" href="#how-it-works" aria-label="From signal to sighting"><span class="hoof-print" aria-hidden="true"></span></a>
+    <a class="hoof-stop" href="#capabilities" aria-label="Built for the field"><span class="hoof-print" aria-hidden="true"></span></a>
+    <a class="hoof-stop" href="#impact" aria-label="Why WildGuard matters"><span class="hoof-print" aria-hidden="true"></span></a>
+    <a class="hoof-stop" href="#faq" aria-label="Observe with care"><span class="hoof-print" aria-hidden="true"></span></a>
+  </nav>
+  <header class="site-header" id="site-header">
+    <a class="brand" href="#home" aria-label="WildGuard home"><img class="wordmark" src="../shared/assets/wildguard-wordmark.svg" alt="" width="174" height="29"></a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="#how-it-works">How it works</a><a href="#demonstration">Demonstration</a><a href="#capabilities">Capabilities</a><a href="#impact">Impact</a><a href="../architecture/">Architecture</a><a href="#faq">Privacy</a>
+    </nav>
+    <div class="header-actions"><a class="header-cta" href="#demonstration">Get started</a><button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation"><span></span><span></span><span></span></button></div>
+  </header>
+  <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation" hidden><a href="#how-it-works">How it works</a><a href="#demonstration">Demonstration</a><a href="#capabilities">Capabilities</a><a href="#impact">Impact</a><a href="../architecture/">Architecture</a><a href="#faq">Privacy</a><a class="mobile-cta" href="#demonstration">Get started</a></nav>
+  <main id="main">
+    <section class="hero" id="home" tabindex="-1" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Wildlife <em>within earshot.</em></h1>
+        <p>WildGuard listens for nearby wildlife calls and mirrors a local caution to your phone and watch without sending audio off-device.</p>
+        <div class="hero-actions" id="demonstration" tabindex="-1">
+          <button class="encounter-play" id="field-demo-button" type="button"><span class="play-symbol" aria-hidden="true"></span><span class="play-label">Run coyote field test</span></button>
+          <label class="audio-upload" for="field-audio-upload">Upload local audio <span aria-hidden="true">↗</span></label>
+          <input id="field-audio-upload" class="visually-hidden" type="file" accept="audio/*,.mp3,.ogg,.wav,.flac,.m4a">
+          <button class="audio-pause" id="field-audio-toggle" type="button" disabled>Pause audio</button>
+        </div>
+      </div>
+      <figure class="hiker-demo" data-state="idle" aria-label="WildGuard hiker phone and smartwatch audio alert demonstration">
+        <div class="device-stage">
+          <div class="sound-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="phone-shell">
+            <div class="phone-speaker" aria-hidden="true"></div>
+            <div class="phone-screen">
+              <div class="device-topline"><span>TRAIL MODE</span><span class="local-device"><i></i> LOCAL</span></div>
+              <div class="phone-listener" aria-hidden="true">
+                <div class="listener-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              </div>
+              <p class="phone-state" id="phone-state">Ready to listen</p>
+              <h2 class="phone-species" id="phone-species">Nearby sound scan</h2>
+              <p class="phone-detail" id="phone-detail">Choose the field test or upload a wildlife recording.</p>
+              <div class="phone-caution" id="phone-caution">
+                <span class="caution-mark" aria-hidden="true">!</span>
+                <div><small>CAUTION</small><strong>Possible wildlife nearby</strong><p>Stay aware and give the animal space.</p></div>
+              </div>
+              <div class="device-footer"><span>ANIMALCLAP</span><span>ON DEVICE</span></div>
+            </div>
+          </div>
+          <div class="watch-column" aria-hidden="true">
+            <div class="watch-strap watch-strap-top"></div>
+            <div class="watch-shell">
+              <div class="watch-screen">
+                <div class="watch-wave"><i></i><i></i><i></i><i></i><i></i></div>
+                <small id="watch-state">LISTENING READY</small>
+                <strong id="watch-species">Trail clear</strong>
+                <span id="watch-note">Local monitor</span>
+              </div>
+            </div>
+            <div class="watch-strap watch-strap-bottom"></div>
+          </div>
+        </div>
+        <audio id="field-audio" preload="metadata" src="../shared/assets/coyote-field-demo.ogg"></audio>
+        <figcaption class="hiker-demo-caption" aria-live="polite">
+          <div><p class="encounter-label">Local wildlife audio</p><strong id="field-result-title">Phone + watch awareness</strong></div>
+          <p id="field-result-note">No audio leaves this machine. Results indicate similarity, not confirmed identity.</p>
+        </figcaption>
+      </figure>
+    </section>
+    <section class="mode-flow-section" id="hiker-flow" aria-labelledby="hiker-event-flow-title">
+      <div class="container mode-flow">
+        <div class="mode-flow-heading"><div><p class="eyebrow">Hiker event flow</p><h2 id="hiker-event-flow-title">From nearby sound to a local caution.</h2></div><p>The audio path stays advisory: AnimalCLAP ranks candidate species, the interface communicates uncertainty, and the session record remains on this machine.</p></div>
+        <div class="mode-flow-track" aria-label="Detailed hiker audio event processing flow">
+          <article class="mode-flow-step"><small>01 · CAPTURE</small><span class="mode-flow-icon" aria-hidden="true">♫</span><strong>Field audio enters</strong><p>The built-in coyote clip or a user-selected recording is played and packaged for analysis.</p><div class="mode-flow-tags"><span>Browser Audio</span><span>OGG / WAV / MP3</span></div></article>
+          <article class="mode-flow-step"><small>02 · LOCAL API</small><span class="mode-flow-icon" aria-hidden="true">↗</span><strong>FastAPI validates</strong><p><code>POST /audio/analyze</code> checks the format, limits size, and writes local evidence.</p><div class="mode-flow-tags"><span>FastAPI</span><span>UploadFile</span></div></article>
+          <article class="mode-flow-step"><small>03 · AUDIO MODEL</small><span class="mode-flow-icon" aria-hidden="true">≈</span><strong>AnimalCLAP ranks</strong><p>Local audio embeddings are compared across five wildlife candidates with similarity and margin.</p><div class="mode-flow-tags"><span>AnimalCLAP</span><span>Open weights</span></div></article>
+          <article class="mode-flow-step"><small>04 · INTERPRET</small><span class="mode-flow-icon" aria-hidden="true">?</span><strong>Uncertainty stays visible</strong><p>The result says “possible species”; it does not claim identity, distance, or physical danger.</p><div class="mode-flow-tags"><span>Similarity ≠ probability</span></div></article>
+          <article class="mode-flow-step"><small>05 · PRESENT</small><span class="mode-flow-icon" aria-hidden="true">!</span><strong>Phone + watch caution</strong><p>The nearby-sound caution, species candidate, waveform, and pause controls update together.</p><div class="mode-flow-tags"><span>Mobile UI</span><span>Watch mirror</span></div></article>
+          <article class="mode-flow-step"><small>06 · REMEMBER</small><span class="mode-flow-icon" aria-hidden="true">▤</span><strong>Session event persists</strong><p>SQLite records the result and flow for local admin review without embedding the audio binary.</p><div class="mode-flow-tags"><span>SQLite</span><span>Local evidence</span></div></article>
+        </div>
+        <div class="mode-flow-branches"><article><strong>Immediate user path</strong><span>Audio result → cautious wording → phone and watch presentation.</span></article><article><strong>Local operations path</strong><span>Session summary → SQLite → admin event review.</span></article><article class="mode-flow-caution"><strong>Safety boundary</strong><span>No distance estimate, continuous microphone claim, or authoritative risk decision.</span></article></div>
+        <p class="mode-flow-caption">Running components: browser media controls · FastAPI 8010 · AnimalCLAP service 8012 · local evidence storage · SQLite session log.</p>
+      </div>
+    </section>
+    <section class="intro section-pad" id="how-it-works" tabindex="-1" aria-labelledby="signal-title">
+      <div class="container">
+        <h2 class="editorial-heading" id="signal-title">From signal <em>to sighting.</em></h2>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <p class="feature-num">01 / Listen</p>
+            <div class="feature-art" aria-hidden="true">
+              <svg viewBox="0 0 112 112" class="feature-glyph feature-listen" fill="none">
+                <circle class="glyph-disc" cx="56" cy="56" r="48"/><circle class="glyph-ring" cx="56" cy="56" r="42"/>
+                <path class="glyph-line" d="M20 48v16 M32 39v34 M44 35v42 M56 20v72 M68 32v48 M80 41v30 M92 48v16"/>
+              </svg>
+            </div>
+            <h3>Hear a call.</h3>
+            <p>Pick out wildlife sounds in the field.</p>
+            <button class="feature-replay" type="button" aria-label="Replay Listen illustration"></button>
+          </article>
+          <article class="feature-card">
+            <p class="feature-num">02 / See</p>
+            <div class="feature-art" aria-hidden="true">
+              <svg viewBox="0 0 112 112" class="feature-glyph feature-see" fill="none">
+                <circle class="glyph-disc" cx="56" cy="56" r="48"/><circle class="glyph-ring" cx="56" cy="56" r="42"/>
+                <path class="glyph-corners" d="M19 37V20h17 M76 20h17v17 M93 75v17H76 M36 92H19V75"/>
+                <path class="glyph-line" d="M32 56c7-10 16-15 24-15s17 5 24 15c-7 10-16 15-24 15s-17-5-24-15Z"/><circle class="glyph-dot" cx="56" cy="56" r="5"/>
+              </svg>
+            </div>
+            <h3>Review a frame.</h3>
+            <p>Look at the visual evidence behind a sighting.</p>
+            <button class="feature-replay" type="button" aria-label="Replay See illustration"></button>
+          </article>
+          <article class="feature-card">
+            <p class="feature-num">03 / Understand</p>
+            <div class="feature-art" aria-hidden="true">
+              <svg viewBox="0 0 112 112" class="feature-glyph feature-understand" fill="none">
+                <circle class="glyph-disc" cx="56" cy="56" r="48"/><circle class="glyph-ring" cx="56" cy="56" r="42"/>
+                <path class="glyph-line" pathLength="100" d="m23 77 21-27 21 10 24-27"/>
+                <circle class="glyph-dot" cx="23" cy="77" r="3.5"/><circle class="glyph-dot" cx="44" cy="50" r="3.5"/><circle class="glyph-dot" cx="65" cy="60" r="3.5"/><circle class="glyph-dot" cx="89" cy="33" r="5"/>
+              </svg>
+            </div>
+            <h3>Keep the context.</h3>
+            <p>Review encounters and see patterns over time.</p>
+            <button class="feature-replay" type="button" aria-label="Replay Understand illustration"></button>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="audiences section-pad" id="capabilities" tabindex="-1">
+      <div class="container">
+        <div class="section-heading light"><h2>Built for <em>the field.</em></h2><p>Different settings call for different ways to notice, record, and understand wildlife.</p></div>
+        <div class="audience-grid">
+          <article><h3>On foot</h3><p>Review what you heard or saw and keep a record of encounters along the trail.</p><a class="audience-action" href="#demonstration">Open hiker experience ↗</a></article>
+          <article><h3>On the road</h3><p>WildGuard is designed for hands-free roadside awareness and post-drive evidence review.</p><a class="audience-action" href="../driver-client/">Open driver client ↗</a></article>
+          <article><h3>In research</h3><p>Explore consent-filtered patterns without exposing personal records.</p><a class="audience-action" href="../admin-dashboard/">Open admin dashboard ↗</a></article>
+        </div>
+      </div>
+    </section>
+    <section class="impact-section section-pad" id="impact" tabindex="-1" aria-labelledby="impact-title">
+      <div class="container">
+        <div class="impact-heading"><p class="eyebrow">Why WildGuard · Maine</p><h2 id="impact-title">Earlier awareness targets a <em>costly moment.</em></h2><p>Animal strikes carry both societal and insured costs. WildGuard is designed to put a timely, evidence-backed caution between detection and impact—not to promise that every collision can be prevented.</p></div>
+
+        <div class="impact-hero-grid">
+          <div class="impact-lead-card">
+            <span class="impact-index">01 · ECONOMIC EXPOSURE</span>
+            <strong>$1.26B</strong>
+            <h3>Estimated Maine societal loss in five years</h3>
+            <p>MaineDOT’s 2019–2023 estimate includes medical care, lost productivity, quality of life, and property loss. It is not an insurance payout total.</p>
+            <div class="impact-total-bar" role="img" aria-label="Deer account for 75 percent of estimated loss, moose 19 percent, and other animals 6 percent"><span class="deer-loss">Deer · 75%</span><span class="moose-loss">Moose · 19%</span><span class="other-loss">Other · 6%</span></div>
+            <div class="impact-mini-stats"><div><b>$251.7M</b><span>average annual societal loss</span></div><div><b>$942.7M</b><span>five-year deer loss</span></div><div><b>$234.6M</b><span>five-year moose loss</span></div></div>
+          </div>
+          <figure class="impact-photo"><img src="../shared/assets/wildguard-collision-evidence.jpeg" alt="Close view of collision damage to the front grille of a vehicle"><figcaption><b>One collision becomes a real repair.</b><span>Field evidence supplied with the WildGuard research package; shown as collision-damage context.</span></figcaption></figure>
+        </div>
+
+        <div class="impact-data-grid">
+          <article class="impact-card insurance-odds"><span class="impact-index">02 · INSURANCE EXPOSURE</span><h3>Maine drivers face higher claim odds.</h3><div class="odds-compare"><div><b>1 in 85</b><span>Maine</span></div><i>vs.</i><div><b>1 in 145</b><span>U.S. average</span></div></div><p>That makes a Maine driver about <strong>1.7× as likely</strong> to have an animal-collision claim in the workbook’s 2025–2026 State Farm analysis.</p></article>
+          <article class="impact-card claim-growth"><span class="impact-index">03 · CLAIM SEVERITY</span><h3>Average animal-strike claims are getting more expensive.</h3><div class="claim-bars" role="img" aria-label="Average claim severity increased from 3,176 dollars in 2014 to 5,980 dollars in 2023"><div><span style="--claim:53%"></span><b>$3,176</b><small>2014</small></div><div><span style="--claim:65%"></span><b>$3,875</b><small>2018</small></div><div><span style="--claim:91%"></span><b>$5,447</b><small>2022</small></div><div><span style="--claim:100%"></span><b>$5,980</b><small>2023</small></div></div><p><strong>Up 88%</strong> since 2014, based on national HLDI comprehensive-coverage data.</p></article>
+          <article class="impact-card payout-card"><span class="impact-index">04 · DERIVED MAINE VIEW</span><h3>~$76.2M</h3><p>Implied annual Maine animal-strike claim payouts from approximately <strong>12,747 claims</strong> at a $5,980 average severity.</p><div class="payout-note"><b>~$6.37M</b><span>possible annual driver deductibles using a $500 assumption</span></div><small>This is an order-of-magnitude estimate—not a Maine regulator or insurer total.</small></article>
+        </div>
+
+        <div class="scenario-panel">
+          <div class="scenario-copy"><span class="impact-index">05 · WHAT EARLIER WARNING COULD ADDRESS</span><h3>A transparent benefit range—not a performance claim.</h3><p>If a detection-and-warning tool contributes to avoiding even a small share of annual animal-strike exposure, the value at stake is material. These scenarios apply 1%, 5%, and 10% directly to the workbook totals; a real pilot must measure actual avoided crashes and false alerts.</p><div class="scenario-key"><span><i class="societal-key"></i>Societal loss exposure</span><span><i class="insured-key"></i>Derived claim-payout exposure</span></div></div>
+          <div class="scenario-chart" role="img" aria-label="At one percent, 2.5 million dollars societal and 0.76 million dollars insured exposure; at five percent, 12.6 million and 3.8 million; at ten percent, 25.2 million and 7.6 million">
+            <div class="scenario-row"><strong>1%</strong><div><span class="scenario-societal" style="--scenario:10%">$2.5M</span><span class="scenario-insured" style="--scenario:10%">$0.76M</span></div></div>
+            <div class="scenario-row"><strong>5%</strong><div><span class="scenario-societal" style="--scenario:50%">$12.6M</span><span class="scenario-insured" style="--scenario:50%">$3.8M</span></div></div>
+            <div class="scenario-row"><strong>10%</strong><div><span class="scenario-societal" style="--scenario:100%">$25.2M</span><span class="scenario-insured" style="--scenario:100%">$7.6M</span></div></div>
+          </div>
+        </div>
+
+        <p class="impact-source"><b>Evidence scope:</b> WildGuard_Maine_Impact_Research_v2.xlsx, tabs <code>Economic_Loss</code> and <code>Insurance</code> only. Rounded values are shown. Economic figures are societal costs; insurance figures use different methods and must not be added to them. Derived Maine estimates retain the workbook’s assumptions and caveats.</p>
+      </div>
+    </section>
+    <section class="principles section-pad" id="faq" tabindex="-1" aria-labelledby="faq-title">
+      <div class="container principles-layout">
+        <div><h2 id="faq-title">Observe with <em>care.</em></h2><p>How WildGuard handles evidence, works offline, and keeps sharing in your hands.</p></div>
+        <div class="faq-list">
+          <details><summary>What should I look for in a wildlife observation?</summary><p>Review the sound or image behind an identification and keep uncertain sightings marked as uncertain.</p></details>
+          <details><summary>Does WildGuard work offline?</summary><p>Yes. The audio demonstration runs through the local WildGuard API and AnimalCLAP service without a cloud inference dependency.</p></details>
+          <details><summary>Can WildGuard detect animals or issue alerts today?</summary><p>The audio demonstration ranks five candidate wildlife species from an uploaded clip and mirrors an advisory caution to the phone and watch. Continuous microphone monitoring and wearable notifications are not connected.</p></details>
+          <details><summary>Does the demo collect or upload anything?</summary><p>Selected audio is sent only to the API running on this machine and stored as local evidence. It is not sent to an internet service.</p></details>
+          <details><summary>Who would be able to access my observations?</summary><p>For live research access, the planned design requires explicit consent and authorization. The demo does not connect to personal accounts or research systems.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="#home"><img class="wordmark" src="../shared/assets/wildguard-wordmark.svg" alt="WildGuard" width="174" height="29"></a><p>Local-first wildlife awareness.</p></div><div><small>EXPLORE</small><a href="#how-it-works">How it works</a><a href="#demonstration">Demonstration</a><a href="#capabilities">Capabilities</a><a href="#impact">Impact</a><a href="#faq">Privacy</a></div><div><small>PROJECT</small><a href="../architecture/">Architecture ↗</a><a href="https://github.com/VivekReddy10-08-2004/WildGuard" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div><div class="container footer-bottom"><span>© 2026 WILDGUARD</span></div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body></html>

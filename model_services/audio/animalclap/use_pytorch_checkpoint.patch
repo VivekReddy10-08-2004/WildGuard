@@ -1,0 +1,12 @@
+diff --git a/inference.py b/inference.py
+index 692b873..dd72742 100644
+--- a/inference.py
++++ b/inference.py
+@@ -117,6 +117,6 @@ class HFCLAPContrastive(nn.Module):
+         super().__init__()
+         self.processor = ClapProcessor.from_pretrained(model_id)
+-        self.backbone  = ClapModel.from_pretrained(model_id, use_safetensors=True)
++        self.backbone  = ClapModel.from_pretrained(model_id, use_safetensors=False)
+         self.logit_scale = nn.Parameter(torch.tensor(np.log(1/0.07), dtype=torch.float32))
+         feat_dim = getattr(getattr(self.backbone, "config", object()), "projection_dim", 512)
+         self.audio_head = ProjectionMLP(feat_dim, proj_hidden_dim, proj_out_dim)

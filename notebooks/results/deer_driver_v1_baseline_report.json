@@ -1,0 +1,1787 @@
+{
+  "dataset": "deer-driver-v1",
+  "evaluation": {
+    "confidence_floor": 0.001,
+    "iou_thresholds": [
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95
+    ],
+    "primary_split": "test",
+    "size_bins_relative_area": {
+      "large": ">= 5% of image",
+      "medium": "1% to < 5% of image",
+      "small": "< 1% of image"
+    }
+  },
+  "limitations": [
+    "The derived dataset is camera-trap-heavy and does not establish road-video safety performance.",
+    "The model has no generic deer or white-tailed-deer class; mule_deer is the strict proxy.",
+    "The driver_hazard_union view collapses mule_deer, elk, and moose for safety-oriented analysis.",
+    "Potential overlap between the public model's unknown training data and these sources has not been ruled out.",
+    "Negative images were selected from wildlife datasets and are not representative driving-video negatives."
+  ],
+  "model_classes": {
+    "0": "golden_eagle",
+    "1": "pronghorn",
+    "2": "bighorn_sheep",
+    "3": "bison",
+    "4": "mule_deer",
+    "5": "elk",
+    "6": "coyote",
+    "7": "grizzly_bear",
+    "8": "gray_wolf",
+    "9": "moose",
+    "10": "pika",
+    "11": "swift_fox",
+    "12": "mountain_lion",
+    "13": "river_otter",
+    "14": "black_bear",
+    "15": "bald_eagle",
+    "16": "red_tailed_hawk",
+    "17": "osprey",
+    "18": "sage_grouse",
+    "19": "trumpeter_swan",
+    "20": "beaver",
+    "21": "raven",
+    "22": "prairie_dog",
+    "23": "badger",
+    "24": "bobcat",
+    "25": "jackrabbit"
+  },
+  "runtime": {
+    "estimated_images_per_second": 83.11239248533488,
+    "images": 1448,
+    "mean_processing_ms": 12.031900058423288
+  },
+  "test_ground_truth_overlap_classification_at_confidence_0.10": {
+    "badger": 2,
+    "bobcat": 2,
+    "coyote": 15,
+    "elk": 22,
+    "gray_wolf": 2,
+    "grizzly_bear": 1,
+    "jackrabbit": 1,
+    "moose": 16,
+    "mountain_lion": 5,
+    "mule_deer": 40,
+    "pronghorn": 1,
+    "swift_fox": 2
+  },
+  "views": {
+    "driver_hazard_union": {
+      "by_split": {
+        "all": {
+          "ap50": 0.4392815533643088,
+          "ap_by_iou": {
+            "0.50": 0.4392815533643088,
+            "0.55": 0.4104704370759998,
+            "0.60": 0.3593483148252691,
+            "0.65": 0.30566120640697503,
+            "0.70": 0.2600104924659301,
+            "0.75": 0.1940971566163846,
+            "0.80": 0.1412712732380465,
+            "0.85": 0.09806619200228642,
+            "0.90": 0.059409443164643916,
+            "0.95": 0.010512378133534986
+          },
+          "best_f1_at_iou50": {
+            "confidence": 0.3545236587524414,
+            "f1": 0.529446757882213,
+            "precision": 0.6104252400548696,
+            "recall": 0.46743697478991597
+          },
+          "ground_truth_boxes": 952,
+          "images": 1448,
+          "map50_95": 0.22781284472933794,
+          "thresholds": {
+            "0.10": {
+              "confidence": 0.1,
+              "f1": 0.49662487945998074,
+              "false_negatives": 437,
+              "false_positive_image_rate": 0.19060773480662985,
+              "false_positive_images": 138,
+              "false_positives": 607,
+              "iou": 0.5,
+              "negative_image_specificity": 0.8093922651933702,
+              "negative_images": 724,
+              "positive_image_detection_recall": 0.6519337016574586,
+              "positive_image_localization_recall": 0.6187845303867403,
+              "positive_images": 724,
+              "precision": 0.4590017825311943,
+              "prediction_label_counts": {
+                "elk": 498,
+                "moose": 133,
+                "mule_deer": 491
+              },
+              "recall": 0.5409663865546218,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 265,
+                  "matched_boxes": 211,
+                  "recall": 0.7962264150943397
+                },
+                "medium": {
+                  "ground_truth_boxes": 277,
+                  "matched_boxes": 179,
+                  "recall": 0.6462093862815884
+                },
+                "small": {
+                  "ground_truth_boxes": 410,
+                  "matched_boxes": 125,
+                  "recall": 0.3048780487804878
+                }
+              },
+              "true_positives": 515
+            },
+            "0.25": {
+              "confidence": 0.25,
+              "f1": 0.5178571428571428,
+              "false_negatives": 488,
+              "false_positive_image_rate": 0.13812154696132597,
+              "false_positive_images": 100,
+              "false_positives": 376,
+              "iou": 0.5,
+              "negative_image_specificity": 0.861878453038674,
+              "negative_images": 724,
+              "positive_image_detection_recall": 0.5842541436464088,
+              "positive_image_localization_recall": 0.5607734806629834,
+              "positive_images": 724,
+              "precision": 0.5523809523809524,
+              "prediction_label_counts": {
+                "elk": 356,
+                "moose": 106,
+                "mule_deer": 378
+              },
+              "recall": 0.48739495798319327,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 265,
+                  "matched_boxes": 200,
+                  "recall": 0.7547169811320755
+                },
+                "medium": {
+                  "ground_truth_boxes": 277,
+                  "matched_boxes": 161,
+                  "recall": 0.5812274368231047
+                },
+                "small": {
+                  "ground_truth_boxes": 410,
+                  "matched_boxes": 103,
+                  "recall": 0.25121951219512195
+                }
+              },
+              "true_positives": 464
+            },
+            "0.50": {
+              "confidence": 0.5,
+              "f1": 0.502247912652537,
+              "false_negatives": 561,
+              "false_positive_image_rate": 0.09116022099447514,
+              "false_positive_images": 66,
+              "false_positives": 214,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9088397790055248,
+              "negative_images": 724,
+              "positive_image_detection_recall": 0.4889502762430939,
+              "positive_image_localization_recall": 0.47375690607734805,
+              "positive_images": 724,
+              "precision": 0.6462809917355372,
+              "prediction_label_counts": {
+                "elk": 242,
+                "moose": 81,
+                "mule_deer": 282
+              },
+              "recall": 0.4107142857142857,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 265,
+                  "matched_boxes": 173,
+                  "recall": 0.6528301886792452
+                },
+                "medium": {
+                  "ground_truth_boxes": 277,
+                  "matched_boxes": 142,
+                  "recall": 0.5126353790613718
+                },
+                "small": {
+                  "ground_truth_boxes": 410,
+                  "matched_boxes": 76,
+                  "recall": 0.18536585365853658
+                }
+              },
+              "true_positives": 391
+            }
+          }
+        },
+        "test": {
+          "ap50": 0.6188224465615231,
+          "ap_by_iou": {
+            "0.50": 0.6188224465615231,
+            "0.55": 0.5912994059757475,
+            "0.60": 0.5339293341150733,
+            "0.65": 0.441284475973065,
+            "0.70": 0.37765155763892744,
+            "0.75": 0.30167051412898316,
+            "0.80": 0.24812398760663582,
+            "0.85": 0.19724420699863415,
+            "0.90": 0.12165376962306161,
+            "0.95": 0.026862347093833595
+          },
+          "best_f1_at_iou50": {
+            "confidence": 0.4134630560874939,
+            "f1": 0.6951871657754011,
+            "precision": 0.8552631578947368,
+            "recall": 0.5855855855855856
+          },
+          "ground_truth_boxes": 111,
+          "images": 193,
+          "map50_95": 0.3458542045715485,
+          "thresholds": {
+            "0.10": {
+              "confidence": 0.1,
+              "f1": 0.6090534979423868,
+              "false_negatives": 37,
+              "false_positive_image_rate": 0.1588785046728972,
+              "false_positive_images": 17,
+              "false_positives": 58,
+              "iou": 0.5,
+              "negative_image_specificity": 0.8411214953271028,
+              "negative_images": 107,
+              "positive_image_detection_recall": 0.8372093023255814,
+              "positive_image_localization_recall": 0.7558139534883721,
+              "positive_images": 86,
+              "precision": 0.5606060606060606,
+              "prediction_label_counts": {
+                "elk": 39,
+                "moose": 19,
+                "mule_deer": 74
+              },
+              "recall": 0.6666666666666666,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 38,
+                  "matched_boxes": 32,
+                  "recall": 0.8421052631578947
+                },
+                "medium": {
+                  "ground_truth_boxes": 49,
+                  "matched_boxes": 31,
+                  "recall": 0.6326530612244898
+                },
+                "small": {
+                  "ground_truth_boxes": 24,
+                  "matched_boxes": 11,
+                  "recall": 0.4583333333333333
+                }
+              },
+              "true_positives": 74
+            },
+            "0.25": {
+              "confidence": 0.25,
+              "f1": 0.6315789473684211,
+              "false_negatives": 45,
+              "false_positive_image_rate": 0.102803738317757,
+              "false_positive_images": 11,
+              "false_positives": 32,
+              "iou": 0.5,
+              "negative_image_specificity": 0.897196261682243,
+              "negative_images": 107,
+              "positive_image_detection_recall": 0.7790697674418605,
+              "positive_image_localization_recall": 0.6976744186046512,
+              "positive_images": 86,
+              "precision": 0.673469387755102,
+              "prediction_label_counts": {
+                "elk": 31,
+                "moose": 17,
+                "mule_deer": 50
+              },
+              "recall": 0.5945945945945946,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 38,
+                  "matched_boxes": 30,
+                  "recall": 0.7894736842105263
+                },
+                "medium": {
+                  "ground_truth_boxes": 49,
+                  "matched_boxes": 26,
+                  "recall": 0.5306122448979592
+                },
+                "small": {
+                  "ground_truth_boxes": 24,
+                  "matched_boxes": 10,
+                  "recall": 0.4166666666666667
+                }
+              },
+              "true_positives": 66
+            },
+            "0.50": {
+              "confidence": 0.5,
+              "f1": 0.6666666666666666,
+              "false_negatives": 51,
+              "false_positive_image_rate": 0.028037383177570093,
+              "false_positive_images": 3,
+              "false_positives": 9,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9719626168224299,
+              "negative_images": 107,
+              "positive_image_detection_recall": 0.7093023255813954,
+              "positive_image_localization_recall": 0.6511627906976745,
+              "positive_images": 86,
+              "precision": 0.8695652173913043,
+              "prediction_label_counts": {
+                "elk": 21,
+                "moose": 14,
+                "mule_deer": 34
+              },
+              "recall": 0.5405405405405406,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 38,
+                  "matched_boxes": 28,
+                  "recall": 0.7368421052631579
+                },
+                "medium": {
+                  "ground_truth_boxes": 49,
+                  "matched_boxes": 25,
+                  "recall": 0.5102040816326531
+                },
+                "small": {
+                  "ground_truth_boxes": 24,
+                  "matched_boxes": 7,
+                  "recall": 0.2916666666666667
+                }
+              },
+              "true_positives": 60
+            }
+          }
+        },
+        "train": {
+          "ap50": 0.39380143695756825,
+          "ap_by_iou": {
+            "0.50": 0.39380143695756825,
+            "0.55": 0.36999084600794796,
+            "0.60": 0.31986681645431103,
+            "0.65": 0.27659915046275024,
+            "0.70": 0.23101012611629174,
+            "0.75": 0.17880259527072087,
+            "0.80": 0.1250974029503321,
+            "0.85": 0.08362412170626728,
+            "0.90": 0.05175885211238235,
+            "0.95": 0.00796671854365906
+          },
+          "best_f1_at_iou50": {
+            "confidence": 0.3548155725002289,
+            "f1": 0.48665620094191514,
+            "precision": 0.5575539568345323,
+            "recall": 0.43175487465181056
+          },
+          "ground_truth_boxes": 718,
+          "images": 1069,
+          "map50_95": 0.20385180665822306,
+          "thresholds": {
+            "0.10": {
+              "confidence": 0.1,
+              "f1": 0.4604680581910184,
+              "false_negatives": 354,
+              "false_positive_image_rate": 0.20527306967984935,
+              "false_positive_images": 109,
+              "false_positives": 499,
+              "iou": 0.5,
+              "negative_image_specificity": 0.7947269303201506,
+              "negative_images": 531,
+              "positive_image_detection_recall": 0.6059479553903345,
+              "positive_image_localization_recall": 0.5817843866171004,
+              "positive_images": 538,
+              "precision": 0.42178447276940906,
+              "prediction_label_counts": {
+                "elk": 412,
+                "moose": 89,
+                "mule_deer": 362
+              },
+              "recall": 0.5069637883008357,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 181,
+                  "matched_boxes": 144,
+                  "recall": 0.7955801104972375
+                },
+                "medium": {
+                  "ground_truth_boxes": 182,
+                  "matched_boxes": 119,
+                  "recall": 0.6538461538461539
+                },
+                "small": {
+                  "ground_truth_boxes": 355,
+                  "matched_boxes": 101,
+                  "recall": 0.28450704225352114
+                }
+              },
+              "true_positives": 364
+            },
+            "0.25": {
+              "confidence": 0.25,
+              "f1": 0.4801178203240059,
+              "false_negatives": 392,
+              "false_positive_image_rate": 0.15254237288135594,
+              "false_positive_images": 81,
+              "false_positives": 314,
+              "iou": 0.5,
+              "negative_image_specificity": 0.847457627118644,
+              "negative_images": 531,
+              "positive_image_detection_recall": 0.533457249070632,
+              "positive_image_localization_recall": 0.5185873605947955,
+              "positive_images": 538,
+              "precision": 0.509375,
+              "prediction_label_counts": {
+                "elk": 288,
+                "moose": 68,
+                "mule_deer": 284
+              },
+              "recall": 0.45403899721448465,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 181,
+                  "matched_boxes": 136,
+                  "recall": 0.7513812154696132
+                },
+                "medium": {
+                  "ground_truth_boxes": 182,
+                  "matched_boxes": 108,
+                  "recall": 0.5934065934065934
+                },
+                "small": {
+                  "ground_truth_boxes": 355,
+                  "matched_boxes": 82,
+                  "recall": 0.23098591549295774
+                }
+              },
+              "true_positives": 326
+            },
+            "0.50": {
+              "confidence": 0.5,
+              "f1": 0.46362098138747887,
+              "false_negatives": 444,
+              "false_positive_image_rate": 0.1111111111111111,
+              "false_positive_images": 59,
+              "false_positives": 190,
+              "iou": 0.5,
+              "negative_image_specificity": 0.8888888888888888,
+              "negative_images": 531,
+              "positive_image_detection_recall": 0.44423791821561337,
+              "positive_image_localization_recall": 0.4349442379182156,
+              "positive_images": 538,
+              "precision": 0.5905172413793104,
+              "prediction_label_counts": {
+                "elk": 195,
+                "moose": 52,
+                "mule_deer": 217
+              },
+              "recall": 0.3816155988857939,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 181,
+                  "matched_boxes": 118,
+                  "recall": 0.6519337016574586
+                },
+                "medium": {
+                  "ground_truth_boxes": 182,
+                  "matched_boxes": 95,
+                  "recall": 0.521978021978022
+                },
+                "small": {
+                  "ground_truth_boxes": 355,
+                  "matched_boxes": 61,
+                  "recall": 0.17183098591549295
+                }
+              },
+              "true_positives": 274
+            }
+          }
+        },
+        "val": {
+          "ap50": 0.5594370017032474,
+          "ap_by_iou": {
+            "0.50": 0.5594370017032474,
+            "0.55": 0.502888599061276,
+            "0.60": 0.4449965289704667,
+            "0.65": 0.3643011288385598,
+            "0.70": 0.33372190262225315,
+            "0.75": 0.2134776761439982,
+            "0.80": 0.1679229193886671,
+            "0.85": 0.12208676672304554,
+            "0.90": 0.06711459360362534,
+            "0.95": 0.00871059519745078
+          },
+          "best_f1_at_iou50": {
+            "confidence": 0.2944590151309967,
+            "f1": 0.6513761467889908,
+            "precision": 0.7473684210526316,
+            "recall": 0.5772357723577236
+          },
+          "ground_truth_boxes": 123,
+          "images": 186,
+          "map50_95": 0.278465771225259,
+          "thresholds": {
+            "0.10": {
+              "confidence": 0.1,
+              "f1": 0.616,
+              "false_negatives": 46,
+              "false_positive_image_rate": 0.13953488372093023,
+              "false_positive_images": 12,
+              "false_positives": 50,
+              "iou": 0.5,
+              "negative_image_specificity": 0.8604651162790697,
+              "negative_images": 86,
+              "positive_image_detection_recall": 0.74,
+              "positive_image_localization_recall": 0.7,
+              "positive_images": 100,
+              "precision": 0.6062992125984252,
+              "prediction_label_counts": {
+                "elk": 47,
+                "moose": 25,
+                "mule_deer": 55
+              },
+              "recall": 0.6260162601626016,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 46,
+                  "matched_boxes": 35,
+                  "recall": 0.7608695652173914
+                },
+                "medium": {
+                  "ground_truth_boxes": 46,
+                  "matched_boxes": 29,
+                  "recall": 0.6304347826086957
+                },
+                "small": {
+                  "ground_truth_boxes": 31,
+                  "matched_boxes": 13,
+                  "recall": 0.41935483870967744
+                }
+              },
+              "true_positives": 77
+            },
+            "0.25": {
+              "confidence": 0.25,
+              "f1": 0.64,
+              "false_negatives": 51,
+              "false_positive_image_rate": 0.09302325581395349,
+              "false_positive_images": 8,
+              "false_positives": 30,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9069767441860466,
+              "negative_images": 86,
+              "positive_image_detection_recall": 0.69,
+              "positive_image_localization_recall": 0.67,
+              "positive_images": 100,
+              "precision": 0.7058823529411765,
+              "prediction_label_counts": {
+                "elk": 37,
+                "moose": 21,
+                "mule_deer": 44
+              },
+              "recall": 0.5853658536585366,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 46,
+                  "matched_boxes": 34,
+                  "recall": 0.7391304347826086
+                },
+                "medium": {
+                  "ground_truth_boxes": 46,
+                  "matched_boxes": 27,
+                  "recall": 0.5869565217391305
+                },
+                "small": {
+                  "ground_truth_boxes": 31,
+                  "matched_boxes": 11,
+                  "recall": 0.3548387096774194
+                }
+              },
+              "true_positives": 72
+            },
+            "0.50": {
+              "confidence": 0.5,
+              "f1": 0.5846153846153846,
+              "false_negatives": 66,
+              "false_positive_image_rate": 0.046511627906976744,
+              "false_positive_images": 4,
+              "false_positives": 15,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9534883720930233,
+              "negative_images": 86,
+              "positive_image_detection_recall": 0.54,
+              "positive_image_localization_recall": 0.53,
+              "positive_images": 100,
+              "precision": 0.7916666666666666,
+              "prediction_label_counts": {
+                "elk": 26,
+                "moose": 15,
+                "mule_deer": 31
+              },
+              "recall": 0.4634146341463415,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 46,
+                  "matched_boxes": 27,
+                  "recall": 0.5869565217391305
+                },
+                "medium": {
+                  "ground_truth_boxes": 46,
+                  "matched_boxes": 22,
+                  "recall": 0.4782608695652174
+                },
+                "small": {
+                  "ground_truth_boxes": 31,
+                  "matched_boxes": 8,
+                  "recall": 0.25806451612903225
+                }
+              },
+              "true_positives": 57
+            }
+          }
+        }
+      },
+      "class_ids": [
+        4,
+        5,
+        9
+      ],
+      "class_names": [
+        "mule_deer",
+        "elk",
+        "moose"
+      ],
+      "test_by_source": {
+        "alberta-wildlife-v1": {
+          "ap50": 0.4515281834592457,
+          "ap_by_iou": {
+            "0.50": 0.4515281834592457,
+            "0.55": 0.43244546512301624,
+            "0.60": 0.35196507206999184,
+            "0.65": 0.20246691482335044,
+            "0.70": 0.11696775831429297,
+            "0.75": 0.03723174515253723,
+            "0.80": 0.004213608174004214,
+            "0.85": 0.0008704167120008705,
+            "0.90": 0.0003143171460003143,
+            "0.95": 0.0
+          },
+          "best_f1_at_iou50": {
+            "confidence": 0.4134630560874939,
+            "f1": 0.5393258426966292,
+            "precision": 0.7272727272727273,
+            "recall": 0.42857142857142855
+          },
+          "ground_truth_boxes": 56,
+          "images": 86,
+          "map50_95": 0.15980034809744398,
+          "thresholds": {
+            "0.10": {
+              "confidence": 0.1,
+              "f1": 0.45925925925925926,
+              "false_negatives": 25,
+              "false_positive_image_rate": 0.27450980392156865,
+              "false_positive_images": 14,
+              "false_positives": 48,
+              "iou": 0.5,
+              "negative_image_specificity": 0.7254901960784313,
+              "negative_images": 51,
+              "positive_image_detection_recall": 0.8,
+              "positive_image_localization_recall": 0.6285714285714286,
+              "positive_images": 35,
+              "precision": 0.3924050632911392,
+              "prediction_label_counts": {
+                "elk": 18,
+                "moose": 1,
+                "mule_deer": 60
+              },
+              "recall": 0.5535714285714286,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 6,
+                  "matched_boxes": 5,
+                  "recall": 0.8333333333333334
+                },
+                "medium": {
+                  "ground_truth_boxes": 29,
+                  "matched_boxes": 16,
+                  "recall": 0.5517241379310345
+                },
+                "small": {
+                  "ground_truth_boxes": 21,
+                  "matched_boxes": 10,
+                  "recall": 0.47619047619047616
+                }
+              },
+              "true_positives": 31
+            },
+            "0.25": {
+              "confidence": 0.25,
+              "f1": 0.46296296296296297,
+              "false_negatives": 31,
+              "false_positive_image_rate": 0.17647058823529413,
+              "false_positive_images": 9,
+              "false_positives": 27,
+              "iou": 0.5,
+              "negative_image_specificity": 0.8235294117647058,
+              "negative_images": 51,
+              "positive_image_detection_recall": 0.7142857142857143,
+              "positive_image_localization_recall": 0.5428571428571428,
+              "positive_images": 35,
+              "precision": 0.4807692307692308,
+              "prediction_label_counts": {
+                "elk": 11,
+                "moose": 1,
+                "mule_deer": 40
+              },
+              "recall": 0.44642857142857145,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 6,
+                  "matched_boxes": 4,
+                  "recall": 0.6666666666666666
+                },
+                "medium": {
+                  "ground_truth_boxes": 29,
+                  "matched_boxes": 12,
+                  "recall": 0.41379310344827586
+                },
+                "small": {
+                  "ground_truth_boxes": 21,
+                  "matched_boxes": 9,
+                  "recall": 0.42857142857142855
+                }
+              },
+              "true_positives": 25
+            },
+            "0.50": {
+              "confidence": 0.5,
+              "f1": 0.5,
+              "false_negatives": 35,
+              "false_positive_image_rate": 0.0196078431372549,
+              "false_positive_images": 1,
+              "false_positives": 7,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9803921568627451,
+              "negative_images": 51,
+              "positive_image_detection_recall": 0.6285714285714286,
+              "positive_image_localization_recall": 0.4857142857142857,
+              "positive_images": 35,
+              "precision": 0.75,
+              "prediction_label_counts": {
+                "elk": 2,
+                "mule_deer": 26
+              },
+              "recall": 0.375,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 6,
+                  "matched_boxes": 4,
+                  "recall": 0.6666666666666666
+                },
+                "medium": {
+                  "ground_truth_boxes": 29,
+                  "matched_boxes": 11,
+                  "recall": 0.3793103448275862
+                },
+                "small": {
+                  "ground_truth_boxes": 21,
+                  "matched_boxes": 6,
+                  "recall": 0.2857142857142857
+                }
+              },
+              "true_positives": 21
+            }
+          }
+        },
+        "ena24": {
+          "ap50": 0.7728587315785822,
+          "ap_by_iou": {
+            "0.50": 0.7728587315785822,
+            "0.55": 0.7442887567248583,
+            "0.60": 0.7149988257056338,
+            "0.65": 0.7140281404018092,
+            "0.70": 0.7017975055736204,
+            "0.75": 0.7017975055736204,
+            "0.80": 0.6833870439751624,
+            "0.85": 0.55966532489961,
+            "0.90": 0.33756084251133756,
+            "0.95": 0.06605238902268605
+          },
+          "best_f1_at_iou50": {
+            "confidence": 0.44637778401374817,
+            "f1": 0.8367346938775511,
+            "precision": 0.9534883720930233,
+            "recall": 0.7454545454545455
+          },
+          "ground_truth_boxes": 55,
+          "images": 107,
+          "map50_95": 0.599643506596692,
+          "thresholds": {
+            "0.10": {
+              "confidence": 0.1,
+              "f1": 0.7962962962962964,
+              "false_negatives": 12,
+              "false_positive_image_rate": 0.05357142857142857,
+              "false_positive_images": 3,
+              "false_positives": 10,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9464285714285714,
+              "negative_images": 56,
+              "positive_image_detection_recall": 0.8627450980392157,
+              "positive_image_localization_recall": 0.8431372549019608,
+              "positive_images": 51,
+              "precision": 0.8113207547169812,
+              "prediction_label_counts": {
+                "elk": 21,
+                "moose": 18,
+                "mule_deer": 14
+              },
+              "recall": 0.7818181818181819,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 32,
+                  "matched_boxes": 27,
+                  "recall": 0.84375
+                },
+                "medium": {
+                  "ground_truth_boxes": 20,
+                  "matched_boxes": 15,
+                  "recall": 0.75
+                },
+                "small": {
+                  "ground_truth_boxes": 3,
+                  "matched_boxes": 1,
+                  "recall": 0.3333333333333333
+                }
+              },
+              "true_positives": 43
+            },
+            "0.25": {
+              "confidence": 0.25,
+              "f1": 0.8118811881188119,
+              "false_negatives": 14,
+              "false_positive_image_rate": 0.03571428571428571,
+              "false_positive_images": 2,
+              "false_positives": 5,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9642857142857143,
+              "negative_images": 56,
+              "positive_image_detection_recall": 0.8235294117647058,
+              "positive_image_localization_recall": 0.803921568627451,
+              "positive_images": 51,
+              "precision": 0.8913043478260869,
+              "prediction_label_counts": {
+                "elk": 20,
+                "moose": 16,
+                "mule_deer": 10
+              },
+              "recall": 0.7454545454545455,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 32,
+                  "matched_boxes": 26,
+                  "recall": 0.8125
+                },
+                "medium": {
+                  "ground_truth_boxes": 20,
+                  "matched_boxes": 14,
+                  "recall": 0.7
+                },
+                "small": {
+                  "ground_truth_boxes": 3,
+                  "matched_boxes": 1,
+                  "recall": 0.3333333333333333
+                }
+              },
+              "true_positives": 41
+            },
+            "0.50": {
+              "confidence": 0.5,
+              "f1": 0.8125,
+              "false_negatives": 16,
+              "false_positive_image_rate": 0.03571428571428571,
+              "false_positive_images": 2,
+              "false_positives": 2,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9642857142857143,
+              "negative_images": 56,
+              "positive_image_detection_recall": 0.7647058823529411,
+              "positive_image_localization_recall": 0.7647058823529411,
+              "positive_images": 51,
+              "precision": 0.9512195121951219,
+              "prediction_label_counts": {
+                "elk": 19,
+                "moose": 14,
+                "mule_deer": 8
+              },
+              "recall": 0.7090909090909091,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 32,
+                  "matched_boxes": 24,
+                  "recall": 0.75
+                },
+                "medium": {
+                  "ground_truth_boxes": 20,
+                  "matched_boxes": 14,
+                  "recall": 0.7
+                },
+                "small": {
+                  "ground_truth_boxes": 3,
+                  "matched_boxes": 1,
+                  "recall": 0.3333333333333333
+                }
+              },
+              "true_positives": 39
+            }
+          }
+        }
+      }
+    },
+    "strict_mule_deer": {
+      "by_split": {
+        "all": {
+          "ap50": 0.3281889552614156,
+          "ap_by_iou": {
+            "0.50": 0.3281889552614156,
+            "0.55": 0.30069396575320145,
+            "0.60": 0.24840248862222045,
+            "0.65": 0.18519550866075712,
+            "0.70": 0.1388991906923033,
+            "0.75": 0.08534137462692407,
+            "0.80": 0.04404192991643919,
+            "0.85": 0.019075364173279808,
+            "0.90": 0.006700552310630329,
+            "0.95": 0.0011648223645894002
+          },
+          "best_f1_at_iou50": {
+            "confidence": 0.056834373623132706,
+            "f1": 0.4536912751677853,
+            "precision": 0.6282527881040892,
+            "recall": 0.3550420168067227
+          },
+          "ground_truth_boxes": 952,
+          "images": 1448,
+          "map50_95": 0.13577041523817607,
+          "thresholds": {
+            "0.10": {
+              "confidence": 0.1,
+              "f1": 0.44767844767844767,
+              "false_negatives": 629,
+              "false_positive_image_rate": 0.0856353591160221,
+              "false_positive_images": 62,
+              "false_positives": 168,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9143646408839778,
+              "negative_images": 724,
+              "positive_image_detection_recall": 0.3812154696132597,
+              "positive_image_localization_recall": 0.36187845303867405,
+              "positive_images": 724,
+              "precision": 0.6578411405295316,
+              "prediction_label_counts": {
+                "mule_deer": 491
+              },
+              "recall": 0.3392857142857143,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 265,
+                  "matched_boxes": 75,
+                  "recall": 0.2830188679245283
+                },
+                "medium": {
+                  "ground_truth_boxes": 277,
+                  "matched_boxes": 129,
+                  "recall": 0.4657039711191336
+                },
+                "small": {
+                  "ground_truth_boxes": 410,
+                  "matched_boxes": 119,
+                  "recall": 0.29024390243902437
+                }
+              },
+              "true_positives": 323
+            },
+            "0.25": {
+              "confidence": 0.25,
+              "f1": 0.42556390977443614,
+              "false_negatives": 669,
+              "false_positive_image_rate": 0.05110497237569061,
+              "false_positive_images": 37,
+              "false_positives": 95,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9488950276243094,
+              "negative_images": 724,
+              "positive_image_detection_recall": 0.3301104972375691,
+              "positive_image_localization_recall": 0.31767955801104975,
+              "positive_images": 724,
+              "precision": 0.7486772486772487,
+              "prediction_label_counts": {
+                "mule_deer": 378
+              },
+              "recall": 0.2972689075630252,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 265,
+                  "matched_boxes": 69,
+                  "recall": 0.26037735849056604
+                },
+                "medium": {
+                  "ground_truth_boxes": 277,
+                  "matched_boxes": 115,
+                  "recall": 0.4151624548736462
+                },
+                "small": {
+                  "ground_truth_boxes": 410,
+                  "matched_boxes": 99,
+                  "recall": 0.24146341463414633
+                }
+              },
+              "true_positives": 283
+            },
+            "0.50": {
+              "confidence": 0.5,
+              "f1": 0.38087520259319285,
+              "false_negatives": 717,
+              "false_positive_image_rate": 0.027624309392265192,
+              "false_positive_images": 20,
+              "false_positives": 47,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9723756906077348,
+              "negative_images": 724,
+              "positive_image_detection_recall": 0.27209944751381215,
+              "positive_image_localization_recall": 0.26519337016574585,
+              "positive_images": 724,
+              "precision": 0.8333333333333334,
+              "prediction_label_counts": {
+                "mule_deer": 282
+              },
+              "recall": 0.24684873949579833,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 265,
+                  "matched_boxes": 57,
+                  "recall": 0.21509433962264152
+                },
+                "medium": {
+                  "ground_truth_boxes": 277,
+                  "matched_boxes": 106,
+                  "recall": 0.38267148014440433
+                },
+                "small": {
+                  "ground_truth_boxes": 410,
+                  "matched_boxes": 72,
+                  "recall": 0.17560975609756097
+                }
+              },
+              "true_positives": 235
+            }
+          }
+        },
+        "test": {
+          "ap50": 0.3577479805413372,
+          "ap_by_iou": {
+            "0.50": 0.3577479805413372,
+            "0.55": 0.35144045563789933,
+            "0.60": 0.3122983490038409,
+            "0.65": 0.21228231540644799,
+            "0.70": 0.14867207324569398,
+            "0.75": 0.08253903793325904,
+            "0.80": 0.04417565472994787,
+            "0.85": 0.03401956586751545,
+            "0.90": 0.010032394397262312,
+            "0.95": 0.0
+          },
+          "best_f1_at_iou50": {
+            "confidence": 0.023907093331217766,
+            "f1": 0.46700507614213194,
+            "precision": 0.5348837209302325,
+            "recall": 0.4144144144144144
+          },
+          "ground_truth_boxes": 111,
+          "images": 193,
+          "map50_95": 0.1553207826763204,
+          "thresholds": {
+            "0.10": {
+              "confidence": 0.1,
+              "f1": 0.43243243243243246,
+              "false_negatives": 71,
+              "false_positive_image_rate": 0.11214953271028037,
+              "false_positive_images": 12,
+              "false_positives": 34,
+              "iou": 0.5,
+              "negative_image_specificity": 0.8878504672897196,
+              "negative_images": 107,
+              "positive_image_detection_recall": 0.45348837209302323,
+              "positive_image_localization_recall": 0.38372093023255816,
+              "positive_images": 86,
+              "precision": 0.5405405405405406,
+              "prediction_label_counts": {
+                "mule_deer": 74
+              },
+              "recall": 0.36036036036036034,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 38,
+                  "matched_boxes": 9,
+                  "recall": 0.23684210526315788
+                },
+                "medium": {
+                  "ground_truth_boxes": 49,
+                  "matched_boxes": 23,
+                  "recall": 0.46938775510204084
+                },
+                "small": {
+                  "ground_truth_boxes": 24,
+                  "matched_boxes": 8,
+                  "recall": 0.3333333333333333
+                }
+              },
+              "true_positives": 40
+            },
+            "0.25": {
+              "confidence": 0.25,
+              "f1": 0.4099378881987578,
+              "false_negatives": 78,
+              "false_positive_image_rate": 0.04672897196261682,
+              "false_positive_images": 5,
+              "false_positives": 17,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9532710280373832,
+              "negative_images": 107,
+              "positive_image_detection_recall": 0.3953488372093023,
+              "positive_image_localization_recall": 0.32558139534883723,
+              "positive_images": 86,
+              "precision": 0.66,
+              "prediction_label_counts": {
+                "mule_deer": 50
+              },
+              "recall": 0.2972972972972973,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 38,
+                  "matched_boxes": 7,
+                  "recall": 0.18421052631578946
+                },
+                "medium": {
+                  "ground_truth_boxes": 49,
+                  "matched_boxes": 18,
+                  "recall": 0.3673469387755102
+                },
+                "small": {
+                  "ground_truth_boxes": 24,
+                  "matched_boxes": 8,
+                  "recall": 0.3333333333333333
+                }
+              },
+              "true_positives": 33
+            },
+            "0.50": {
+              "confidence": 0.5,
+              "f1": 0.38620689655172413,
+              "false_negatives": 83,
+              "false_positive_image_rate": 0.009345794392523364,
+              "false_positive_images": 1,
+              "false_positives": 6,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9906542056074766,
+              "negative_images": 107,
+              "positive_image_detection_recall": 0.3372093023255814,
+              "positive_image_localization_recall": 0.29069767441860467,
+              "positive_images": 86,
+              "precision": 0.8235294117647058,
+              "prediction_label_counts": {
+                "mule_deer": 34
+              },
+              "recall": 0.25225225225225223,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 38,
+                  "matched_boxes": 6,
+                  "recall": 0.15789473684210525
+                },
+                "medium": {
+                  "ground_truth_boxes": 49,
+                  "matched_boxes": 17,
+                  "recall": 0.3469387755102041
+                },
+                "small": {
+                  "ground_truth_boxes": 24,
+                  "matched_boxes": 5,
+                  "recall": 0.20833333333333334
+                }
+              },
+              "true_positives": 28
+            }
+          }
+        },
+        "train": {
+          "ap50": 0.32238232042962756,
+          "ap_by_iou": {
+            "0.50": 0.32238232042962756,
+            "0.55": 0.2928532989798393,
+            "0.60": 0.23575721987171266,
+            "0.65": 0.18335570333468365,
+            "0.70": 0.13405808236827382,
+            "0.75": 0.0902128780255329,
+            "0.80": 0.04324727819679709,
+            "0.85": 0.017315213272319444,
+            "0.90": 0.006373124997228787,
+            "0.95": 0.0015232292460015233
+          },
+          "best_f1_at_iou50": {
+            "confidence": 0.12483713775873184,
+            "f1": 0.45070422535211274,
+            "precision": 0.69164265129683,
+            "recall": 0.3342618384401114
+          },
+          "ground_truth_boxes": 718,
+          "images": 1069,
+          "map50_95": 0.13270783487220167,
+          "thresholds": {
+            "0.10": {
+              "confidence": 0.1,
+              "f1": 0.4462962962962963,
+              "false_negatives": 477,
+              "false_positive_image_rate": 0.0847457627118644,
+              "false_positive_images": 45,
+              "false_positives": 121,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9152542372881356,
+              "negative_images": 531,
+              "positive_image_detection_recall": 0.37174721189591076,
+              "positive_image_localization_recall": 0.3587360594795539,
+              "positive_images": 538,
+              "precision": 0.6657458563535912,
+              "prediction_label_counts": {
+                "mule_deer": 362
+              },
+              "recall": 0.33565459610027853,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 181,
+                  "matched_boxes": 54,
+                  "recall": 0.2983425414364641
+                },
+                "medium": {
+                  "ground_truth_boxes": 182,
+                  "matched_boxes": 89,
+                  "recall": 0.489010989010989
+                },
+                "small": {
+                  "ground_truth_boxes": 355,
+                  "matched_boxes": 98,
+                  "recall": 0.27605633802816903
+                }
+              },
+              "true_positives": 241
+            },
+            "0.25": {
+              "confidence": 0.25,
+              "f1": 0.42514970059880247,
+              "false_negatives": 505,
+              "false_positive_image_rate": 0.05273069679849341,
+              "false_positive_images": 28,
+              "false_positives": 71,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9472693032015066,
+              "negative_images": 531,
+              "positive_image_detection_recall": 0.31784386617100374,
+              "positive_image_localization_recall": 0.3141263940520446,
+              "positive_images": 538,
+              "precision": 0.75,
+              "prediction_label_counts": {
+                "mule_deer": 284
+              },
+              "recall": 0.2966573816155989,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 181,
+                  "matched_boxes": 51,
+                  "recall": 0.281767955801105
+                },
+                "medium": {
+                  "ground_truth_boxes": 182,
+                  "matched_boxes": 82,
+                  "recall": 0.45054945054945056
+                },
+                "small": {
+                  "ground_truth_boxes": 355,
+                  "matched_boxes": 80,
+                  "recall": 0.22535211267605634
+                }
+              },
+              "true_positives": 213
+            },
+            "0.50": {
+              "confidence": 0.5,
+              "f1": 0.37860962566844925,
+              "false_negatives": 541,
+              "false_positive_image_rate": 0.03389830508474576,
+              "false_positive_images": 18,
+              "false_positives": 40,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9661016949152542,
+              "negative_images": 531,
+              "positive_image_detection_recall": 0.2620817843866171,
+              "positive_image_localization_recall": 0.26022304832713755,
+              "positive_images": 538,
+              "precision": 0.815668202764977,
+              "prediction_label_counts": {
+                "mule_deer": 217
+              },
+              "recall": 0.24651810584958217,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 181,
+                  "matched_boxes": 42,
+                  "recall": 0.23204419889502761
+                },
+                "medium": {
+                  "ground_truth_boxes": 182,
+                  "matched_boxes": 76,
+                  "recall": 0.4175824175824176
+                },
+                "small": {
+                  "ground_truth_boxes": 355,
+                  "matched_boxes": 59,
+                  "recall": 0.16619718309859155
+                }
+              },
+              "true_positives": 177
+            }
+          }
+        },
+        "val": {
+          "ap50": 0.3590512362853399,
+          "ap_by_iou": {
+            "0.50": 0.3590512362853399,
+            "0.55": 0.31385915802103403,
+            "0.60": 0.2660268259262651,
+            "0.65": 0.18218727952055058,
+            "0.70": 0.14820508011048927,
+            "0.75": 0.06875269835195626,
+            "0.80": 0.04115903189691315,
+            "0.85": 0.023246400015090818,
+            "0.90": 0.009398362436862881,
+            "0.95": 0.0009019120535535335
+          },
+          "best_f1_at_iou50": {
+            "confidence": 0.0813431590795517,
+            "f1": 0.4918032786885247,
+            "precision": 0.75,
+            "recall": 0.36585365853658536
+          },
+          "ground_truth_boxes": 123,
+          "images": 186,
+          "map50_95": 0.14127879846180555,
+          "thresholds": {
+            "0.10": {
+              "confidence": 0.1,
+              "f1": 0.4719101123595506,
+              "false_negatives": 81,
+              "false_positive_image_rate": 0.05813953488372093,
+              "false_positive_images": 5,
+              "false_positives": 13,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9418604651162791,
+              "negative_images": 86,
+              "positive_image_detection_recall": 0.37,
+              "positive_image_localization_recall": 0.36,
+              "positive_images": 100,
+              "precision": 0.7636363636363637,
+              "prediction_label_counts": {
+                "mule_deer": 55
+              },
+              "recall": 0.34146341463414637,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 46,
+                  "matched_boxes": 12,
+                  "recall": 0.2608695652173913
+                },
+                "medium": {
+                  "ground_truth_boxes": 46,
+                  "matched_boxes": 17,
+                  "recall": 0.3695652173913043
+                },
+                "small": {
+                  "ground_truth_boxes": 31,
+                  "matched_boxes": 13,
+                  "recall": 0.41935483870967744
+                }
+              },
+              "true_positives": 42
+            },
+            "0.25": {
+              "confidence": 0.25,
+              "f1": 0.4431137724550898,
+              "false_negatives": 86,
+              "false_positive_image_rate": 0.046511627906976744,
+              "false_positive_images": 4,
+              "false_positives": 7,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9534883720930233,
+              "negative_images": 86,
+              "positive_image_detection_recall": 0.34,
+              "positive_image_localization_recall": 0.33,
+              "positive_images": 100,
+              "precision": 0.8409090909090909,
+              "prediction_label_counts": {
+                "mule_deer": 44
+              },
+              "recall": 0.3008130081300813,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 46,
+                  "matched_boxes": 11,
+                  "recall": 0.2391304347826087
+                },
+                "medium": {
+                  "ground_truth_boxes": 46,
+                  "matched_boxes": 15,
+                  "recall": 0.32608695652173914
+                },
+                "small": {
+                  "ground_truth_boxes": 31,
+                  "matched_boxes": 11,
+                  "recall": 0.3548387096774194
+                }
+              },
+              "true_positives": 37
+            },
+            "0.50": {
+              "confidence": 0.5,
+              "f1": 0.3896103896103896,
+              "false_negatives": 93,
+              "false_positive_image_rate": 0.011627906976744186,
+              "false_positive_images": 1,
+              "false_positives": 1,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9883720930232558,
+              "negative_images": 86,
+              "positive_image_detection_recall": 0.27,
+              "positive_image_localization_recall": 0.27,
+              "positive_images": 100,
+              "precision": 0.967741935483871,
+              "prediction_label_counts": {
+                "mule_deer": 31
+              },
+              "recall": 0.24390243902439024,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 46,
+                  "matched_boxes": 9,
+                  "recall": 0.1956521739130435
+                },
+                "medium": {
+                  "ground_truth_boxes": 46,
+                  "matched_boxes": 13,
+                  "recall": 0.2826086956521739
+                },
+                "small": {
+                  "ground_truth_boxes": 31,
+                  "matched_boxes": 8,
+                  "recall": 0.25806451612903225
+                }
+              },
+              "true_positives": 30
+            }
+          }
+        }
+      },
+      "class_ids": [
+        4
+      ],
+      "class_names": [
+        "mule_deer"
+      ],
+      "test_by_source": {
+        "alberta-wildlife-v1": {
+          "ap50": 0.4724124003275455,
+          "ap_by_iou": {
+            "0.50": 0.4724124003275455,
+            "0.55": 0.4619168421157962,
+            "0.60": 0.3935747020612303,
+            "0.65": 0.22801639629377743,
+            "0.70": 0.1272380638489239,
+            "0.75": 0.03969458140826512,
+            "0.80": 0.0049496681266880775,
+            "0.85": 0.0011822077730161075,
+            "0.90": 0.00040412204485754696,
+            "0.95": 0.0
+          },
+          "best_f1_at_iou50": {
+            "confidence": 0.20292775332927704,
+            "f1": 0.5346534653465347,
+            "precision": 0.6,
+            "recall": 0.48214285714285715
+          },
+          "ground_truth_boxes": 56,
+          "images": 86,
+          "map50_95": 0.17293889840001003,
+          "thresholds": {
+            "0.10": {
+              "confidence": 0.1,
+              "f1": 0.5,
+              "false_negatives": 27,
+              "false_positive_image_rate": 0.19607843137254902,
+              "false_positive_images": 10,
+              "false_positives": 31,
+              "iou": 0.5,
+              "negative_image_specificity": 0.803921568627451,
+              "negative_images": 51,
+              "positive_image_detection_recall": 0.7714285714285715,
+              "positive_image_localization_recall": 0.6285714285714286,
+              "positive_images": 35,
+              "precision": 0.48333333333333334,
+              "prediction_label_counts": {
+                "mule_deer": 60
+              },
+              "recall": 0.5178571428571429,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 6,
+                  "matched_boxes": 5,
+                  "recall": 0.8333333333333334
+                },
+                "medium": {
+                  "ground_truth_boxes": 29,
+                  "matched_boxes": 16,
+                  "recall": 0.5517241379310345
+                },
+                "small": {
+                  "ground_truth_boxes": 21,
+                  "matched_boxes": 8,
+                  "recall": 0.38095238095238093
+                }
+              },
+              "true_positives": 29
+            },
+            "0.25": {
+              "confidence": 0.25,
+              "f1": 0.5,
+              "false_negatives": 32,
+              "false_positive_image_rate": 0.09803921568627451,
+              "false_positive_images": 5,
+              "false_positives": 16,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9019607843137255,
+              "negative_images": 51,
+              "positive_image_detection_recall": 0.6857142857142857,
+              "positive_image_localization_recall": 0.5428571428571428,
+              "positive_images": 35,
+              "precision": 0.6,
+              "prediction_label_counts": {
+                "mule_deer": 40
+              },
+              "recall": 0.42857142857142855,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 6,
+                  "matched_boxes": 4,
+                  "recall": 0.6666666666666666
+                },
+                "medium": {
+                  "ground_truth_boxes": 29,
+                  "matched_boxes": 12,
+                  "recall": 0.41379310344827586
+                },
+                "small": {
+                  "ground_truth_boxes": 21,
+                  "matched_boxes": 8,
+                  "recall": 0.38095238095238093
+                }
+              },
+              "true_positives": 24
+            },
+            "0.50": {
+              "confidence": 0.5,
+              "f1": 0.48780487804878053,
+              "false_negatives": 36,
+              "false_positive_image_rate": 0.0196078431372549,
+              "false_positive_images": 1,
+              "false_positives": 6,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9803921568627451,
+              "negative_images": 51,
+              "positive_image_detection_recall": 0.6,
+              "positive_image_localization_recall": 0.4857142857142857,
+              "positive_images": 35,
+              "precision": 0.7692307692307693,
+              "prediction_label_counts": {
+                "mule_deer": 26
+              },
+              "recall": 0.35714285714285715,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 6,
+                  "matched_boxes": 4,
+                  "recall": 0.6666666666666666
+                },
+                "medium": {
+                  "ground_truth_boxes": 29,
+                  "matched_boxes": 11,
+                  "recall": 0.3793103448275862
+                },
+                "small": {
+                  "ground_truth_boxes": 21,
+                  "matched_boxes": 5,
+                  "recall": 0.23809523809523808
+                }
+              },
+              "true_positives": 20
+            }
+          }
+        },
+        "ena24": {
+          "ap50": 0.26082992914676084,
+          "ap_by_iou": {
+            "0.50": 0.26082992914676084,
+            "0.55": 0.26082992914676084,
+            "0.60": 0.26082992914676084,
+            "0.65": 0.24384293632983206,
+            "0.70": 0.24384293632983206,
+            "0.75": 0.24384293632983206,
+            "0.80": 0.20782901819593724,
+            "0.85": 0.1863303977456569,
+            "0.90": 0.0581352252872346,
+            "0.95": 0.0
+          },
+          "best_f1_at_iou50": {
+            "confidence": 0.023907093331217766,
+            "f1": 0.4109589041095891,
+            "precision": 0.8333333333333334,
+            "recall": 0.2727272727272727
+          },
+          "ground_truth_boxes": 55,
+          "images": 107,
+          "map50_95": 0.19663132376586073,
+          "thresholds": {
+            "0.10": {
+              "confidence": 0.1,
+              "f1": 0.3188405797101449,
+              "false_negatives": 44,
+              "false_positive_image_rate": 0.03571428571428571,
+              "false_positive_images": 2,
+              "false_positives": 3,
+              "iou": 0.5,
+              "negative_image_specificity": 0.9642857142857143,
+              "negative_images": 56,
+              "positive_image_detection_recall": 0.23529411764705882,
+              "positive_image_localization_recall": 0.21568627450980393,
+              "positive_images": 51,
+              "precision": 0.7857142857142857,
+              "prediction_label_counts": {
+                "mule_deer": 14
+              },
+              "recall": 0.2,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 32,
+                  "matched_boxes": 4,
+                  "recall": 0.125
+                },
+                "medium": {
+                  "ground_truth_boxes": 20,
+                  "matched_boxes": 7,
+                  "recall": 0.35
+                },
+                "small": {
+                  "ground_truth_boxes": 3,
+                  "matched_boxes": 0,
+                  "recall": 0.0
+                }
+              },
+              "true_positives": 11
+            },
+            "0.25": {
+              "confidence": 0.25,
+              "f1": 0.27692307692307694,
+              "false_negatives": 46,
+              "false_positive_image_rate": 0.0,
+              "false_positive_images": 0,
+              "false_positives": 1,
+              "iou": 0.5,
+              "negative_image_specificity": 1.0,
+              "negative_images": 56,
+              "positive_image_detection_recall": 0.19607843137254902,
+              "positive_image_localization_recall": 0.17647058823529413,
+              "positive_images": 51,
+              "precision": 0.9,
+              "prediction_label_counts": {
+                "mule_deer": 10
+              },
+              "recall": 0.16363636363636364,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 32,
+                  "matched_boxes": 3,
+                  "recall": 0.09375
+                },
+                "medium": {
+                  "ground_truth_boxes": 20,
+                  "matched_boxes": 6,
+                  "recall": 0.3
+                },
+                "small": {
+                  "ground_truth_boxes": 3,
+                  "matched_boxes": 0,
+                  "recall": 0.0
+                }
+              },
+              "true_positives": 9
+            },
+            "0.50": {
+              "confidence": 0.5,
+              "f1": 0.25396825396825395,
+              "false_negatives": 47,
+              "false_positive_image_rate": 0.0,
+              "false_positive_images": 0,
+              "false_positives": 0,
+              "iou": 0.5,
+              "negative_image_specificity": 1.0,
+              "negative_images": 56,
+              "positive_image_detection_recall": 0.1568627450980392,
+              "positive_image_localization_recall": 0.1568627450980392,
+              "positive_images": 51,
+              "precision": 1.0,
+              "prediction_label_counts": {
+                "mule_deer": 8
+              },
+              "recall": 0.14545454545454545,
+              "recall_by_relative_box_size": {
+                "large": {
+                  "ground_truth_boxes": 32,
+                  "matched_boxes": 2,
+                  "recall": 0.0625
+                },
+                "medium": {
+                  "ground_truth_boxes": 20,
+                  "matched_boxes": 6,
+                  "recall": 0.3
+                },
+                "small": {
+                  "ground_truth_boxes": 3,
+                  "matched_boxes": 0,
+                  "recall": 0.0
+                }
+              },
+              "true_positives": 8
+            }
+          }
+        }
+      }
+    }
+  }
+}
