@@ -4,10 +4,13 @@ storage/evidence/*
 storage/vectors/*
 storage/audit/*
 storage/models/*
+storage/label-studio/*
 
 # Large local training and evaluation datasets
 data/datasets/*
 !data/datasets/README.md
+data/derived/*
+!data/derived/.gitkeep
 
 # Local Python environments
 .venv/
@@ -27,6 +30,7 @@ __pycache__/
 *.pth
 *.onnx
 runs/
+notebooks/results/*_predictions.jsonl
 
 # Keep the documented storage layout in version control
 !storage/events/.gitkeep
@@ -35,4 +39,5 @@ runs/
 !storage/audit/.gitkeep
 !storage/models/.gitkeep
 
+!data/datasets/Youtube_Deer
 

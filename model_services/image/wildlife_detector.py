@@ -6,6 +6,7 @@ from typing import Any
 
 import torch
 from huggingface_hub import hf_hub_download
+from PIL import Image
 from ultralytics import YOLO  # type: ignore[attr-defined]
 
 from shared.contracts import BoundingBox, Detection, ImagePrediction
@@ -16,6 +17,7 @@ MODEL_FILENAME = (
 )
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_MODEL_DIR = PROJECT_ROOT / "storage" / "models" / "north_american_wildlife"
+ImageSource = str | Path | Image.Image
 
 
 def download_weights(model_dir: Path = DEFAULT_MODEL_DIR) -> Path:
@@ -63,7 +65,7 @@ class WildlifeDetector:
 
     def predict(
         self,
-        source: str | Path,
+        source: ImageSource | Sequence[ImageSource],
         *,
         confidence: float = 0.25,
         iou: float = 0.7,
@@ -78,8 +80,19 @@ class WildlifeDetector:
         if not 0 <= iou <= 1:
             raise ValueError("iou must be between 0 and 1")
 
+        normalized_source: str | Image.Image | list[str | Image.Image]
+        if isinstance(source, (str, Path)):
+            normalized_source = str(source)
+        elif isinstance(source, Image.Image):
+            normalized_source = source
+        else:
+            normalized_source = [
+                str(item) if isinstance(item, (str, Path)) else item
+                for item in source
+            ]
+
         predict_options: dict[str, Any] = {
-            "source": str(source),
+            "source": normalized_source,
             "conf": confidence,
             "iou": iou,
             "imgsz": image_size,

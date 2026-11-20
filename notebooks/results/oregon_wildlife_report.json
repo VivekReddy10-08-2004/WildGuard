@@ -1,0 +1,221 @@
+{
+  "confidence": 0.25,
+  "model_classes_evaluated": 9,
+  "overall": {
+    "images": 6333,
+    "any_detection": 5784,
+    "target_detected": 3919,
+    "top1_correct": 3734,
+    "detection_rate": 0.9133112269066793,
+    "target_detection_rate": 0.618822043265435,
+    "top1_accuracy": 0.5896099794726039
+  },
+  "per_class": {
+    "bald_eagle": {
+      "images": 744,
+      "any_detection": 671,
+      "target_detected": 413,
+      "top1_correct": 386,
+      "detection_rate": 0.9018817204301075,
+      "target_detection_rate": 0.5551075268817204,
+      "top1_accuracy": 0.5188172043010753
+    },
+    "black_bear": {
+      "images": 715,
+      "any_detection": 661,
+      "target_detected": 465,
+      "top1_correct": 444,
+      "detection_rate": 0.9244755244755245,
+      "target_detection_rate": 0.6503496503496503,
+      "top1_accuracy": 0.620979020979021
+    },
+    "bobcat": {
+      "images": 690,
+      "any_detection": 640,
+      "target_detected": 560,
+      "top1_correct": 542,
+      "detection_rate": 0.927536231884058,
+      "target_detection_rate": 0.8115942028985508,
+      "top1_accuracy": 0.7855072463768116
+    },
+    "columbian_black-tailed_deer": {
+      "images": 735,
+      "any_detection": 699,
+      "target_detected": 609,
+      "top1_correct": 587,
+      "detection_rate": 0.9510204081632653,
+      "target_detection_rate": 0.8285714285714286,
+      "top1_accuracy": 0.7986394557823129
+    },
+    "cougar": {
+      "images": 673,
+      "any_detection": 573,
+      "target_detected": 136,
+      "top1_correct": 122,
+      "detection_rate": 0.8514115898959881,
+      "target_detection_rate": 0.20208023774145617,
+      "top1_accuracy": 0.1812778603268945
+    },
+    "coyote": {
+      "images": 736,
+      "any_detection": 686,
+      "target_detected": 442,
+      "top1_correct": 421,
+      "detection_rate": 0.9320652173913043,
+      "target_detection_rate": 0.6005434782608695,
+      "top1_accuracy": 0.5720108695652174
+    },
+    "elk": {
+      "images": 660,
+      "any_detection": 619,
+      "target_detected": 518,
+      "top1_correct": 506,
+      "detection_rate": 0.9378787878787879,
+      "target_detection_rate": 0.7848484848484848,
+      "top1_accuracy": 0.7666666666666667
+    },
+    "gray_wolf": {
+      "images": 730,
+      "any_detection": 640,
+      "target_detected": 320,
+      "top1_correct": 287,
+      "detection_rate": 0.8767123287671232,
+      "target_detection_rate": 0.4383561643835616,
+      "top1_accuracy": 0.39315068493150684
+    },
+    "raven": {
+      "images": 650,
+      "any_detection": 595,
+      "target_detected": 456,
+      "top1_correct": 439,
+      "detection_rate": 0.9153846153846154,
+      "target_detection_rate": 0.7015384615384616,
+      "top1_accuracy": 0.6753846153846154
+    }
+  },
+  "dataset_images": 14013,
+  "evaluated_images": 6333,
+  "excluded_images": 7680,
+  "policy": [
+    {
+      "dataset_label": "bald_eagle",
+      "images": 748,
+      "status": "evaluated",
+      "model_label": "bald_eagle"
+    },
+    {
+      "dataset_label": "black_bear",
+      "images": 718,
+      "status": "evaluated",
+      "model_label": "black_bear"
+    },
+    {
+      "dataset_label": "bobcat",
+      "images": 696,
+      "status": "evaluated",
+      "model_label": "bobcat"
+    },
+    {
+      "dataset_label": "canada_lynx",
+      "images": 717,
+      "status": "excluded",
+      "model_label": null
+    },
+    {
+      "dataset_label": "columbian_black-tailed_deer",
+      "images": 735,
+      "status": "evaluated",
+      "model_label": "mule_deer"
+    },
+    {
+      "dataset_label": "cougar",
+      "images": 680,
+      "status": "evaluated",
+      "model_label": "mountain_lion"
+    },
+    {
+      "dataset_label": "coyote",
+      "images": 736,
+      "status": "evaluated",
+      "model_label": "coyote"
+    },
+    {
+      "dataset_label": "deer",
+      "images": 764,
+      "status": "excluded",
+      "model_label": null
+    },
+    {
+      "dataset_label": "elk",
+      "images": 660,
+      "status": "evaluated",
+      "model_label": "elk"
+    },
+    {
+      "dataset_label": "gray_fox",
+      "images": 668,
+      "status": "excluded",
+      "model_label": null
+    },
+    {
+      "dataset_label": "gray_wolf",
+      "images": 730,
+      "status": "evaluated",
+      "model_label": "gray_wolf"
+    },
+    {
+      "dataset_label": "mountain_beaver",
+      "images": 577,
+      "status": "excluded",
+      "model_label": null
+    },
+    {
+      "dataset_label": "nutria",
+      "images": 701,
+      "status": "excluded",
+      "model_label": null
+    },
+    {
+      "dataset_label": "raccoon",
+      "images": 728,
+      "status": "excluded",
+      "model_label": null
+    },
+    {
+      "dataset_label": "raven",
+      "images": 656,
+      "status": "evaluated",
+      "model_label": "raven"
+    },
+    {
+      "dataset_label": "red_fox",
+      "images": 759,
+      "status": "excluded",
+      "model_label": null
+    },
+    {
+      "dataset_label": "ringtail",
+      "images": 588,
+      "status": "excluded",
+      "model_label": null
+    },
+    {
+      "dataset_label": "sea_lions",
+      "images": 726,
+      "status": "excluded",
+      "model_label": null
+    },
+    {
+      "dataset_label": "seals",
+      "images": 698,
+      "status": "excluded",
+      "model_label": null
+    },
+    {
+      "dataset_label": "virginia_opossum",
+      "images": 728,
+      "status": "excluded",
+      "model_label": null
+    }
+  ]
+}

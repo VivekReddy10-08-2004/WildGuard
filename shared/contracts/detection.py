@@ -13,7 +13,7 @@ class BoundingBox(BaseModel):
 
 
 class Detection(BaseModel):
-    """One normalized wildlife detection."""
+    """One normalized object detection; species classification is downstream."""
 
     class_id: int = Field(ge=0)
     label: str

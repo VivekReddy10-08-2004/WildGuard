@@ -1,13 +1,39 @@
 # WildGuard AI
 
-WildGuard AI is a local-first, multimodal wildlife-awareness system for hikers,
-drivers, and researchers. It combines audio, image, video, text, and code models
-to detect wildlife, explain detections, issue hazard alerts, and support
-consented research workflows.
+WildGuard AI is a local-first, multimodal wildlife-awareness platform for
+drivers, hikers, and researchers. It uses a shared event, alerting, storage, and
+privacy foundation while allowing each application to use a detector optimized
+for its own safety priorities and operating environment.
 
 The architecture is designed to run entirely offline on local hardware. User
 evidence and activity remain private by default, and research or administrative
 access is limited to explicitly consented records.
+
+## Product direction
+
+WildGuard will not initially depend on one universal detector performing every
+wildlife task equally well. The platform shares infrastructure and contracts,
+but detection priorities, model training data, thresholds, and evaluation
+criteria are application-specific.
+
+| Application | Detection priority | Optimization focus |
+| --- | --- | --- |
+| Driver safety | Deer first; then elk and moose | Roads, headlights, darkness, distance, motion blur, and low-latency warnings |
+| Hiking safety | Bears, mountain lions, and wolves | Potentially dangerous close encounters and conservative safety alerts |
+| Wildlife monitoring | Broad North American species | Existing 26-class YOLO detector and general observation workflows |
+| Audio monitoring | Wolves, coyotes, and other identifiable vocalizations | Separate audio event-detection and classification pipeline |
+
+The active MVP is **deer spotting for the driver interface**. The object
+detection stage emits the shared bounding-box label `animal`; `deer` is a
+downstream species/hazard classification used by the driver alert policy. This
+keeps detection compatible with MegaDetector and future elk, moose, and hiking
+pipelines without discarding original species labels from training metadata.
+The existing 26-class YOLO model remains the broad wildlife baseline and a
+source of initial predictions; it is not assumed to be the final driver-safety
+model.
+
+See [`docs/product-direction.md`](./docs/product-direction.md) for scope,
+success criteria, model boundaries, and the phased roadmap.
 
 ## System architecture
 
@@ -30,8 +56,8 @@ all of them:
 
 | Client | Primary responsibilities |
 | --- | --- |
-| Hiker mobile interface | Live wildlife-audio alerts, camera queries, detection chat, personal event history, and privacy controls |
-| Driver interface | Dashcam or roadside detection, voice interaction, hazard notifications, event playback, and detection summaries |
+| Hiker mobile interface | Later-phase dangerous-wildlife alerts, camera/audio queries, detection history, and privacy controls |
+| Driver interface | Active MVP: dashcam deer detection, tracked road-hazard warnings, event playback, and detection summaries |
 | Admin/research dashboard | Aggregate statistics, consented wildlife logs, analytics, reviewed code generation, and custom data APIs |
 
 Clients communicate with the backend through REST for request/response work and
@@ -60,14 +86,18 @@ replaced, or tuned without changing the clients or core policy logic.
 
 | Service | Intended capabilities | Candidate models from the design |
 | --- | --- | --- |
-| Audio intelligence | Wildlife-sound classification, speech transcription, sound-event detection, rolling audio buffer | YAMNet, BirdNET, Whisper |
-| Image intelligence | Wildlife detection, scene understanding, image question answering | YOLO, Qwen3-VL |
-| Video intelligence | Frame sampling, animal tracking, motion understanding, video question answering | YOLO tracking, Qwen3-VL |
+| Audio intelligence | Separate wildlife vocalization pipeline and later speech features | AudioSet/YAMNet-style event gating, a validated bioacoustic encoder, BirdNET, Whisper |
+| Image intelligence | Generic animal proposals plus application-specific species/hazard classification | Road-animal detector, MegaDetector, existing 26-class YOLO, Qwen3-VL |
+| Video intelligence | Frame inference, animal tracking, persistence filtering, and motion/risk signals | YOLO tracking/ByteTrack, optional Qwen3-VL |
 | Text/document intelligence | Offline safety-document retrieval, grounded Q&A, explicit “answer not found” behavior | Embeddings, vector search, local LLM |
 | Code generation | Python analytics, reports, and admin-side API templates | Qwen2.5-Coder |
 
 Model output is advisory until the application layer applies confidence,
 authorization, consent, and alerting rules.
+
+Model-service boundaries allow the driver, hiking, monitoring, and audio
+pipelines to evolve independently. They should produce the same normalized
+detection/event contracts rather than share one mandatory set of weights.
 
 ### 4. Data layer
 
@@ -95,6 +125,10 @@ events should be append-oriented so access decisions remain traceable.
    cooldowns.
 5. Event metadata and evidence are stored, an audit entry is written, and any
    approved alert is returned over the live client connection.
+
+For the driver MVP, video is processed frame by frame. Detections are associated
+across frames, then a persistence and road-risk policy decides whether to warn.
+A single uncertain frame must not trigger a safety alert by itself.
 
 ### Grounded wildlife Q&A
 
@@ -183,10 +217,63 @@ source, licensing, and attribution before use or redistribution.
 
 ## Implementation status
 
-This repository currently contains the system architecture and its directory
-scaffold. `design.svg` remains the source of truth for the intended components
-and relationships. Application code, service implementations, schemas, tests,
-and deployment configuration have not yet been implemented.
+The repository contains the architecture scaffold, local Python environment,
+normalized detection contracts, a working image-model adapter, dataset download
+and evaluation scripts, executed evaluation notebooks, the locally cached
+26-class North American wildlife model, and a derived one-class driver-animal
+dataset (currently deer positives) and fine-tuned checkpoint. The driver client, runtime video-risk
+pipeline, and API endpoints are not yet implemented.
+
+The current driver checkpoint is generated at
+`storage/models/driver_animal_v2/best.pt` (runtime artifacts under `storage/`
+are not committed). It continues training from the v1 one-class checkpoint on
+`driver-animal-v2` for 30 epochs at 960 px. Against the same frozen 193-image
+test split and evaluation settings, v2 improved recall from 0.838 to 0.847 and
+mAP50–95 from 0.632 to 0.650; precision changed from 0.916 to 0.893. On the 31
+reviewed road-video training frames, matches at confidence 0.25 and IoU 0.50
+increased from 0 to 23. The previous checkpoint remains available at
+`storage/models/driver_animal/best.pt` for rollback.
+
+These still-image and training-frame results do not establish road-video safety;
+the next model milestone is independent road/night video evaluation and
+alert-policy tuning. See
+[`notebooks/deer_driver_v1_finetuning_study.ipynb`](./notebooks/deer_driver_v1_finetuning_study.ipynb)
+for the original v1 comparison, learning curves, and prediction gallery.
+
+Historical training artifacts under `storage/models/driver_deer/` and the v1
+checkpoint under `storage/models/driver_animal/` are retained locally for
+reproducibility. Driver-video evaluation now defaults to `driver_animal_v2/`.
+The shared `animal` label is a detection taxonomy, not a claim that the current
+checkpoint has broad non-deer training coverage.
+
+An experimental v3 checkpoint at `storage/models/driver_animal_v3/best.pt`
+continues transfer learning from v2 with 24 manually reviewed, training-only
+Tesla road frames containing no animals. It removes the targeted 4.2-second
+false-positive burst while retaining the real Tesla encounter from 6.23 to
+7.73 seconds. On the frozen benchmark, validation mAP50–95 changed from 0.698
+to 0.699; test mAP50–95 changed from 0.650 to 0.647, with higher precision
+(0.926) but lower recall (0.829). Unseen-video spot checks also found new false
+alarms on vehicles and road structures, so v3 is an experiment rather than the
+runtime default. Its record is
+`storage/models/driver_animal_v3/training_summary.json`, and the browser-ready
+Tesla comparison is under `storage/evidence/tesla_model_comparison/viewable/`.
+
+A parallel YOLO26n deployment experiment is available at
+`storage/models/driver_animal_nano/best.pt`. It has 2.53 million parameters and
+a 5.5 MB checkpoint, compared with 9.47 million parameters for YOLO26s. On the
+frozen test split, YOLO26n scored 0.660 mAP50–95 versus 0.651 for v2, while its
+precision/recall were slightly lower (0.873/0.838 versus 0.901/0.847). Batched
+RTX 4090 inference measured 3.34 ms/image versus 4.50 ms/image. It detects the
+Tesla deer before impact with no pre-encounter detections, but at confidence
+0.10 it is more aggressive on the unseen driving clips. Use confidence 0.25 as
+the starting demo threshold and keep v2 available when fewer false alerts are
+more important. The executed comparison, plots, event timelines, threshold
+study, and decision rationale are in
+[`notebooks/yolo26_model_comparison.ipynb`](./notebooks/yolo26_model_comparison.ipynb).
+
+`design.svg` remains the source of truth for high-level component relationships.
+The product priorities and delivery order are defined in
+[`docs/product-direction.md`](./docs/product-direction.md).
 
 ## Development environment
 
@@ -230,3 +317,57 @@ Normalized JSON detections are printed to standard output. Annotated output is
 written under `storage/evidence/predictions/` only when `--save` is supplied.
 The model is distributed under CC BY 4.0; retain the model author's attribution
 when publishing results or derivative work.
+
+This model serves two roles: the broad wildlife-monitoring detector and the
+baseline against which the deer-first driver detector is measured. Driver
+safety results must be reported separately on road/night conditions; broad
+species accuracy is not a substitute for deer hazard performance.
+
+Fine-tune and compare separate one-class driver models without overwriting the
+broad detector:
+
+```bash
+uv run python -m scripts.train_deer_detector
+```
+
+The comparison selects between wildlife-domain and official COCO initialization
+using the validation split, then evaluates only the selected checkpoint on the
+derived test split. Outputs remain local under `storage/models/driver_animal/`.
+
+Evaluate a balanced sample from the Oregon species-folder dataset with:
+
+```bash
+uv run python -m scripts.evaluate_wildlife_folders \
+  data/datasets/oregon_wildlife/oregon_wildlife \
+  --samples-per-class 25 \
+  --output storage/events/oregon-evaluation.json
+```
+
+This reports image-level target detection and top-1 rates for the nine mapped
+classes. Because the dataset provides folder labels rather than bounding-box
+annotations, these figures are not object-detection mAP.
+
+Executed dataset analyses live in:
+
+- `notebooks/wildlife_very_dark_evaluation.ipynb`
+- `notebooks/oregon_wildlife_evaluation.ipynb`
+- `notebooks/deer_detection_evaluation.ipynb`
+- `notebooks/deer_driver_v1_baseline_evaluation.ipynb` — bounding-box AP,
+  threshold, source, size, and class-confusion analysis on the derived driver
+  dataset
+
+Launch notebooks with:
+
+```bash
+uv run jupyter lab
+```
+
+For another folder dataset, override the label mapping. For example, the local
+deer dataset stores its images in a `train/` folder:
+
+```bash
+uv run python -m scripts.evaluate_wildlife_folders \
+  "data/datasets/Deer Detection Dataset.v2i.multiclass" \
+  --label-map train=mule_deer \
+  --samples-per-class 25
+```

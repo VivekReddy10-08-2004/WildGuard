@@ -1,0 +1,129 @@
+{
+  "dataset": "yin30lei/wildlife_very_dark",
+  "split": "test",
+  "confidence": 0.25,
+  "test_images": 702,
+  "evaluated_images": 241,
+  "excluded_images": 461,
+  "policy": [
+    {
+      "label": "antelope",
+      "images": 6,
+      "status": "excluded",
+      "reason_or_match": "ambiguous_likely_non_north_american"
+    },
+    {
+      "label": "bear",
+      "images": 78,
+      "status": "evaluated",
+      "reason_or_match": "coarse_proxy"
+    },
+    {
+      "label": "deer",
+      "images": 26,
+      "status": "evaluated",
+      "reason_or_match": "coarse_proxy"
+    },
+    {
+      "label": "fox",
+      "images": 87,
+      "status": "excluded",
+      "reason_or_match": "ambiguous_species_model_only_supports_swift_fox"
+    },
+    {
+      "label": "hare",
+      "images": 74,
+      "status": "evaluated",
+      "reason_or_match": "coarse_proxy"
+    },
+    {
+      "label": "hyena",
+      "images": 62,
+      "status": "excluded",
+      "reason_or_match": "non_north_american"
+    },
+    {
+      "label": "leopard",
+      "images": 8,
+      "status": "excluded",
+      "reason_or_match": "non_north_american"
+    },
+    {
+      "label": "lion",
+      "images": 121,
+      "status": "excluded",
+      "reason_or_match": "non_north_american"
+    },
+    {
+      "label": "raccoon",
+      "images": 53,
+      "status": "excluded",
+      "reason_or_match": "north_american_but_unsupported"
+    },
+    {
+      "label": "tiger",
+      "images": 124,
+      "status": "excluded",
+      "reason_or_match": "non_north_american"
+    },
+    {
+      "label": "wolf",
+      "images": 63,
+      "status": "evaluated",
+      "reason_or_match": "exact_species"
+    }
+  ],
+  "overall": {
+    "images": 241.0,
+    "detection_rate": 0.36099585062240663,
+    "target_detection_rate": 0.2074688796680498,
+    "top1_accuracy": 0.1991701244813278,
+    "mean_processing_ms": 13.25742791395217
+  },
+  "per_label": {
+    "bear": {
+      "images": 78.0,
+      "detection_rate": 0.38461538461538464,
+      "target_detection_rate": 0.3333333333333333,
+      "top1_accuracy": 0.3333333333333333,
+      "mean_processing_ms": 11.30939592108823
+    },
+    "deer": {
+      "images": 26.0,
+      "detection_rate": 0.6538461538461539,
+      "target_detection_rate": 0.15384615384615385,
+      "top1_accuracy": 0.15384615384615385,
+      "mean_processing_ms": 13.283886331079815
+    },
+    "hare": {
+      "images": 74.0,
+      "detection_rate": 0.3918918918918919,
+      "target_detection_rate": 0.2702702702702703,
+      "top1_accuracy": 0.24324324324324326,
+      "mean_processing_ms": 12.06728002541019
+    },
+    "wolf": {
+      "images": 63.0,
+      "detection_rate": 0.1746031746031746,
+      "target_detection_rate": 0.0,
+      "top1_accuracy": 0.0,
+      "mean_processing_ms": 17.05630918935178
+    }
+  },
+  "per_match_type": {
+    "coarse_proxy": {
+      "images": 178.0,
+      "detection_rate": 0.42696629213483145,
+      "target_detection_rate": 0.2808988764044944,
+      "top1_accuracy": 0.2696629213483146,
+      "mean_processing_ms": 11.912880046816355
+    },
+    "exact_species": {
+      "images": 63.0,
+      "detection_rate": 0.1746031746031746,
+      "target_detection_rate": 0.0,
+      "top1_accuracy": 0.0,
+      "mean_processing_ms": 17.05630918935178
+    }
+  }
+}
