@@ -9,6 +9,145 @@ The architecture is designed to run entirely offline on local hardware. User
 evidence and activity remain private by default, and research or administrative
 access is limited to explicitly consented records.
 
+## Run WildGuard locally
+
+### Requirements
+
+| Requirement | Needed for | Notes |
+| --- | --- | --- |
+| Linux, Git, and a modern browser | Entire project | The clients are static HTML, CSS, and JavaScript; Node.js is not required. |
+| Python 3.12 and [`uv`](https://docs.astral.sh/uv/) | Backend and model services | Python versions outside `>=3.12,<3.13` are not supported by this environment. |
+| `storage/models/driver_animal_nano/best.pt` | Driver video detection | This trained YOLO26n checkpoint must exist before the API starts. |
+| NVIDIA GPU with working drivers | Fast local inference | Strongly recommended. YOLO and SmolVLM can fall back to CPU, but the demo will be considerably slower. |
+| Internet access during first-time setup | Model installation only | Model checkpoints are downloaded once and then run locally. |
+| Ollama + `qwen2.5-coder:7b` | Admin **Generate AI report** only | JSON and CSV exports work without Ollama. |
+
+The repository already contains the frontend source and Python dependency lock.
+Model weights, datasets, generated evidence, and service virtual environments
+remain local and are not committed.
+
+### One-time setup
+
+Run from the repository root:
+
+```bash
+cd /home/vivek/Documents/Vivek-projects/WildGuard
+
+# Create .venv and install the locked backend/test dependencies.
+uv sync
+
+# Optional: install the hiker audio model and scene-description model.
+./scripts/setup_animalclap_audio.sh
+./scripts/setup_smolvlm.sh
+
+# Optional: prepare the local model used by the admin AI report.
+ollama pull qwen2.5-coder:7b
+```
+
+The two optional setup scripts create isolated environments under their model
+service directories. They download several large model files and therefore
+need sufficient disk space and a working network connection on their first run.
+
+### Start the driver demo
+
+Open two terminals at the repository root:
+
+```bash
+# Terminal 1 — FastAPI backend on http://127.0.0.1:8010
+./scripts/run_wildguard_api.sh
+```
+
+```bash
+# Terminal 2 — static clients on http://127.0.0.1:8001
+uv run python -m http.server 8001 --directory apps
+```
+
+No shell activation is required: `uv run` uses the project environment directly.
+This avoids the `source: not found` error produced by shells that do not support
+the `source` command.
+
+### Start the full multimodal demo
+
+Keep the backend and frontend running, then start each feature you plan to show
+in its own terminal:
+
+```bash
+# Hiker wildlife-audio inference
+./scripts/run_animalclap_service.sh       # port 8012
+
+# Optional asynchronous video-scene descriptions
+./scripts/run_smolvlm_service.sh          # port 8011
+
+# Admin AI session reports
+ollama serve                              # port 11434
+```
+
+Only one `ollama serve` process is needed. If Ollama is already running as a
+user service, do not start a second one.
+
+### Open the application
+
+| Page or endpoint | URL |
+| --- | --- |
+| Hiker/main client | <http://127.0.0.1:8001/web/> |
+| Driver client | <http://127.0.0.1:8001/driver-client/> |
+| Admin dashboard and exports | <http://127.0.0.1:8001/admin-dashboard/> |
+| Architecture view | <http://127.0.0.1:8001/architecture/> |
+| Backend health | <http://127.0.0.1:8010/health> |
+| Interactive API documentation | <http://127.0.0.1:8010/docs> |
+
+The admin export API is
+`GET /session/events/export?format=json|csv|ai`. JSON and CSV are deterministic
+copies of the local session log. The `ai` option sends a read-only copy to the
+local Qwen model and downloads an advisory Markdown report.
+
+### Quick checks
+
+```bash
+curl http://127.0.0.1:8010/health
+curl http://127.0.0.1:8012/health       # when AnimalCLAP is running
+curl http://127.0.0.1:8011/health       # when SmolVLM is running
+curl http://127.0.0.1:11434/api/tags    # when Ollama is running
+```
+
+If the UI reports `Failed to fetch`, confirm that the backend is listening on
+port `8010` and that the frontend was opened from port `8001`, rather than by
+opening an HTML file directly. If the backend fails during startup, first check
+that the YOLO checkpoint listed above exists. Runtime evidence and the local
+SQLite session/cache database are written under `storage/`.
+
+### YOLO26n detection samples
+
+These are representative outputs from the fine-tuned one-class driver model at
+`storage/models/driver_animal_nano/best.pt`. The model intentionally reports the
+shared label `animal`; species identification is handled separately and is not
+claimed by these bounding boxes.
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="./docs/assets/model-samples/yolo26n-daylight-animal.jpg" alt="YOLO26n bounding box around a deer-like animal in a daylight forest scene">
+    </td>
+    <td width="50%">
+      <img src="./docs/assets/model-samples/yolo26n-infrared-animal.jpg" alt="YOLO26n bounding box around an antlered animal in an infrared night scene">
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><strong>Daylight trail camera</strong><br>Animal detected at 0.87 model confidence.</td>
+    <td align="center"><strong>Infrared night camera</strong><br>Animal detected at 0.90 model confidence.</td>
+  </tr>
+</table>
+
+<p align="center">
+  <img src="./docs/assets/model-samples/yolo26n-distant-night-animal.jpg" width="760" alt="YOLO26n bounding box around a distant animal in a low-light field">
+</p>
+<p align="center"><strong>Distant low-light subject</strong><br>Animal detected at 0.79 model confidence.</p>
+
+The samples demonstrate appearance and lighting diversity, not a complete
+safety evaluation. Confidence is a model score rather than a calibrated
+probability, and known failure modes still include small distant subjects,
+motion blur, occlusion, and occasional background false positives.
+
 ## Product direction
 
 WildGuard will not initially depend on one universal detector performing every
