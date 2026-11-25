@@ -172,3 +172,9 @@ https://universe.roboflow.com/ds/AiVyqzbpJ9?key=8ANUi4P2zh
 #Hugging face 1
 from datasets import load_dataset
 ds = load_dataset("yin30lei/wildlife_very_dark")
+
+
+# Datasets:
+
+- ena24
+- yin30lei/wildlife_very_dark on Hugging Face
